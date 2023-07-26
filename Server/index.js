@@ -2,10 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+
 const server = express();
 const port = 3001;
 
 const productsRoutes = require ("./Routes/products")
+
+const bdConnection = require('./db')
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
