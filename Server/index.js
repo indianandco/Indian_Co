@@ -7,6 +7,10 @@ const server = express();
 const port = 3001;
 
 const productsRoutes = require ("./Routes/products")
+const usersRoutes = require("./Routes/users")
+const ticketsRoutes = require("./Routes/tickets")
+const cartsRoutes = require("./Routes/carts")
+const reviewRoutes = require("./Routes/review")
 
 const bdConnection = require('./db')
 
@@ -22,7 +26,11 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use("/products", productsRoutes)
+server.use("/products", productsRoutes);
+server.use("/users", usersRoutes);
+server.use("/tickets", ticketsRoutes);
+server.use("/carts", cartsRoutes);
+server.use("/review", reviewRoutes);
 
 server.listen(port, () => {
 console.log(`Server is running on port ${port}`)});

@@ -18,23 +18,19 @@ const userSchema = new mongoose.Schema(
             required: true
         },
         birthdate: {
-            type: Date,
+            type: String,
             required: true
         },
         address: {
             type: String,
             required: true
         },
-        cp: {
+        zipcode: {
             type: String,
             required: true
         },
         city: {
             type: String,
-        },
-        isAdmin: {
-            type: Boolean,
-            default: false
         },
         reviews: {
             type: [
@@ -52,7 +48,7 @@ const userSchema = new mongoose.Schema(
         },
         FirebaseId: String,
         image: {
-            type: Text
+            type: String
         },
         email: {
             type: String,
@@ -61,10 +57,14 @@ const userSchema = new mongoose.Schema(
             match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
         },
         cart: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:'carts',
-            default: []
-            },
+            type:[ 
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref:'carts',
+                    default: []
+                }
+            ]   
+        },
         role: {
             type: String,
             default: "user"
@@ -102,7 +102,8 @@ userSchema.pre('find', function (){
     this.populate('carts', '_id');
 });
 
+const userModel = mongoose.model(userCollection, userSchema);
 
-const userModel = model(userCollection, userSchema);
-
-export default userModel;
+module.exports = {
+    userModel
+};
