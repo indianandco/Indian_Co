@@ -2,8 +2,8 @@ const getProductsController = require("../../Controllers/get/getProductsControll
 
 const getProductsHandler = async (req, res) => {
     try {
-        const criptos = await getProductsController();
-        res.status(200).json(criptos)
+        const products = await getProductsController();
+        res.status(200).json(products)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
