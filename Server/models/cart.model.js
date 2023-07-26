@@ -24,7 +24,7 @@ const cartSchema =  new mongoose.Schema(
           },
         total_price: Number,
         owner: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.String,
             ref: 'users'
         }
     }
@@ -41,4 +41,6 @@ cartSchema.pre('findOne', function (){
 
 const cartModel = mongoose.model(cartCollection, cartSchema);
 
-export default cartModel;
+module.exports = {
+  cartModel
+};

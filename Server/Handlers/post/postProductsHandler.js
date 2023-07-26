@@ -1,7 +1,7 @@
 const { postProductsController } = require('../../Controllers/post/postProductsController')
 
 
-const postProductsHandler = async (req,res) =>{
+const postProductsHandler = async (res, req) =>{
     try {
         const { title, price, description, stock, category } = req.body;
         console.log(title, price, description, stock, category )

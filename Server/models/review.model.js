@@ -12,7 +12,7 @@ const reviewsSchema = new mongoose.Schema(
             require: true,
           },
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.String,
             require: true,
             ref: 'users'
           },
@@ -37,6 +37,8 @@ reviewsSchema.pre('find', function (){
     this.populate('products');
   });
 
-const reviewModel = model(reviewsCollection, reviewsSchema);
+const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);
 
-export default reviewModel;
+module.exports = {
+  reviewModel
+};
