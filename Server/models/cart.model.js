@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const cartCollection = 'carts';
 
 const cartSchema =  new mongoose.Schema(
@@ -29,6 +31,8 @@ const cartSchema =  new mongoose.Schema(
         }
     }
 );
+
+cartSchema.plugin(mongoosePaginate);
 
 cartSchema.pre('findOne', function (){
     this.populate('products.pId')
