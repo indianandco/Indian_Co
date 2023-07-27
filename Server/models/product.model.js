@@ -50,4 +50,4 @@ productsSchema.pre('find', function (){
 
 const productModel = mongoose.model(productsCollection, productsSchema);
 
-module.exports = productModel;
+module.exports = {productModel};

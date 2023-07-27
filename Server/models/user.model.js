@@ -6,8 +6,8 @@ const userCollection = 'users';
 const userSchema = new mongoose.Schema(
     {
         first_name: {
-            required: true,
-            type: String
+            type: String,
+            required: true
         },
         last_name: {
             required: true,
