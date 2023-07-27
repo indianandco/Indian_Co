@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const productsCollection = 'products';
 
 const productsSchema = new mongoose.Schema(
-   
     {
         title: {
             type: String,
@@ -40,9 +41,11 @@ const productsSchema = new mongoose.Schema(
     }
 );
 
+productsSchema.plugin(mongoosePaginate);
+
 productsSchema.pre('find', function (){
     this.populate('reviews');
-  });
+});
 
 
 const productModel = mongoose.model(productsCollection, productsSchema);

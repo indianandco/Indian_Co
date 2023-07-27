@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const ticketsCollection = 'tickets';
 
 const ticketsSchema = new mongoose.Schema(
@@ -26,6 +28,8 @@ const ticketsSchema = new mongoose.Schema(
         versionKey: false
     }
 );
+
+ticketsSchema.plugin(mongoosePaginate);
 
 ticketsSchema.pre('find', function (){
   this.populate('purchaser', 'email');
