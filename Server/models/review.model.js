@@ -32,7 +32,7 @@ const reviewsSchema = new mongoose.Schema(
 
 reviewsSchema.pre('find', function (){
   this.populate('user');
-  this.populate('products');
+
 });
 
 const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);

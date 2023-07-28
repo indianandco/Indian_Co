@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
         },
         phone: {
             type: String,
-            required: true
+            
         },
         gender: {
             type: String,
@@ -50,10 +50,6 @@ const userSchema = new mongoose.Schema(
             default: "user"
         },
         reviews: [{
-            product: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'products'
-            },
             review: {
               type: mongoose.Schema.Types.ObjectId,
               ref: 'reviews'
@@ -77,10 +73,9 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('find', function () {
-    this.populate('reviews.product');
     this.populate('reviews.review');
     this.populate('cart');
-    this.populate('tickets');
+  
   });
   
 const userModel = mongoose.model(userCollection, userSchema);
