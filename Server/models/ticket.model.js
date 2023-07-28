@@ -9,7 +9,7 @@ const ticketsSchema = new mongoose.Schema(
             require: true,
           },
         purchaser: {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             require: true,
             ref: 'users'
           },
@@ -29,8 +29,8 @@ const ticketsSchema = new mongoose.Schema(
 );
 
 ticketsSchema.pre('find', function (){
-  this.populate('purchaser', 'email');
-  this.populate('products');
+  this.populate('purchaser');
+
 });
 
 const ticketModel = mongoose.model(ticketsCollection, ticketsSchema);
