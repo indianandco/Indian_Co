@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'tempus-sans-itc-regular', sans-serif;
+    src: url("../fonts/TEMPSITC.TTF") format("truetype"); 
+  }
+
+body {
+  font-style: italic;
+  font-weight: 300;
+}
