@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
         },
         phone: {
             type: String,
-            
+            required: true
         },
         gender: {
             type: String,
@@ -49,22 +49,29 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "user"
         },
-        reviews: [{
-            review: {
-              type: mongoose.Schema.Types.ObjectId,
-              ref: 'reviews'
-            }
-        }],
-        cart: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'carts',
+        reviews: {
+            type: [{
+                review: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'reviews'
+                }
+            }],
             default: []
-        }],
-        tickets: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'tickets',
+        },
+        cart: {
+            type: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'carts'
+            }],
             default: []
-        }],
+        },
+        tickets: {
+            type: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'tickets'
+            }],
+            default: []
+        },
         lastConnection: {
             type: Date,
             default: Date.now
@@ -75,7 +82,7 @@ const userSchema = new mongoose.Schema(
 userSchema.pre('find', function () {
     this.populate('reviews.review');
     this.populate('cart');
-  
+    this.populate('tickets');
   });
   
 const userModel = mongoose.model(userCollection, userSchema);
