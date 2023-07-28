@@ -4,8 +4,13 @@ import Footer from "../../components/Footer/Footer";
 const Landing = () => {
     return (
         <div className="container" >
-            <h1>Hola mundo!</h1>
-            <Footer></Footer>
+            <div className="container2">
+                <h1>Main info</h1>
+                <img src="difusor.jpeg" alt="" />
+            </div>
+            <div>
+                <Footer></Footer>
+            </div>
         </div>
     )
 }
