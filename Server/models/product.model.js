@@ -32,12 +32,15 @@ const productsSchema = new mongoose.Schema(
         image: String,
         offer: Boolean,
         catalog_listing: Boolean,
-        reviews: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref:'reviews'
-            }
-        ]
+        reviews: {
+            type: [
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref:'reviews'
+                }
+            ],
+            default: []
+        } 
     }
 );
 
