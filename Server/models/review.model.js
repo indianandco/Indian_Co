@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const reviewsCollection = 'reviews';
 
 const reviewsSchema = new mongoose.Schema(
@@ -14,7 +13,7 @@ const reviewsSchema = new mongoose.Schema(
             require: true,
           },
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.String,
             require: true,
             ref: 'users'
           },
@@ -32,14 +31,9 @@ const reviewsSchema = new mongoose.Schema(
 );
 
 reviewsSchema.pre('find', function (){
-  this.populate('user');
+  this.populate('users');
+  this.populate('products');
 });
-
-reviewsSchema.pre('find', function (){
-    this.populate('products');
-  });
-
-
 
 const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);
 
