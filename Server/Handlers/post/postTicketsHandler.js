@@ -3,11 +3,11 @@ const { postTicketsController } = require("../../Controllers/post/postTicketsCon
 
 const postTicketsHandler = async (req, res) => {
     try {
-        const {amount, purchaser} = req.body;
-        console.log(amount, purchaser)
+        const {amount, purchaser, products} = req.body;
+        
 
 
-       const newTicket = await postTicketsController({amount, purchaser});
+       const newTicket = await postTicketsController({amount, purchaser, products});
        console.log(newTicket)
 
         res.status(200).send({result: 'success', payload: newTicket })
