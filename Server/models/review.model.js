@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
+
 
 const reviewsCollection = 'reviews';
 
@@ -14,7 +14,7 @@ const reviewsSchema = new mongoose.Schema(
             require: true,
           },
         user: {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             require: true,
             ref: 'users'
           },
@@ -32,14 +32,14 @@ const reviewsSchema = new mongoose.Schema(
 );
 
 reviewsSchema.pre('find', function (){
-  this.populate('users');
+  this.populate('user');
 });
 
 reviewsSchema.pre('find', function (){
     this.populate('products');
   });
 
-reviewsSchema.plugin(mongoosePaginate);
+
 
 const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);
 
