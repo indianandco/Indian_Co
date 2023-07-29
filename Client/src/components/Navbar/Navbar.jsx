@@ -19,36 +19,34 @@ const NavBar = () => {
           <img className="logo" src="logo.png" alt="logo" />
         </NavLink>
         <SearchBar></SearchBar>
-        <div>
-          <div className="divButton">
-            <button className="menu-button" onClick={toggleMenu}>
-              ☰
-            </button>
-          </div>
-          <div className={`navbar-links ${showMenu ? "show" : ""}`} id="navbarLinks">
-            <NavLink className="nav-link" to="/home">
-              INICIO
-            </NavLink>
-            {location.pathname !== "/" && (
-              <>
-                <NavLink className="nav-link" to="/contact">
-                  CONTACTO
-                </NavLink>
-                <NavLink className="nav-link" to="/about">
-                  SOBRE NOSOTROS
-                </NavLink>
-                <NavLink className="nav-link" to="/cart">
-                  CARRITO
-                </NavLink>
-              </>
-            )}
-            <NavLink className="nav-link" to="/">
-              REGISTRARSE
-            </NavLink>
-            <NavLink className="nav-link" to="/">
-              INGRESAR
-            </NavLink>
-          </div>
+        <div className="divButton">
+          <button className="menu-button" onClick={toggleMenu}>
+            ☰
+          </button>
+        </div>
+        <div className={`navbar-links ${showMenu ? "show" : ""}`} id="navbarLinks">
+          <NavLink className="nav-link" to="/home">
+            INICIO
+          </NavLink>
+          {location.pathname !== "/" && (
+            <>
+              <NavLink className="nav-link" to="/contact">
+                CONTACTO
+              </NavLink>
+              <NavLink className="nav-link" to="/about">
+                SOBRE NOSOTROS
+              </NavLink>
+              <NavLink className="nav-link" to="/cart">
+                CARRITO
+              </NavLink>
+            </>
+          )}
+          <NavLink className="nav-link" to="/">
+            REGISTRARSE
+          </NavLink>
+          <NavLink className="nav-link" to="/">
+            INGRESAR
+          </NavLink>
         </div>
       </div>
     </div>
