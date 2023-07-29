@@ -1,0 +1,173 @@
+/* NavBar.css */
+
+/* ... (otros estilos existentes) ... */
+
+.navbar-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  max-width: 8em;
+  background-color: rgba(255, 255, 255, 0.745);
+  border-radius: 2px;
+  position: fixed;
+  margin-top: 2.7em; /* Ajustamos la posición para que no se solape con la barra de navegación */
+  right: -10em; /* Inicialmente lo ocultamos fuera de la pantalla */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  transition: right 0.3s ease-in-out; /* Agregamos una transición suave */
+}
+
+/* Cambiamos la clase "show" para que modifique la propiedad "right" */
+.navbar-links.show {
+  right: 0;
+}
+
+.divButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu-button {
+  display: flex;
+  color: white;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+.navbar {
+  background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
+  font-family: 'Manrope', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(58, 16, 1);
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 120px;
+  margin-bottom: 1em;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
+  padding: 0.5em 1em; /* Agregamos padding superior e inferior y reducimos el padding izquierdo y derecho */
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin-right: 1em; /* Añadimos un margen derecho */
+}
+
+.navbar-brand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #ee4c7c;
+  /* Tamaño de fuente mínimo y máximo */
+  font-size: clamp(12px, 2.5vw, 24px);
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 1em; /* Añadimos un margen derecho */
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #717171;
+  /* Tamaño de fuente mínimo y máximo */
+  font-size: clamp(8px, 1.2vw, 12px);
+  text-decoration: none;
+  min-width: 9.6em;
+  transition: color 0.2s;
+  margin: 0.5em 0; /* Añadimos un margen vertical */
+}
+
+.nav-link:after {
+  position: absolute;
+  content: "";
+  background-color: #ee4c7c;
+  color: #ee4c7c;
+  left: 0;
+  bottom: 0.2em;
+  height: 0.1em;
+  width: 0;
+  transition: 0.5s;
+}
+
+.nav-link:hover {
+  color: #ee4c7c;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+  opacity: 100%;
+  transition: 0.35s;
+}
+
+.btn-primary {
+  background-color: #ee4c7c;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #d13e6c;
+}
+
+@media screen and (max-width: 390px) {
+  .navbar {
+    flex-direction: column;
+    max-height: 100%;
+    overflow-y: scroll;
+    align-items: flex-start;
+    padding-left: 1em;
+  }
+
+  .buttons_container {
+    width: 100%;
+    margin-top: 1em;
+    margin-right: 0; /* Eliminamos el margen derecho en la versión móvil */
+  }
+
+  .navbar-brand {
+    font-size: clamp(12px, 5vw, 24px);
+    margin-bottom: 1em;
+    margin-right: 0; /* Eliminamos el margen derecho en la versión móvil */
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-link {
+    font-size: clamp(8px, 5vw, 12px);
+    min-width: auto;
+    margin-bottom: 0.5em; /* Reducimos la distancia entre botones */
+    margin-right: 0; /* Eliminamos el margen derecho en la versión móvil */
+  }
+}

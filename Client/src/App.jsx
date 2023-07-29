@@ -1,9 +1,11 @@
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from "react-router-dom"
 import Landing from './views/Landing/Landing';
 import Home from './views/Home/Home';
 import Navbar from "./components/Navbar/Navbar";
-import About from "./views/About/About";
+import Contact from "./views/Contact/Contact";
+
 
 function App() {
 
@@ -19,7 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/About' element={<About />} />
+        <Route path='/Contact' element={<Contact />} />
       </Routes>
 
     </div>

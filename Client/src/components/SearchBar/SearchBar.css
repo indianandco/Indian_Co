@@ -1,0 +1,26 @@
+/* CSS */
+.search_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Aseguramos que el contenedor de búsqueda ocupe todo el ancho disponible */
+    max-width: 300px; /* Establecemos un ancho máximo para el contenedor de búsqueda */
+  }
+  
+  .search_item {
+    padding: 10px;
+    margin: 8px;
+  }
+  
+  /* Media Query para dispositivos móviles */
+  @media screen and (max-width: 768px) {
+    .search_container {
+      flex-wrap: wrap; /* Permite que los elementos de búsqueda se envuelvan en pantallas más pequeñas */
+      justify-content: flex-start; /* Ajustamos el contenido a la izquierda en pantallas más pequeñas */
+    }
+  
+    .search_item {
+      margin: 4px; /* Reducimos el margen entre los elementos de búsqueda en pantallas más pequeñas */
+    }
+  }
+  
