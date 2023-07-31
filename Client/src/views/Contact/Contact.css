@@ -14,7 +14,7 @@
     min-height: 30em;
     min-width: 100%;
     margin: 0.5em;
-    margin-top: 8em;
+    margin-top: 11em;
   }
   
   .title {
@@ -24,8 +24,8 @@
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.756);
     color: rgb(255, 255, 255);
-    width: 80%;
-    max-width: 80%;
+    width: 60%;
+    max-width: 60%;
     padding: 1em;
     border-radius: 0.5em;
     cursor: pointer;
@@ -50,7 +50,7 @@
   @media (max-width: 768px) {
     .header {
       min-height: 20em;
-      margin-top: 20em;
+      margin-top: 22em;
     }
     
     .title {

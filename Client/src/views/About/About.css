@@ -1,0 +1,39 @@
+.img{
+    max-width: 400px;
+}
+
+.header{
+    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/0e/0ec/0ecxdr.jpg?ph=e7cd32bc42');
+}
+
+.box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    padding: 4em;
+    
+}
+
+.box-3{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 0px;
+}
+
+.textTitle{
+    font-size: 35px;
+    text-align: start;
+    margin-top:.5em;
+    line-height: normal; 
+    color: white;
+}
+
+.p{
+    font-size: larger!important;
+    text-align: start;
+    margin-top:.5em;
+    line-height: normal;
+}

@@ -6,6 +6,7 @@ import Home from './views/Home/Home';
 import Navbar from "./components/Navbar/Navbar"
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import Contact from './views/Contact/Contact'
+import About from './views/About/About';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/about' element={<Home />} />
+        <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/createProduct' element={<CreateProduct />} />
       </Routes>
