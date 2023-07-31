@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Landing from './views/Landing/Landing'
 import Home from './views/Home/Home';
 import Navbar from "./components/Navbar/Navbar"
+import CreateProduct from './components/CreateProduct/CreateProduct';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path='/home' element={<Home />} />
         <Route path='/about' element={<Home />} />
+        <Route path='/createProduct' element={<CreateProduct />} />
       </Routes>
 
     </div>

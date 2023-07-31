@@ -30,8 +30,14 @@ const productsSchema = new mongoose.Schema(
         size: String,
         fragance: String,
         image: String,
-        offer: Boolean,
-        catalog_listing: Boolean,
+        offer:{
+            type:Boolean,
+            default: false
+        } ,
+        catalog_listing:{
+            type:Boolean,
+            default: false
+        } ,
         reviews: {
             type: [
                 {
