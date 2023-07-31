@@ -7,7 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 const NavBar = () => {
-    /* const location = useLocation(); */ 
+
+    /* const location = useLocation(); */
     const role = "logged out"
 
     return (
@@ -18,7 +19,7 @@ const NavBar = () => {
                 </Navbar.Brand>
                 {<SearchBar></SearchBar>}
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end collapse">
+                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="justify-content-end p-4">
                         <NavLink className="buttons" to="/home">INICIO</NavLink>
                         {<NavLink className="buttons" to="/contact">CONTACTO</NavLink>}
