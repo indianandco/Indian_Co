@@ -4,7 +4,7 @@ import './Contact.css'
 
 const Contact = () => {
 
-    const [value, setValue] = useState('');
+    /* const [value, setValue] = useState(''); */
     const [ticket, setTicket] = useState({
         name: '',
         email: '',
