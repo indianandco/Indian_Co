@@ -17,7 +17,8 @@ const getProductsController = async (limit, page, sort) => {
 
       return allProducts;
     } catch(error) {
-      
+      console.error('Error in getProductsController:', error.message);
+      throw error;
     };
 };
 

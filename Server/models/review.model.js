@@ -12,12 +12,12 @@ const reviewsSchema = new mongoose.Schema(
             type: Number,
             require: true,
           },
-        user: {
+        users: {
             type: mongoose.Schema.Types.ObjectId,
             require: true,
             ref: 'users'
           },
-        product: {
+        products: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'products'
         }
@@ -31,8 +31,8 @@ const reviewsSchema = new mongoose.Schema(
 );
 
 reviewsSchema.pre('find', function (){
-  this.populate('user');
-  this.populate('product');
+  this.populate('users');
+  this.populate('products');
 });
 
 const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);
