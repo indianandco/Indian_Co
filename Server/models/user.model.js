@@ -81,7 +81,7 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre('find', function () {
     this.populate('reviews.review');
-    this.populate('cart');
+    this.populate('carts');
     this.populate('tickets');
   });
   
