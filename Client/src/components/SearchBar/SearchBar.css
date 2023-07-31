@@ -1,6 +1,6 @@
 .search_container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    max-width: 300px;
 }
 
