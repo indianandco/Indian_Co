@@ -6,7 +6,7 @@ const getProductsHandler = async (req, res) => {
     const sort = req.query.sort;
     try {
         const { docs, hasPrevPage, hasNextPage, nextPage, prevPage } = await getProductsController(limit, page, sort);
-        
+        console.log(docs)
         const products = docs;
         console.log(products)
         

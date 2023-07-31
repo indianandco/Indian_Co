@@ -8,24 +8,21 @@ const cartSchema =  new mongoose.Schema(
             type: String,
             default: 'empty'
             },
-        products: {
-            type: [
+            products: [
               {
-                pId: {
+                product: {
                   type: mongoose.Schema.Types.ObjectId,
-                  ref: "products",
+                  ref: 'products'
                 },
                 quantity: {
                   type: Number,
-                  default: 1,
-                },
-              },
+                  default: 1
+                }
+              }
             ],
-            default: []
-          },
         total_price: Number,
         owner: {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'users'
         }
     }
@@ -33,7 +30,7 @@ const cartSchema =  new mongoose.Schema(
 
 cartSchema.pre('findOne', function (){
     this.populate('products.pId');
-    this.populate('users');
+    this.populate('owner');
 });
 
 const cartModel = mongoose.model(cartCollection, cartSchema);

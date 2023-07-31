@@ -1,6 +1,7 @@
-.container {
+.products_container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: pink;
+    flex-direction: column;
+    margin-top: 25em;
+    color: rgb(0, 0, 0);
 }
+
