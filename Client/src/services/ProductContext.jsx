@@ -8,6 +8,7 @@ export const ProductProvider = ({ children }) => {
 
     const postProduct = async (product) => {
         const response = await postProductFunction('/products', product)
+        console.log(response)
         return response
     }
 

@@ -3,11 +3,11 @@ const { postProductsController } = require('../../Controllers/post/postProductsC
 
 const postProductsHandler = async (req,res) =>{
     try {
-        const { title, price, description, stock, category } = req.body;
-        console.log(title, price, description, stock, category )
+        const  {title, price, description, stock, category, offer_boolean,size,fragance,image}  = req.body;
+        console.log(title, price, description, stock, category, offer_boolean,size,fragance,image )
 
 
-       const newProduct = await postProductsController({title, price, description, stock, category });
+       const newProduct = await postProductsController({title, price, description, stock, category, offer_boolean,size,fragance,image });
        console.log(newProduct)
 
         res.status(200).json({result: 'success', payload: newProduct })
