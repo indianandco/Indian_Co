@@ -27,6 +27,9 @@ const NavBar = () => {
                             <Link className="nav-link" to="/cart">
                                 CARRITO
                             </Link>
+                            <Link className="nav-link" to="/createProduct">
+                                SUBIR PRODUCTO
+                            </Link>
                         </>
                     )}
                     <Link className="nav-link" to="/">REGISTRARSE</Link>

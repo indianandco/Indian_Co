@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: flex-start;
+  }
+  
+  .title {
+    font-weight: bold;
+    margin-top: 170px;
+    margin-bottom: 0px;
+    margin-left: 25px;
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .label > label {
+    margin-bottom: 5px;
+  }
+  
+  .label > select,
+  .label > input[type="number"],
+  .label > input[type="text"],
+  .label > input[type="file"]
+   {
+    padding: 5px;
+
+  }
+  .label >input[type="file"]{
+    cursor: pointer;
+  }
+
+  
