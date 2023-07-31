@@ -19,19 +19,17 @@ const SearchBar = () => {
     }
 
     return (
-        <div className="search_container">
-            <InputGroup className="mb-3">
-                <Form.Control
-                    onChange={handleChange}
-                    placeholder="¿Qué estás buscando?"
-                    aria-label="¿Qué estás buscando?"
-                    aria-describedby="basic-addon2"
-                />
-                <Button onClick={() => handleSearch(search)} variant="info" id="button-addon2">
-                    Buscar
-                </Button>
-            </InputGroup>
-        </div>
+        <InputGroup className="search_container m-5">
+            <Form.Control
+                onChange={handleChange}
+                placeholder="¿Qué estás buscando?"
+                aria-label="¿Qué estás buscando?"
+                aria-describedby="basic-addon2"
+            />
+            <Button onClick={() => handleSearch(search)} variant="dark" id="button-addon2">
+                Buscar
+            </Button>
+        </InputGroup >
     );
 }
 
