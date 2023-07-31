@@ -1,11 +1,8 @@
 /* CSS */
 .search_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60%; /* Ajustamos el ancho al 100% para que ocupe todo el espacio disponible */
-  border-radius: 6px;
-  margin-top: 15px;
+    display: flex;
+    align-items: center;
+    max-width: 300px;
 }
 
 .search_item {
