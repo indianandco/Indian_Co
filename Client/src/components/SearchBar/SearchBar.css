@@ -1,0 +1,28 @@
+/* CSS */
+.search_container {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+}
+
+.search_item {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 6px;
+}
+
+/* Media Query para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .search_container {
+    display: flex;
+    justify-content: center; /* Ajustamos el contenido al centro en pantallas más pequeñas */
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .search_item {
+    margin: 4px;
+    font-size: 12px; /* Ajustamos el tamaño de fuente en pantallas más pequeñas */
+    padding: 5px; /* Ajustamos el padding en pantallas más pequeñas */
+  }
+}

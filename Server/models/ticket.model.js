@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
 
 const ticketsCollection = 'tickets';
 
@@ -10,14 +9,14 @@ const ticketsSchema = new mongoose.Schema(
             require: true,
           },
         purchaser: {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             require: true,
             ref: 'users'
           },
         products: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'products'  
+                ref: 'carts'  
             }
         ]
     },
@@ -29,14 +28,9 @@ const ticketsSchema = new mongoose.Schema(
     }
 );
 
-ticketsSchema.plugin(mongoosePaginate);
-
 ticketsSchema.pre('find', function (){
-  this.populate('purchaser', 'email');
-});
-
-ticketsSchema.pre('find', function (){
-    this.populate('products');
+  this.populate('purchaser');
+  this.populate('carts', 'products')
 });
 
 const ticketModel = mongoose.model(ticketsCollection, ticketsSchema);

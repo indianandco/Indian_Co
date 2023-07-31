@@ -1,0 +1,51 @@
+
+   .buttons {
+    font-style:normal;
+    font-weight: 300;
+    font-family: light;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  .buttons:hover {
+    color: pink;
+    border-top:2px solid rgba(56, 56, 56, 0.716); 
+  }
+
+  .logo_container{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+  }
+
+   .logo {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar {
+    background-color: white;
+    display: flex;
+    align-items:center;
+    border-bottom: 2px solid rgb(58, 16, 1);
+    width: 100%;
+  }
+
+  .nav_container {
+    margin: 0;
+    display: flex;
+    justify-content:space-evenly;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      align-items: center;
+      justify-content: center;
+  
+    .buttons {
+      margin: 5px 0; 
+    }
