@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 const NavBar = () => {
+
     /* const location = useLocation(); */
     const role = "logged out"
 

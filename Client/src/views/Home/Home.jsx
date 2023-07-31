@@ -1,8 +1,8 @@
-import style from "./Home.css"
+import "./Home.css"
 
 const Home = () => {
     return (
-        <div className={style.container} >
+        <div className='container' >
             <h1>Hola mundo! este es el Home</h1>
         </div>
     )
