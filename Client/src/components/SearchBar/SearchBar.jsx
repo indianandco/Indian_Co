@@ -1,4 +1,5 @@
 import "./SearchBar.css"
+import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -7,15 +8,23 @@ import { useContext, useState } from "react";
 
 const SearchBar = () => {
 
-    const [search, setSearch] = useState();
+    const [title, setTitle] = useState("");
     const { findProduct } = useContext(SearchContext);
 
-    const handleSearch = (search) => {
-        findProduct(search)
+    const handleSearch = async (title) => {
+        if (title.length === 0) {
+            Swal.fire({
+                width: '25em',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor ingrese un valor en la barra de búsqueda',
+            })
+        }
+        findProduct(title);
     }
 
     const handleChange = (event) => {
-        setSearch(event.target.value)
+        setTitle(event.target.value)
     }
 
     return (
@@ -26,7 +35,7 @@ const SearchBar = () => {
                 aria-label="¿Qué estás buscando?"
                 aria-describedby="basic-addon2"
             />
-            <Button onClick={() => handleSearch(search)} variant="dark" id="button-addon2">
+            <Button onClick={() => handleSearch(title)} variant="dark" id="button-addon2">
                 Buscar
             </Button>
         </InputGroup >
