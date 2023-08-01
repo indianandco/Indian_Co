@@ -1,28 +1,23 @@
 import "./Home.css"
 import Footer from "../../components/Footer/Footer";
-import { useContext } from "react";
-import { SearchContext } from '../../services/SearchContext';
+import { useContext, useEffect } from "react";
+import { ProductContext } from '../../services/ProductContext';
+import Container from "../../components/Products/Container/Container";
 
 const Home = () => {
 
-    const { product } = useContext(SearchContext);
-    console.log("product", product);
+    const { allProducts, getAllProducts } = useContext(ProductContext);
+
+    useEffect(() => {
+        getAllProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
-        <div className="products_container">
-            <h1>HOLA!</h1>
-            {product?.map(product => {
-                return (
-
-                    <div key={product.id}>
-                        <h1>{product.title}</h1>
-                        <span>{product.price}</span>
-                        <p>{product.description}</p>
-                        <p>{product.stock}</p>
-                        <p>{product.category}</p>
-                    </div>
-
-                )
-            })}
+        <div className="home_container">
+            <div>
+                <Container allProducts={allProducts} />
+            </div>
             <div>
                 <Footer></Footer>
             </div>

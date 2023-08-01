@@ -9,7 +9,8 @@ import { useContext, useState } from "react";
 const SearchBar = () => {
 
     const [title, setTitle] = useState("");
-    const { findProduct } = useContext(SearchContext);
+
+    const { error, findProduct } = useContext(SearchContext);
 
     const handleSearch = async (title) => {
         if (title.length === 0) {
@@ -17,10 +18,20 @@ const SearchBar = () => {
                 width: '25em',
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Por favor ingrese un valor en la barra de búsqueda',
+                text: 'Por favor ingrese un valor en la barra de búsqueda.',
             })
         }
+
         findProduct(title);
+
+        if (error.length) {
+            Swal.fire({
+                width: '25em',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se encontraron coincidencias con el valor ingresado.Por favor ingrese otro valor',
+            })
+        }
     }
 
     const handleChange = (event) => {
