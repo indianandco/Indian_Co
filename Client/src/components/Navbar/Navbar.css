@@ -49,7 +49,6 @@
     display: flex;
     align-items:center;
     border-bottom: 2px solid rgb(58, 16, 1);
-    width: 100%;
   }
 
   .nav_container {
@@ -66,4 +65,10 @@
     .buttons {
       margin: 5px 0; 
     }
+    
+    .logo{
+      max-width: 150px;
+      max-height: 150px;
+    }
+
   }
