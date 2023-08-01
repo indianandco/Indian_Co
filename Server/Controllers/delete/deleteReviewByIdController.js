@@ -9,7 +9,7 @@ try {
     }
    return deleteReview
 } catch (error) {
-    return ("Este es el error",error)
+    throw error
 }
 }
 
