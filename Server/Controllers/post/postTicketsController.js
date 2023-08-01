@@ -7,6 +7,7 @@ const postTicketsController = async ({ amount, purchaser, products }) => {
       
         // Agregar la referencia del nuevo ticket al campo 'tickets' del usuario
         const user = await userModel.findById(purchaser);
+        console.log(user)
         user.tickets.push(newTicket._id);
         await user.save();
       
