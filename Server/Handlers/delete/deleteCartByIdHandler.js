@@ -3,7 +3,6 @@ const { deleteCartByIdController } = require ('../../Controllers/delete/deleteCa
 const deleteCartByIdHandler = async (req,res)=>{
 try {
     const {id } = req.params
-
     const deleteCart = await deleteCartByIdController(id)
     res.status(200).json({result:'success', payload: deleteCart})
 } catch (error) {
