@@ -7,9 +7,9 @@ export const fetcher = async (endpoint) => {
     const response = await axios.get(`${BASE_URL}${endpoint}`);
     console.log(response);
 
-   /*  if (!response.statusText === "OK") {
+    if (!response.statusText === "OK") {
       throw new Error('Error en la petición');
-    } */
+    }
     
     return response.data
 

@@ -10,7 +10,7 @@ const SearchBar = () => {
 
     const [title, setTitle] = useState("");
 
-    const { error, findProduct } = useContext(SearchContext);
+    const { findProduct } = useContext(SearchContext);
 
     const handleSearch = async (title) => {
         if (title.length === 0) {
@@ -22,9 +22,9 @@ const SearchBar = () => {
             })
         }
 
-        findProduct(title);
+        const response = await findProduct(title);
 
-        if (error.length) {
+        if (typeof response === "string") {
             Swal.fire({
                 width: '25em',
                 icon: 'error',

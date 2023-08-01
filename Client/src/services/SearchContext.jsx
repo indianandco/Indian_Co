@@ -7,14 +7,12 @@ export const SearchContext = createContext();
 export const SearchProvider = ({ children }) => {
 
   const [product, setProduct] = useState([]);
-  const [error, setError] = useState("");
 
   const findProduct = async (title) => {
-    let response = await fetcher(`products/search?title=${title}`)
-    console.log(response);
+    let response = await fetcher(`/products/search?title=${title}`)
+
     if (typeof response.error === "string") {
-      setError(response.error)
-      return error
+      return response.error
     }
 
     setProduct(response)
@@ -22,7 +20,7 @@ export const SearchProvider = ({ children }) => {
   }
 
   return (
-    <SearchContext.Provider value={{ error, product, findProduct }}>
+    <SearchContext.Provider value={{ product, findProduct }}>
       {children}
     </SearchContext.Provider>
   )
