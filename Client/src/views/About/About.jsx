@@ -23,7 +23,7 @@ const About = () => {
                                 <p className='p'>Con envases totalmente reciclables, de manera que al consumirse pueden ser rellenados con los mismos o distintos aromas disponibles al momento de su refill.</p>
                             </div>
                             <div className='smallBox'>
-                                <h4 className='h4'>Seguimos trabajando...</h4>
+                                <h4 className='h4'><strong>Seguimos trabajando...</strong></h4>
                             <p className='p'>Incorporamos nuestros difusores aromáticos en envases de vidrio, con esencias puras que nos garantizan un mayor perfume y sin residuos.</p>
                             <p className='p'>... y así decidimos seguir con nuestra producción de Spray textiles creando nuestras propias fragancias garantizando de esta manera un producto original y de máxima calidad.</p>
                             <p className='p'>Nos dedicamos personalmente en la elección de aromas que nos ayudan a brindar productos únicos.</p>
