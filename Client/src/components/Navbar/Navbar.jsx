@@ -21,7 +21,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="justify-content-end p-4">
-                        <NavLink className="buttons" to="/home">INICIO</NavLink>
+                        <NavLink className="buttons" to="/">INICIO</NavLink>
                         {<NavLink className="buttons" to="/contact">CONTACTO</NavLink>}
                         {<NavLink className="buttons" to="/about">SOBRE NOSOTROS</NavLink>}
                         {<NavLink className="buttons" to="/cart">CARRITO</NavLink>}
