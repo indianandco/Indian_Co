@@ -8,17 +8,18 @@ const ticketsSchema = new mongoose.Schema(
             type: Number,
             require: true,
           },
-        purchaser: {
-            type: mongoose.Schema.Types.ObjectId,
-            require: true,
-            ref: 'users'
-          },
+      
         products: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'carts'  
             }
-        ]
+        ],
+        purchaser:{
+            type: String,
+            require: true,
+         
+        }
     },
     {
         timestamps: {
@@ -29,9 +30,13 @@ const ticketsSchema = new mongoose.Schema(
 );
 
 ticketsSchema.pre('find', function (){
-  this.populate('purchaser');
-  this.populate('carts', 'products')
-});
+  this.populate({
+    path: 'products',
+    populate: {
+      path: 'product',
+      model: 'products'
+    }
+  })})
 
 const ticketModel = mongoose.model(ticketsCollection, ticketsSchema);
 

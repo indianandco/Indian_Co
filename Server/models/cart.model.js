@@ -29,7 +29,7 @@ const cartSchema =  new mongoose.Schema(
 );
 
 cartSchema.pre('findOne', function (){
-    this.populate('products.pId');
+    this.populate('products.product');
     this.populate('owner');
 });
 

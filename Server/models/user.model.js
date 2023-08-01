@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema(
             }],
             default: []
         },
-        cart: {
+        carts: {
             type: [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'carts'

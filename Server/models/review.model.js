@@ -6,21 +6,18 @@ const reviewsSchema = new mongoose.Schema(
     {
         description: {
             type: String,
-            require: true,
+            required: true,
           },
         rate: {
             type: Number,
-            require: true,
+            required: true,
           },
-        users: {
+        user: {
             type: mongoose.Schema.Types.ObjectId,
-            require: true,
+            required: true,
             ref: 'users'
           },
-        products: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'products'
-        }
+       
     },
     {
         timestamps: {
@@ -31,10 +28,22 @@ const reviewsSchema = new mongoose.Schema(
 );
 
 reviewsSchema.pre('find', function (){
-  this.populate('users');
-  this.populate('products');
-});
+  this.populate('user');
 
+});
+reviewsSchema.post('remove', async function (doc) {
+  try {
+    // Get the user associated with the review
+    const foundUser = await userModel.findById(doc.users);
+    if (foundUser) {
+      // Remove the review ID from the user's reviews array
+      foundUser.reviews = foundUser.reviews.filter((r) => r.toString() !== doc._id.toString());
+      await foundUser.save();
+    }
+  } catch (error) {
+    console.log("Error updating user's reviews array:", error);
+  }
+});
 const reviewModel = mongoose.model(reviewsCollection, reviewsSchema);
 
 module.exports = {
