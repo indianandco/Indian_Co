@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+//Import Passport:
+const passport = require('passport');
+const { initializePassport } = require('./config/passport.config');
 
 const server = express();
 const port = 3001;
@@ -25,6 +29,23 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+//Configuracion express-session:
+server.use(session({
+  store: MongoStore.create({
+      mongoUrl: 'mongodb+srv://Juan:1234@coinverse4.z4ucfoj.mongodb.net/', //Guardar en .env
+      mongoOptions: { useNewUrlParser: true },
+      ttl: 3600
+     }),
+  secret: 'secretCoder',  
+  resave: true,
+  saveUninitialized: true
+}));
+
+//Configuracion passport:
+initializePassport();
+server.use(passport.initialize());
+server.use(passport.session());
 
 server.use("/products", productsRoutes);
 server.use("/users", usersRoutes);

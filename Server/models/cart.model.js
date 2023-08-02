@@ -21,16 +21,12 @@ const cartSchema =  new mongoose.Schema(
               }
             ],
         total_price: Number,
-        owner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'users'
-        }
+       
     }
 );
 
 cartSchema.pre('findOne', function (){
     this.populate('products.product');
-    this.populate('owner');
 });
 
 const cartModel = mongoose.model(cartCollection, cartSchema);
