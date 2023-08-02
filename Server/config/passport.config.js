@@ -18,10 +18,10 @@ const initializePassport = () =>{
         usernameField: 'email'
     }, async (req, username, password, done)=>{       
 
-        const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, age } = req.body;
-        console.log(req.body.email)
-//Falta validar los datos  
         try {
+            const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, age, email } = req.body;
+            console.log(req.body.email)
+            //Falta validar los datos  
             const user = await userModel.findOne({ email: username });
 
             if(user) {
@@ -39,7 +39,7 @@ const initializePassport = () =>{
                 zipcode,
                 city,
                 phone,
-                age: age,
+                age,
                 password: createHash(password)
             };
 

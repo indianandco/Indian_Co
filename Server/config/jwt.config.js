@@ -1,4 +1,4 @@
-const { jwt } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 //Deberia guardarse como variable de entorno
 const PRIVATE_KEY = 'indianCoKey';
