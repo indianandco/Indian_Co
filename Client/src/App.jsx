@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar"
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import Contact from './views/Contact/Contact'
 import About from './views/About/About';
+import Container from './components/Products/Container/Container';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/createProduct' element={<CreateProduct />} />
+        <Route path='/products' element={<Container />} />
       </Routes>
 
     </div>

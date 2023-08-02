@@ -3,14 +3,14 @@ import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import { SearchContext } from "../../services/SearchContext";
 import { useContext, useState } from "react";
+import { ProductContext } from "../../services/ProductContext";
 
 const SearchBar = () => {
 
     const [title, setTitle] = useState("");
 
-    const { findProduct } = useContext(SearchContext);
+    const { findProduct } = useContext(ProductContext);
 
     const handleSearch = async (title) => {
         if (title.length === 0) {

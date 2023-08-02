@@ -1,8 +1,17 @@
 /* eslint-disable react/prop-types */
 import "./Container.css"
 import Cards from "../Card/Cards"
+import { useContext, useEffect } from "react";
+import { ProductContext } from '../../../services/ProductContext';
 
-const Container = ({ allProducts }) => {
+const Container = () => {
+
+    const { allProducts, getAllProducts } = useContext(ProductContext);
+
+    useEffect(() => {
+        getAllProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="products_container">
