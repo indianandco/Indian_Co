@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 //Deberia guardarse como variable de entorno
 const PRIVATE_KEY = 'indianCoKey';
 
-const generateToken = async (user) => {}
+const generateToken = async (user) => {
     const token = jwt.sign({
         user
     }, PRIVATE_KEY, {
