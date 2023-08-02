@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.css";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import SignIn from "../Login/SignUp/SignUp";
 
 
 const NavBar = () => {
@@ -28,7 +29,7 @@ const NavBar = () => {
                         {<NavLink className="buttons" to="/products">PRODUCTOS</NavLink>}
                         {role !== "user"
                             ?
-                            <NavLink className="buttons" to="/login">INGRESAR</NavLink>
+                            <SignIn ></SignIn>
                             :
                             <NavLink className="buttons" to="/">SALIR</NavLink>
                         }
