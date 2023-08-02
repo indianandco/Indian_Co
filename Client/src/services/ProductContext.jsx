@@ -8,6 +8,7 @@ export const ProductContext = createContext()
 export const ProductProvider = ({ children }) => {
     const [response, setResponse] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
+    const [product, setProduct] = useState([]);
 
     const postProduct = async (product) => {
         const responseBack = await postProductFunction('/products', product)
@@ -21,8 +22,20 @@ export const ProductProvider = ({ children }) => {
         return allProducts
     }
 
+
+    const findProduct = async (title) => {
+        let response = await fetcher(`/products/search?title=${title}`)
+
+        if (typeof response.error === "string") {
+            return response.error
+        }
+
+        setProduct(response)
+        return product;
+    }
+
     return (
-        <ProductContext.Provider value={{ response, allProducts, postProduct, getAllProducts }}>
+        <ProductContext.Provider value={{ product, findProduct, response, allProducts, postProduct, getAllProducts }}>
             {children}
         </ ProductContext.Provider >
     )

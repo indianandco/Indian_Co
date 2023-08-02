@@ -9,12 +9,12 @@ const Cards = ({ title, price, /* offer_price */ description, size, fragance, /*
 
     return (
         <div>
-            <Card className="mx-4" style={{ width: '30rem' }}>
+            <Card className="mx-4 my-4" style={{ width: '30rem' }}>
                 <NavLink to="/contact">
                     <Card.Img variant="top" src="frascos.jpeg" image={image} />
                 </NavLink>
                 <Card.Header className="pb-1"><Card.Title className="d-flex justify-content-center" >{title}</Card.Title></Card.Header>
-                <Card.Body class="p-3 d-flex flex-column">
+                <Card.Body className="p-3 d-flex flex-column">
                     <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
                     <Card.Text>{`${description}.`}</Card.Text>
                     <Card.Text>{`Fragancias:${fragance}.`}</Card.Text>

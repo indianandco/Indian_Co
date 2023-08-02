@@ -25,6 +25,7 @@ const NavBar = () => {
                         {<NavLink className="buttons" to="/contact">CONTACTO</NavLink>}
                         {<NavLink className="buttons" to="/about">SOBRE NOSOTROS</NavLink>}
                         {<NavLink className="buttons" to="/cart">CARRITO</NavLink>}
+                        {<NavLink className="buttons" to="/products">PRODUCTOS</NavLink>}
                         {role !== "user"
                             ?
                             <NavLink className="buttons" to="/login">INGRESAR</NavLink>
