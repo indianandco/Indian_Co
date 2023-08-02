@@ -1,0 +1,26 @@
+.buttons {
+    position: relative;
+    font-style:normal;
+    font-weight: 300;
+    font-family: light;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .buttons:hover {
+    color: rgb(58, 16, 1);
+
+  }
+
+  .buttons:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(58, 16, 1);
+    left: 0;
+    bottom: 4px; 
+    height: 2.5px;
+    width: 0%;
+    transition: 0.3s;
+}

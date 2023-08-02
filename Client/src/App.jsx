@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar"
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import Contact from './views/Contact/Contact'
 import About from './views/About/About';
-import Container from './components/Products/Container/Container';
+import Container from './views/Products/Container/Container';
 
 function App() {
 
