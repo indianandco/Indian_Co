@@ -6,7 +6,10 @@ import Navbar from "./components/Navbar/Navbar"
 import CreateProduct from './components/CreateProduct/CreateProduct';
 import Contact from './views/Contact/Contact'
 import About from './views/About/About';
+import Detail from './views/Detail/Detail';
 import Container from './views/Products/Container/Container';
+import NotFound from './views/Error/NotFound';
+
 
 function App() {
 
@@ -25,6 +28,8 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/createProduct' element={<CreateProduct />} />
         <Route path='/products' element={<Container />} />
+        <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
     </div>

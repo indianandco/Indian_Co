@@ -5,12 +5,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Cards = ({ title, price, /* offer_price */ description, size, fragance, /* offer */ image, category }) => {
+const Cards = ({ title, price, /* offer_price */ description, size, fragance, /* offer */ image, category, id }) => {
 
     return (
         <div>
             <Card className="mx-4 my-4" style={{ width: '30rem' }}>
-                <NavLink to="/contact">
+                <NavLink to={`/detail/${id}`} >
                     <Card.Img variant="top" src="frascos.jpeg" image={image} />
                 </NavLink>
                 <Card.Header className="pb-1"><Card.Title className="d-flex justify-content-center" >{title}</Card.Title></Card.Header>

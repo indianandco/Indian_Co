@@ -8,6 +8,7 @@ export const ProductContext = createContext()
 export const ProductProvider = ({ children }) => {
     const [response, setResponse] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
+    const [detailProducts, setDetailProducts] = useState([]);
     const [product, setProduct] = useState([]);
 
     const postProduct = async (product) => {
@@ -20,6 +21,12 @@ export const ProductProvider = ({ children }) => {
         const response = await fetcher(`/products`)
         setAllProducts(response);
         return allProducts
+    }
+
+    const getDetailProducts = async (id) => {
+        const response = await fetcher(`/products/detail/${id}`)
+        setDetailProducts(response);
+        return detailProducts
     }
 
 
@@ -35,7 +42,7 @@ export const ProductProvider = ({ children }) => {
     }
 
     return (
-        <ProductContext.Provider value={{ product, findProduct, response, allProducts, postProduct, getAllProducts }}>
+        <ProductContext.Provider value={{ product, findProduct, response, allProducts,detailProducts,getDetailProducts, postProduct, getAllProducts }}>
             {children}
         </ ProductContext.Provider >
     )
