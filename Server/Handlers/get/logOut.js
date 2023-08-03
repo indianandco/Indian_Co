@@ -4,9 +4,9 @@ const logOut =  async (req,res) =>{
             if (err) {
               res.status(500).send({ status: 'error', error: 'couldnt logout' });
             } else {
-              logger.info('Session destroyed successfully!');
+              console.log('Session destroyed successfully!');
               res.clearCookie('cookieToken');
-              res.redirect('/login');
+              res.redirect('/users/login');
             }
           });
         
