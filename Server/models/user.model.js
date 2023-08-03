@@ -18,29 +18,21 @@ const userSchema = new mongoose.Schema(
         },
         phone: {
             type: String,
-            required: true
         },
         gender: {
             type: String,
-            required: true
         },
         birthdate: {
             type: String,
-            required: true
         },
         address: {
             type: String,
-            required: true
         },
         zipcode: {
             type: String,
-            required: true
         },
         city: {
             type: String,
-        },
-        image: {
-            type: String
         },
         email: {
             type: String,
