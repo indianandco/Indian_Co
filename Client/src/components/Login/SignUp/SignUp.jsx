@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { fetcherCreateUser } from '../../../utils/fetcherPost';
 
 function SignIn() {
     const [show, setShow] = useState(false);
@@ -45,6 +46,7 @@ function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('submit', form);
+        fetcherCreateUser("/users", form)
     }
 
     return (
