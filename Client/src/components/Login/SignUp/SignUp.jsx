@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { fetcherCreateUser } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
+import { fetcher } from '../../../utils/fetcherGet';
 
 function SignIn() {
     const [show, setShow] = useState(false);
@@ -12,23 +14,15 @@ function SignIn() {
         first_name: '',
         last_name: '',
         password: '',
-        phone: '',
         gender: "otros",
         birthdate: "",
-        address: "",
-        zipcode: '',
-        city: '',
         email: '',
     })
     const [error, setError] = useState({
-        first_name: '',
-        last_name: '',
-        password: '',
-        phone: '',
-        address: "",
-        zipcode: '',
-        city: '',
-        email: '',
+        first_name: 'El campo Nombre es requerido',
+        last_name: 'El campo Apellido es requerido',
+        password: 'El campo Contraseña es requerido',
+        email: 'El campo Email es requerido',
     })
 
     const handleClose = () => {
@@ -64,6 +58,7 @@ function SignIn() {
             ...form,
             [name]: value
         })
+
         setError((validation({ ...form, [name]: value })))
 
         if (!Object.keys((validation({ ...form, [name]: value }))).length) {
@@ -76,13 +71,21 @@ function SignIn() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log('submit', form);
-
         fetcherCreateUser("/users/register", form)
     }
 
-    console.log(error, validated);
+    const handleAuth = (event) => {
+        const data = event.target.dataset.social
+        console.log(data);
+        fetcher(`/users/auth/${data}`)
+    }
+
+    useEffect(() => {
+        validation({ ...form })
+    }, [form])
+
+    console.log(error);
+
     return (
         <>
             <Button variant="none" className="buttons" onClick={handleShow}>
@@ -90,13 +93,13 @@ function SignIn() {
             </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Registrarse como usuario</Modal.Title>
+                <Modal.Header className="pb-0" closeButton>
+                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }} >Registrarse como usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Nombre</Form.Label>
+                            <Form.Label>Nombre:</Form.Label>
                             <Form.Control
                                 required
                                 onChange={handleChange}
@@ -104,7 +107,7 @@ function SignIn() {
                                 value={form.first_name}
                                 type="text"
                                 placeholder="Ingrese su nombre completo"
-                                class={`form-control ${!error.first_name?.length ? "is-valid" : "is-invalid"}`}
+                                className={`form-control ${error?.first_name ? "is-invalid" : "is-valid"}`}
                                 feedback={error.first_name}
                                 autoFocus
                             />
@@ -119,7 +122,7 @@ function SignIn() {
                                 onChange={handleChange}
                                 name="last_name"
                                 value={form.last_name}
-                                class={`form-control ${!error.last_name?.length ? "is-valid" : "is-invalid"}`}
+                                className={`form-control ${!error.last_name?.length ? "is-valid" : "is-invalid"}`}
                                 type="text"
                                 placeholder="Ingrese su apellido"
                                 autoFocus
@@ -135,7 +138,7 @@ function SignIn() {
                                 onChange={handleChange}
                                 name="email"
                                 value={form.email}
-                                class={`form-control ${!error.email?.length ? "is-valid" : "is-invalid"}`}
+                                className={`form-control ${!error.email?.length ? "is-valid" : "is-invalid"}`}
                                 type="email"
                                 placeholder="ejemplo@ejemplo.com.ar"
                                 autoFocus
@@ -184,70 +187,6 @@ function SignIn() {
                                 autoFocus
                             />
                         </Form.Group>
-                        {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
-                            <Form.Label>Dirección</Form.Label>
-                            <Form.Control
-                                required
-                                onChange={handleChange}
-                                name="address"
-                                value={form.address}
-                                class={`form-control ${!error.address?.length ? "is-valid" : "is-invalid"}`}
-                                type="text"
-                                placeholder="Ingrese una dirección"
-                                autoFocus
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {error.address}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput7">
-                            <Form.Label>Codigo postal</Form.Label>
-                            <Form.Control
-                                required
-                                onChange={handleChange}
-                                name="zipcode"
-                                value={form.zipcode}
-                                class={`form-control ${!error.zipcode?.length ? "is-valid" : "is-invalid"}`}
-                                type="text"
-                                placeholder="Ingrese un código postal"
-                                autoFocus
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {error.zipcode}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput8">
-                            <Form.Label>Ciudad</Form.Label>
-                            <Form.Control
-                                required
-                                onChange={handleChange}
-                                name="city"
-                                value={form.city}
-                                class={`form-control ${!error.city?.length ? "is-valid" : "is-invalid"}`}
-                                type="text"
-                                placeholder="Ingrese su ciudad"
-                                autoFocus
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {error.city}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput10">
-                            <Form.Label>Teléfono</Form.Label>
-                            <Form.Control
-                                required
-                                onChange={handleChange}
-                                name="phone"
-                                value={form.phone}
-                                class={`form-control ${!error.phone?.length ? "is-valid" : "is-invalid"}`}
-                                type="tel"
-                                placeholder="Ingrese un número de teléfono o celular"
-                                autoFocus
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {error.phone}
-                            </Form.Control.Feedback>
-                        </Form.Group> */}
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput11">
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control
@@ -255,7 +194,7 @@ function SignIn() {
                                 onChange={handleChange}
                                 name="password"
                                 value={form.password}
-                                class={`form-control ${!error.password?.length ? "is-valid" : "is-invalid"}`}
+                                className={`form-control ${!error.password?.length ? "is-valid" : "is-invalid"}`}
                                 type="password"
                                 placeholder="Ingrese una contraseña"
                                 autoFocus
@@ -264,15 +203,22 @@ function SignIn() {
                                 {error.password}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Cerrar
-                            </Button>
-                            <Button disabled={validated} variant="primary" type="submit">
+                        <Modal.Footer className='p-1'>
+                            <Button style={{ width: "100%" }} disabled={validated} onClick={handleClose} size='lg' variant="success" type="submit">
                                 Registrar
                             </Button>
                         </Modal.Footer>
                     </Form>
+                    <Modal.Footer className='p-1'>
+                        <Button style={{ width: "100%" }} data-social="facebook" onClick={handleAuth} size='lg' variant="primary" type="submit">
+                            <i className="bi bi-facebook"></i> Facebook
+                        </Button>
+                    </Modal.Footer>
+                    <Modal.Footer className='p-1'>
+                        <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
+                            <i className="bi bi-google"></i> Google
+                        </Button>
+                    </Modal.Footer>
                 </Modal.Body>
 
             </Modal>
