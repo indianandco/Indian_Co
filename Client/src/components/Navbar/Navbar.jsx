@@ -36,7 +36,7 @@ const NavBar = () => {
                             :
                             <NavLink className="buttons" to="/">SALIR</NavLink>
                         }
-                        {<NavLink className="buttons" to="/createProduct">CREAR PRODUCTO</NavLink>}
+                        {<NavLink className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

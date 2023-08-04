@@ -1,0 +1,17 @@
+.dash_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.offcanvas_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.nav_container {
+    background-color: rgba(0, 0, 0, 0.749);
+}
