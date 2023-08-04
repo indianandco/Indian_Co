@@ -3,7 +3,7 @@
     position: relative;
     font-style:normal;
     font-weight: 300;
-    font-family: light;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
     color: black;
     padding: 10px;
     text-decoration: none;
@@ -90,14 +90,15 @@
     .navbar {
       align-items: center;
       justify-content: center;
+      min-height: 8em;
     }
     .buttons {
       margin: 5px 0; 
     }
     
     .logo{
-      max-width: 150px;
-      max-height: 150px;
+      max-width: 100px;
+      max-height: 100px;
     }
 
   }

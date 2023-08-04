@@ -3,7 +3,7 @@
 /* CSS */
 .all {
     margin-top: 2em;
-    font-family: 'Manrope', sans-serif;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
   }
   
   .header {
