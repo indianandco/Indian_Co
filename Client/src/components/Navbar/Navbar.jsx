@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.css";
 import Nav from 'react-bootstrap/Nav';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navbar from 'react-bootstrap/Navbar';
-import SignIn from "../Login/SignUp/SignUp";
+import SignUp from "../Login/SignUp/SignUp";
 
 
 const NavBar = () => {
@@ -23,13 +24,15 @@ const NavBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="justify-content-end p-4">
                         <NavLink className="buttons" to="/">INICIO</NavLink>
-                        {<NavLink className="buttons" to="/contact">CONTACTO</NavLink>}
-                        {<NavLink className="buttons" to="/about">SOBRE NOSOTROS</NavLink>}
-                        {<NavLink className="buttons" to="/cart">CARRITO</NavLink>}
-                        {<NavLink className="buttons" to="/products">PRODUCTOS</NavLink>}
+                        <NavLink className="buttons" to="/contact">CONTACTO</NavLink>
+                        <NavLink className="buttons" to="/about">SOBRE NOSOTROS</NavLink>
+                        <div>
+                            <NavLink className="cart_button" to="/cart"><i className="bi bi-bag-check"></i></NavLink>
+                        </div>
+                        <NavLink className="buttons" to="/products">PRODUCTOS</NavLink>
                         {role !== "user"
                             ?
-                            <SignIn ></SignIn>
+                            <SignUp ></SignUp>
                             :
                             <NavLink className="buttons" to="/">SALIR</NavLink>
                         }

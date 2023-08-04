@@ -10,6 +10,34 @@
     font-size: 15px;
   }
 
+  .cart_button {
+    position: relative;
+    color: black;
+    padding: 10px;
+    font-size: 25px;
+  }
+
+  .cart_button:hover {
+    color: rgb(58, 16, 1);
+
+  }
+
+  .cart_button:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(58, 16, 1);
+    left: 0;
+    bottom: 4px; 
+    height: 2.5px;
+    width: 0%;
+    transition: 0.3s;
+}
+
+.cart_button:hover:after{
+  width: 100%;
+  color: pink;
+}
+
   .buttons:hover {
     color: rgb(58, 16, 1);
 
@@ -35,11 +63,11 @@
     display: flex;
     align-items:center;
     justify-content: center;
-  }
+    max-height: 100px;  }
 
    .logo {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
     padding: 0;
     margin: 0;
   }
@@ -48,6 +76,7 @@
     background-color: rgb(189, 189, 189);
     display: flex;
     align-items:center;
+    height: 6em;
     border-bottom: 2px solid rgb(58, 16, 1);
   }
 
