@@ -23,23 +23,26 @@ const Footer = () => {
                     </NavLink>
                 </div>
             </div>
-            <div className="mid_container">
-                <h1 className="menu">Menu</h1>
-                <div className="links_container">
-                    <NavLink className="links" to={"/home"} >Inicio</NavLink>
-                    <NavLink className="links" to={"/products"} >Productos</NavLink>
-                    <NavLink className="links" to={"/contact"} >Contacto</NavLink>
-                    <NavLink className="links" to={"/about"} >Sobre nosotros</NavLink>
-                    <NavLink className="links" to={"/cart"} >Carrito</NavLink>
+            <div className="mid-right_container">
+                <div className="mid_container">
+                    <h1 className="menu">Menu</h1>
+                    <div className="links_container">
+                        <NavLink className="links" to={"/home"} >Inicio</NavLink>
+                        <NavLink className="links" to={"/products"} >Productos</NavLink>
+                        <NavLink className="links" to={"/contact"} >Contacto</NavLink>
+                        <NavLink className="links" to={"/about"} >Sobre nosotros</NavLink>
+                        <NavLink className="links" to={"/cart"} >Carrito</NavLink>
+                    </div>
+                </div>
+                <div className="right_container">
+                    <h1 className="info">Información</h1>
+                    <div className="links_container">
+                        <button className="modals" onClick={handleShow} >¿Cómo Comprar?</button>
+                        <button className="modals" onClick={handleShow} >Lorem ipsu</button>
+                    </div>
                 </div>
             </div>
-            <div className="right_container">
-                <h1>Información</h1>
-                <div className="links_container">
-                    <button className="modals" onClick={handleShow} >¿Cómo Comprar?</button>
-                    <button className="modals" onClick={handleShow} >Lorem ipsu</button>
-                </div>
-            </div>
+
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="pb-0" closeButton>
                     <Modal.Title className='pb-1 m-1' style={{ color: "black" }} >Comprando en Indian&Co</Modal.Title>
