@@ -88,8 +88,8 @@ function SignIn() {
 
     return (
         <>
-            <Button variant="none" className="buttons" onClick={handleShow}>
-                Registrarse
+            <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
+                REGISTRARSE
             </Button>
 
             <Modal show={show} onHide={handleClose}>
