@@ -9,12 +9,6 @@ const { failLogin } = require('../Handlers/get/failLogin');
 const { logOut } = require('../Handlers/get/logOut');
 const { callBackAuthenticate } = require('../Handlers/get/callBackAuthenticate');
 
-
-const { getUserByNameHandler } = require ('../Handlers/get/getUserByNameHandler')
-const { getAllUserHandler } = require ('../Handlers/get/getAllUserHandler')
-
-const { deleteUserByIdHandler } = require ('../Handlers/delete/deleteUserByIdHandler')
-
 //Registro:
 router.post('/register', passport.authenticate('register', {failureRedirect: 'fail-register'}), postUsersHandler);
 router.get('/fail-register', failRegister);
@@ -32,10 +26,5 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
 //Logout:
 router.get('/logout', logOut);
 
-
-router.get('/', getAllUserHandler)
-router.get('/search', getUserByNameHandler)
-
-router.delete('/delete/:id', deleteUserByIdHandler)
 
 module.exports = router;

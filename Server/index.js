@@ -16,6 +16,8 @@ const ticketsRoutes = require("./Routes/tickets")
 const cartsRoutes = require("./Routes/carts")
 const reviewRoutes = require("./Routes/review")
 
+const adminDashboard = require('./Routes/adminDashboard');
+
 const bdConnection = require('./db')
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -52,6 +54,7 @@ server.use("/users", usersRoutes);
 server.use("/tickets", ticketsRoutes);
 server.use("/carts", cartsRoutes);
 server.use("/review", reviewRoutes);
+server.use('/admindashboard', adminDashboard);
 
 server.listen(port, () => {
 console.log(`Server is running on port ${port}`)});
