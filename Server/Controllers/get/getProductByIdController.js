@@ -1,17 +1,17 @@
-const {productModel} = require ('../../models/product.model')
+const {productModel} = require ('../../models/product.model');
 
 const getProductByIdController= async (id)=>{
     try {
-        const product= await productModel.findById(id)
+        const product= await productModel.findById(id);
         if(!product){
-            throw new Error
+            throw new Error;
         }
-        return product
+        return product;
     } catch (error) {
-        return ({ error: "No se pudo encontrar el producto en la BDD"})
-    }
-}
+        return ({ error: "No se pudo encontrar el producto en la BDD"});
+    };
+};
 
 module.exports={
     getProductByIdController
-}
+};

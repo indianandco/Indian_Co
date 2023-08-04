@@ -1,21 +1,22 @@
-const { getReviewsByProductIdController } = require('../../Controllers/get/getReviewsByProductIdController');
-
+const { getProductByIdHandler } = require('../../Controllers/get/getProductByIdController');
+ 
 const getReviewsByProductIdHandler = async (req, res) => {
-  const { productId } = req.params;
+  const { pid } = req.params;
   try {
-    const reviews = await getReviewsByProductIdController(productId);
-    console.log(reviews)
-    if (!reviews || reviews.length === 0) {
-      throw new Error("No hay reviews");
-    }
+      const product = await getProductByIdHandler(pid);
 
-    return res.status(200).json(reviews);
+      if(!product) {
+        return res.status(404).json({ message: 'Todavia no hay reviews sobre este producto' });
+      } else {
+        return res.status(200).json({payload: product.reviews});
+      };
+
   } catch (error) {
-    console.log("este es el error",error)
-    res.status(400).json({ error: error.message });
+    console.log("este es el error",error);
+    res.status(500).json({ error: error.message });
   }
 };
 
 module.exports = {
-  getReviewsByProductIdHandler,
+  getReviewsByProductIdHandler
 };
