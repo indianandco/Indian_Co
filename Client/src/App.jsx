@@ -9,6 +9,7 @@ import Detail from './views/Detail/Detail';
 import Container from './views/Products/Container/Container';
 import NotFound from './views/Error/NotFound';
 import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin';
+import CreateProduct from './components/CreateProduct/CreateProduct';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='/createProduct' element={<CreateProduct/>}/>
       </Routes>
 
     </div>
