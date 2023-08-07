@@ -14,9 +14,12 @@ import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
+    const [modal, setModal] = useState(false)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleModalClose = () => setModal(false);
+    const handleModalShow = () => setModal(true);
 
     return (
         <div>
@@ -98,7 +101,7 @@ const DashboardAdmin = () => {
                             <LinesChart></LinesChart>
                         </div>
                         <div className='doughnut_container'>
-                            <h2>Ventas de la semana</h2>
+                            <h2>Ventas del mes</h2>
                             <DoughnutChart></DoughnutChart>
                         </div>
                     </div>
@@ -116,28 +119,28 @@ const DashboardAdmin = () => {
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='pagination'>
                             <Pagination>
@@ -155,17 +158,30 @@ const DashboardAdmin = () => {
                                 <Pagination.Next />
                                 <Pagination.Last />
                             </Pagination>
-                            <Modal show={show} onHide={handleClose}>
+                            <Modal centered show={modal} onHide={handleModalClose}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Modal heading</Modal.Title>
+                                    <Modal.Title className='d-flex flex-column' style={{ color: "black" }}>Orden de compra</Modal.Title>
+
                                 </Modal.Header>
-                                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                                <Modal.Body>
+                                    <div>
+                                        <div>
+                                            <p>Nro de orden:</p>
+                                        </div>
+                                        <div>
+                                            <p>Dirección:</p>
+                                        </div>
+                                        <div>
+                                            <p>total:</p>
+                                        </div>
+                                        <div>
+                                            <p>productos:</p>
+                                        </div>
+                                    </div>
+                                </Modal.Body>
                                 <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
+                                    <Button variant="secondary" onClick={handleModalClose}>
                                         Close
-                                    </Button>
-                                    <Button variant="primary" onClick={handleClose}>
-                                        Save Changes
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
