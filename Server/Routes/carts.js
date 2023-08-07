@@ -8,6 +8,6 @@ router.put('/:cid', emptyCartHandler);
 router.get('/:cid', getCartByIdHandler);
 
 //Agregar o quitar un producto del carrito, tambien gestionaria la propiedad Quantity
-router.put('/:cid/products/:pid', putAddOrRemoveProductOfCart); //Ponernos de acuerdo.
+// router.put('/:cid/products/:pid', putAddOrRemoveProductOfCart); //Ponernos de acuerdo.
 
 module.exports = router;

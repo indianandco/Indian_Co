@@ -24,6 +24,7 @@ const DashboardAdmin = () => {
                         <Nav.Link className="icon" href="/home"><i className="bi bi-house-door-fill"></i></Nav.Link>
                         <Nav.Link className="icon" eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
                         <Nav.Link className="icon" eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
+                        <Nav.Link className="icon" href="/createProduct"><i className="bi bi-upload"></i></Nav.Link>
                     </Nav>
                 </div>
                 <div className="banners_container">
