@@ -10,13 +10,28 @@
     flex-direction: column;
 }
 
+.offcanvas_buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.buttons_inside {
+    display: flex;
+    width: 100%;
+    all: unset;
+    text-decoration: none;
+    border-bottom: 0.5px solid black ;
+}
+
 .icon {
     font-size: 25px;
 }
 
 .nav_container {
     background-color: rgba(0, 0, 0, 0.501);
-    height:100dvh;
+    height:100%;
 }
 
 .info_container {
