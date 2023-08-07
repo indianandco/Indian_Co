@@ -43,7 +43,14 @@ const weekSales = {
     ],
 };
 
-const misoptions = {
+const options = {
+    plugins: {
+        legend: {
+            labels: {
+                color: 'black', // Cambia el color del texto de los labels aquí
+            }
+        }
+    },
     scales: {
         y: {
             min: 0
@@ -55,5 +62,5 @@ const misoptions = {
 };
 
 export default function LinesChart() {
-    return <Line data={weekSales} options={misoptions} />
+    return <Line data={weekSales} options={options} />
 }
