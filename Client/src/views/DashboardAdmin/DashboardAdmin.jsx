@@ -21,12 +21,14 @@ const DashboardAdmin = () => {
             <div>
                 <Offcanvas show={show} onHide={handleClose}>
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                        <Offcanvas.Title>Dashboard menu</Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        Some text as placeholder. In real life you can have the elements you
-                        have chosen. Like, text, images, lists, etc.
-                    </Offcanvas.Body>
+                    <div className='offcanvas_buttons'>
+                        <button className='buttons_inside'><i className="bi bi-house-door-fill"></i> Inicio</button>
+                        <button className='buttons_inside'>Usuarios</button>
+                        <button className='buttons_inside'>Productos</button>
+                        <button className='buttons_inside'>Ordenes de compra</button>
+                    </div>
                 </Offcanvas>
             </div>
             <div className="dash_container">
