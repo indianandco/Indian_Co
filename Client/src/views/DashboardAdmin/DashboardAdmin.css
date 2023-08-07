@@ -25,6 +25,15 @@
     font-size: 25px;
 }
 
+.icon_detail {
+    font-size: 25px;
+}
+
+.icon_detail:hover {
+    font-size: 28px;
+    color: aliceblue;
+}
+
 .nav_container {
     background-color: rgba(0, 0, 0, 0.501);
     height:100%;
