@@ -12,7 +12,7 @@ export const ProductProvider = ({ children }) => {
     const [product, setProduct] = useState([]);
 
     const postProduct = async (product) => {
-        const responseBack = await postProductFunction('/products', product)
+        const responseBack = await postProductFunction('/adminDashboard/products/create', product)
         setResponse(responseBack)
         return response;
     }
