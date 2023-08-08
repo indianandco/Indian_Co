@@ -1,18 +1,17 @@
 import "./CreateProduct.css"
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { ProductContext } from "../../services/ProductContext";
+import { useFormik } from "formik"
 import validation from "../../utils/formValidation"
-import Modal from 'react-bootstrap/Modal';
+import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+
 const CreateProduct = () => {
 
-
-    const { postProduct } = useContext(ProductContext)
+    const { postProduct, response } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
-    const [isFormValid, setIsFormValid] = useState(false)
-    const [errors, setErrors] = useState({})
-    const [show, setShow] = useState(false);
 
-    const [product, setProduct] = useState({
+    const contacFormInitialValues = {
         title: "",
         price: 0,
         offer_boolean: null,
@@ -22,47 +21,56 @@ const CreateProduct = () => {
         category: "",
         size: "",
         fragance: "",
+    }
 
-    })
-    const [showPreviewModal, setShowPreviewModal] = useState(false);
+    const formik = useFormik({
+        initialValues: contacFormInitialValues,
+        validationSchema: validation,
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            Swal.fire({
+                title: 'Deseas confirmar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText:'Cancelar',
+                confirmButtonText: 'Confirmar'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    setSubmitting(true);
+                    try {
+                        const productResponse = await postProduct({
+                            ...values,
+                            image: productThumbnail
+                        });
+                        await Swal.fire({
+                            title: 'Producto subido!',
+                            text: productResponse.payload.title,
+                            imageUrl: productResponse.payload.image,
+                            imageWidth: 300,
+                            imageHeight: 400,
+                            imageAlt: 'Custom image',
+                        });
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volve a intentarlo!'
+                        });
+                    } finally {
+                        setSubmitting(false);
+                        resetForm();
+                    }
+                }
+            });
+        }
+    });
+    
 
-    // Función para manejar el evento de mostrar/ocultar el modal de previsualización
-    const handlePreviewModal = () => {
-      setShowPreviewModal(!showPreviewModal);
-    };
-  
-    // Función para manejar el envío de datos al backend
-    const handleSendToBackend = () => {
-      postProduct({
-        ...product,
-        image: productThumbnail
-      });
-  
-      // Limpiar los campos y cerrar el modal de previsualización
-      setProduct({
-        title: "",
-        price: 0,
-        offer_boolean: null,
-        offer_price: 0,
-        description: "",
-        stock: 0,
-        category: "",
-        size: "",
-        fragance: "",
-      });
-      setErrors({});
-      setProductThumbnail("");
-      setShowPreviewModal(false);
-    };
-    useEffect(() => {
-        const isValid = ((Object.keys(errors).length === Object.keys(product).length - 4) || (Object.keys(errors).length === Object.keys(product).length - 3) || (Object.keys(errors).length === Object.keys(product).length - 2)) && Object.values(errors).every((error) => error === "");
-        setIsFormValid(isValid);
-    }, [errors, product]);
+    const { values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting } = formik
 
     const handleProductThumbnailUpload = (event) => {
-        const prop = event.target.name
         const file = event.target.files[0];
-        validation(prop, file, errors, setErrors)
         transformFile(file)
     }
     const transformFile = (file) => {
@@ -76,119 +84,121 @@ const CreateProduct = () => {
             setProductThumbnail("")
         }
     }
-    const handlerChange = (event) => {
-        const prop = event.target.name
-        const value = event.target.value
-        setProduct({
-            ...product,
-            [prop]: value
-        })
-        validation(prop, value, errors, setErrors)
-    }
-
-    const handlerSubmit = (event) => {
-        event.preventDefault()
-        postProduct({
-            ...product,
-            image: productThumbnail
-        })
-        if (isFormValid) {
-            setProduct({
-                title: "",
-                price: 0,
-                offer_boolean: null,
-                offer_price: 0,
-                description: "",
-                stock: 0,
-                category: "",
-                size: "",
-                fragance: "",
-            })
-            setErrors({})
-        }
-    }
-
 
     return (
-        <div>
+        <Container className="container">
+            <Row className="justify-content-md-center">
+                <Col md={8}>
+                    <Form onSubmit={handleSubmit}>
+                        <h2 className="titulo text-center"> -- Subir producto al catalogo -- </h2>
+
+                        <Form.Group controlId="title">
+                            <Form.Label className="form-label">Nombre del Producto:</Form.Label>
+                            <Form.Control className="form-control" type="text" name="title" value={values.title}
+                                isInvalid={touched.title && !!errors.title}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group controlId="price">
+                            <Form.Label className="form-label">Precio: </Form.Label>
+                            <Form.Control className="form-control" type="number" name="price" value={values.price}
+                                isInvalid={touched.price && !!errors.price}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.price}</Form.Control.Feedback>
+                        </Form.Group>
 
 
-            <form className="form " onSubmit={handlerSubmit}>
-                <div className="title2">
-                    <h2> -- Subir producto al catalogo -- </h2>
-                </div>
-                <div className="formBox" >
-                    <div className="input-field">
-                        <label htmlFor="title" className="label">Nombre del Producto: </label>
-                        <input className="input" name="title" type="text" value={product.title} onChange={handlerChange} />
-                        {errors.title && <p>{errors.title}</p>}
-                    </div>
+                        <Form.Group controlId="offer_boolean">
+                            <Form.Label className="form-label">Poner en oferta? </Form.Label>
+                            <Form.Select name="offer_boolean" value={values.offer_boolean}
+                                isInvalid={touched.offer_boolean && !!errors.offer_boolean}
+                                onBlur={handleBlur} onChange={handleChange}>
+                                <option value="---">---</option>
+                                <option value={true}>Sí</option>
+                                <option value={false}>No</option>
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">{errors.offer_boolean}</Form.Control.Feedback>
+                        </Form.Group>
 
+                        <Form.Group controlId="offer_price">
+                            <Form.Label className="form-label">Precio en Oferta: </Form.Label>
+                            <Form.Control className="form-control" type="number" name="offer_price" value={values.offer_price}
+                                isInvalid={touched.offer_price && !!errors.offer_price}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.offer_price}</Form.Control.Feedback>
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label htmlFor="price" className="label">Precio: </label>
-                        <input className="input" type="number" name="price" value={product.price} onChange={handlerChange} />
-                        {errors.price && <p>{errors.price}</p>}
-                    </div>
+                        <Form.Group controlId="price">
+                            <Form.Label className="form-label">Descripcion: </Form.Label>
+                            <Form.Control className="form-control" type="text" name="description" value={values.description}
+                                isInvalid={touched.description && !!errors.description}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="offer_boolean">Poner en oferta?</label>
-                        <select className="input" name="offer_boolean" onChange={handlerChange}>
-                            <option value="---">---</option>
-                            <option value="si">Sí</option>
-                            <option value="No">No</option>
-                            {errors.offer_boolean && <p>{errors.offer_boolean}</p>}
-                        </select>
-                    </div>
+                        <Form.Group controlId="stock">
+                            <Form.Label className="form-label">Cantidad disponible: </Form.Label>
+                            <Form.Control className="form-control" type="number" name="stock" value={values.stock}
+                                isInvalid={touched.stock && !!errors.stock}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.stock}</Form.Control.Feedback>
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="offer_price">Precio en oferta</label>
-                        <input className="input" type="number" name="offer_price" onChange={handlerChange} />
-                        {errors.offer_price && <p>{errors.offer_price}</p>}
-                    </div>
+                        <Form.Group controlId="category">
+                            <Form.Label className="form-label">Seleccione la categoria: </Form.Label>
+                            <Form.Select name="category" value={values.category}
+                                isInvalid={touched.category && !!errors.category}
+                                onBlur={handleBlur} onChange={handleChange}>
+                                <option value="---">---</option>
+                                <option value="Velas">Velas</option>
+                                <option value="Perfumes">Perfumes</option>
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">{errors.category}</Form.Control.Feedback>
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="description">Descripción: </label>
-                        <textarea className="input" type="text-area" name="description" rows="4" cols="50" onChange={handlerChange} />
-                        {errors.description && <p>{errors.description}</p>}
-                    </div>
-                    <div className="input-field">
-                        <label className="label" htmlFor="stock">Cantidad disponible: </label>
-                        <input className="input" type="number" name="stock" onChange={handlerChange} />
-                        {errors.stock && <p>{errors.stock}</p>}
-                    </div>
+                        <Form.Group controlId="size">
+                            <Form.Label className="form-label">Dimensiones del producto:</Form.Label>
+                            <Form.Control className="form-control" type="text" name="size" value={values.size}
+                                onChange={handleChange} />
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="category">Categoria: </label>
-                        <select className="input" name="category" id="category" onChange={handlerChange}>
-                            <option value="---">---</option>
-                            <option value="velas">Velas</option>
-                            <option value={product.category}>Perfumes</option>
-                            {errors.category && <p>{errors.category}</p>}
-                        </select>
-                    </div>
+                        <Form.Group controlId="fragance">
+                            <Form.Label className="form-label">Fragancia: </Form.Label>
+                            <Form.Control className="form-control" type="text" name="fragance" value={values.fragance}
+                                isInvalid={touched.fragance && !!errors.fragance}
+                                onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.fragance}</Form.Control.Feedback>
+                        </Form.Group>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="size">Tamaño del producto: </label>
-                        <input className="input" type="text" name="size" value={product.size} onChange={handlerChange} />
-                    </div>
+                        <Form.Group controlId="image">
+                            <Form.Label className="form-label">Selecciona una imagen: </Form.Label>
+                            <div>
+                                <input
+                                    type="file"
+                                    id="image"
+                                    custom="true"
+                                    onChange={handleProductThumbnailUpload}
+                                />
+                            </div>
 
-                    <div className="input-field">
-                        <label className="label" htmlFor="fragance">Fragancia: </label>
-                        <input className="input" type="text" name="fragance" value={product.fragance} onChange={handlerChange} />
-                    </div>
-
-                    <div className="input-field">
-                        <label className="label" htmlFor="image">Subir imagen: </label>
-                        <input className="input" type="file" name="image" accept="image/*" onChange={handleProductThumbnailUpload} />
-                        {errors.image && <p>{errors.image}</p>}
-                    </div>
-                    <div>
-                        <button className='send2' type="submit" disabled={!isFormValid} >Subir Producto</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                        </Form.Group>
+                        <div className="boton">
+                            <Button variant="primary" type="submit" disabled={isSubmitting}>Subir Producto</Button>
+                        </div>
+                    </Form>
+                    {
+                        (Object.keys(errors).length > 0 && isSubmitting) && (
+                            <Alert variant="danger" className="mt-4">
+                                <ul>
+                                    {Object.values(errors).map((error, index) => <li key={index}>{error}</li>)}
+                                </ul>
+                            </Alert>
+                        )
+                    }
+                </Col>
+            </Row>
+        </Container>
     );
 }
 export default CreateProduct;
