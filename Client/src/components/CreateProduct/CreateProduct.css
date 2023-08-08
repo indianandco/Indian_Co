@@ -1,120 +1,37 @@
-.input-field {
-  display: flex;
+.titulo{
+  font-size: 2.5em;
   align-items: center;
-  margin-bottom: 15px;
-}
-
-.input-field label {
-  flex-basis: 30%; /* Cambia esto según tus necesidades */
-}
-
-.input-field input,
-.input-field select,
-.input-field textarea {
-  flex-grow: 1;
-}
-
-.formBox {
-  display: inline;
-  justify-content:flex-start;
-  align-items: center;
-  min-height: 32em;
-  min-width: 15em;
-  background-color: rgba(0, 0, 0, 0.536);
-  border-radius: 0.5em;
-  width: 50%;
-  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
-  border: 0.1em solid rgba(255, 255, 255, 0.64);
-  margin-bottom: 15px;
-}
-  
-.title2 {
-  display: flex;
-  position: relative;
   font-weight: bold;
-  margin-top: 180px;
-  justify-content: center;
 }
-  
-.label {
-  display: flex;
-  margin-top: 15px;
+.container {
+  margin-top: 8rem;
+  font-family: Arial, sans-serif;
+}
+
+.form-label {
+  color: #100f0f;
+  font-size: 1.4em;
   font-weight: bold;
-  font-size: clamp(10px, 2vw, 20px);
-  justify-content:center;
+  margin-top: 0.5rem;
 }
 
-.input {
-  display: inline;
-  border-radius: 0.6em;
-  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
-  width: 90%; 
-  max-width: 20em;
-  margin-left: 50px;
-  margin-top: 15px;
+.form-control {
+  border-radius: 9px;
+  border: 1px solid #4a4a4a;
 }
 
-.send2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  background-color: #00000000;
+.form-control:invalid {
+  border-color: #FF6347;
+}
+
+.alert-danger {
+  background-color: #FF6347;
   color: #fff;
-  width: 7.5em;
-  height: 4em;
-  border: #ffffff 0.1em solid;
-  border-radius: 6px;
-  text-align: center;
-  transition: all 0.6s ease;
 }
-  
-.send2:hover {
-  background-color: #ffffff5b;
-  color: #000;
-  font-weight: bold;
-}
-  
-.send2 svg {
-  width: 1.6em;
-  margin: -0.2em 0.8em 1em;
-  position: absolute;
+.boton{
   display: flex;
-  transition: all 0.6s ease;
-}
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 4em;
   
-.send2:hover svg {
-  transform: translateX(0.5em);
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 768px) {
-  .formBox {
-    width: 100%;
-    min-width: 10em;
-    padding-right: 5px;
-  }
-
-  .input-field label {
-    flex-basis: 100%;
-  }
-
-  .input {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    
-  }
-  .label{
-    width: 100px;
-    font-size: 12px;
-   
-  }
-  
-  .send2 {
-    width: 100%;
-  }
 }
