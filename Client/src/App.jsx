@@ -9,6 +9,7 @@ import About from './views/About/About';
 import Detail from './views/Detail/Detail';
 import Container from './views/Products/Container/Container';
 import NotFound from './views/Error/NotFound';
+import Cart from './views/Cart/Cart'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/createProduct' element={<CreateProduct />} />
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/cart' element={<Cart />}
         <Route path='*' element={<NotFound />} />
       </Routes>
 
