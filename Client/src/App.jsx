@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
 
-      {location.pathname !== "/dashboardadmin" && < Navbar />}
+      {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />}/>
         <Route path='/cart' element={<Cart />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path='/*' element={<NotFound />} />
         <Route path='/createProduct' element={<CreateProduct/>}/>
       </Routes>
 

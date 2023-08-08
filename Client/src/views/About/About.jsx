@@ -2,8 +2,8 @@ import './About.css'
 
 const About = () => {
     return (
-        <div className='all'>
-            <div className='header'>
+        <div className='allAbout'>
+            <div className='headerAbout'>
                 <div className='title'>
                     <h3 className='h3'>DESCUBRE NUESTRA HISTORIA</h3>
                     <h1 className='h1'>CÓMO COMENZO TÓDO</h1>
