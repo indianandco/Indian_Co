@@ -1,4 +1,6 @@
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Pagination from 'react-bootstrap/Pagination';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
@@ -12,9 +14,12 @@ import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
+    const [modal, setModal] = useState(false)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleModalClose = () => setModal(false);
+    const handleModalShow = () => setModal(true);
 
     return (
         <div>
@@ -23,12 +28,14 @@ const DashboardAdmin = () => {
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title>Dashboard menu</Offcanvas.Title>
                     </Offcanvas.Header>
-                    <div className='offcanvas_buttons'>
-                        <button className='buttons_inside'><i className="bi bi-house-door-fill"></i> Inicio</button>
-                        <button className='buttons_inside'>Usuarios</button>
-                        <button className='buttons_inside'>Productos</button>
-                        <button className='buttons_inside'>Ordenes de compra</button>
-                    </div>
+                    <Offcanvas.Body>
+                        <ButtonGroup vertical style={{ width: "50%" }} className='border-0 rounded-0'>
+                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-house-door"></i> Inicio</Button>
+                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-people"></i> Usuarios</Button>
+                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-ticket"></i> Ordenes</Button>
+                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-upload"></i> Productos</Button>
+                        </ButtonGroup>
+                    </Offcanvas.Body>
                 </Offcanvas>
             </div>
             <div className="dash_container">
@@ -90,9 +97,11 @@ const DashboardAdmin = () => {
                     </div>
                     <div className='charts_container'>
                         <div className='line_chart_container'>
+                            <h2 className='sales_title'>Ventas de la semana</h2>
                             <LinesChart></LinesChart>
                         </div>
                         <div className='doughnut_container'>
+                            <h2>Ventas del mes</h2>
                             <DoughnutChart></DoughnutChart>
                         </div>
                     </div>
@@ -110,28 +119,28 @@ const DashboardAdmin = () => {
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='sales_in'>
                             <p className='size' >Juan</p>
                             <p className='size'>07/07/2023</p>
                             <p className='size'>1134240778</p>
                             <p className='size'>Sí</p>
-                            <button className='detail'>Detalle</button>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                         </div>
                         <div className='pagination'>
                             <Pagination>
@@ -149,6 +158,33 @@ const DashboardAdmin = () => {
                                 <Pagination.Next />
                                 <Pagination.Last />
                             </Pagination>
+                            <Modal centered show={modal} onHide={handleModalClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title className='d-flex flex-column' style={{ color: "black" }}>Orden de compra</Modal.Title>
+
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <div>
+                                        <div>
+                                            <p>Nro de orden:</p>
+                                        </div>
+                                        <div>
+                                            <p>Dirección:</p>
+                                        </div>
+                                        <div>
+                                            <p>total:</p>
+                                        </div>
+                                        <div>
+                                            <p>productos:</p>
+                                        </div>
+                                    </div>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleModalClose}>
+                                        Close
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
                     </div>
                 </div>

@@ -17,16 +17,21 @@
     flex-direction: column;
 }
 
-.buttons_inside {
-    display: flex;
-    width: 100%;
-    all: unset;
-    text-decoration: none;
-    border-bottom: 0.5px solid black ;
+.buttons_inside:hover {
+    border-bottom: 0.5px solid rgb(130, 56, 24);
 }
 
 .icon {
     font-size: 25px;
+}
+
+.icon_detail {
+    font-size: 25px;
+}
+
+.icon_detail:hover {
+    font-size: 28px;
+    color: aliceblue;
 }
 
 .nav_container {
@@ -97,12 +102,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin: 3em;
     padding: 2em;
     border-radius: 15px;
     border: 2px solid rgb(40, 40, 40);
     background-color: rgba(29, 29, 29, 0.551);
-    height: 25em;
+    height: 30em;
     width: 30em;
 }
 
@@ -112,8 +118,12 @@
     border-radius: 15px;
     border: 2px solid rgb(40, 40, 40);
     background-color: rgba(29, 29, 29, 0.523);
-    height: 25em;
+    height: 30em;
     width: 45em;
+}
+
+.sales_title{
+    padding-bottom: 1em;
 }
 
 .recent_sales_container{
