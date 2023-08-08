@@ -18,6 +18,10 @@ const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState(false)
+    const [productsCount, setProductsCount] = useState()
+    const [userCount, setUserCount] = useState()
+    const [salesCount, setSalesCount] = useState()
+    const [totalProfit, setTotalProfits] = useState()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
