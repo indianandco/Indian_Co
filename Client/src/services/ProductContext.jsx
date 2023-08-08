@@ -14,7 +14,7 @@ export const ProductProvider = ({ children }) => {
     const postProduct = async (product) => {
         const responseBack = await postProductFunction('/adminDashboard/products/create', product)
         setResponse(responseBack)
-        return response;
+        return responseBack;
     }
 
     const getAllProducts = async () => {
