@@ -23,8 +23,8 @@ const Contact = () => {
     }
 
     return (
-        <div className='all'>
-            <div className='header'>
+        <div className='allContact'>
+            <div className='headerContact'>
                 <NavLink to='/home' className='title'>
                     <h3 className='h3'>DESCUBRE NOVEDADES</h3>
                     <h1 className='h1'>DÓNDE COMPRAR LOS PRODUCTOS</h1>

@@ -1,5 +1,5 @@
 import "./Cart.css"; // Archivo CSS para estilos
-import CardCart from '../../components/CardCart/CardCart'
+import CardCart from './CardCart/CardCart'
 
 const Cart = () => {
 
