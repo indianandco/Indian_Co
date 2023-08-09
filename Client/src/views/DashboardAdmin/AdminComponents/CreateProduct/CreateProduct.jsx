@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 const CreateProduct = () => {
 
-    const { postProduct, response } = useContext(ProductContext)
+    const { postProduct } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
 
     const contacFormInitialValues = {
