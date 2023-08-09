@@ -15,7 +15,6 @@ export const postProductFunction = async (endpoint, product)=>{
 export const fetcherCreateUser = async (endpoint, form)=>{
     try {
         const response = await axios.post(`${BASE_URL}${endpoint}`, form)
-        console.log(response);
         return response.data
     } catch (error) {
         console.error('Error fetching data:', error);
