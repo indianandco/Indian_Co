@@ -9,7 +9,6 @@ export const fetcher = async (endpoint) => {
     if (!response.statusText === "OK") {
       throw new Error('Error en la petición');
     }
-    console.log(response.data);
     
     return response.data
 

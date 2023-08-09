@@ -24,6 +24,7 @@ const DashboardAdmin = () => {
     const [userCount, setUserCount] = useState()
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
+    const [salesWeek, setSalesWeek] = useState();
 
     const calculateProfits = (salesResponse) => {
         let total = 0;
@@ -37,11 +38,13 @@ const DashboardAdmin = () => {
         const usersResponse = await fetcher(`/admindashboard/users`)
         const productsResponse = await fetcher(`/admindashboard/products`)
         const salesResponse = await fetcher(`/admindashboard/tickets`)
+        /* const weekResponse = await fetcher(`/admindashboard/tickets/week`) */
 
         setUserCount(usersResponse)
         setProductsCount(productsResponse)
         setSalesCount(salesResponse)
         setTotalProfits(calculateProfits(salesResponse))
+        setSalesWeek(weekResponse)
     }
 
     useEffect(() => {
@@ -57,7 +60,8 @@ const DashboardAdmin = () => {
     const handleTabs = (tab) => {
         setActiveTab(tab)
     }
-
+    console.log(userCount);
+    console.log(salesCount);
     return (
         <div>
             <div>
@@ -142,7 +146,7 @@ const DashboardAdmin = () => {
                                 <div className='charts_container'>
                                     <div className='line_chart_container'>
                                         <h2 className='sales_title'>Ventas de la semana</h2>
-                                        <LinesChart></LinesChart>
+                                        <LinesChart salesWeek={salesWeek}></LinesChart>
                                     </div>
                                     <div className='doughnut_container'>
                                         <h2>Ventas del mes</h2>
@@ -158,34 +162,19 @@ const DashboardAdmin = () => {
                                         <span className='size'>Registrado</span>
                                         <span className='size'>Detalle</span>
                                     </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
+                                    {userCount?.map(sale => {
+                                        return (
+                                            <div key={sale?._id} className='sales_in'>
+                                                <p className='size' >{sale?.first_name}</p>
+                                                <p className='size'>{sale?.last_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
+                                            </div>
+                                        )
+                                    })
+                                    }
+
                                     <div className='pagination'>
                                         <Pagination>
                                             <Pagination.First />
