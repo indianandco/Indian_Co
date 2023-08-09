@@ -9,7 +9,6 @@ import Detail from './views/Detail/Detail';
 import Container from './views/Products/Container/Container';
 import NotFound from './views/Error/NotFound';
 import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
-import CreateProduct from './components/CreateProduct/CreateProduct'
 import Cart from './views/Cart/Cart'
 
 
@@ -33,7 +32,6 @@ function App() {
         <Route path='/detail/:id' element={<Detail />}/>
         <Route path='/cart' element={<Cart />} />
         <Route path='/*' element={<NotFound />} />
-        <Route path='/createProduct' element={<CreateProduct/>}/>
       </Routes>
 
     </div>
