@@ -8,8 +8,9 @@ import About from './views/About/About';
 import Detail from './views/Detail/Detail';
 import Container from './views/Products/Container/Container';
 import NotFound from './views/Error/NotFound';
-import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin';
-import CreateProduct from './components/CreateProduct/CreateProduct';
+import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
+import CreateProduct from './components/CreateProduct/CreateProduct'
+import Cart from './views/Cart/Cart'
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   return (
     <div>
 
-      {location.pathname !== "/dashboardadmin" && < Navbar />}
+      {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -29,8 +30,9 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/dashboardadmin' element={<DashboardAdmin />} />
         <Route path='/products' element={<Container />} />
-        <Route path='/detail/:id' element={<Detail />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/*' element={<NotFound />} />
         <Route path='/createProduct' element={<CreateProduct/>}/>
       </Routes>
 

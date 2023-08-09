@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 
 /* CSS */
-.all {
-    margin-top: 2em;
+.allAbout {
     font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
   }
   
-  .header {
+  .headerAbout {
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url('../../../public/headerContact.jpg');
-    min-height: 30em;
+    min-height: 35em;
     min-width: 100%;
-    margin: 0.5em;
-    margin-top: 11em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1px;
   }
   
   .title {
