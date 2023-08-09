@@ -5,9 +5,7 @@ const postTicketsHandler = async (req, res) => {
     try {
         const {amount, purchaser, products} = req.body;
         
-
-
-       const newTicket = await postTicketsController({amount, purchaser, products});
+        const newTicket = await postTicketsController({amount, purchaser, products});
        console.log(newTicket)
 
         res.status(200).send({result: 'success', payload: newTicket })
@@ -20,4 +18,4 @@ const postTicketsHandler = async (req, res) => {
 
 module.exports = {
     postTicketsHandler
-}
+};
