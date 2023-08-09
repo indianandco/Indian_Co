@@ -24,7 +24,11 @@ ChartJS.register(
 
 
 
-export default function LinesChart() {
+export default function LinesChart({ salesWeek }) {
+
+    const calculateSalesForDay = () => {
+
+    }
 
     let dailySales = [0, 56, 20, 36, 80, 40, 30, 25, 30, 12, 60];
     let days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
