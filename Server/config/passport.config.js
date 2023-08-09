@@ -1,4 +1,4 @@
-const passport  = require('passport');
+const passport = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
 //const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
@@ -16,7 +16,7 @@ const initializePassport = () =>{
     }, async (req, username, password, done)=>{       
 
         try {
-            const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, age, email } = req.body;
+            const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, email } = req.body;
             console.log(req.body)
 
             //Falta validar los datos  
@@ -37,7 +37,6 @@ const initializePassport = () =>{
                 zipcode,
                 city,
                 phone,
-                age,
                 password: createHash(password)
             };
 
@@ -47,7 +46,7 @@ const initializePassport = () =>{
 
             console.log("result ",result)
 
-            console.log(`El usuario con el mail: ${user.email} se registro de manera tradicional`);
+            console.log(`El usuario con el mail: ${newUser.email} se registro de manera tradicional`);
 
             return done(null, result);
 
