@@ -12,7 +12,7 @@ const ticketsSchema = new mongoose.Schema(
         products: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'carts'  
+                ref: 'products'  
             }
         ],
         purchaser:{
@@ -34,13 +34,8 @@ const ticketsSchema = new mongoose.Schema(
 );
 
 ticketsSchema.pre('find', function (){
-  this.populate({
-    path: 'products',
-    populate: {
-      path: 'product',
-      model: 'products'
-    }
-  })})
+  this.populate('products.product')
+})
 
 const ticketModel = mongoose.model(ticketsCollection, ticketsSchema);
 
