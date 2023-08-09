@@ -27,3 +27,4 @@ console.log(salesThisWeek)
 }
 
 module.exports = { getAllSalesWeekController }
+

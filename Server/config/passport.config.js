@@ -5,10 +5,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 
 const { createHash, isValidPassword } = require('./bcrypt.config');
 
-//Modelos Bd:
+//llamados a la Bd:
 const { userModel } = require('../models/user.model');
-const { cartModel } = require('../models/cart.model');
-
 
 
 const initializePassport = () =>{
@@ -60,6 +58,7 @@ const initializePassport = () =>{
     }, async (username, password, done) =>{
         try {
             const user = await userModel.findOne({ email: username });
+            
 
             if (!user) {
                 return done(null, false);
@@ -70,12 +69,9 @@ const initializePassport = () =>{
                 return done(null, false)
             };
 
-            if (user.carts.length === 0) {
-                let newCart = await cartModel.create();
-                let userId = user._id.toString();
-
-                await userModel.findByIdAndUpdate(userId, { $push: { carts: { _id: newCart._id } } });
-            };
+            //Para calcular la ultima conexion:
+            user.lastConnection = new Date();
+            await userModel.findByIdAndUpdate(user._id, { lastConnection: user.lastConnection });
 
             console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
         
