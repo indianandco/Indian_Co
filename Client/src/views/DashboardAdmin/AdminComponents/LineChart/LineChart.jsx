@@ -26,26 +26,20 @@ ChartJS.register(
 
 
 
-export default function LinesChart({ salesWeek }) {
-
-    const calculateSalesForDay = () => {
-
-    }
+export default function LinesChart() {
 
     const [response, setResponse] = useState(null)
-   
+
 
     const getInfo = async () => {
         const responseFn = await fetcher(`/adminDashboard/tickets/week`)
-      setResponse(responseFn)
-
+        setResponse(responseFn)
     }
 
-
- useEffect(() => {
+    useEffect(() => {
         getInfo()
     }, [])
-if(!response)  return null
+    if (!response) return null
     let days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
     const weekSales = {
@@ -53,7 +47,7 @@ if(!response)  return null
         datasets: [
             {
                 label: 'Ventas',
-                data:Object.values(response),
+                data: Object.values(response),
                 tension: 0.5,
                 fill: true,
                 borderColor: 'rgb(0, 0, 0, 0.589)',
