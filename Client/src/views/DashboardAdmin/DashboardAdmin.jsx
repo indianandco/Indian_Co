@@ -12,6 +12,7 @@ import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 import Sales from './AdminComponents/Sales/Sales';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import CreateProduct from './AdminComponents/CreateProduct/CreateProduct';
 
 
 const DashboardAdmin = () => {
@@ -60,7 +61,7 @@ const DashboardAdmin = () => {
                             <Nav.Link className="icon" onClick={() => handleTabs("general")}><i className="bi bi-house-door-fill"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("users")} eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
-                            <Nav.Link className="icon" href="/createProduct"><i className="bi bi-upload"></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={()=>handleTabs("products")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
                         </Nav>
                     </div>
                 </div>
@@ -72,7 +73,7 @@ const DashboardAdmin = () => {
                         className="m-0 p-0 w-100 d-none"
                         fill
                     >
-                        <Tab fill className='w-100' eventKey="general">
+                        <Tab fill className='w-100' eventKey="general" title="general">
                             <div className="info_container">
                                 <div className='title_dashboard'>
                                     <h1>Indian&Co</h1>
@@ -209,11 +210,14 @@ const DashboardAdmin = () => {
                                 </div>
                             </div>
                         </Tab>
-                        <Tab className='w-100' eventKey="users">
+                        <Tab className='w-100' eventKey="users" title="users">
                             Esto es la vista de users
                         </Tab>
-                        <Tab className='w-100' eventKey="sales">
+                        <Tab className='w-100' eventKey="sales" title="sales">
                             <Sales></Sales>
+                        </Tab>
+                        <Tab className='w-100' eventKey="products" title=" products">
+                            <CreateProduct></CreateProduct>
                         </Tab>
                     </Tabs>
                 </div>

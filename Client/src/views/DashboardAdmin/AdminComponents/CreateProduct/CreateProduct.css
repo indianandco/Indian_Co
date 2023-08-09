@@ -2,10 +2,11 @@
   font-size: 2.5em;
   align-items: center;
   font-weight: bold;
+  margin-bottom: 1em;
 }
 .container {
-  margin-top: 8rem;
-  font-family: Arial, sans-serif;
+  margin-top: 4rem;
+  width: 75%;
 }
 
 .form-label {
@@ -13,6 +14,7 @@
   font-size: 1.4em;
   font-weight: bold;
   margin-top: 0.5rem;
+  margin-left: 8px;
 }
 
 .form-control {
@@ -24,14 +26,13 @@
   border-color: #FF6347;
 }
 
-.alert-danger {
-  background-color: #FF6347;
-  color: #fff;
-}
 .boton{
   display: flex;
   justify-content: center;
   margin-top: 2em;
-  margin-bottom: 4em;
-  
+  margin-bottom: 10%;
+  height: 3.5em; 
+
+
 }
+
