@@ -47,7 +47,7 @@ const initializePassport = () =>{
 
             console.log("result ",result)
 
-            console.log(`El usuario con el mail: ${user.email} se registro de manera tradicional`);
+            console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
 
             return done(null, result);
 
