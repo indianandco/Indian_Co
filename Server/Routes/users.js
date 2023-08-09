@@ -16,9 +16,6 @@ router.get('/fail-register', failRegister);
 router.post('/login', passport.authenticate('login', {failureRedirect: 'fail-login'}), loginHandler);
 router.get('/fail-login', failLogin );
 
-//Login/register con Facebook:
-router.get('/auth/facebook', passport.authenticate('facebook'), postUsersHandler);
-router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), callBackAuthenticate);
 //Login/register con Google:
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), loginHandler);
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), callBackAuthenticate);
