@@ -26,7 +26,7 @@ const getAllSalesWeekController = async () => {
 
         salesThisWeek.forEach(sale => {
             const day = moment(sale.purchase_datetime).format('dddd');
-            dailySales[day] += sale.amount; 
+            dailySales[day] += 1; 
         });
 
         return dailySales;
