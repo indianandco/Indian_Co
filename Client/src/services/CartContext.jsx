@@ -1,74 +1,69 @@
-import { createContext, useReducer } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-const initialState = [];
-
-const buyReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case '[CARRITO] Agregar Compra':
-            return [...state, action.payload];
-        case '[CARRITO] Aumentar Cantidad Compra':
-            return state.map(item => {
-                if (item.id === action.payload) {
-                    return { ...item, quantity: item.quantity + 1 };
-                }
-                return item;
-            });
-        case '[CARRITO] Disminuir Cantidad Compra':
-            return state.map(item => {
-                if (item.id === action.payload && item.quantity > 1) {
-                    return { ...item, quantity: item.quantity - 1 };
-                }
-                return item;
-            });
-        case '[CARRITO] Eliminar Compra':
-            return state.filter(compra => compra.id !== action.payload);
-        default:
-            return state;
-    }
-};
-
 // eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
-    const [buyLists, dispatch] = useReducer(buyReducer, initialState);
+  const [cart, setCart] = useState([]);
 
-    const clickAdd = (buy) => {
-        buy.quantity = 1;
-        const action = {
-            type: '[CARRITO] Agregar Compra',
-            payload: buy
-        };
-        dispatch(action);
-    };
+  useEffect(() => {
+    loadCartData();
+  }, []);
 
-    const addQuantity = (id) => {
-        const action = {
-            type: '[CARRITO] Aumentar Cantidad Compra',
-            payload: id
-        };
-        dispatch(action);
-    };
+  useEffect(() => {
+    saveCartData();
+    
+  }, [cart]);
 
-    const removeQuantity = (id) => {
-        const action = {
-            type: '[CARRITO] Disminuir Cantidad Compra',
-            payload: id
-        };
-        dispatch(action);
-    };
+  const loadCartData = () => {
+    const savedCart = JSON.parse(localStorage.getItem("cart"));
+    if (savedCart && savedCart.length > 0) {
+      setCart(savedCart);
+    }
+  };
 
-    const clickRemove = (id) => {
-        const action = {
-            type: '[CARRITO] Eliminar Compra',
-            payload: id
-        };
-        dispatch(action);
-    };
+  const saveCartData = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
-    return (
-        <CartContext.Provider value={{ buyLists, clickAdd, clickRemove, removeQuantity, addQuantity }}>
-            {children}
-        </CartContext.Provider>
-    );
-};
+  const addToCart = (id) => {
+    const existingProduct = cart.find((p) => p.id === id);
+
+    if (existingProduct) {
+      const updatedCart = cart.map((p) =>
+        p.id === id ? { ...p, quantity: p.quantity + 1 } : p
+      );
+      setCart(updatedCart);
+    } else {
+      setCart((prevCart) => [...prevCart, { ...id, quantity: 1 }]);
+    }
+  };
+
+  const removeToCart = (product) => {
+    const existingProduct = cart.find((p) => p.id === product.id);
+
+    if (existingProduct) {
+      const updatedCart = cart.map((p) =>
+        p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p
+      );
+      setCart(updatedCart);
+    }
+  };
+
+
+  const removeFromCart = (id) => {
+    const updatedCart = cart.filter((product) => product.id !== id);
+    setCart(updatedCart);
+  };
+  
+  const removeAllItems = () => {
+    setCart([]);
+  };
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, removeToCart,removeAllItems }}>
+      {children}
+    </CartContext.Provider>
+  )
+}

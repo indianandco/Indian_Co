@@ -9,24 +9,7 @@ import { CartContext } from "../../../services/CartContext";
 const Container = () => {
 
     const { allProducts, getAllProducts } = useContext(ProductContext);
-    const { clickAdd, clickRemove/* , removeQuantity, addQuantity */ } = useContext(CartContext);
 
-    const handleAdd = (buy) => {
-        clickAdd(buy)
-    }
-
-    const handleRemove = (id) => {
-        clickRemove(id)
-    }
-
-/*     const handleIncrease = (id) => {
-
-    }
-
-    const handleDecrease= (id) => {
-
-    }
- */
     useEffect(() => {
         getAllProducts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,8 +33,6 @@ const Container = () => {
                             price={item?.price}
                             category={item?.category}
                             fragance={item?.fragance}
-                            handleAdd={() => handleAdd(item)}
-                            handleRemove={() => handleRemove(item.id)}
                         />
                     ))
                 }

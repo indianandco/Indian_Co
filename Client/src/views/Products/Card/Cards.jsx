@@ -8,10 +8,11 @@ import { CartContext } from "../../../services/CartContext";
 
 
 // eslint-disable-next-line react/prop-types
-const Cards = ({ title, price, /* offer_price */ description, size, fragance, /* offer */ image, category, id, buy }) => {
+const Cards = ({ title, price, /* offer_price */ description, size, fragance, /* offer */ image, category, id }) => {
 
     // eslint-disable-next-line react/prop-types
-    const { clickAdd } = useContext(CartContext);
+    const {addToCart} = useContext(CartContext);
+
 
     return (
         <div>
@@ -27,7 +28,7 @@ const Cards = ({ title, price, /* offer_price */ description, size, fragance, /*
                     <Card.Text>{`Tamaño:${size}`}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush align-items-center">
-                    <Button onClick={clickAdd(buy)} className="border-0 rounded-0" style={{ width: '100%' }} variant="outline-success" size="lg">Agregar al carrito</Button>
+                    <Button onClick={addToCart(id)} className="border-0 rounded-0 addToCart" style={{ width: '100%' }} variant="outline-success" size="lg">Agregar al carrito</Button>
                 </ListGroup>
                 <ListGroup horizontal className="d-flex align-items-center justify-content-between list-group-flush">
                     <ListGroup.Item variant="dark" className="px-2">Precio</ListGroup.Item>
