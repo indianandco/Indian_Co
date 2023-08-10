@@ -3,9 +3,9 @@ const { postTicketsController } = require("../../Controllers/post/postTicketsCon
 
 const postTicketsHandler = async (req, res) => {
     try {
-        const {amount, purchaser, products} = req.body;
+        const {total_amount, owner, products} = req.body;
         
-        const newTicket = await postTicketsController({amount, purchaser, products});
+        const newTicket = await postTicketsController({total_amount, owner, products});
        console.log(newTicket)
 
         res.status(200).send({result: 'success', payload: newTicket })

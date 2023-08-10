@@ -4,11 +4,11 @@ const cartCollection = 'carts';
 
 const cartSchema =  new mongoose.Schema(
     {   
-        state: {
+        status: {
             type: String,
             default: 'empty'
             },
-            products: [
+        products: [
               {
                 product: {
                   type: mongoose.Schema.Types.ObjectId,
@@ -20,8 +20,14 @@ const cartSchema =  new mongoose.Schema(
                 }
               }
             ],
-        total_price: Number,
-       
+        total_amount: {
+          type: Number,
+          require: true
+        },  
+        owner:{
+          type: String,
+          require: true
+      }
     }
 );
 

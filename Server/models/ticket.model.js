@@ -4,7 +4,7 @@ const ticketsCollection = 'tickets';
 
 const ticketsSchema = new mongoose.Schema(
     {
-        amount: {
+        total_amount: {
             type: Number,
             require: true,
           },
@@ -15,7 +15,7 @@ const ticketsSchema = new mongoose.Schema(
                 ref: 'products'  
             }
         ],
-        purchaser:{
+        owner:{
             type: String,
             require: true,
          
