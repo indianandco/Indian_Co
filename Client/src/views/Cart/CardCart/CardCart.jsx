@@ -1,22 +1,31 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import Button from 'react-bootstrap/esm/Button';
+import { CartContext } from '../../../services/CartContext';
 import './CardCart.css'
 
-const CardCart = ({image, title, description, price}) => {
+const CardCart = () => {
 
-    const [added, setAdded] = useState(false)
+    const { buyLists, clickRemove} = useContext(CartContext);
 
     return(
-        <div className='tarjeta'>
-            <img src='imagen' alt={'title'} className='tarjeta-imagen' />
-            <div className='tarjeta-contenido'>
-                <h3 className='tarjeta-titulo'>{'title'}</h3>
-                <p className='tarjeta-descripcion'>{'description'}</p>
-                <p className='tarjeta-precio'>{'price'}</p>
+        <div >
+            {buyLists.map((item) => (
+            <div key={item?.id}>
+                <div className='tarjeta'>
+                    <img src='imagen' alt={item?.title} className='tarjeta-imagen' />
+                    <div className='tarjeta-contenido' >
+                        <h3 className='tarjeta-titulo'>{item?.title}</h3>
+                        {item?.offer_price ? (
+                            <p className='tarjeta-precio'>{item?.offer_price}</p>
+                        ) : (
+                            <p className='tarjeta-precio'>{item?.price}</p>
+                        )
+                        }
+                </div>
+                    <Button onClick={clickRemove(item?.id)} type='button' className='boton-quitar'>Quitar del Carrito</Button>
+                </div>
             </div>
-            {added 
-                ? <button type='button' className='boton-quitar'>Quitar del Carrito</button>
-                : <button type='button' className='boton-agregar'>Agregar del Carrito</button>
-            }
+                ))}
         </div>
     )
 }

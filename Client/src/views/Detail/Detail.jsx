@@ -2,6 +2,7 @@ import './Detail.css'
 import Spinner from 'react-bootstrap/Spinner';
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from '../../services/ProductContext';
+import { CartContext } from '../../services/CartContext';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -11,28 +12,28 @@ const Detail = () => {
     const {id} = useParams()
     
     const { detailProducts, getDetailProducts } = useContext(ProductContext);
+    const { clickAdd, removeQuantity, addQuantity } = useContext(CartContext);
 
-    const [counter, setCounter] = useState(1);
+    const [quantity, setQuantity] = useState(1);
 
     const incrementar = () => {
-        if(counter < detailProducts?.stock){
-            setCounter(counter + 1);
+        if(quantity < detailProducts?.stock){
+            setQuantity(quantity + 1);
         }
+        addQuantity()
     };
   
     const restar = () => {
-        if(counter > 1){
-            setCounter(counter - 1);
+        if(quantity > 1){
+            setQuantity(quantity - 1);
         }
+        removeQuantity()
     };
     
     useEffect(() => {
         getDetailProducts(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    }
 
     return (
         <div className='all'>
@@ -76,11 +77,11 @@ const Detail = () => {
                         <div className='containCart'>
                             <div className="counter">
                                 <Button className='buttonCounter' variant="light" onClick={restar}>-</Button>
-                                <span className='span'>{counter}</span>
+                                <span className='span'>{quantity}</span>
                                 <Button className='buttonCounter' variant="light" onClick={incrementar}>+</Button>
                             </div>
                             <div className='boxCart'>
-                                <Button onClick={(e) => handleSubmit(e)} className='buttonCart' variant="warning">Agregar al carrito</Button>
+                                <Button onClick={clickAdd} className='buttonCart' variant="warning">Agregar al carrito</Button>
                             </div>
                         </div>
                             <div className='boxFooter'>
