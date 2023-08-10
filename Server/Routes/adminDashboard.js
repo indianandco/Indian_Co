@@ -13,6 +13,7 @@ const { putProductHandler } = require("../Handlers/put/putProductHandler");
 
 const { getAllSalesHandler } = require ('../Handlers/get/getAllSalesHandler');
 const { putTicketHandler } = require('../Handlers/put/putTicketHandler');
+const { getAllSalesWeek } = require('../Handlers/get/getAllSalesWeek');
 
 
 //Gestion de Usuarios
@@ -29,6 +30,7 @@ router.put('/products/update/:pid', putProductHandler ); //Modificar
 
 //Gestion Pedidos
 router.get('/tickets', getAllSalesHandler); //Todos los tickets
+router.get('/tickets/week', getAllSalesWeek); //Ventas de la semana
 router.put('/tickets/:tid/state', putTicketHandler); //Cambiar el estado
 
 module.exports = router;

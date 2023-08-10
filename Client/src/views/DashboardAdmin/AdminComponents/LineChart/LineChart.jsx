@@ -1,4 +1,5 @@
 import { Line } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,6 +12,7 @@ import {
     Filler,
 } from 'chart.js';
 
+import { fetcher } from '../../../../utils/fetcherGet';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -22,45 +24,58 @@ ChartJS.register(
     Filler
 );
 
-let dailySales = [0, 56, 20, 36, 80, 40, 30, 25, 30, 12, 60];
-let days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
-
-const weekSales = {
-    labels: days,
-    datasets: [
-        {
-            label: 'Ventas',
-            data: dailySales,
-            tension: 0.5,
-            fill: true,
-            borderColor: 'rgb(0, 0, 0, 0.589)',
-            backgroundColor: 'rgba(221, 112, 28, 0.492)',
-            pointRadius: 5,
-            pointBorderColor: 'rgba(255, 255, 255)',
-            pointBackgroundColor: 'rgba(255, 255, 255)',
-        },
-    ],
-};
-
-const options = {
-    plugins: {
-        legend: {
-            labels: {
-                color: 'black', // Cambia el color del texto de los labels aquí
-            }
-        }
-    },
-    scales: {
-        y: {
-            min: 0
-        },
-        x: {
-            ticks: { color: 'rgb(255, 255, 255)' }
-        }
-    }
-};
 
 export default function LinesChart() {
+
+    const [response, setResponse] = useState(null)
+
+
+    const getInfo = async () => {
+        const responseFn = await fetcher(`/adminDashboard/tickets/week`)
+        setResponse(responseFn)
+    }
+
+    useEffect(() => {
+        getInfo()
+    }, [])
+    if (!response) return null
+    let days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
+    const weekSales = {
+        labels: days,
+        datasets: [
+            {
+                label: 'Ventas',
+                data: Object.values(response),
+                tension: 0.5,
+                fill: true,
+                borderColor: 'rgb(0, 0, 0, 0.589)',
+                backgroundColor: 'rgba(221, 112, 28, 0.492)',
+                pointRadius: 5,
+                pointBorderColor: 'rgba(255, 255, 255)',
+                pointBackgroundColor: 'rgba(255, 255, 255)',
+            },
+        ],
+    };
+
+    const options = {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'black', // Cambia el color del texto de los labels aquí
+                }
+            }
+        },
+        scales: {
+            y: {
+                min: 0
+            },
+            x: {
+                ticks: { color: 'rgb(255, 255, 255)' }
+            }
+        }
+    };
+
     return <Line data={weekSales} options={options} />
 }

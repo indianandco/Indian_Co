@@ -8,6 +8,7 @@ import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
 function SignIn() {
+
     const [show, setShow] = useState(false);
     const [validated, setValidated] = useState(true);
     const [form, setForm] = useState({
@@ -69,22 +70,19 @@ function SignIn() {
         }
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         fetcherCreateUser("/users/register", form)
+        setShow(false);
     }
 
     const handleAuth = (event) => {
         const data = event.target.dataset.social
-        console.log(data);
         fetcher(`/users/auth/${data}`)
     }
 
     useEffect(() => {
         validation({ ...form })
     }, [form])
-
-    console.log(error);
 
     return (
         <>
@@ -94,7 +92,7 @@ function SignIn() {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="pb-0" closeButton>
-                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }} >Registrarse como usuario</Modal.Title>
+                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Registrarse como usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
@@ -204,7 +202,7 @@ function SignIn() {
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Modal.Footer className='p-1'>
-                            <Button style={{ width: "100%" }} disabled={validated} onClick={handleClose} size='lg' variant="success" type="submit">
+                            <Button style={{ width: "100%" }} disabled={validated} size='lg' variant="success" type="submit">
                                 Registrar
                             </Button>
                         </Modal.Footer>

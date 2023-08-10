@@ -4,7 +4,7 @@ const { cloudinary } = require("../../cloudinaryConfig")
 
 const postProductsHandler = async (req, res) => {
     try {
-        const { title, price, description, stock, category, offer_boolean, size, fragance, image } = req.body;
+        const { title, price, description, stock, category, offer, size, fragance, image, offer_price } = req.body;
         let imageUrl = null
         if (image) {
             const uploadResponse = await cloudinary.uploader.upload(image, {
@@ -14,7 +14,7 @@ const postProductsHandler = async (req, res) => {
                 imageUrl = uploadResponse.url
             }
         }
-        newProduct = await postProductsController({ title, price, description, stock, category, offer_boolean, size, fragance, image: imageUrl });
+        newProduct = await postProductsController({ title, price, description, stock, category, offer, size, fragance, image: imageUrl, offer_price });
         res.status(200).json({ result: 'success', payload: newProduct })
     } catch (error) {
         console.log(error);

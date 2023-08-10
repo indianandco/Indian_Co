@@ -1,26 +1,27 @@
 import "./CreateProduct.css"
 import { useState, useContext } from "react";
-import { ProductContext } from "../../services/ProductContext";
+import { ProductContext } from "../../../../services/ProductContext";
 import { useFormik } from "formik"
-import validation from "../../utils/formValidation"
+import validation from "./formValidation"
 import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 
 const CreateProduct = () => {
 
-    const { postProduct, response } = useContext(ProductContext)
+    const { postProduct } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
 
     const contacFormInitialValues = {
         title: "",
-        price: 0,
-        offer_boolean: null,
-        offer_price: 0,
+        price: "",
+        offer: false,
+        offer_price: "",
         description: "",
-        stock: 0,
-        category: "",
+        stock: "",
+        category: "Velas",
         size: "",
         fragance: "",
+        image: null
     }
 
     const formik = useFormik({
@@ -33,7 +34,7 @@ const CreateProduct = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                cancelButtonText:'Cancelar',
+                cancelButtonText: 'Cancelar',
                 confirmButtonText: 'Confirmar'
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -44,7 +45,7 @@ const CreateProduct = () => {
                             image: productThumbnail
                         });
                         await Swal.fire({
-                            title: 'Producto subido!',
+                            title: 'Producto cargado correctamente!',
                             text: productResponse.payload.title,
                             imageUrl: productResponse.payload.image,
                             imageWidth: 300,
@@ -55,7 +56,7 @@ const CreateProduct = () => {
                         await Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Algo salio mal, volve a intentarlo!'
+                            text: 'Algo salio mal, volvé a intentarlo!'
                         });
                     } finally {
                         setSubmitting(false);
@@ -65,13 +66,14 @@ const CreateProduct = () => {
             });
         }
     });
-    
 
-    const { values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting } = formik
+
+    const { values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting, setFieldValue } = formik
 
     const handleProductThumbnailUpload = (event) => {
         const file = event.target.files[0];
         transformFile(file)
+        formik.setFieldValue("image", file);
     }
     const transformFile = (file) => {
         const reader = new FileReader()
@@ -90,7 +92,7 @@ const CreateProduct = () => {
             <Row className="justify-content-md-center">
                 <Col md={8}>
                     <Form onSubmit={handleSubmit}>
-                        <h2 className="titulo text-center"> -- Subir producto al catalogo -- </h2>
+                        <h2 className="titulo text-center"> -- Nuevo Producto -- </h2>
 
                         <Form.Group controlId="title">
                             <Form.Label className="form-label">Nombre del Producto:</Form.Label>
@@ -109,16 +111,15 @@ const CreateProduct = () => {
                         </Form.Group>
 
 
-                        <Form.Group controlId="offer_boolean">
+                        <Form.Group controlId="offer">
                             <Form.Label className="form-label">Poner en oferta? </Form.Label>
-                            <Form.Select name="offer_boolean" value={values.offer_boolean}
-                                isInvalid={touched.offer_boolean && !!errors.offer_boolean}
+                            <Form.Select name="offer" value={values.offer}
+                                isInvalid={touched.offer && !!errors.offer}
                                 onBlur={handleBlur} onChange={handleChange}>
-                                <option value="---">---</option>
-                                <option value={true}>Sí</option>
                                 <option value={false}>No</option>
+                                <option value={true}>Sí</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid">{errors.offer_boolean}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid">{errors.offer}</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="offer_price">
@@ -129,9 +130,9 @@ const CreateProduct = () => {
                             <Form.Control.Feedback type="invalid">{errors.offer_price}</Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group controlId="price">
-                            <Form.Label className="form-label">Descripcion: </Form.Label>
-                            <Form.Control className="form-control" type="text" name="description" value={values.description}
+                        <Form.Group controlId="description">
+                            <Form.Label className="form-label">Descripción: </Form.Label>
+                            <Form.Control className="form-control" rows={5} as="textarea" name="description" value={values.description}
                                 isInvalid={touched.description && !!errors.description}
                                 onBlur={handleBlur} onChange={handleChange} />
                             <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
@@ -146,11 +147,10 @@ const CreateProduct = () => {
                         </Form.Group>
 
                         <Form.Group controlId="category">
-                            <Form.Label className="form-label">Seleccione la categoria: </Form.Label>
+                            <Form.Label className="form-label">Seleccione la categoría: </Form.Label>
                             <Form.Select name="category" value={values.category}
                                 isInvalid={touched.category && !!errors.category}
                                 onBlur={handleBlur} onChange={handleChange}>
-                                <option value="---">---</option>
                                 <option value="Velas">Velas</option>
                                 <option value="Perfumes">Perfumes</option>
                             </Form.Select>
@@ -172,19 +172,15 @@ const CreateProduct = () => {
                         </Form.Group>
 
                         <Form.Group controlId="image">
-                            <Form.Label className="form-label">Selecciona una imagen: </Form.Label>
-                            <div>
-                                <input
-                                    type="file"
-                                    id="image"
-                                    custom="true"
-                                    onChange={handleProductThumbnailUpload}
-                                />
-                            </div>
-
+                            <Form.Label className="form-label">Seleccione una imagen: </Form.Label>
+                            <Form.Control className="form-control" type="file" name="image" 
+                                isInvalid={touched.image && !!errors.image}
+                                onBlur={handleBlur} onChange={handleProductThumbnailUpload} />
+                            <Form.Control.Feedback type="invalid">{errors.image}</Form.Control.Feedback>
                         </Form.Group>
+
                         <div className="boton">
-                            <Button variant="primary" type="submit" disabled={isSubmitting}>Subir Producto</Button>
+                            <Button variant="primary" type="submit" disabled={isSubmitting}>CARGAR PRODUCTO</Button>
                         </div>
                     </Form>
                     {

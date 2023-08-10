@@ -1,15 +1,11 @@
 const passport  = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
+//const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const { createHash, isValidPassword } = require('./bcrypt.config');
 
-//Modelos Bd:
+//llamados a la Bd:
 const { userModel } = require('../models/user.model');
-const { cartModel } = require('../models/cart.model');
-
-
 
 const initializePassport = () =>{
 
@@ -21,6 +17,8 @@ const initializePassport = () =>{
 
         try {
             const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, age, email } = req.body;
+            console.log(req.body)
+
             //Falta validar los datos  
             const user = await userModel.findOne({ email: username });
 
@@ -43,9 +41,13 @@ const initializePassport = () =>{
                 password: createHash(password)
             };
 
+            console.log(newUser)
+
             const result = await userModel.create( newUser );
 
-            console.log(`El usuario con el mail: ${user.email} se registro de manera tradicional`);
+            console.log("result ",result)
+
+            console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
 
             return done(null, result);
 
@@ -60,6 +62,7 @@ const initializePassport = () =>{
     }, async (username, password, done) =>{
         try {
             const user = await userModel.findOne({ email: username });
+            
 
             if (!user) {
                 return done(null, false);
@@ -70,12 +73,9 @@ const initializePassport = () =>{
                 return done(null, false)
             };
 
-            if (user.carts.length === 0) {
-                let newCart = await cartModel.create();
-                let userId = user._id.toString();
-
-                await userModel.findByIdAndUpdate(userId, { $push: { carts: { _id: newCart._id } } });
-            };
+            //Para calcular la ultima conexion, siempre que el usuario el se loguee, se actualiza el campo:
+            user.lastConnection = new Date();
+            await userModel.findByIdAndUpdate(user._id, { lastConnection: user.lastConnection });
 
             console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
         
@@ -87,53 +87,53 @@ const initializePassport = () =>{
         }
     }));
     
-//Login con Facebook:
-    passport.use('facebook', new FacebookStrategy({
-        //Necesitamos el acceso al id y secreto de fb.
-        //Acceder como variables de entorno
+// //Login con Facebook:
+//     passport.use('facebook', new FacebookStrategy({
+//         //Necesitamos el acceso al id y secreto de fb.
+//         //Acceder como variables de entorno
 
-        clientID: '699066058726054', 
-        clientSecret: '60bbf1124c11fab806f737772b4b25d7',
-        callbackURL: "http://localhost:3001/users/auth/facebook/callback", //Cambiar la Url
-        profileFields: ['first_name', 'last_name', 'email', 'birthday', 'gender', 'hometown']
-    },
-    async function(accessToken, refreshToken, profile, done) {
-        try {
-            //Revisar la informacionque trae el profile
-            console.log(profile);
-            const user = await userModel.findOne({ email: profile.email });
-            // userModel.findOne({ email: profile.email }, function (err, user) {
-            // return cb(err, user);
-            // });
-            if(!user) {
-                const newUser = {
-                    //rellenar con los datos, que envie el profile
-                    first_name: profile._json.first_name, 
-                    last_name: profile._json.last_name,
-                    email,
-                    gender,
-                    birthdate,
-                    address,
-                    zipcode,
-                    city,
-                    phone,
-                    age,
-                    password: ''
-                };
-                const result = await userModel.create( newUser );
+//         clientID: '699066058726054', 
+//         clientSecret: '60bbf1124c11fab806f737772b4b25d7',
+//         callbackURL: "http://localhost:3001/users/auth/facebook/callback", //Cambiar la Url
+//         profileFields: ['first_name', 'last_name', 'email', 'birthday', 'gender', 'hometown']
+//     },
+//     async function(accessToken, refreshToken, profile, done) {
+//         try {
+//             //Revisar la informacionque trae el profile
+//             console.log(profile);
+//             const user = await userModel.findOne({ email: profile.email });
+//             // userModel.findOne({ email: profile.email }, function (err, user) {
+//             // return cb(err, user);
+//             // });
+//             if(!user) {
+//                 const newUser = {
+//                     //rellenar con los datos, que envie el profile
+//                     first_name: profile._json.first_name, 
+//                     last_name: profile._json.last_name,
+//                     email,
+//                     gender,
+//                     birthdate,
+//                     address,
+//                     zipcode,
+//                     city,
+//                     phone,
+//                     age,
+//                     password: ''
+//                 };
+//                 const result = await userModel.create( newUser );
                 
-                console.log(`El usuario con el mail: ${user.email} se registro con 'facebook`);
+//                 console.log(`El usuario con el mail: ${user.email} se registro con 'facebook`);
 
-                return done(null, result);
-            } else {
-                console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
-                return done(null, user);
-            };
-        } catch (error) {
-            console.log(`${error}`);
-            return done(error)
-        };
-    }));
+//                 return done(null, result);
+//             } else {
+//                 console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
+//                 return done(null, user);
+//             };
+//         } catch (error) {
+//             console.log(`${error}`);
+//             return done(error)
+//         };
+//     }));
 
 //Login con Google:
     // passport.use('google', new GoogleStrategy({

@@ -6,12 +6,14 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./DashboardAdmin.css"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LinesChart from './AdminComponents/LineChart/LineChart';
 import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 import Sales from './AdminComponents/Sales/Sales';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import CreateProduct from './AdminComponents/CreateProduct/CreateProduct';
+import { fetcher } from '../../utils/fetcherGet';
 
 
 const DashboardAdmin = () => {
@@ -22,6 +24,32 @@ const DashboardAdmin = () => {
     const [userCount, setUserCount] = useState()
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
+    const [salesWeek, setSalesWeek] = useState();
+
+    const calculateProfits = (salesResponse) => {
+        let total = 0;
+        salesResponse.forEach(sale => {
+            total += sale.amount
+        });
+        return total;
+    }
+
+    const getInfo = async () => {
+        const usersResponse = await fetcher(`/admindashboard/users`)
+        const productsResponse = await fetcher(`/admindashboard/products`)
+        const salesResponse = await fetcher(`/admindashboard/tickets`)
+        /* const weekResponse = await fetcher(`/admindashboard/tickets/week`) */
+
+        setUserCount(usersResponse)
+        setProductsCount(productsResponse)
+        setSalesCount(salesResponse)
+        setTotalProfits(calculateProfits(salesResponse))
+        setSalesWeek(weekResponse)
+    }
+
+    useEffect(() => {
+        getInfo();
+    }, [])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,7 +60,8 @@ const DashboardAdmin = () => {
     const handleTabs = (tab) => {
         setActiveTab(tab)
     }
-
+    console.log(userCount);
+    console.log(salesCount);
     return (
         <div>
             <div>
@@ -60,7 +89,7 @@ const DashboardAdmin = () => {
                             <Nav.Link className="icon" onClick={() => handleTabs("general")}><i className="bi bi-house-door-fill"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("users")} eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
-                            <Nav.Link className="icon" href="/createProduct"><i className="bi bi-upload"></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
                         </Nav>
                     </div>
                 </div>
@@ -70,9 +99,8 @@ const DashboardAdmin = () => {
                         activeKey={activeTab}
                         id="justify-tab-example"
                         className="m-0 p-0 w-100 d-none"
-                        fill
                     >
-                        <Tab fill className='w-100' eventKey="general">
+                        <Tab className='w-100' eventKey="general" title="general">
                             <div className="info_container">
                                 <div className='title_dashboard'>
                                     <h1>Indian&Co</h1>
@@ -81,7 +109,7 @@ const DashboardAdmin = () => {
                                     <div className='box_container'>
                                         <div className='info_metrics_container'>
                                             <p>Ventas totales</p>
-                                            <p>2344</p>
+                                            <p>{salesCount?.length}</p>
                                         </div>
                                         <div className='icon_metrics_container'>
                                             <i className="icon bi bi-house-door-fill"></i>
@@ -90,7 +118,7 @@ const DashboardAdmin = () => {
                                     <div className='box_container'>
                                         <div className='info_metrics_container'>
                                             <p>Total de productos</p>
-                                            <p>25</p>
+                                            <p>{productsCount?.payload.length}</p>
                                         </div>
                                         <div className='icon_metrics_container'>
                                             <i className="icon bi bi-house-door-fill"></i>
@@ -99,7 +127,7 @@ const DashboardAdmin = () => {
                                     <div className='box_container'>
                                         <div className='info_metrics_container'>
                                             <p>Total de usuarios</p>
-                                            <p>60</p>
+                                            <p>{userCount?.length}</p>
                                         </div>
                                         <div className='icon_metrics_container'>
                                             <i className="icon bi bi-house-door-fill"></i>
@@ -107,8 +135,8 @@ const DashboardAdmin = () => {
                                     </div>
                                     <div className='box_container'>
                                         <div className='info_metrics_container'>
-                                            <p>hola</p>
-                                            <p>hola</p>
+                                            <p>Ganancias totales</p>
+                                            <p>{totalProfit}</p>
                                         </div>
                                         <div className='icon_metrics_container'>
                                             <i className="icon bi bi-house-door-fill"></i>
@@ -118,7 +146,7 @@ const DashboardAdmin = () => {
                                 <div className='charts_container'>
                                     <div className='line_chart_container'>
                                         <h2 className='sales_title'>Ventas de la semana</h2>
-                                        <LinesChart></LinesChart>
+                                        <LinesChart salesWeek={salesWeek}></LinesChart>
                                     </div>
                                     <div className='doughnut_container'>
                                         <h2>Ventas del mes</h2>
@@ -134,34 +162,19 @@ const DashboardAdmin = () => {
                                         <span className='size'>Registrado</span>
                                         <span className='size'>Detalle</span>
                                     </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
-                                    <div className='sales_in'>
-                                        <p className='size' >Juan</p>
-                                        <p className='size'>07/07/2023</p>
-                                        <p className='size'>1134240778</p>
-                                        <p className='size'>Sí</p>
-                                        <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                    </div>
+                                    {userCount?.map(sale => {
+                                        return (
+                                            <div key={sale?._id} className='sales_in'>
+                                                <p className='size' >{sale?.first_name}</p>
+                                                <p className='size'>{sale?.last_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
+                                            </div>
+                                        )
+                                    })
+                                    }
+
                                     <div className='pagination'>
                                         <Pagination>
                                             <Pagination.First />
@@ -209,11 +222,14 @@ const DashboardAdmin = () => {
                                 </div>
                             </div>
                         </Tab>
-                        <Tab className='w-100' eventKey="users">
+                        <Tab className='w-100' eventKey="users" title="users">
                             Esto es la vista de users
                         </Tab>
-                        <Tab className='w-100' eventKey="sales">
+                        <Tab className='w-100' eventKey="sales" title="sales">
                             <Sales></Sales>
+                        </Tab>
+                        <Tab className='w-100' eventKey="products" title=" products">
+                            <CreateProduct></CreateProduct>
                         </Tab>
                     </Tabs>
                 </div>

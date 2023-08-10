@@ -12,7 +12,8 @@ const postTicketsController = async ({ amount, purchaser, products }) => {
         await user.save();
       
         return newTicket;
-      };
+};
+
 module.exports = {
         postTicketsController
 };

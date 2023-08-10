@@ -35,7 +35,7 @@ server.use((req, res, next) => {
 //Configuracion express-session:
 server.use(session({
   store: MongoStore.create({
-      mongoUrl: 'mongodb+srv://Juan:1234@coinverse4.z4ucfoj.mongodb.net/', //Guardar en .env
+      mongoUrl: 'mongodb+srv://admin:Patoka1503@indianandco.w5ajsr2.mongodb.net/', //Guardar en .env
       mongoOptions: { useNewUrlParser: true },
       ttl: 3600
      }),
