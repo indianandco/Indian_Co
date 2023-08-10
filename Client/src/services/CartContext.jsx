@@ -1,7 +1,9 @@
-import React, { createContext, useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -11,6 +13,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     saveCartData();
+    
   }, [cart]);
 
   const loadCartData = () => {
@@ -24,16 +27,16 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  const addToCart = (product) => {
-    const existingProduct = cart.find((p) => p.id === product.id);
+  const addToCart = (id) => {
+    const existingProduct = cart.find((p) => p.id === id);
 
     if (existingProduct) {
       const updatedCart = cart.map((p) =>
-        p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+        p.id === id ? { ...p, quantity: p.quantity + 1 } : p
       );
       setCart(updatedCart);
     } else {
-      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+      setCart((prevCart) => [...prevCart, { ...id, quantity: 1 }]);
     }
   };
 
@@ -49,13 +52,15 @@ export const CartProvider = ({ children }) => {
   };
 
 
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter((product) => product.id !== productId);
+  const removeFromCart = (id) => {
+    const updatedCart = cart.filter((product) => product.id !== id);
     setCart(updatedCart);
   };
+  
   const removeAllItems = () => {
     setCart([]);
   };
+
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, removeToCart,removeAllItems }}>
       {children}

@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect, useCallback } from "react";
 import style from "./Cart.module.css";
 import { CartContext } from "../../utils/CartContext";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import CarouselProducts from "../CarouselProducts/CarouselProducts"
 import { useSelector } from "react-redux";
-import { loginUserLocal } from "../../redux/slice/userSlice";
 import ModalLogin from "../ModalLogin/ModalLogin"
 
 const Cart = () => {
@@ -15,7 +15,6 @@ const Cart = () => {
     const [cartIsEmpty, setCartIsEmpty] = useState(true);
     const userData = useSelector((state) => state.user.userData)
     const navigate = useNavigate();
-    const location = useLocation();
     let [count, setCount] = useState(0);
     let [total, setTotal] = useState(0);
 

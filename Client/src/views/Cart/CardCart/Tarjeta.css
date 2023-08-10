@@ -1,5 +1,5 @@
 /* Estilos para la tarjeta */
-.tarjeta {
+/* .tarjeta {
     display: flex;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -59,12 +59,11 @@
     background-color: #a04545;
   }
   
-  /* Estilos para el carrito */
   .carrito {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
+  } */
   
   
   
