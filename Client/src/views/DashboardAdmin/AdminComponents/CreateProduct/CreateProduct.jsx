@@ -121,14 +121,15 @@ const CreateProduct = () => {
                             </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.offer}</Form.Control.Feedback>
                         </Form.Group>
-
-                        <Form.Group controlId="offer_price">
-                            <Form.Label className="form-label">Precio en Oferta: </Form.Label>
-                            <Form.Control className="form-control" type="number" name="offer_price" value={values.offer_price}
-                                isInvalid={touched.offer_price && !!errors.offer_price}
-                                onBlur={handleBlur} onChange={handleChange} />
-                            <Form.Control.Feedback type="invalid">{errors.offer_price}</Form.Control.Feedback>
-                        </Form.Group>
+                        {(values.offer === 'true') &&
+                            <Form.Group controlId="offer_price">
+                                <Form.Label className="form-label">Precio en Oferta: </Form.Label>
+                                <Form.Control className="form-control" type="number" name="offer_price" value={values.offer_price}
+                                    isInvalid={touched.offer_price && !!errors.offer_price}
+                                    onBlur={handleBlur} onChange={handleChange} />
+                                <Form.Control.Feedback type="invalid">{errors.offer_price}</Form.Control.Feedback>
+                            </Form.Group>
+                        }
 
                         <Form.Group controlId="description">
                             <Form.Label className="form-label">Descripción: </Form.Label>
@@ -173,7 +174,7 @@ const CreateProduct = () => {
 
                         <Form.Group controlId="image">
                             <Form.Label className="form-label">Seleccione una imagen: </Form.Label>
-                            <Form.Control className="form-control" type="file" name="image" 
+                            <Form.Control className="form-control" type="file" name="image"
                                 isInvalid={touched.image && !!errors.image}
                                 onBlur={handleBlur} onChange={handleProductThumbnailUpload} />
                             <Form.Control.Feedback type="invalid">{errors.image}</Form.Control.Feedback>
