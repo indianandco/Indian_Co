@@ -12,12 +12,12 @@ const Cards = ({ product }) => {
 
     // eslint-disable-next-line react/prop-types
     const { id, image, title, category, description, fragance, size, price } = product
-    const { addProduct } = useContext(CartContext);
+    const { addProduct, noStock } = useContext(CartContext);
 
     const sendProduct = () => {
         addProduct(product)
     }
-
+    console.log(noStock);
     return (
         <div className='containerCards'>
             <Card className="mx-4 my-4" style={{ width: '30rem' }}>
@@ -32,7 +32,7 @@ const Cards = ({ product }) => {
                     <Card.Text>{`Tamaño:${size}`}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush align-items-center">
-                    <Button onClick={sendProduct} className="border-0 rounded-0 addToCart" style={{ width: '100%' }} variant="outline-success" size="lg">Agregar al carrito</Button>
+                    <Button onClick={sendProduct} disabled={noStock} className="border-0 rounded-0 addToCart" style={{ width: '100%' }} variant="outline-success" size="lg">Agregar al carrito</Button>
                 </ListGroup>
                 <ListGroup horizontal className="d-flex align-items-center justify-content-between list-group-flush">
                     <ListGroup.Item variant="dark" className="px-2">Precio</ListGroup.Item>
