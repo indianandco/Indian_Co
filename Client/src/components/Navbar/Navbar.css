@@ -84,6 +84,7 @@
     margin: 0;
     display: flex;
     justify-content:space-evenly;
+    margin-bottom: 6.5em;
   }
 
   @media (max-width: 768px) {
@@ -94,6 +95,11 @@
     }
     .buttons {
       margin: 5px 0; 
+    }
+    .nav_container {
+      display: flex;
+      justify-content:space-evenly;
+      margin-bottom: 9em;
     }
     
     .logo{

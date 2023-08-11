@@ -7,12 +7,13 @@ import { NavLink, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const Detail = () => {
+// eslint-disable-next-line react/prop-types
+const Detail = ({product}) => {
 
     const {id} = useParams()
     
     const { detailProducts, getDetailProducts } = useContext(ProductContext);
-    const { clickAdd, removeQuantity, addQuantity } = useContext(CartContext);
+    const { addProduct, removeProduct } = useContext(CartContext);
 
     const [quantity, setQuantity] = useState(1);
 
@@ -20,15 +21,19 @@ const Detail = () => {
         if(quantity < detailProducts?.stock){
             setQuantity(quantity + 1);
         }
-        addQuantity()
+        addProduct()
     };
   
     const restar = () => {
         if(quantity > 1){
             setQuantity(quantity - 1);
         }
-        removeQuantity()
+        removeProduct()
     };
+
+    const sendProductDetail = () => {
+        addProduct(product)
+    }
     
     useEffect(() => {
         getDetailProducts(id);
@@ -81,7 +86,7 @@ const Detail = () => {
                                 <Button className='buttonCounter' variant="light" onClick={incrementar}>+</Button>
                             </div>
                             <div className='boxCart'>
-                                <Button onClick={clickAdd} className='buttonCart' variant="warning">Agregar al carrito</Button>
+                                <Button onClick={sendProductDetail} className='buttonCart' variant="warning">Agregar al carrito</Button>
                             </div>
                         </div>
                             <div className='boxFooter'>

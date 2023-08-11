@@ -19,10 +19,10 @@ const Cards = ({ product }) => {
     }
 
     return (
-        <div>
+        <div className='containerCards'>
             <Card className="mx-4 my-4" style={{ width: '30rem' }}>
                 <NavLink to={`/detail/${id}`} >
-                    <Card.Img variant="top" src={image} image={image} />
+                    <Card.Img className="imageCards" variant="top" src={image} image={image} />
                 </NavLink>
                 <Card.Header className="pb-1"><Card.Title className="d-flex justify-content-center" >{title}</Card.Title></Card.Header>
                 <Card.Body className="p-3 d-flex flex-column">
