@@ -14,6 +14,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import CreateProduct from './AdminComponents/CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
+import Products from './Products/Products';
 
 
 const DashboardAdmin = () => {
@@ -89,7 +90,8 @@ const DashboardAdmin = () => {
                             <Nav.Link className="icon" onClick={() => handleTabs("general")}><i className="bi bi-house-door-fill"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("users")} eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
-                            <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={() => handleTabs("create")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-4"><i className='bi bi-grid'></i></Nav.Link>
                         </Nav>
                     </div>
                 </div>
@@ -228,8 +230,11 @@ const DashboardAdmin = () => {
                         <Tab className='w-100' eventKey="sales" title="sales">
                             <Sales></Sales>
                         </Tab>
-                        <Tab className='w-100' eventKey="products" title=" products">
+                        <Tab className='w-100' eventKey="create" title="create">
                             <CreateProduct></CreateProduct>
+                        </Tab>
+                        <Tab className='w-100' eventKey="products" title="products">
+                            <Products></Products>
                         </Tab>
                     </Tabs>
                 </div>
