@@ -27,6 +27,7 @@ const Cart = ({ product }) => {
     }
   };
 
+
   const incrementar = (item) => {
     if (item.quantity < item?.stock) {
       addProduct(item)
