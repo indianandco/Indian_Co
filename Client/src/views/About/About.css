@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+/* CSS */
+.allAbout {
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+  }
+  
+  .headerAbout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../public/headerContact.jpg');
+    min-height: 35em;
+    min-width: 100%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 1px;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.756);
+    color: rgb(255, 255, 255);
+    margin-top: 0%;
+    width: 60%;
+    max-width: 60%;
+    padding: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
+    border: 0.1em solid rgb(255, 255, 255);
+    text-decoration: none;
+  }
+  
+  .h3 {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-size: clamp(0.2em, 2vw, 1.25em);
+  }
+  
+  .h1 {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-size: clamp(0.5em, 4vw, 2em);
+  }
+  
+  /* Media Query para dispositivos móviles */
+  @media (max-width: 768px) {
+    .header {
+      min-height: 20em;
+      max-height: auto;
+      margin-top: 22em;
+    }
+    
+    .title {
+        max-width: 100%;
+        height: auto;
+    }
+  }
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    min-width: 100%;
+    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
+}
+
+.form-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.form-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.desc {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.box {
+    display: flex;
+    margin-top: 5em;
+}
+
+.box-1 {
+    display: inline;
+    max-width: 30em;
+}
+
+.p,
+.p1,
+.p2,
+.h4,
+.h6 {
+    display: flex;
+    margin-bottom: 1em;
+    color: rgb(255, 255, 255);
+    /* Tamaño de fuente mínimo y máximo */
+    font-size: clamp(10px, 2vw, 20px);
+}
+
+.p2 {
+    font-weight: bold;
+    margin-bottom: 2.3em;
+}
+
+.h6 {
+    margin-bottom: 2em;
+    color: #ee4c7c;
+}
+
+.smallBox {
+    display: block;
+    margin-bottom: 4em;
+}
+
+.box-3{
+    margin: 3em;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+.box-1 {
+    max-width: 100%; /* Eliminamos el ancho máximo para que ocupe todo el ancho en dispositivos móviles */
+    margin-right: 0; /* Eliminamos el margen derecho para que ocupe todo el ancho en dispositivos móviles */
+}
+.box-3 {
+    margin: 1em;
+    margin-top: 0;
+}
+}
+
+
+
+/* ------------------------------------------------------------------- */
+
+/* Estilos para pantallas más grandes */
+.img {
+    max-width: 300px;
+    margin-bottom: 4em;
+}
+
+.header {
+    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/0e/0ec/0ecxdr.jpg?ph=e7cd32bc42');
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+}
+
+/* Estilos para pantallas más pequeñas, como dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    .img {
+        max-width: 100%; /* La imagen ocupará todo el ancho disponible */
+    }
+}
+.textTitle {
+    font-size: 35px;
+    text-align: start;
+    line-height: normal; 
+    color: white;
+}
+
+.h4{
+    font-size: 35px;
+    text-align: start;
+    line-height: normal; 
+    color: white;
+}
+
+.p {
+    font-size: 20px;
+    text-align: start;
+    margin-top: 0.5em;
+    line-height: normal;
+}
+
+/* Estilos para pantallas más pequeñas, como dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    .textTitle {
+        font-size: 15px; /* Tamaño de fuente más pequeño para títulos en pantallas pequeñas */
+    }
+
+    .p {
+        font-size: 10px; /* Tamaño de fuente más pequeño para párrafos en pantallas pequeñas */
+    }
+
+    .h4{
+        font-size: 15px;
+    }
+}

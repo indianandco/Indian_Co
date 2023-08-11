@@ -1,0 +1,13 @@
+.products_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3.5em;
+}

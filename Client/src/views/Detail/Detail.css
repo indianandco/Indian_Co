@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+/* Estilos generales */
+.containerDetail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    border-radius: 6px;
+    min-width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    background-color: azure;
+    margin-top: 6.5em;
+  }
+  
+  .imageDetail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .imageDetails {
+    border-radius: 6px;
+    max-width: 80%;
+    border: .5px solid black;
+    box-shadow: 0 0 20px 5px black; /* Ajusta los valores según tu preferencia */
+  }
+  
+
+.containerDesc{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: auto;
+    width: 100%;
+}
+
+.firstButtons{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.firstButton {
+    position: relative;
+    font-weight: bold;
+    color: black;
+    background-color:azure;
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    font-size: 1.5em;
+    margin: 1em;
+  }
+
+  .firstButton:hover {
+    color: rgb(58, 16, 1);
+
+  }
+
+  .firstButton:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(58, 16, 1);
+    left: 0;
+    bottom: 4px; 
+    height: 2.5px;
+    width: 0%;
+    transition: 0.3s;
+}
+
+.firstButton:hover:after{
+    width: 100%;
+    color: pink;
+}
+
+.productTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5.5em;
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    margin-bottom: .5em;
+    color: rgb(62, 18, 18);
+    text-shadow: 2px 2px 2px black;
+    width: 100%;
+    text-decoration: underline;
+}
+
+.boxPrice{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    margin-left: 1em;
+}
+
+.price{
+    font-weight: 1000;
+    font-size: 2em;
+}
+
+.p{
+    color: black;
+    font-weight: 1000;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    font-size: 2em;
+}
+
+.counter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 6px;
+    border: 1px solid black;
+    padding: .1em;
+    background-color: white;
+  }
+  
+  .buttonCounter {
+    display: inline;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin: 0.2em;
+  }
+
+.h3Aromas{
+    font-weight: 500;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
+
+.boxAromas{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.option{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    background-color:#ffffff ;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 6px;
+    max-width: 5em;
+    cursor: pointer;
+}
+
+.span{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.containCart{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 3em;
+    margin-left: 1em;
+}
+
+.boxCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10em;
+}
+
+.buttonCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 15em;
+    min-height: 3.5em; 
+    margin-left: 5em;
+}
+
+.boxFooter{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    margin-left: 1em;
+}
+
+.boxDesc{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: .5em;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    font-weight: lighter;
+    font-size: 1em;
+}
+
+ /* Estilos para dispositivos móviles */
+ @media screen and (max-width: 767px) {
+  
+    .containerDetail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-width: 767px;
+        margin-top: 8em;
+        padding: 1em;
+    }
+
+    .imageDetails {
+    border-radius: 6px;
+    max-width: 50%;
+    border: .5px solid black;
+    box-shadow: 1px 1px 50px 5px black; /* Ajusta los valores según tu preferencia */
+    }
+
+
+    .p {
+      font-size: 1.5em; /* Reducir el tamaño de la fuente del párrafo */
+    }
+
+    .price{
+        font-size: 3em;
+    }
+
+    .productTitle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2em;
+        font-size: 3.5em;
+        font-weight: 800;
+        font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+        margin-bottom: 1em;
+        color: rgb(62, 18, 18);
+        text-shadow: 2px 2px 2px black;
+        width: 100%;
+        text-decoration: underline;
+    }
+ 
+    .firstButton {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 2em; /* Reducir el tamaño de los botones */
+        font-weight: bold;
+        color: black;
+        padding: 10px;
+    }
+    .firstButtonResponsive{
+        text-decoration: none;
+        border-radius: 1em;
+        margin-right: 4em;
+        margin-left: 4em;
+        margin-bottom: 1em;
+        margin-top: 1em;
+    }
+
+    .firstButtons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 2.5em;
+        width: 100%;
+    }
+
+    .counter {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px;
+      }
+    
+      .buttonCounter {
+        flex-direction: row;
+        align-items: center;
+        margin: 0.1em;
+      }
+  }
+  

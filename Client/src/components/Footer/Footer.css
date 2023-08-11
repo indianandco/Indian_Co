@@ -1,0 +1,127 @@
+.footer_container {
+    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
+    border-top: 2px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 1em;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
+
+.left_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20em;
+    color: white;
+    padding-left:1em ;
+}
+
+.right_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 20em;
+}
+
+.mid_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20em;
+    color: white;
+}
+
+.mid-right_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.image {
+    width: 200px;
+    height: auto;
+}
+
+.icon {
+    font-size: 2em;
+}
+
+.icon_container {
+    display: flex;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+}
+
+.modals {
+    all: unset;
+    text-decoration: none;
+    width: 100%;
+    padding: 5px;
+    color: rgb(189, 189, 189);
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.modals:hover {
+    color: #4B5320;
+    border-bottom: 0.5px solid #4B5320;
+}
+
+.menu {
+    color: black;
+    margin-bottom:1rem;
+    border-bottom: 3px solid #3a1001ad;
+}
+
+.info {
+    color: black;
+    margin-bottom:1rem;
+    border-bottom: 3px solid #3a1001ad;
+}
+
+.links_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-decoration: none;
+}
+
+.links {
+    text-decoration: none;
+    width: 100%;
+    padding: 5px;
+    color: rgb(189, 189, 189);
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.links:hover {
+    color: #4B5320;
+}
+
+@media (max-width: 510px) {
+    .footer_container {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    .mid-right_container{
+        flex-direction: column;
+        
+    }
+
+    .right_container {
+        justify-content: center;
+        align-items: center;
+        padding-top: 1em;
+        width: 20em;
+    }
+}
