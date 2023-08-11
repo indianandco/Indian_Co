@@ -32,6 +32,7 @@ const Cart = ({ product }) => {
       addProduct(item)
       totalPrice();
     }
+
   };
 
   const restar = (item) => {
