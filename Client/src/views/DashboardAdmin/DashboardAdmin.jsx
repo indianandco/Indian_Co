@@ -1,7 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Pagination from 'react-bootstrap/Pagination';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -19,12 +17,10 @@ import Products from './Products/Products';
 const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
-    const [modal, setModal] = useState(false)
     const [productsCount, setProductsCount] = useState()
     const [userCount, setUserCount] = useState()
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
-    const [salesWeek, setSalesWeek] = useState();
 
     const calculateProfits = (salesResponse) => {
         let total = 0;
@@ -38,13 +34,11 @@ const DashboardAdmin = () => {
         const usersResponse = await fetcher(`/admindashboard/users`)
         const productsResponse = await fetcher(`/admindashboard/products`)
         const salesResponse = await fetcher(`/admindashboard/tickets`)
-        /* const weekResponse = await fetcher(`/admindashboard/tickets/week`) */
 
         setUserCount(usersResponse)
         setProductsCount(productsResponse)
         setSalesCount(salesResponse)
         setTotalProfits(calculateProfits(salesResponse))
-        setSalesWeek(weekResponse)
     }
 
     useEffect(() => {
@@ -53,15 +47,12 @@ const DashboardAdmin = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleModalClose = () => setModal(false);
-    const handleModalShow = () => setModal(true);
     const [activeTab, setActiveTab] = useState('general');
 
     const handleTabs = (tab) => {
         setActiveTab(tab)
     }
-    console.log(userCount);
-    console.log(salesCount);
+
     return (
         <div>
             <div>
@@ -147,7 +138,7 @@ const DashboardAdmin = () => {
                                 <div className='charts_container'>
                                     <div className='line_chart_container'>
                                         <h2 className='sales_title'>Ventas de la semana</h2>
-                                        <LinesChart salesWeek={salesWeek}></LinesChart>
+                                        <LinesChart></LinesChart>
                                     </div>
                                     <div className='doughnut_container'>
                                         <h2>Ventas del mes</h2>
@@ -155,6 +146,26 @@ const DashboardAdmin = () => {
                                     </div>
                                 </div>
                                 <Sales />
+                                <div className='recent_sales_container'>
+                                    <div className='sale_title'><h1>Ordenes de compra</h1></div>
+                                    <div className='sales'>
+                                        <span className='size'>Nombre</span>
+                                        <span className='size'>Fecha</span>
+                                        <span className='size' >Télefono</span>
+                                        <span className='size'>Registrado</span>
+                                    </div>
+                                    {userCount?.map(sale => {
+                                        return (
+                                            <div key={sale?._id} className='sales_in'>
+                                                <p className='size' >{sale?.first_name}</p>
+                                                <p className='size'>{sale?.last_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                                <p className='size'>{sale?.first_name}</p>
+                                            </div>
+                                        )
+                                    })
+                                    }
+                                </div>
                             </div>
                         </Tab>
                         <Tab className='w-100' eventKey="users" title="users">
