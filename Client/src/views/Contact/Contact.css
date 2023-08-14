@@ -35,38 +35,26 @@
     text-decoration: none;
   }
   
-  .h3 {
+  .h3Contact {
     font-weight: bold;
     color: rgb(255, 255, 255);
     font-size: clamp(0.2em, 2vw, 1.25em);
   }
   
-  .h1 {
+  .h1Contact {
     font-weight: bold;
     color: rgb(255, 255, 255);
     font-size: clamp(0.5em, 4vw, 2em);
   }
   
-  /* Media Query para dispositivos móviles */
-  @media (max-width: 768px) {
-    .header {
-      min-height: 20em;
-      margin-top: 22em;
-    }
-    
-    .title {
-      width: 100%;
-    }
-  }
-  
-.form {
+  .form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 0.2em;
     margin: 0.5em;
-    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
+    background-image: url('../../../public/BackgroundBlack.jpg');
     min-height: 40em;
     min-width: 100%;
     color: white;
@@ -138,34 +126,22 @@
     transform: translateX(0.5em);
   }
   
-  /* Media Query para dispositivos móviles */
-  @media (max-width: 768px) {
-    .formBox {
-      min-height: 25em;
-    }
-    
-    .input,
-    .input1 {
-      max-width: 100%; /* Eliminamos el ancho máximo para que los campos de entrada ocupen todo el ancho en dispositivos móviles */
-    }
-  }
-
-.footer {
+  .footer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0.5em;
     min-width: 100%;
-    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
-}
-
-.form-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    background-image: url('../../../public/BackgroundBlack.jpg');
+  }
+  
+  .form-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .form-2 {
@@ -174,61 +150,80 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
-}
-
-.desc {
+  }
+  
+  .desc {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
     margin-left: 1em;
     margin-right: 1em;
-}
-
-.box {
-    display: flex;
-    margin-top: 5em;
+  }
+  
+  .box {
+  display: flex;
+  margin-top: 5em;
 }
 
 .box-1 {
-    display: inline;
-    max-width: 30em;
-    margin-right: 25em;
+  display: inline;
+  max-width: 30em;
+  margin-right: 25em;
 }
 
-.p,
-.p1,
-.p2,
-.h4,
-.h6 {
-    display: flex;
-    margin-bottom: 1em;
-    color: rgb(255, 255, 255);
-    /* Tamaño de fuente mínimo y máximo */
-    font-size: clamp(10px, 2vw, 20px);
+.pContact,
+.p1Contact,
+.p2Contact,
+.h4Contact,
+.h6Contact {
+  display: flex;
+  margin-bottom: 1em;
+  color: rgb(255, 255, 255);
+  /* Tamaño de fuente mínimo y máximo */
+  font-size: clamp(10px, 2vw, 20px);
 }
 
-.p2 {
-    font-weight: bold;
-    margin-bottom: 2.3em;
+.p2Contact {
+  font-weight: bold;
+  margin-bottom: 2.5em;
 }
 
-.h6 {
-    margin-bottom: 2em;
-    color: #ee4c7c;
+.h6Contact {
+  color: #ee4c7c;
 }
 
 .smallBox {
-    display: block;
-    margin-bottom: 4em;
+  display: block;
+  margin-bottom: 4em;
 }
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
-.box-1 {
+  .box-1 {
     max-width: 100%; /* Eliminamos el ancho máximo para que ocupe todo el ancho en dispositivos móviles */
     margin-right: 0; /* Eliminamos el margen derecho para que ocupe todo el ancho en dispositivos móviles */
-}
-}
+  }
 
+  .formBox {
+    min-height: 25em;
+  }
+  
+  .input,
+  .input1 {
+    max-width: 100%; /* Eliminamos el ancho máximo para que los campos de entrada ocupen todo el ancho en dispositivos móviles */
+  }
+
+  .header {
+    min-height: 20em;
+    margin-top: 22em;
+  }
+  .h1Contact{
+    text-align: center !important ;
+  }
+
+  .title {
+    width: 100%;
+  }
+}
 
