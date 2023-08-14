@@ -32,7 +32,6 @@ const Products = () => {
             : products;
         setFilteredProducts(result);
     };
-    console.log(products)
     // return (
     // <Container className='container'>
     //     <Row className='sale_title'>

@@ -17,12 +17,14 @@ export function DoughnutChart() {
         getInfo()
     }, [])
 
+    if (!yearSales) return null
+
     const data = {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        labels: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
         datasets: [
             {
                 label: 'Ventas mensuales',
-                data: yearSales,
+                data: Object?.values(yearSales),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.4)',
                     'rgba(54, 162, 235, 0.4)',
