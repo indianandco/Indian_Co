@@ -1,7 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Pagination from 'react-bootstrap/Pagination';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -20,7 +18,6 @@ import Products from './Products/Products';
 const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
-    const [modal, setModal] = useState(false)
     const [productsCount, setProductsCount] = useState()
     const [userCount, setUserCount] = useState()
     const [salesCount, setSalesCount] = useState()
@@ -51,15 +48,12 @@ const DashboardAdmin = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleModalClose = () => setModal(false);
-    const handleModalShow = () => setModal(true);
     const [activeTab, setActiveTab] = useState('general');
 
     const handleTabs = (tab) => {
         setActiveTab(tab)
     }
-    console.log(userCount);
-    console.log(salesCount);
+
     return (
         <div>
             <div>
@@ -159,7 +153,6 @@ const DashboardAdmin = () => {
                                         <span className='size'>Fecha</span>
                                         <span className='size' >Télefono</span>
                                         <span className='size'>Registrado</span>
-                                        <span className='size'>Detalle</span>
                                     </div>
                                     {userCount?.map(sale => {
                                         return (
@@ -168,56 +161,10 @@ const DashboardAdmin = () => {
                                                 <p className='size'>{sale?.last_name}</p>
                                                 <p className='size'>{sale?.first_name}</p>
                                                 <p className='size'>{sale?.first_name}</p>
-                                                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
                                             </div>
                                         )
                                     })
                                     }
-
-                                    <div className='pagination'>
-                                        <Pagination>
-                                            <Pagination.First />
-                                            <Pagination.Prev />
-                                            <Pagination.Item>{1}</Pagination.Item>
-
-                                            <Pagination.Item>{10}</Pagination.Item>
-                                            <Pagination.Item>{11}</Pagination.Item>
-                                            <Pagination.Item active>{12}</Pagination.Item>
-                                            <Pagination.Item>{13}</Pagination.Item>
-                                            <Pagination.Item>{14}</Pagination.Item>
-
-                                            <Pagination.Item>{20}</Pagination.Item>
-                                            <Pagination.Next />
-                                            <Pagination.Last />
-                                        </Pagination>
-                                        <Modal centered show={modal} onHide={handleModalClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title className='d-flex flex-column' style={{ color: "black" }}>Orden de compra</Modal.Title>
-
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <div>
-                                                    <div>
-                                                        <p>Nro de orden:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>Dirección:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>total:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>productos:</p>
-                                                    </div>
-                                                </div>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleModalClose}>
-                                                    Close
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    </div>
                                 </div>
                             </div>
                         </Tab>
