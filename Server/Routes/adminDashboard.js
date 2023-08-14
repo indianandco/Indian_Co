@@ -31,6 +31,7 @@ router.put('/products/update/:pid', putProductHandler ); //Modificar
 //Gestion Pedidos
 router.get('/tickets', getAllSalesHandler); //Todos los tickets
 router.get('/tickets/week', getAllSalesWeek); //Ventas de la semana
+router.get('/tickets/year', getAllSalesWeek); //Ventas del año
 router.put('/tickets/:tid/state', putTicketHandler); //Cambiar el estado
 
 module.exports = router;
