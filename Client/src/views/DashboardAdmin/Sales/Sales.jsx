@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { fetcher } from '../../../utils/fetcherGet';
 import Pagination from 'react-bootstrap/Pagination';
 
 const Sales = () => {
-
+    
     const [modal, setModal] = useState(false)
-
     const handleModalClose = () => setModal(false);
     const handleModalShow = () => setModal(true);
+    
+    const [salesCount, setSalesCount ] = useState([]);
+
+    const getInfo = async () => {
+        const ventas = await fetcher(`/admindashboard/tickets`);
+        setSalesCount(ventas);
+    };
+
+    useEffect(() => {
+        getInfo();
+    }, []);
+
 
     return (
         <div className='recent_sales_container'>
+
+
+          
             <div className='sale_title'><h1>Ordenes de compra</h1></div>
             <div className='sales'>
                 <span className='size'>Nombre</span>
@@ -20,34 +35,21 @@ const Sales = () => {
                 <span className='size'>Registrado</span>
                 <span className='size'>Detalle</span>
             </div>
-            <div className='sales_in'>
-                <p className='size' >Juan</p>
-                <p className='size'>07/07/2023</p>
-                <p className='size'>1134240778</p>
-                <p className='size'>Sí</p>
-                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-            </div>
-            <div className='sales_in'>
-                <p className='size' >Juan</p>
-                <p className='size'>07/07/2023</p>
-                <p className='size'>1134240778</p>
-                <p className='size'>Sí</p>
-                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-            </div>
-            <div className='sales_in'>
-                <p className='size' >Juan</p>
-                <p className='size'>07/07/2023</p>
-                <p className='size'>1134240778</p>
-                <p className='size'>Sí</p>
-                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-            </div>
-            <div className='sales_in'>
-                <p className='size' >Juan</p>
-                <p className='size'>07/07/2023</p>
-                <p className='size'>1134240778</p>
-                <p className='size'>Sí</p>
-                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-            </div>
+
+            {
+                salesCount?.map( (sale, index) => {
+                    return(
+                        <div className='sales_in' key={index}>
+                            <p className='size' >{sale.amount}</p>
+                            <p className='size'>{sale.purchase_datetime}</p>
+                            <p className='size'>1134240778</p>
+                            <p className='size'>{sale.status}</p>
+                            <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
+                        </div>
+                        )
+                })
+            }  
+          
             <div className='pagination'>
                 <Pagination>
                     <Pagination.First />
