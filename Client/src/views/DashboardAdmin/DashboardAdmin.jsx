@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import LinesChart from './AdminComponents/LineChart/LineChart';
 import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 import Sales from './Sales/Sales';
+import Users from './Users/Users';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import CreateProduct from './CreateProduct/CreateProduct';
@@ -146,33 +147,13 @@ const DashboardAdmin = () => {
                                     </div>
                                 </div>
                                 <Sales />
-                                <div className='recent_sales_container'>
-                                    <div className='sale_title'><h1>Ordenes de compra</h1></div>
-                                    <div className='sales'>
-                                        <span className='size'>Nombre</span>
-                                        <span className='size'>Fecha</span>
-                                        <span className='size' >Télefono</span>
-                                        <span className='size'>Registrado</span>
-                                    </div>
-                                    {userCount?.map(sale => {
-                                        return (
-                                            <div key={sale?._id} className='sales_in'>
-                                                <p className='size' >{sale?.first_name}</p>
-                                                <p className='size'>{sale?.last_name}</p>
-                                                <p className='size'>{sale?.first_name}</p>
-                                                <p className='size'>{sale?.first_name}</p>
-                                            </div>
-                                        )
-                                    })
-                                    }
-                                </div>
                             </div>
                         </Tab>
                         <Tab className='w-100' eventKey="users" title="users">
-                            Esto es la vista de users
+                            <Users />
                         </Tab>
                         <Tab className='w-100' eventKey="sales" title="sales">
-                            <Sales></Sales>
+                            <Sales />
                         </Tab>
                         <Tab className='w-100' eventKey="create" title="create">
                             <CreateProduct></CreateProduct>
