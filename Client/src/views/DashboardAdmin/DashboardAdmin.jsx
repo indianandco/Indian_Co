@@ -9,13 +9,12 @@ import "./DashboardAdmin.css"
 import { useEffect, useState } from 'react';
 import LinesChart from './AdminComponents/LineChart/LineChart';
 import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
-import Sales from './AdminComponents/Sales/Sales';
+import Sales from './Sales/Sales';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import CreateProduct from './AdminComponents/CreateProduct/CreateProduct';
+import CreateProduct from './CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
 import Products from './Products/Products';
-
 
 const DashboardAdmin = () => {
 
@@ -155,73 +154,7 @@ const DashboardAdmin = () => {
                                         <DoughnutChart></DoughnutChart>
                                     </div>
                                 </div>
-                                <div className='recent_sales_container'>
-                                    <div className='sale_title'><h1>Ordenes de compra</h1></div>
-                                    <div className='sales'>
-                                        <span className='size'>Nombre</span>
-                                        <span className='size'>Fecha</span>
-                                        <span className='size' >Télefono</span>
-                                        <span className='size'>Registrado</span>
-                                        <span className='size'>Detalle</span>
-                                    </div>
-                                    {userCount?.map(sale => {
-                                        return (
-                                            <div key={sale?._id} className='sales_in'>
-                                                <p className='size' >{sale?.first_name}</p>
-                                                <p className='size'>{sale?.last_name}</p>
-                                                <p className='size'>{sale?.first_name}</p>
-                                                <p className='size'>{sale?.first_name}</p>
-                                                <button className='detail' onClick={handleModalShow}><i className="icon_detail bi bi-clipboard-check"></i></button>
-                                            </div>
-                                        )
-                                    })
-                                    }
-
-                                    <div className='pagination'>
-                                        <Pagination>
-                                            <Pagination.First />
-                                            <Pagination.Prev />
-                                            <Pagination.Item>{1}</Pagination.Item>
-
-                                            <Pagination.Item>{10}</Pagination.Item>
-                                            <Pagination.Item>{11}</Pagination.Item>
-                                            <Pagination.Item active>{12}</Pagination.Item>
-                                            <Pagination.Item>{13}</Pagination.Item>
-                                            <Pagination.Item>{14}</Pagination.Item>
-
-                                            <Pagination.Item>{20}</Pagination.Item>
-                                            <Pagination.Next />
-                                            <Pagination.Last />
-                                        </Pagination>
-                                        <Modal centered show={modal} onHide={handleModalClose}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title className='d-flex flex-column' style={{ color: "black" }}>Orden de compra</Modal.Title>
-
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <div>
-                                                    <div>
-                                                        <p>Nro de orden:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>Dirección:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>total:</p>
-                                                    </div>
-                                                    <div>
-                                                        <p>productos:</p>
-                                                    </div>
-                                                </div>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleModalClose}>
-                                                    Close
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    </div>
-                                </div>
+                                <Sales />
                             </div>
                         </Tab>
                         <Tab className='w-100' eventKey="users" title="users">
