@@ -28,7 +28,7 @@
     background-color: rgb(58, 16, 1);
     left: 0;
     bottom: 4px; 
-    height: 2.5px;
+    min-height: 2.5px;
     width: 0%;
     transition: 0.3s;
 }
@@ -49,7 +49,7 @@
     background-color: rgb(58, 16, 1);
     left: 0;
     bottom: 4px; 
-    height: 2.5px;
+    min-height: 2.5px;
     width: 0%;
     transition: 0.3s;
 }
@@ -63,7 +63,8 @@
     display: flex;
     align-items:center;
     justify-content: center;
-    max-height: 100px;  }
+    max-height: 100px;  
+  }
 
    .logo {
     max-width: 100px;
@@ -73,11 +74,11 @@
   }
 
   .navbar {
-    background-color: rgb(189, 189, 189);
     display: flex;
     align-items:center;
-    height: 6em;
+    min-height: 6em;
     border-bottom: 2px solid rgb(58, 16, 1);
+    background-color: rgb(189, 189, 189);
   }
 
   .nav_container {
@@ -93,15 +94,17 @@
       justify-content: center;
       min-height: 8em;
     }
+
     .buttons {
       margin: 5px 0; 
     }
+
     .nav_container {
       display: flex;
       justify-content:space-evenly;
       margin-bottom: 9em;
     }
-    
+
     .logo{
       max-width: 100px;
       max-height: 100px;

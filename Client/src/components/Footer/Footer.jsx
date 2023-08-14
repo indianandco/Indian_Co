@@ -15,12 +15,16 @@ const Footer = () => {
     return (
         <div className="footer_container" >
             <div className="left_container">
-                <img className="image" src="logo.png" alt="" />
+                <img className="imageFooter" src="logo.png" alt="IndianCO" />
                 <p>Ayudamos que a través de los aromas sientas que todos tus días son únicos y exclusivos.</p>
                 <div className="icon_container">
                     <NavLink to={"https://www.instagram.com/indianandco/"} className={"icon"}>
                         <i className="bi bi-instagram" width="321" height="321"></i>
                     </NavLink>
+                </div>
+                <div className="footerContact">
+                    <p className="pFooter">CONTACTO</p>
+                    <p className="pFooter">indianandco09@gmail.com</p>
                 </div>
             </div>
             <div className="mid-right_container">
