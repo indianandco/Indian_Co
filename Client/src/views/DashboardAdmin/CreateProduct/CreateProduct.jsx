@@ -1,6 +1,6 @@
 import "./CreateProduct.css"
 import { useState, useContext } from "react";
-import { ProductContext } from "../../../../services/ProductContext";
+import { ProductContext } from "../../../services/ProductContext";
 import { useFormik } from "formik"
 import validation from "./formValidation"
 import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';

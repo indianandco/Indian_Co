@@ -7,13 +7,12 @@ import "./DashboardAdmin.css"
 import { useEffect, useState } from 'react';
 import LinesChart from './AdminComponents/LineChart/LineChart';
 import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
-import Sales from './AdminComponents/Sales/Sales';
+import Sales from './Sales/Sales';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import CreateProduct from './AdminComponents/CreateProduct/CreateProduct';
+import CreateProduct from './CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
 import Products from './Products/Products';
-
 
 const DashboardAdmin = () => {
 
@@ -146,6 +145,7 @@ const DashboardAdmin = () => {
                                         <DoughnutChart></DoughnutChart>
                                     </div>
                                 </div>
+                                <Sales />
                                 <div className='recent_sales_container'>
                                     <div className='sale_title'><h1>Ordenes de compra</h1></div>
                                     <div className='sales'>
