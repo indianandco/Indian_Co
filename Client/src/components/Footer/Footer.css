@@ -5,13 +5,10 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
     border-radius: 2px;
-    border: 3px solid rgb(76, 20, 0);
     padding: 1em;
     font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    margin-top: 1em;
 }
 
 .left_container {

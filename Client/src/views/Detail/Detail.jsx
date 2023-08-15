@@ -111,6 +111,7 @@ const Detail = ({product}) => {
                     </Spinner>  
                 </div>
             )}
+            
         </div>
     )
 }

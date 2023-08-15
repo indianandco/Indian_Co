@@ -1,7 +1,5 @@
 import "./Home.css"
-import Footer from "../../components/Footer/Footer";
 import { NavLink } from "react-router-dom";
-
 
 const Home = () => {
 
@@ -74,9 +72,6 @@ const Home = () => {
                         </div>
                     </div>
                 </NavLink>
-            </div>
-            <div>
-                <Footer></Footer>
             </div>
         </div>
     )

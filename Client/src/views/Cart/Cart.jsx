@@ -7,65 +7,58 @@ import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
 const Cart = ({ product }) => {
+  const { cart, addProduct, removeProduct, removeStack, loadCartData,calcTotal } = useContext(CartContext);
 
-  const { cart, addProduct, removeProduct, removeStack, loadCartData } = useContext(CartContext);
   // eslint-disable-next-line no-unused-vars
   const [productCounts, setProductCounts] = useState();
+
   // eslint-disable-next-line no-unused-vars
   const [cartIsEmpty, setCartIsEmpty] = useState(true);
-  let [total, setTotal] = useState(0);
-
-
-  const totalPrice = () => {
-    let totalAux = 0;
-    if (cart?.length > 0) {
-      cart.forEach((product) => {
-        product.offer
-          ? setTotal((totalAux += product.price * product.quantity))
-          : setTotal((totalAux += product.offer_price * product.quantity));
-      });
-    }
-  };
 
   const incrementar = (item) => {
     if (item.quantity < item?.stock) {
       addProduct(item)
-      totalPrice();
     }
-
   };
 
   const restar = (item) => {
     if (item.quantity > 1) {
       removeProduct(item)
-      totalPrice();
     }
     else {
       removeStack(item)
-      totalPrice();
     }
   };
 
   useEffect(() => {
     loadCartData();
-    totalPrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div className="carrito-container">
-      <div className="d-grip gap-2">
+      <div>
         {!cart.length > 0 ? (
-          <div className="p">
-            <p>¡Empieza un carrito de compras!</p>
-            <p>Sumá productos</p>
-            <NavLink to='/products'>
-              <Button>VOLVER A TIENDA</Button>
-            </NavLink>
+          <div className="BannerCart">
+            <div className="paddingCart1">
+              <div className="pCart">
+                <p className="pCart1">¡Empieza un carrito de compras!</p>
+                <p className="pCart1">Sumá productos</p>
+                <NavLink to='/products'>
+                  <Button>VOLVER A TIENDA</Button>
+                </NavLink>
+              </div>
+            </div>
           </div>
         ) : (
           <div>
-            <p className="titleCart">Productos agregados</p>
+            <div className="BannerCart1">
+              <div className="paddingAmount">
+                <div className="titleBoxCart">
+                  <p className="titleCart">Productos agregados</p>
+                </div>
+              </div>
+            </div>
             <div>
               {cart?.map((item) => (
                 <div key={item?.id}>
@@ -101,8 +94,12 @@ const Cart = ({ product }) => {
                 </div>
               ))}
             </div>
-            <div>
-              {total}
+            <div className="BannerCart2">
+              <div className="paddingAmount">
+                <div className="totalAmount">
+                  <h1 className="h1TextCart">Total: ${calcTotal()}</h1>
+                </div>
+              </div>
             </div>
             <button className="btn btn-primary boton-comprar">COMPRAR</button>
           </div>
