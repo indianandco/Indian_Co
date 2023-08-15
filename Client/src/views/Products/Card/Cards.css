@@ -35,7 +35,8 @@
 .imageCards {
   height: 15em;
   width: 15em; /* Adjusted image width */
-  background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+  object-fit: cover; /* La imagen de fondo cubrirá todo el contenedor */
+  object-position: center;
   background-repeat: no-repeat;
 }
 .pTitle {
