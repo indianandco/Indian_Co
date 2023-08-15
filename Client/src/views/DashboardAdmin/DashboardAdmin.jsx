@@ -44,6 +44,7 @@ const DashboardAdmin = () => {
 
     useEffect(() => {
         getInfo();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleClose = () => setShow(false);
@@ -63,10 +64,12 @@ const DashboardAdmin = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <ButtonGroup vertical style={{ width: "50%" }} className='border-0 rounded-0'>
-                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-house-door"></i> Inicio</Button>
-                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-people"></i> Usuarios</Button>
-                            <Button eventKey="profile" variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-ticket"></i> Ordenes</Button>
-                            <Button variant='ligth' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-upload"></i> Productos</Button>
+                            <Button variant='ligth' href='/' className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-house-door"></i>Inicio</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("general")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-grid"></i> Dashboard</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("users")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-people"></i> Usuarios</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("sales")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-ticket"></i> Ordenes</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("create")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-bag"></i> Subir producto</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("products")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-upload"></i> Productos</Button>
                         </ButtonGroup>
                     </Offcanvas.Body>
                 </Offcanvas>
@@ -78,11 +81,12 @@ const DashboardAdmin = () => {
                     </Button>
                     <div className=" nav_container">
                         <Nav defaultActiveKey="/home" style={{ height: "100%" }} className="flex-column d-flex align-items-start justify-content-start">
-                            <Nav.Link className="icon" onClick={() => handleTabs("general")}><i className="bi bi-house-door-fill"></i></Nav.Link>
+                            <Nav.Link className="icon" href="/"><i className="bi bi-house-door-fill"></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={() => handleTabs("general")} eventKey="link-4"><i className='bi bi-grid'></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("users")} eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
                             <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
                             <Nav.Link className='icon' onClick={() => handleTabs("create")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
-                            <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-4"><i className='bi bi-grid'></i></Nav.Link>
+                            <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-4"><i className='bi bi-bag'></i></Nav.Link>
                         </Nav>
                     </div>
                 </div>
