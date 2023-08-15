@@ -18,7 +18,6 @@ const Cart = ({ product }) => {
     if (item.quantity < item?.stock) {
       addProduct(item)
     }
-
   };
 
   const restar = (item) => {
