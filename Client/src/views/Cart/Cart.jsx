@@ -7,10 +7,11 @@ import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
 const Cart = ({ product }) => {
-
   const { cart, addProduct, removeProduct, removeStack, loadCartData,calcTotal } = useContext(CartContext);
+
   // eslint-disable-next-line no-unused-vars
   const [productCounts, setProductCounts] = useState();
+
   // eslint-disable-next-line no-unused-vars
   const [cartIsEmpty, setCartIsEmpty] = useState(true);
 
