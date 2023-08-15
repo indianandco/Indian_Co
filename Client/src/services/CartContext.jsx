@@ -21,8 +21,7 @@ export const CartProvider = ({ children }) => {
 
 
   const addProduct = (product) => {
-    const existingProduct = cart.find((p) => p.id === product.id);
-
+    const existingProduct = cart.find((p) => p._id === product._id);
     if (existingProduct) {
       const updatedCart = cart.map((p) =>
         p.id === product.id ? p.quantity < p.stock ? { ...p, quantity: p.quantity + 1 } : p : p
@@ -31,6 +30,7 @@ export const CartProvider = ({ children }) => {
     } else {
       setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
     }
+
   };
 
   const removeProduct = (item) => {
@@ -47,22 +47,20 @@ export const CartProvider = ({ children }) => {
   const removeStack = (item) => {
     const updatedCart = cart.filter((product) => product.id !== item.id);
     setCart(updatedCart);
-    console.log("cart", updatedCart);
     if (updatedCart.length === 0) {
-      console.log("entro?");
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
 
-//Calculo del subtotal de cada articulo:
-const calcTotalPerItem = (item) => {
-  return item.price * item.quantity;
-};
+  //Calculo del subtotal de cada articulo:
+  const calcTotalPerItem = (item) => {
+    return item.price * item.quantity;
+  };
 
-// Calculo total de la compra:
-const calcTotal = () => {
-  return cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
-};
+  // Calculo total de la compra:
+  const calcTotal = () => {
+    return cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
+  };
 
 
   useEffect(() => {
@@ -72,7 +70,7 @@ const calcTotal = () => {
   }, [cart])
 
   return (
-    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal,calcTotalPerItem  }}>
+    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalPerItem }}>
       {children}
     </CartContext.Provider>
   )

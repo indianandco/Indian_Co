@@ -6,20 +6,22 @@ import Navbar from 'react-bootstrap/Navbar';
 import SignUp from "../Login/SignUp/SignUp";
 import Badge from '@mui/material/Badge';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../services/CartContext";
 
 const NavBar = () => {
 
-    const [cartLength, setCartLength] = useState()
+    const { cart } = useContext(CartContext);
+    let [cartLength, setCartLength] = useState(null)
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
-      };
-    
+    };
+
     useEffect(() => {
-        setCartLength(JSON.parse(localStorage.getItem("cart")));
+        setCartLength(cart?.length)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [cartLength])
+    }, [cart])
 
     const role = "logged out"
 
@@ -39,8 +41,8 @@ const NavBar = () => {
                             <NavLink onClick={scrollToTop} className="buttons" to="/products">PRODUCTOS</NavLink>
                             <div>
                                 <NavLink onClick={scrollToTop} className="cart_button" to="/cart">
-                                    <Badge badgeContent={cartLength?.length} color="secondary" className="buttons">
-                                            <ShoppingCart color="action" />
+                                    <Badge badgeContent={cartLength} color="secondary" className="buttons">
+                                        <ShoppingCart color="action" />
                                     </Badge>
                                 </NavLink>
                             </div>
