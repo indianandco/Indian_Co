@@ -15,7 +15,7 @@ const Home = () => {
                         <div className="PaddingTitleHome">
                             <div className="titleHome">
                                 <h3 className="SubTitleHome">100% NATURAL</h3>
-                                <h1 className="TitleHome">Armonización Decoración &Diseño</h1>
+                                <h1 className="TitleHome">Armonización Decoración & Diseño</h1>
                                 <p className="TextHome">¡Asegurá tu bienestar con nuestros únicos aromas 100% naturales!</p>
                             </div>
                         </div>

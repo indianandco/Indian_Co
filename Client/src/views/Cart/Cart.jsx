@@ -45,15 +45,8 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <div>
-            <div className="BannerCart1">
-              <div className="paddingAmount">
-                <div className="titleBoxCart">
-                  <p className="titleCart">Productos agregados</p>
-                </div>
-              </div>
-            </div>
-            <div>
+          <div className="AllBoxCart">
+            <div className="BoxCart1">
               {cart?.map((item) => (
                 <div key={item?.id}>
                   <div className='tarjeta' key={item?.id}>
@@ -83,19 +76,24 @@ const Cart = () => {
                         </Button>
                       </div>
                     </div>
-                    <Button onClick={() => removeStack(item)} type='button' className='boton-quitar'>Quitar del Carrito</Button>
+                      <img onClick={() => removeStack(item)} type='button' className="imgDelete" src="/deleteCart.svg"></img>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="BannerCart2">
-              <div className="paddingAmount">
-                <div className="totalAmount">
-                  <h1 className="h1TextCart">Total: ${calcTotal()}</h1>
+            <div className="CartBox2">
+            <h3 className="TitleCartBox2">Resumen de su compra</h3>
+            {cart?.map((item) => (
+                <div className="CartBox2Desc" key={item?.id}>
+                  <p className="pCartDesc">{item?.title}</p>
+                  <p className="pCartDesc">X{item?.quantity}</p>
                 </div>
-              </div>
+            ))}
+            <div className="totalAmount">
+              <h1 className="h1TextCart">Total: ${calcTotal()}</h1>
             </div>
             <button className="btn btn-primary boton-comprar">COMPRAR</button>
+            </div>
           </div>
         )}
       </div>
