@@ -6,9 +6,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import SignUp from "../Login/SignUp/SignUp";
 import Badge from '@mui/material/Badge';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import { useEffect, useState } from "react";
 
 
 const NavBar = () => {
+
+    const [cartLength, setCartLength] = useState()
+    
+    useEffect(() => {
+        setCartLength(JSON.parse(localStorage.getItem("cart")));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [cartLength])
 
     const role = "logged out"
 
@@ -28,7 +36,7 @@ const NavBar = () => {
                             <NavLink className="buttons" to="/products">PRODUCTOS</NavLink>
                             <div>
                                 <NavLink className="cart_button" to="/cart">
-                                    <Badge badgeContent={4} color="secondary" className="buttons">
+                                    <Badge badgeContent={cartLength?.length} color="secondary" className="buttons">
                                             <ShoppingCart color="action" />
                                     </Badge>
                                 </NavLink>

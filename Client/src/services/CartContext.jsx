@@ -8,8 +8,6 @@ export const CartProvider = ({ children }) => {
 
   const [cart, setCart] = useState([]);
   // eslint-disable-next-line no-unused-vars
-  const [noStock, setNoStock] = useState(false);
-
   const loadCartData = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
     if (savedCart && savedCart.length > 0) {
@@ -56,6 +54,17 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+//Calculo del subtotal de cada articulo:
+const calcTotalPerItem = (item) => {
+  return item.price * item.quantity;
+};
+
+// Calculo total de la compra:
+const calcTotal = () => {
+  return cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
+};
+
+
   useEffect(() => {
     if (cart.length > 0) {
       saveCartData();
@@ -63,7 +72,7 @@ export const CartProvider = ({ children }) => {
   }, [cart])
 
   return (
-    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, noStock }}>
+    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal,calcTotalPerItem  }}>
       {children}
     </CartContext.Provider>
   )
