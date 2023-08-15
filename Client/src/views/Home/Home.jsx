@@ -5,7 +5,7 @@ const Home = () => {
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
-      };
+    };
 
     return (
         <div className="home_container">
@@ -25,7 +25,7 @@ const Home = () => {
                     <div className="BannerHome2">
                         <div className="ContainerBannerHome2">
                             <div className="ContainerImageHome1">
-                                <img className="imageHome" src='../../../public/BannerHomeImage1.webp' alt=""></img>
+                                <img className="imageHome" src='BannerHomeImage1.webp' alt=""></img>
                             </div>
                             <div className="ContainerBoxHome">
                                 <h3 className="SubTitleHome2">NUESTROS PRODUCTOS</h3>
@@ -44,7 +44,7 @@ const Home = () => {
                                 <p className="TextHome2">La calidad de los productos, su presentación, el toque delicado y decorativo son parte fundamental de la marca y nos distinguen en el mercado de la aromaterapia, la decoración y la distinción de los espacios.</p>
                             </div>
                             <div className="ContainerImageHome1">
-                                <img className="imageHome" src="../../../public/BannerHomeImage2.webp" alt=""></img>
+                                <img className="imageHome" src="BannerHomeImage2.webp" alt=""></img>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ const Home = () => {
                     <div className="BannerHome3">
                         <div className="ContainerBannerHome2">
                             <div className="ContainerImageHome1">
-                                <img className="imageHome" src="../../../public/BannerHomeImage3.webp" alt=""></img>
+                                <img className="imageHome" src="BannerHomeImage3.webp" alt=""></img>
                             </div>
                             <div className="ContainerBoxHome">
                                 <h3 className="SubTitleHome2">PONTE EN CONTACTO</h3>
