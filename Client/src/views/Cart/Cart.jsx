@@ -1,19 +1,13 @@
 /* eslint-disable react/prop-types */
 import "./Cart.css";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import { CartContext } from '../../services/CartContext';
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars
-const Cart = ({ product }) => {
-  const { cart, addProduct, removeProduct, removeStack, loadCartData,calcTotal } = useContext(CartContext);
-
-  // eslint-disable-next-line no-unused-vars
-  const [productCounts, setProductCounts] = useState();
-
-  // eslint-disable-next-line no-unused-vars
-  const [cartIsEmpty, setCartIsEmpty] = useState(true);
+const Cart = () => {
+  const { cart, addProduct, removeProduct, removeStack, loadCartData, calcTotal } = useContext(CartContext);
 
   const incrementar = (item) => {
     if (item.quantity < item?.stock) {
@@ -34,7 +28,7 @@ const Cart = ({ product }) => {
     loadCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  console.log(cart);
   return (
     <div className="carrito-container">
       <div>

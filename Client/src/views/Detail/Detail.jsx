@@ -8,33 +8,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 // eslint-disable-next-line react/prop-types
-const Detail = ({product}) => {
+const Detail = () => {
 
-    const {id} = useParams()
-    
+    const { id } = useParams()
+
     const { detailProducts, getDetailProducts } = useContext(ProductContext);
-    const { addProduct, removeProduct } = useContext(CartContext);
+    const { addProduct } = useContext(CartContext);
 
-    const [quantity, setQuantity] = useState(1);
+    const [quant, setQuantity] = useState(1);
 
     const incrementar = () => {
-        if(quantity < detailProducts?.stock){
-            setQuantity(quantity + 1);
+        if (quant < detailProducts?.stock) {
+            setQuantity(quant + 1);
         }
-        addProduct()
     };
-  
+
     const restar = () => {
-        if(quantity > 1){
-            setQuantity(quantity - 1);
+        if (quant > 1) {
+            setQuantity(quant - 1);
         }
-        removeProduct()
     };
 
     const sendProductDetail = () => {
-        addProduct(product)
+        addProduct({
+            ...detailProducts,
+            quantity: quant
+        });
     }
-    
+
     useEffect(() => {
         getDetailProducts(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,13 +60,13 @@ const Detail = ({product}) => {
                         </div>
                         <div className='boxTilte'>
                             <h1 className='productTitle'>
-                            {detailProducts?.title}
+                                {detailProducts?.title}
                             </h1>
                         </div>
                         <div className='boxPrice'>
                             {detailProducts?.offer === true ? (
-                                <h1 className='price'>${detailProducts?.offer?.price}</h1>
-                            ) : ( 
+                                <h1 className='price'>${detailProducts?.offer_price}</h1>
+                            ) : (
                                 <h1 className='price'>${detailProducts?.price}</h1>
                             )}
                         </div>
@@ -82,24 +83,24 @@ const Detail = ({product}) => {
                         <div className='containCart'>
                             <div className="counter">
                                 <Button className='buttonCounter' variant="light" onClick={restar}>-</Button>
-                                <span className='span'>{quantity}</span>
+                                <span className='span'>{quant}</span>
                                 <Button className='buttonCounter' variant="light" onClick={incrementar}>+</Button>
                             </div>
                             <div className='boxCart'>
                                 <Button onClick={sendProductDetail} className='buttonCart' variant="warning">Agregar al carrito</Button>
                             </div>
                         </div>
-                            <div className='boxFooter'>
-                                {detailProducts?.size === true ? (
-                                    <div className='boxSize'>
-                                        <span className='span'>Tamaño: {detailProducts?.size}</span>
-                                    </div>
-                                ) : (
-                                    <span className='span'>Tamaño: No está definido</span>
-                                )
-                                }
-                                <div className='boxDesc'>
-                                    <span>{detailProducts?.description}</span>
+                        <div className='boxFooter'>
+                            {detailProducts?.size === true ? (
+                                <div className='boxSize'>
+                                    <span className='span'>Tamaño: {detailProducts?.size}</span>
+                                </div>
+                            ) : (
+                                <span className='span'>Tamaño: No está definido</span>
+                            )
+                            }
+                            <div className='boxDesc'>
+                                <span>{detailProducts?.description}</span>
                             </div>
                         </div>
                     </div>
@@ -108,10 +109,10 @@ const Detail = ({product}) => {
                 <div>
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
-                    </Spinner>  
+                    </Spinner>
                 </div>
             )}
-            
+
         </div>
     )
 }

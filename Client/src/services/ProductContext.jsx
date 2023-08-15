@@ -24,7 +24,7 @@ export const ProductProvider = ({ children }) => {
     }
 
     const getDetailProducts = async (id) => {
-        const response = await fetcher(`/products/detail/${id}`)
+        const response = await fetcher(`/products/${id}`)
         setDetailProducts(response);
         return detailProducts
     }
@@ -42,7 +42,7 @@ export const ProductProvider = ({ children }) => {
     }
 
     return (
-        <ProductContext.Provider value={{ product, findProduct, response, allProducts,detailProducts,getDetailProducts, postProduct, getAllProducts }}>
+        <ProductContext.Provider value={{ product, findProduct, response, allProducts, detailProducts, getDetailProducts, postProduct, getAllProducts }}>
             {children}
         </ ProductContext.Provider >
     )
