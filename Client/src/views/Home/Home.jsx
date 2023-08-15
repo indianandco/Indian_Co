@@ -1,7 +1,6 @@
 import "./Home.css"
 import { NavLink } from "react-router-dom";
 
-
 const Home = () => {
 
     const scrollToTop = () => {
