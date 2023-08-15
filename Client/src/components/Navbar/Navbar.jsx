@@ -12,6 +12,10 @@ import { useEffect, useState } from "react";
 const NavBar = () => {
 
     const [cartLength, setCartLength] = useState()
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+      };
     
     useEffect(() => {
         setCartLength(JSON.parse(localStorage.getItem("cart")));
@@ -24,18 +28,18 @@ const NavBar = () => {
         <div>
             <div className="nav_container">
                 <Navbar fixed="top" collapseOnSelect expand="lg" className="navbar">
-                    <Navbar.Brand className="logo_container" href="/">
+                    <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
                         <img className="logo" src="/logo.png" alt="logo" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Nav className="justify-content-end p-4 ">
-                            <NavLink className="buttons" to="/">INICIO</NavLink>
-                            <NavLink className="buttons" to="/contact">CONTACTO</NavLink>
-                            <NavLink className="buttons" to="/about">SOBRE NOSOTROS</NavLink>
-                            <NavLink className="buttons" to="/products">PRODUCTOS</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/">INICIO</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/contact">CONTACTO</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/about">SOBRE NOSOTROS</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/products">PRODUCTOS</NavLink>
                             <div>
-                                <NavLink className="cart_button" to="/cart">
+                                <NavLink onClick={scrollToTop} className="cart_button" to="/cart">
                                     <Badge badgeContent={cartLength?.length} color="secondary" className="buttons">
                                             <ShoppingCart color="action" />
                                     </Badge>
@@ -45,9 +49,9 @@ const NavBar = () => {
                                 ?
                                 <SignUp ></SignUp>
                                 :
-                                <NavLink className="buttons" to="/">SALIR</NavLink>
+                                <NavLink onClick={scrollToTop} className="buttons" to="/">SALIR</NavLink>
                             }
-                            {<NavLink className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
+                            {<NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

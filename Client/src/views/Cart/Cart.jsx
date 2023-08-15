@@ -37,14 +37,18 @@ const Cart = ({ product }) => {
 
   return (
     <div className="carrito-container">
-      <div className="d-grip gap-2">
+      <div>
         {!cart.length > 0 ? (
-          <div className="p">
-            <p>¡Empieza un carrito de compras!</p>
-            <p>Sumá productos</p>
-            <NavLink to='/products'>
-              <Button>VOLVER A TIENDA</Button>
-            </NavLink>
+          <div className="BannerCart">
+            <div className="paddingCart1">
+              <div className="pCart">
+                <p className="pCart1">¡Empieza un carrito de compras!</p>
+                <p className="pCart1">Sumá productos</p>
+                <NavLink to='/products'>
+                  <Button>VOLVER A TIENDA</Button>
+                </NavLink>
+              </div>
+            </div>
           </div>
         ) : (
           <div>

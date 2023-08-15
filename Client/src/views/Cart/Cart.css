@@ -40,6 +40,18 @@
     box-shadow: 0 5px 50px 0 rgb(0, 0, 0);
 }
 
+.BannerCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../public/BannerHome3.png');
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+    margin-top: 10em;
+    border-radius: 6px;
+    box-shadow: 0 5px 50px 0 rgb(0, 0, 0);
+}
+
 .h1TextCart{
     text-align: center !important;
     text-decoration: none;
@@ -123,13 +135,16 @@
     font-size: 2.5em;
 }
   
-.p{
+.pCart{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: black;
-    margin-top: 10em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.59);
+    padding: 2em;
+    border: 1px solid white;  
+    margin: 3em;
 }
 
 .counterCart {
@@ -172,6 +187,18 @@
     border-radius: 6px;
     margin: 1em;
     border: 1px solid wheat;
+}
+
+.paddingCart1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.59);
+    border-radius: 6px;
+    border: 1px solid wheat;
+    width: 40em;
+    height: 25em;
 }
 
 .totalAmount{
