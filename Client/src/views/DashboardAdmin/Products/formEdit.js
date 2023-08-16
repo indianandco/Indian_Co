@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-const validation = Yup.object().shape({
+const formEdit = Yup.object().shape({
     title: Yup.string()
         .min(3, "Deberia tener al menos 3 caracteres")
         .max(50, "No puede superar los 50 caracteres")
@@ -23,15 +23,10 @@ const validation = Yup.object().shape({
         .required("Campo requerido"),
     fragance: Yup.string()
         .required("Campo requerido"),
-    image: Yup.mixed()
-        .test("fileSelected", "Campo requerido", (value) => {
-            return value && value.size > 0;
-        })
-        .required("Campo requerido")
-
+    
 
 });
 
-export default validation;
+export default formEdit;
 
 
