@@ -1,12 +1,32 @@
 .image{
     width: 5em;
     height: 5em;
+    border: 1px solid black;
+    border-radius: 5px;
 
 }
 
 .button{
-    width: 10em;
+    width: 7em;
     border: 2px solid black;
     font-size:100%;
-    margin-left: 10%;
+    margin-left: 8%;
+}
+
+h1{
+    margin-bottom: 3%;
+}
+
+.columna{
+    font-size: 1.5em;
+}
+
+.image-preview {
+    width: 70%; 
+    height: 28em;
+    display: block;
+    margin-top: 10px;
+    margin: 10px auto;
+    border-radius: 50000px;
+    
 }
