@@ -4,6 +4,9 @@ import { useContext, useEffect } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import { CartContext } from '../../services/CartContext';
 import { NavLink } from "react-router-dom";
+          
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+initMercadoPago('TEST-58fbdd02-da18-4be2-974e-717d1b77f290'); //Pasa como variable de entorno
 
 // eslint-disable-next-line no-unused-vars
 const Cart = () => {
@@ -93,6 +96,9 @@ const Cart = () => {
               <h1 className="h1TextCart">Total: ${calcTotal()}</h1>
             </div>
             <button className="btn btn-primary boton-comprar">COMPRAR</button>
+            <div id="wallet_container">
+              <Wallet initialization={{ preferenceId: '<PREFERENCE_ID>' }} />
+            </div>
             </div>
           </div>
         )}
