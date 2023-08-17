@@ -8,6 +8,8 @@ import Badge from '@mui/material/Badge';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../services/CartContext";
+import SignIn from "../Login/SignIn/SignIn";
+import UserProfile from "../../views/UserProfile/UserProfile";
 
 const NavBar = () => {
 
@@ -18,12 +20,11 @@ const NavBar = () => {
         window.scrollTo(0, 0);
     };
 
+
     useEffect(() => {
         setCartLength(cart?.length)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart])
-
-    const role = "logged out"
 
     return (
         <div>
@@ -46,17 +47,26 @@ const NavBar = () => {
                                     </Badge>
                                 </NavLink>
                             </div>
-                            {role !== "user"
-                                ?
-                                <SignUp ></SignUp>
-                                :
+                            <div>
+                                <SignIn></SignIn>
+                            </div>
+                            <div>
+                                <SignUp></SignUp>
+                            </div>
+                            <div>
+                                <UserProfile></UserProfile>
+                            </div>
+                            {false &&
                                 <NavLink onClick={scrollToTop} className="buttons" to="/">SALIR</NavLink>
                             }
-                            {<NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
+                            <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
+
+
         </div>
     );
 };

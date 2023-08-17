@@ -8,7 +8,16 @@ export const updateProductFunction= async (endpoint, updateProduct)=>{
         const response = await axios.put(`${BASE_URL}${endpoint}`, updateProduct)
         return response.data
     } catch (error) {
- throw error.response?.data.error       
+        throw error.response?.data.error       
+    }
+}
+
+export const updateUserInfo = async (endpoint, updateUser) => {
+    try {
+        const response = await axios.put(`${BASE_URL}${endpoint}`, updateUser)
+        return response.data
+    } catch (error) {
+        throw error.response?.data.error
     }
 }
 

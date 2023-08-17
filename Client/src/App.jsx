@@ -30,11 +30,11 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/dashboardadmin' element={<DashboardAdmin />} />
         <Route path='/products' element={<Container />} />
-        <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
-        <Footer></Footer>
+      <Footer></Footer>
     </div>
   )
 }
