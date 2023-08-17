@@ -59,7 +59,8 @@ export const CartProvider = ({ children }) => {
 
   // Calculo total de la compra:
   const calcTotal = () => {
-    return cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
+    const result = cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
+    return result
   };
 
 
