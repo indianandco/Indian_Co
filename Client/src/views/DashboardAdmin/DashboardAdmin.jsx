@@ -68,8 +68,8 @@ const DashboardAdmin = () => {
                             <Button variant='ligth' onClick={() => handleTabs("general")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-grid"></i> Dashboard</Button>
                             <Button variant='ligth' onClick={() => handleTabs("users")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-people"></i> Usuarios</Button>
                             <Button variant='ligth' onClick={() => handleTabs("sales")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-ticket"></i> Ordenes</Button>
-                            <Button variant='ligth' onClick={() => handleTabs("create")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-bag"></i> Subir producto</Button>
-                            <Button variant='ligth' onClick={() => handleTabs("products")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-upload"></i> Productos</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("create")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-upload"></i> Subir producto</Button>
+                            <Button variant='ligth' onClick={() => handleTabs("products")} className='buttons_inside d-flex align-items-center justify-content-between p-2 '><i className="icon bi bi-bag"></i> Productos</Button>
                         </ButtonGroup>
                     </Offcanvas.Body>
                 </Offcanvas>

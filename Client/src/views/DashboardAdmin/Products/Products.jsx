@@ -7,6 +7,7 @@ import './Products.css'
 import { useFormik } from "formik"
 import Swal from 'sweetalert2'
 import { ProductContext } from "../../../services/ProductContext";
+import Pagination from 'react-bootstrap/Pagination';
 
 const Products = () => {
 
@@ -17,6 +18,19 @@ const Products = () => {
     const [modal, setModal] = useState(false)
     const { updateProduct } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
+    const [pagActive, setPagActive] = useState(1)
+    const productsPerPage = 4;
+
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+    let items = []
+    for (let i = 1; i <= totalPages; i++) {
+        items.push(
+            <Pagination.Item key={i} active={i === pagActive} onClick={() => setPagActive(i)}>
+                {i}
+            </Pagination.Item>
+        )
+    }
+    const paginatedProducts = filteredProducts.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage)
 
     const handleModalShow = (product) => {
         setSelectedProduct(product);
@@ -56,7 +70,7 @@ const Products = () => {
 
 
 
-   
+
 
     const contacFormInitialValues = {
         title: "",
@@ -74,7 +88,7 @@ const Products = () => {
         initialValues: contacFormInitialValues,
         // validationSchema: formEdit,
         onSubmit: (values, { setSubmitting, resetForm }) => {
-      
+
             Swal.fire({
                 title: 'Deseas confirmar?',
                 icon: 'warning',
@@ -86,21 +100,21 @@ const Products = () => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     setSubmitting(true);
-                    let updateValues={
+                    let updateValues = {
                         ...values
                     }
-                    if(productThumbnail){
-                        updateValues.image= productThumbnail
-                     }
+                    if (productThumbnail) {
+                        updateValues.image = productThumbnail
+                    }
                     try {
-                    
-                         const productResponse = await updateProduct(
-                             updateValues, selectedProduct.id);
+
+                        const productResponse = await updateProduct(
+                            updateValues, selectedProduct.id);
 
                         await Swal.fire({
                             title: 'Producto actualizado correctamente!',
-                           
-                            
+
+
                         });
                         getInfo()
                     } catch (error) {
@@ -147,35 +161,38 @@ const Products = () => {
             : products;
         setFilteredProducts(result);
         setSearched("")
+        setPagActive(1)
     };
 
     const handleReset = () => {
         setFilteredProducts(products)
+        setPagActive(1)
     }
 
 
     return (
         <Container className='container'>
             <Row className='sale_title'>
-                <Col><h1>Búsqueda y edición de productos...</h1></Col>
+                <Col><h3>Búsqueda y edición de productos...</h3></Col>
             </Row>
             <Row>
                 <Col md={9}>
                     <Form.Control
+                    className='searchBar'
                         type="text"
                         placeholder='Buscar producto...'
                         value={searched}
                         onChange={event => setSearched(event.target.value)}
-
                     />
                 </Col>
-                <Col>
-                    <Button className='button' onClick={handleSearch}>Buscar</Button>
-                </Col>
-                <Col>
-                    <Button className='button' onClick={handleReset}>Reset</Button>
+                <Col md={3}>
+                    <div className="button-group">
+                        <Button className='button' onClick={handleSearch}>Buscar</Button>
+                        <Button className='button' onClick={handleReset}>Reset</Button>
+                    </div>
                 </Col>
             </Row>
+
             <Row className='sales'>
                 <Col className='columna' xs={2}>Nombre</Col>
                 <Col className='columna' xs={2}>Precio</Col>
@@ -183,14 +200,14 @@ const Products = () => {
                 <Col className='columna' xs={2}>Imagen</Col>
                 <Col className='columna' xs={2}>Editar</Col>
             </Row>
-            {filteredProducts.map((product, index) => (
+            {paginatedProducts.map((product, index) => (
                 <Row className="sales" key={index}>
                     <Col xs={2}>{product.title}</Col>
-                    <Col xs={2}>{product.price}</Col>
-                    <Col xs={2}>{product.stock}</Col>
+                    <Col xs={2}>$ {product.price}</Col>
+                    <Col xs={2}>{product.stock} unid.</Col>
                     <Col xs={2}><Image src={product.image} alt={`Imagen de ${product.title}`} className='image' /></Col>
                     <Col xs={2}>
-                        <Button onClick={() => handleModalShow(product)}>
+                        <Button className="editButton"onClick={() => handleModalShow(product)}>
                             <i className="icon_detail bi bi-pencil"></i>
                         </Button>
                     </Col>
@@ -306,6 +323,17 @@ const Products = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <div className='pagination'>
+                <Pagination >
+                    <Pagination.First onClick={() => setPagActive(1)} />
+                    <Pagination.Prev onClick={() => setPagActive(prev => Math.max(prev - 1, 1))} />
+                    {items}
+                    <Pagination.Next onClick={() => setPagActive(prev => Math.min(prev + 1, totalPages))} />
+                    <Pagination.Last onClick={() => setPagActive(totalPages)} />
+
+                </Pagination>
+
+            </div>
         </Container>
     );
 
