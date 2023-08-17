@@ -1,12 +1,206 @@
-.image{
+.image {
     width: 5em;
     height: 5em;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+.editButton{
+   border: solid 1px black;
+   
+}
+
+.button {
+    width: 7em;
+    border: 2px solid black;
+    font-size: 100%;
+    margin-right: 30px;
+    margin-left: 10px;
 
 }
 
-.button{
-    width: 10em;
-    border: 2px solid black;
-    font-size:100%;
-    margin-left: 10%;
+.sale_title {
+    margin-bottom: 2%;
+}
+
+.columna {
+    font-size: 1.5em;
+    margin-right: 1%;
+}
+
+.image-preview {
+    width: 70%;
+    height: 28em;
+    display: block;
+    margin-top: 10px;
+    margin: 10px auto;
+    border-radius: 50000px;
+
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.pagination .page-item {
+    margin: 3px;
+    font-size: 24px;
+}
+
+.pagination .page-item .page-link {
+    padding: 10px 16px;
+    border-radius: 5px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: #fff;
+}
+
+.pagination .page-link {
+    color: #007BFF;
+    border-color: #dee2e6;
+}
+
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+    color: #007BFF;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #aaa;
+    pointer-events: none;
+    cursor: default;
+}
+
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+.sales{
+    font-size: 18px;
+}
+@media (max-width: 768px) {
+    .sale_title{
+        font-size: 18px;
+    }
+    .searchBar{
+        margin-bottom: 10px;
+    }
+
+    .button-group {
+        flex-direction: column; 
+    }
+
+    .button {
+        width: 710%;
+        margin-bottom: 10px; 
+    }
+
+    .sales {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .sales>div {
+        white-space: nowrap;
+
+        text-overflow: ellipsis;
+    }
+
+    .sales>div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .columna {
+        display: none !important;
+    }
+
+    .button {
+        width: 100%;
+        padding: 6px 12px;
+        font-size: 14px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .image {
+        width: 10em;
+        height: 8em;
+        margin-bottom: 5px;
+    }
+
+    .image-preview {
+        width: 50%;
+        height: 50%;
+    }
+   
+    .pagination .page-item:nth-child(2) {
+        display: inline-block;
+    }
+
+    .pagination .page-item:nth-last-child(2) {
+        display: inline-block;
+    }
+
+ 
+}
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .sale_title{
+        font-size: 200px;
+    }
+    .searchBar{
+        margin-bottom: 10px;
+    }
+    .button-group {
+        flex-direction: column; 
+    }
+
+    .button {
+        width: 100%;
+        margin-bottom: 10px; 
+    }
+
+
+    .sale_title h1 {
+        font-size: 16px;
+
+    }
+
+    .columna {
+        display: none !important;
+    }
+
+    .image-preview {
+        width: 50%;
+        height: 50%;
+    }
+    .pagination .page-item {
+        display: none; 
+    }
+
+    /* Mostrar el botón "Atrás" */
+    .pagination .page-item:nth-child(2) {
+        display: inline-block;
+    }
+
+    /* Mostrar el botón "Siguiente" */
+    .pagination .page-item:nth-last-child(2) {
+        display: inline-block;
+    }
+
+   
 }

@@ -33,6 +33,12 @@
   margin-bottom: 10%;
   height: 3.5em; 
 
-
 }
 
+
+
+@media (max-width: 768px) {
+  .titulo{
+      font-size: 26px;
+  }
+}

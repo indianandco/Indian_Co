@@ -1,4 +1,4 @@
-import './Detail.css'
+import styles from './Detail.module.css'
 import Spinner from 'react-bootstrap/Spinner';
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from '../../services/ProductContext';
@@ -44,62 +44,62 @@ const Detail = () => {
     return (
         <div className='all'>
             {detailProducts ? (
-                <div className='containerDetail'>
-                    <div className='imageDetail'>
-                        <img className='imageDetails' alt="" src='/frascos.jpeg'></img>
+                <div className={styles.containerDetail}>
+                    <div className={styles.imageDetail}>
+                        <img className={styles.imageDetails} alt="" src={detailProducts?.image}></img>
                     </div>
-                    <div className='containerDesc'>
-                        <div className='firstButtons'>
-                            <NavLink className='firstButtonResponsive' to='/home'>
-                                <button className='firstButton' >Inicio</button >
+                    <div className={styles.containerDesc}>
+                        <div className={styles.firstButtons}>
+                            <NavLink className={styles.firstButtonResponsive} to='/home'>
+                                <button className={styles.firstButton} >Inicio</button >
                             </NavLink>
-                            <span className='p'>|</span>
-                            <NavLink className='firstButtonResponsive' to='/products'>
-                                <button className='firstButton' >Productos</button >
+                            <span className={styles.p}>|</span>
+                            <NavLink className={styles.firstButtonResponsive} to='/products'>
+                                <button className={styles.firstButton} >Productos</button >
                             </NavLink>
                         </div>
-                        <div className='boxTilte'>
-                            <h1 className='productTitle'>
+                        <div className={styles.boxTitle}>
+                            <h1 className={styles.productTitle}>
                                 {detailProducts?.title}
                             </h1>
                         </div>
-                        <div className='boxPrice'>
+                        <div className={styles.boxPrice}>
                             {detailProducts?.offer === true ? (
-                                <h1 className='price'>${detailProducts?.offer_price}</h1>
+                                <h1 className={styles.price}>${detailProducts?.offer_price}</h1>
                             ) : (
-                                <h1 className='price'>${detailProducts?.price}</h1>
+                                <h1 className={styles.price}>${detailProducts?.price}</h1>
                             )}
                         </div>
-                        <div className='boxAromas'>
-                            <h3 className='h3Aromas'>Aromas</h3>
-                            <Form.Select className='option' >
-                                <option className='option' value="1">I</option>
-                                <option className='option' value="2">II</option>
-                                <option className='option' value="3">III</option>
-                                <option className='option' value="4">IV</option>
-                                <option className='option' value="5">V</option>
+                        <div className={styles.boxAromas}>
+                            <h3 className={styles.h3Aromas}>Aromas</h3>
+                            <Form.Select className={styles.option}>
+                                <option className={styles.option} value="1">I</option>
+                                <option className={styles.option} value="2">II</option>
+                                <option className={styles.option} value="3">III</option>
+                                <option className={styles.option} value="4">IV</option>
+                                <option className={styles.option} value="5">V</option>
                             </Form.Select>
                         </div>
-                        <div className='containCart'>
-                            <div className="counter">
-                                <Button className='buttonCounter' variant="light" onClick={restar}>-</Button>
-                                <span className='span'>{quant}</span>
-                                <Button className='buttonCounter' variant="light" onClick={incrementar}>+</Button>
+                      <div className={styles.containCart}>
+                            <div className={styles.counter}>
+                                <Button className={styles.buttonCounter} variant="light" onClick={restar}>-</Button>
+                                <span className={styles.span}>{quant}</span>
+                                <Button className={styles.buttonCounter} variant="light" onClick={incrementar}>+</Button>
                             </div>
-                            <div className='boxCart'>
-                                <Button onClick={sendProductDetail} className='buttonCart' variant="warning">Agregar al carrito</Button>
+                            <div className={styles.boxCart}>
+                                <Button onClick={sendProductDetail} className={styles.buttonCart} variant="warning">Agregar al carrito</Button>
                             </div>
                         </div>
-                        <div className='boxFooter'>
+                        <div className={styles.boxFooter}>
                             {detailProducts?.size === true ? (
-                                <div className='boxSize'>
-                                    <span className='span'>Tamaño: {detailProducts?.size}</span>
+                                <div className={styles.boxSize}>
+                                    <span className={styles.span}>Tamaño: {detailProducts?.size}</span>
                                 </div>
                             ) : (
-                                <span className='span'>Tamaño: No está definido</span>
+                                <span className={styles.span}>Tamaño: No está definido</span>
                             )
                             }
-                            <div className='boxDesc'>
+                            <div className={styles.boxDesc}>
                                 <span>{detailProducts?.description}</span>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 const { putUserController } = require('../../Controllers/put/putUserController');
 const { getUserByEmailController } = require('../../Controllers/get/getUserByEmailController');
+const { createHash, isValidPassword } = require('../../config/bcrypt.config');
 
 const putUserHandler = async (req,res) =>{
     const userData = req.body;
@@ -8,7 +9,15 @@ const putUserHandler = async (req,res) =>{
   
         if (!user) return res.status(404).send({ status: 'error', message: 'User not Found' });
 
-        await putUserController(userData._id , userData);
+        const newUserInfo = {
+            ...userData,
+            password:createHash(password)
+        };
+        if (!isValidPassword(newUserInfo, newUserInfo.password)) {
+            return done(null, false)
+        };
+
+        await putUserController(newUserInfo._id , newUserInfo);
   
         res.status(200).send({ status: 'success', message: 'Reset Success' });
   

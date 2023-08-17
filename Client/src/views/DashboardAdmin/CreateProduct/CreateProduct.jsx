@@ -92,10 +92,10 @@ const CreateProduct = () => {
             <Row className="justify-content-md-center">
                 <Col md={8}>
                     <Form onSubmit={handleSubmit}>
-                        <h2 className="titulo text-center"> -- Nuevo Producto -- </h2>
+                        <h2 className="titulo text-center">  Nuevo Producto  </h2>
 
                         <Form.Group controlId="title">
-                            <Form.Label className="form-label">Nombre del Producto:</Form.Label>
+                            <Form.Label className="form-label">Título:</Form.Label>
                             <Form.Control className="form-control" type="text" name="title" value={values.title}
                                 isInvalid={touched.title && !!errors.title}
                                 onBlur={handleBlur} onChange={handleChange} />
