@@ -76,17 +76,17 @@ const Sales = () => {
 
             <Row className='sales'>
                 <Col className='columna' xs={3}>Nombre</Col>
-               
+
                 <Col className='columna' xs={4}>Fecha</Col>
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
-               paginatedSales?.map((sale, index) => {
+                paginatedSales?.map((sale, index) => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
                             <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : 'Usuario no encontrado'}</Col>
-                          
+
                             <Col xs={4}>{formatDate(sale.purchase_datetime)}</Col>
                             <Col xs={2}>
                                 <Button className="editButton" onClick={() => handleModalShow(sale)}>
