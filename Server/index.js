@@ -14,7 +14,6 @@ const productsRoutes = require ("./Routes/products")
 const usersRoutes = require("./Routes/users")
 const ticketsRoutes = require("./Routes/tickets")
 const cartsRoutes = require("./Routes/carts")
-const reviewRoutes = require("./Routes/review")
 
 const adminDashboard = require('./Routes/adminDashboard');
 
@@ -53,7 +52,6 @@ server.use("/products", productsRoutes);
 server.use("/users", usersRoutes);
 server.use("/tickets", ticketsRoutes);
 server.use("/carts", cartsRoutes);
-server.use("/review", reviewRoutes);
 server.use('/admindashboard', adminDashboard);
 
 server.listen(port, () => {
