@@ -12,7 +12,7 @@ import Users from './Users/Users';
 import CreateProduct from './CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
 import Products from './Products/Products';
-import { Tab, Tabs, Card, Row, Col, Container, Badge } from 'react-bootstrap'
+import { Tab, Tabs, Card, Row, Col, Container } from 'react-bootstrap'
 
 
 const DashboardAdmin = () => {
@@ -112,7 +112,7 @@ const DashboardAdmin = () => {
                                             { title: "Total de productos", value: productsCount?.payload.length, icon: "bi bi-box-seam" },
                                             { title: "Total de usuarios", value: userCount?.length, icon: "bi bi-people-fill" },
                                             { title: "Total de ventas", value: salesCount?.length, icon: "bi bi-wallet-fill" },
-                                            { title: "Ganancias totales", value: totalProfit?`$${totalProfit}`:null, icon: "bi bi-cash" },
+                                            { title: "Ganancias totales", value: totalProfit ? `$${totalProfit}` : null, icon: "bi bi-cash" },
                                         ].map((metric, index) => (
                                             <Col xs={12} sm={6} md={3} key={index} className="mb-4">
                                                 <Card className="h-100 shadow-sm rounded text-center">
