@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import { fetcher } from '../../../utils/fetcherGet';
-import formEdit from "./formEdit"
 import './Products.css'
 import { useFormik } from "formik"
 import Swal from 'sweetalert2'
@@ -21,7 +20,7 @@ const Products = () => {
     const [pagActive, setPagActive] = useState(1)
     const productsPerPage = 4;
 
-    const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+    const totalPages = Math.ceil(filteredProducts?.length / productsPerPage)
     let items = []
     for (let i = 1; i <= totalPages; i++) {
         items.push(

@@ -7,16 +7,15 @@ import { fetcherCreateUser } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
-function SignIn() {
+// eslint-disable-next-line react/prop-types
+function SignUp() {
 
-    const [show, setShow] = useState(false);
     const [validated, setValidated] = useState(true);
+    const [show, setShow] = useState(false)
     const [form, setForm] = useState({
         first_name: '',
         last_name: '',
         password: '',
-        gender: "otros",
-        birthdate: "",
         email: '',
     })
     const [error, setError] = useState({
@@ -26,22 +25,17 @@ function SignIn() {
         email: 'El campo Email es requerido',
     })
 
+    const handleShow = () => setShow(true)
+
     const handleClose = () => {
         setShow(false);
         setForm({
             first_name: '',
             last_name: '',
             password: '',
-            phone: '',
-            gender: "otros",
-            birthdate: "",
-            address: "",
-            zipcode: '',
-            city: '',
             email: '',
         })
     }
-    const handleShow = () => setShow(true);
 
     const handleChange = (event) => {
         const checked = event.target.checked
@@ -145,46 +139,6 @@ function SignIn() {
                                 {error.email}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-                            <Form.Label>Elija un sexo</Form.Label>
-                            <Form.Check
-                                onChange={handleChange}
-                                name="gender"
-                                value="masculino"
-                                key="1"
-                                type="radio"
-                                id="1"
-                                label="Masculino"
-                            />
-                            <Form.Check
-                                onChange={handleChange}
-                                name="gender"
-                                value="femenino"
-                                key="2"
-                                type="radio"
-                                id="2"
-                                label="Femenino"
-                            />
-                            <Form.Check
-                                onChange={handleChange}
-                                name="gender"
-                                value="otros"
-                                key="3"
-                                type="radio"
-                                id="3"
-                                label="Otros"
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-                            <Form.Label>Nacimiento</Form.Label>
-                            <Form.Control
-                                onChange={handleChange}
-                                name="birthdate"
-                                value={form.birthdate}
-                                type="date"
-                                autoFocus
-                            />
-                        </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput11">
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control
@@ -203,25 +157,19 @@ function SignIn() {
                         </Form.Group>
                         <Modal.Footer className='p-1'>
                             <Button style={{ width: "100%" }} disabled={validated} size='lg' variant="success" type="submit">
-                                Registrar
+                                Registrarse con correo
                             </Button>
                         </Modal.Footer>
                     </Form>
                     <Modal.Footer className='p-1'>
-                        <Button style={{ width: "100%" }} data-social="facebook" onClick={handleAuth} size='lg' variant="primary" type="submit">
-                            <i className="bi bi-facebook"></i> Facebook
-                        </Button>
-                    </Modal.Footer>
-                    <Modal.Footer className='p-1'>
                         <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
-                            <i className="bi bi-google"></i> Google
+                            <i className="bi bi-google"></i> Registrarse con Google
                         </Button>
                     </Modal.Footer>
                 </Modal.Body>
-
             </Modal>
         </>
     );
 }
 
-export default SignIn;
+export default SignUp;
