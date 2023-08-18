@@ -51,7 +51,7 @@ export default function LinesChart() {
                 tension: 0.5,
                 fill: true,
                 borderColor: 'rgb(0, 0, 0, 0.589)',
-                backgroundColor: 'rgba(221, 112, 28, 0.492)',
+                backgroundColor: 'rgba(16, 160, 237, 0.903)',
                 pointRadius: 5,
                 pointBorderColor: 'rgba(255, 255, 255)',
                 pointBackgroundColor: 'rgba(255, 255, 255)',

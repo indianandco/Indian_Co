@@ -61,12 +61,16 @@ export function DoughnutChart() {
     const options = {
         plugins: {
             legend: {
+                position: 'bottom',
                 labels: {
                     color: 'black',
                 }
             }
         }
-    };
+   
+
+
+    }
 
     return <Doughnut data={data} options={options} />;
 }
