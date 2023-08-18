@@ -178,7 +178,7 @@ const Products = () => {
             <Row>
                 <Col md={9}>
                     <Form.Control
-                    className='searchBar'
+                        className='searchBar'
                         type="text"
                         placeholder='Buscar producto...'
                         value={searched}
@@ -207,7 +207,7 @@ const Products = () => {
                     <Col xs={2}>{product.stock} unid.</Col>
                     <Col xs={2}><Image src={product.image} alt={`Imagen de ${product.title}`} className='image' /></Col>
                     <Col xs={2}>
-                        <Button className="editButton"onClick={() => handleModalShow(product)}>
+                        <Button className="editButton" onClick={() => handleModalShow(product)}>
                             <i className="icon_detail bi bi-pencil"></i>
                         </Button>
                     </Col>
