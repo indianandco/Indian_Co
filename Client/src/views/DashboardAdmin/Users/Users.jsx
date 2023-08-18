@@ -1,13 +1,27 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { fetcher } from '../../../utils/fetcherGet';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button,Pagination } from 'react-bootstrap';
 
 const Users = () => {
 
     const [modal, setModal] = useState(false)
     const [usersCount, setUsersCount] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null)
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [pagActive, setPagActive] = useState(1)
+    const usersPerPage = 4;
+
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage)
+    let items = []
+    for (let i = 1; i <= totalPages; i++) {
+        items.push(
+            <Pagination.Item key={i} active={i === pagActive} onClick={() => setPagActive(i)}>
+                {i}
+            </Pagination.Item>
+        )
+    }
+    const paginatedUsers = filteredUsers.slice((pagActive - 1) * usersPerPage, pagActive * usersPerPage)
 
     const handleModalClose = () => {
         setModal(false);
@@ -21,6 +35,7 @@ const Users = () => {
 
     const getInfo = async () => {
         const users = await fetcher(`/admindashboard/users`);
+        setFilteredUsers(users)
         setUsersCount(users);
     };
 
@@ -42,7 +57,7 @@ const Users = () => {
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
-                usersCount?.map((user, index) => {
+                paginatedUsers?.map((user, index) => {
                     return (
                         <Row className='sales' key={index}>
                             <Col xs={2}>{user ? user.first_name : 'Nombre no disponible'}</Col>
@@ -60,41 +75,52 @@ const Users = () => {
 
             <Modal centered show={modal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="d-flex flex-column" style={{color:"black"}}> Detalle del Usuario</Modal.Title>
+                    <Modal.Title className="d-flex flex-column" style={{ color: "black" }}> Detalle del Usuario</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div>
-                <div>
-                    <p>Nombre: {selectedUser?.first_name}</p>
-                </div>
-                <div>
-                    <p>Apellido:  {selectedUser?.last_name}</p>
-                </div>
-                <div>
-                    <p>Télefono:  {selectedUser?.phone}</p>
-                </div>
-                <div>
-                    <p>Género:  {selectedUser?.gender}</p>
-                </div>
-                <div>
-                    <p>Día de nacimiento:  {selectedUser?.birthdate}</p>
-                </div>
-                <div>
-                    <p>Dirección:  {selectedUser?.address}</p>
-                </div>
-                <div>
-                    <p>Código Postal:  {selectedUser?.zipcode}</p>
-                </div>
-                <div>
-                    <p>Ciudad:  {selectedUser?.city}</p>
-                </div>
-                <div>
-                    <p>Email:  {selectedUser?.email}</p>
-                </div>
-              
-            </div>
+                    <div>
+                        <div>
+                            <p>Nombre: {selectedUser?.first_name}</p>
+                        </div>
+                        <div>
+                            <p>Apellido:  {selectedUser?.last_name}</p>
+                        </div>
+                        <div>
+                            <p>Télefono:  {selectedUser?.phone}</p>
+                        </div>
+                        <div>
+                            <p>Género:  {selectedUser?.gender}</p>
+                        </div>
+                        <div>
+                            <p>Día de nacimiento:  {selectedUser?.birthdate}</p>
+                        </div>
+                        <div>
+                            <p>Dirección:  {selectedUser?.address}</p>
+                        </div>
+                        <div>
+                            <p>Código Postal:  {selectedUser?.zipcode}</p>
+                        </div>
+                        <div>
+                            <p>Ciudad:  {selectedUser?.city}</p>
+                        </div>
+                        <div>
+                            <p>Email:  {selectedUser?.email}</p>
+                        </div>
+
+                    </div>
                 </Modal.Body>
             </Modal>
+            <div className='pagination'>
+                <Pagination >
+                    <Pagination.First onClick={() => setPagActive(1)} />
+                    <Pagination.Prev onClick={() => setPagActive(prev => Math.max(prev - 1, 1))} />
+                    {items}
+                    <Pagination.Next onClick={() => setPagActive(prev => Math.min(prev + 1, totalPages))} />
+                    <Pagination.Last onClick={() => setPagActive(totalPages)} />
+
+                </Pagination>
+
+            </div>
 
         </Container >
 
