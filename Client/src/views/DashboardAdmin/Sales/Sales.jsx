@@ -12,6 +12,20 @@ const Sales = () => {
     const [users, setUsers] = useState([])
     const [selectedSale, setSelectedSale] = useState(null)
     const [products, setProducts] = useState(null)
+    const [filteredSales, setFilteredSales] = useState([]);
+    const [pagActive, setPagActive] = useState(1)
+    const salesPerPage = 4;
+
+    const totalPages = Math.ceil(filteredSales.length / salesPerPage)
+    let items = []
+    for (let i = 1; i <= totalPages; i++) {
+        items.push(
+            <Pagination.Item key={i} active={i === pagActive} onClick={() => setPagActive(i)}>
+                {i}
+            </Pagination.Item>
+        )
+    }
+    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage)
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -24,6 +38,7 @@ const Sales = () => {
     const getInfo = async () => {
         const ventas = await fetcher(`/admindashboard/tickets`);
         setSalesCount(ventas);
+        setFilteredSales(ventas)
     };
 
     const getInfoUsers = async () => {
@@ -66,7 +81,7 @@ const Sales = () => {
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
-                salesCount?.map((sale, index) => {
+               paginatedSales?.map((sale, index) => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
@@ -125,6 +140,17 @@ const Sales = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <div className='pagination'>
+                <Pagination >
+                    <Pagination.First onClick={() => setPagActive(1)} />
+                    <Pagination.Prev onClick={() => setPagActive(prev => Math.max(prev - 1, 1))} />
+                    {items}
+                    <Pagination.Next onClick={() => setPagActive(prev => Math.min(prev + 1, totalPages))} />
+                    <Pagination.Last onClick={() => setPagActive(totalPages)} />
+
+                </Pagination>
+
+            </div>
 
         </Container>
     )
