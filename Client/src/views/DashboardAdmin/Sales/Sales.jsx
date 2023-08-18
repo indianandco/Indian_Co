@@ -60,9 +60,9 @@ const Sales = () => {
 
 
             <Row className='sales'>
-                <Col className='columna' xs={2}>Nombre</Col>
-                <Col className='columna' xs={2}>Email</Col>
-                <Col className='columna' xs={2}>Fecha</Col>
+                <Col className='columna' xs={3}>Nombre</Col>
+               
+                <Col className='columna' xs={4}>Fecha</Col>
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
@@ -70,9 +70,9 @@ const Sales = () => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
-                            <Col xs={2}>{user ? `${user.first_name} ${user.last_name}` : 'Usuario no encontrado'}</Col>
-                            <Col xs={2}>{user ? user.email : 'Email no disponible'}</Col>
-                            <Col xs={2}>{formatDate(sale.purchase_datetime)}</Col>
+                            <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : 'Usuario no encontrado'}</Col>
+                          
+                            <Col xs={4}>{formatDate(sale.purchase_datetime)}</Col>
                             <Col xs={2}>
                                 <Button className="editButton" onClick={() => handleModalShow(sale)}>
                                     <i className="icon_detail bi bi-clipboard-check"></i>
@@ -102,7 +102,7 @@ const Sales = () => {
                                     const product = products.payload.find(p => p._id === productId);
                                     return (
                                         <span key={index}>
-                                            {product ? product.title : 'Producto no encontrado'}
+                                            - {product ? product.title : 'Producto no encontrado'}
                                             {index !== selectedSale.products.length - 1 && <br />}
                                         </span>
                                     );
