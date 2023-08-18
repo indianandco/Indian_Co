@@ -50,7 +50,7 @@ server.use(passport.session());
 
 server.use("/products", productsRoutes);
 server.use("/users", usersRoutes);
-server.use("/tickets", ticketsRoutes);
+// server.use("/tickets", ticketsRoutes);
 server.use("/carts", cartsRoutes);
 server.use('/admindashboard', adminDashboard);
 

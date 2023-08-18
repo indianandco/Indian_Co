@@ -1,4 +1,4 @@
-const { postTicketsController } = require("../../Controllers/post/postTicketsController");
+// const { postTicketsController } = require("../../Controllers/post/postTicketsController");
 
 
 const postTicketsHandler = async (req, res) => {
