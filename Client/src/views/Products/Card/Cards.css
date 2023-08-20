@@ -1,26 +1,51 @@
 /* Cards.css */
 
+.customCard {
+    width: 100%; /* Tamaño fijo para todas las cartas */
+    display: flex;
+    justify-content: space-between;
+}
+
+.imageCards {
+    max-width: 100%;
+    height: auto;
+}
+
+.addToCart {
+    margin-top: auto;/* Alinear el botón en la parte inferior */
+    bottom: 0;
+}
+
+
 .containerCards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  max-width: 1400px; /* Adjusted maximum width */
+  max-width: 100%; /* Adjusted maximum width */
+  box-shadow: 0 5px 50px 0 rgb(0, 0, 0);
+  margin: 2em;
+  border-radius: 6px;
+  width: 18em;
 }
 
 .containerCards .mx-4 {
-  width: calc(50% - 20px); /* Adjusted card width with spacing */
   margin-bottom: 2rem;
 }
 
 .imageCards {
-  object-fit: cover;
-  height: 38em;
-  width: 100%; /* Adjusted image width */
+  height: 15em;
+  width: 15em; /* Adjusted image width */
+  object-fit: cover; /* La imagen de fondo cubrirá todo el contenedor */
+  object-position: center;
+  background-repeat: no-repeat;
+}
+.pTitle {
+  font-size: 15px;
+  white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+  overflow: hidden; /* Ocultar cualquier exceso de texto que no quepa en la línea */
+  text-overflow: ellipsis; /* Agregar puntos suspensivos si el texto está recortado */
 }
 
-.addToCart {
-  margin-top: 1em;
-}
 
 @media (max-width: 768px) {
   .containerCards .mx-4 {

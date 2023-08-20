@@ -18,16 +18,29 @@ router.get('/:cid', getCartByIdHandler);
 //Finalizar venta + redireccion/cobro con mercadopago
 router.post('/:cid/purchase', postTicketsHandler);
 router.post('/purchase/mercadopago', paymentMP);
-router.get('/purchase/success', (req,res) => res.send('success'));
-router.get('/purchase/failure', (req,res) => res.send('failure'));
-router.get('/purchase/pending', (req,res) => res.send('pending'));
+router.get('/purchase/success', (req,res) => res.json({
+  Payment: req.query.payment_id,
+  Status: req.query.status,
+  MerchantOrder: req.query.merchant_order_id
+}));
+router.get('/purchase/failure', (req,res) => res.json({
+  Payment: req.query.payment_id,
+  Status: req.query.status,
+  MerchantOrder: req.query.merchant_order_id
+}));
+router.get('/purchase/pending', (req,res) => res.json({
+  Payment: req.query.payment_id,
+  Status: req.query.status,
+  MerchantOrder: req.query.merchant_order_id
+}));
+
 router.post('/purchase/webhook', async (req,res) => {
     try {
         const payment = req.query;
         console.log(payment);
         if (payment.type === "payment") {
           const data = await mercadopago.payment.findById(payment["data.id"]);
-          console.log('que es esto',data);
+          console.log('data Webhook: ',data);
         }
     
         res.sendStatus(204);
@@ -38,3 +51,4 @@ router.post('/purchase/webhook', async (req,res) => {
 });
 
 module.exports = router;
+

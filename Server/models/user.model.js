@@ -19,12 +19,6 @@ const userSchema = new mongoose.Schema(
         phone: {
             type: String,
         },
-        gender: {
-            type: String,
-        },
-        birthdate: {
-            type: String,
-        },
         address: {
             type: String,
         },
@@ -43,15 +37,6 @@ const userSchema = new mongoose.Schema(
         role: {
             type: String,
             default: "user"
-        },
-        reviews: {
-            type: [{
-                review: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: 'reviews'
-                }
-            }],
-            default: []
         },
         carts: {
             type: [{
@@ -75,7 +60,6 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('find', function () {
-    this.populate('reviews.review');
     this.populate('carts');
     this.populate('tickets');
   });

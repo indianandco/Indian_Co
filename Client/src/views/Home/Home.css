@@ -1,12 +1,206 @@
 .home_container {
     display: flex;
     flex-direction: column;
-    margin-top: 15em;
     color: rgb(0, 0, 0);
 }
-
 .banners_container {
-    height: 1500px;
+    margin: 0.5em;
+    height: 100%;
     width: 100%;
 }
+.Link{
+    text-decoration: none;
+}
+.PaddingTitleHome{
+    padding : 2em;
+    background-color: rgba(0, 0, 0, 0.59);
+    border-radius: 3px;
+}
+.titleHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center !important;
+    background-color: rgba(0, 0, 0, 0.59);
+    padding: 1em;
+    border: 1px solid wheat;
+    color: white;
+}
+.SubTitleHome{
+    font-size: 30px;    
+}
+.TitleHome{
+    font-size: 50px;
+}
+.TextHome{
+    font-size: 20px;
+}
+.BannerHome1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40em;
+    border-radius: 6px;
+    border: 0.1px solid black;
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+    width: 99%;
+    background-image: url('../../../public/BannerHome1.jpeg');
+    cursor: pointer;
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+    margin-bottom: 2em;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
+.BannerHome2{
+    display: flex;
+    min-height: 40em;
+    border-radius: 6px;
+    border: 0.1px solid black;
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+    background-image: url('../../../public/BannerHome2.png');
+    cursor: pointer;
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+    margin-bottom: 2em;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
+.ContainerBannerHome2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin: 1em;
+    width: 100%;
+}
+.imageHome{
+    width: 400px;
+    height: 400px;
+    border-radius: 6px;
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+}
+.ContainerBoxHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50em;
+    text-align: center !important;
+}
+.SubTitleHome2{
+    font-size: 30px;
+    color: black; 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);   
+}
+.TitleHome2{
+    font-size: 50px;
+    color: black; 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);  
+}
+.TextHome2{
+    font-size: 20px;
+    color: black;  
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); 
+}
+.BannerHome3{
+    display: flex;
+    min-height: 40em;
+    border-radius: 6px;
+    border: 0.1px solid black;
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+    background-image: url('../../../public/BannerHome4.png');
+    cursor: pointer;
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+    margin-bottom: 2em;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
 
+.BannerHome4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 15em;
+    border-radius: 6px;
+    border: 0.1px solid black;
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+    background-image: url('../../../public/BannerHome3.png');
+    cursor: pointer;
+    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-repeat: no-repeat;
+    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    margin-bottom: 2em;
+}
+@media (max-width: 995px) {
+    .home_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0.5em;
+    }
+  
+    .banners_container {
+      margin: 0.5em 0;
+    }
+  
+    .PaddingTitleHome {
+      padding: 1em;
+      margin:1em;
+    }
+  
+    .titleHome {
+      padding: 1em;
+      font-size: 30px;
+      text-align: center;
+    }
+  
+    .SubTitleHome{
+        font-size: 14px;
+        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
+    }
+    .TitleHome{
+        font-size: 25px;
+        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
+    }
+    .TextHome {
+        font-size: 12px;
+        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
+    }
+  
+    .BannerHome1,
+    .BannerHome2,
+    .BannerHome3,
+    .BannerHome4 {
+      min-height: 20em;
+      margin-bottom: 1em;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  
+    .imageHome {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      margin:1em;
+    }
+  
+    .ContainerBannerHome2 {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .ContainerBoxHome {
+        max-width: 250px;
+      width: 100%;
+    }
+  
+    .SubTitleHome2,
+    .TitleHome2,
+    .TextHome2 {
+        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
+        font-size: 18px;
+        font-weight: 800;
+    }
+  }
+  

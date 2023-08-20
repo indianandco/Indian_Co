@@ -10,6 +10,7 @@ import Container from './views/Products/Container/Container';
 import NotFound from './views/Error/NotFound';
 import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
 import Cart from './views/Cart/Cart'
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -29,11 +30,11 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/dashboardadmin' element={<DashboardAdmin />} />
         <Route path='/products' element={<Container />} />
-        <Route path='/detail/:id' element={<Detail />}/>
+        <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
-
+      <Footer></Footer>
     </div>
   )
 }

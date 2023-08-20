@@ -26,8 +26,8 @@ const Contact = () => {
         <div className='allContact'>
             <div className='headerContact'>
                 <NavLink to='/home' className='title'>
-                    <h3 className='h3'>DESCUBRE NOVEDADES</h3>
-                    <h1 className='h1'>DÓNDE COMPRAR LOS PRODUCTOS</h1>
+                    <h3 className='h3Contact'>DESCUBRE NOVEDADES</h3>
+                    <h1 className='h1Contact'>DÓNDE COMPRAR LOS PRODUCTOS</h1>
                 </NavLink>
             </div>
             <div>
@@ -48,7 +48,7 @@ const Contact = () => {
                             />
                         </div>
                         <div className='form-2'>
-                            <label className="text">Email</label>
+                            <label>Email</label>
                             <input
                             required
                             className="input"
@@ -60,7 +60,7 @@ const Contact = () => {
                             />
                         </div>
                         <div className='form-2'>
-                            <label className="text">Hace tu consulta</label>
+                            <label>Hace tu consulta</label>
                             <textarea
                             required
                             className="input1"
@@ -84,36 +84,36 @@ const Contact = () => {
                     <div className='box'>
                         <div className='box-1'>
                             <div className='smallBox'>
-                                <h6 className='h6'>Visitanos</h6>
-                                <p className='p'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
+                                <h6 className='h6Contact'>Visitanos</h6>
+                                <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
                             </div>
                             <div className='smallBox'>
-                                <h6 className='h6'>Medios de pago</h6>
-                                <p className='p1'>· Efectivo</p>
-                                <p className='p1'>· Mercado Pago</p>
-                                <p className='p1'>· Transferencia bancaria</p>
+                                <h6 className='h6Contact'>Medios de pago</h6>
+                                <p className='p1Contact'>· Efectivo</p>
+                                <p className='p1Contact'>· Mercado Pago</p>
+                                <p className='p1Contact'>· Transferencia bancaria</p>
                             </div>
                             <div className='smallBox'>
-                                <h6 className='h6'>Abierto</h6>
-                                <p className='p'>Lun - Vie [14 a 19 hs] </p>
+                                <h6 className='h6Contact'>Abierto</h6>
+                                <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
                             </div>
                             <div className='smallBox'>
-                                <h6 className='h6'>CONTACTO</h6>
-                                <p className='p'>indianandco09@gmail.com</p>
+                                <h6 className='h6Contact'>CONTACTO</h6>
+                                <p className='pContact'>indianandco09@gmail.com</p>
                             </div>
                         </div>
                         <div className='box-2'>
-                            <h4 className='h6'>Nuestros Clientes</h4>
-                            <p className='p2'>·Grupo Lemark</p>
-                            <p className='p2'>·Estudio4k</p>
-                            <p className='p2'>·Naranjo_pijamas</p>
-                            <p className='p2'>·CFQ Medicina Estética</p>
-                            <p className='p2'>·Sinapsiskinesiologíaintegral</p>
-                            <p className='p2'>·Queens Home Deco</p>
-                            <p className='p2'>·Creando.universos</p>
-                            <p className='p2'>·Pijamadas_almacendesuenios</p>
-                            <p className='p2'>·hocicosboutique</p>
-                            <p className='p2'>·wos_espaciosverdes</p>
+                            <h4 className='h6Contact'>Nuestros Clientes</h4>
+                            <p className='p2Contact'>·Grupo Lemark</p>
+                            <p className='p2Contact'>·Estudio4k</p>
+                            <p className='p2Contact'>·Naranjo_pijamas</p>
+                            <p className='p2Contact'>·CFQ Medicina Estética</p>
+                            <p className='p2Contact'>·Sinapsiskinesiologíaintegral</p>
+                            <p className='p2Contact'>·Queens Home Deco</p>
+                            <p className='p2Contact'>·Creando.universos</p>
+                            <p className='p2Contact'>·Pijamadas_almacendesuenios</p>
+                            <p className='p2Contact'>·hocicosboutique</p>
+                            <p className='p2Contact'>·wos_espaciosverdes</p>
                         </div>
                     </div>
                 </div>

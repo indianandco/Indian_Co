@@ -3,12 +3,14 @@
     flex-direction: row;
     height: auto;
     width: 100%;
-    background-color: rgba(97, 98, 99, 0.503);
+   
 }
 
 .side_container {
     display: flex;
     flex-direction: column;
+
+
 }
 
 .offcanvas_buttons {
@@ -38,12 +40,14 @@
 .nav_container {
     background-color: rgba(0, 0, 0, 0.501);
     height:100%;
+   
 }
 
 .info_container {
     display: flex;
     flex-direction: column;
     width: 100%;
+   
 }
 
 .title_dashboard {
@@ -97,6 +101,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
 }
 
 .doughnut_container {
@@ -181,4 +186,8 @@
 
 .tabs_container{
     width: 100%;
+}
+.nav_container2{
+    background-color: rgb(244, 244, 244);
+   
 }

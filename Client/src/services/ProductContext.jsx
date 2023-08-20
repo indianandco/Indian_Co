@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { postProductFunction } from "../utils/fetcherPost"
+import {updateProductFunction } from "../utils/fetcherPut"
 import { fetcher } from "../utils/fetcherGet";
 
 export const ProductContext = createContext()
@@ -24,7 +25,7 @@ export const ProductProvider = ({ children }) => {
     }
 
     const getDetailProducts = async (id) => {
-        const response = await fetcher(`/products/detail/${id}`)
+        const response = await fetcher(`/products/${id}`)
         setDetailProducts(response);
         return detailProducts
     }
@@ -41,8 +42,14 @@ export const ProductProvider = ({ children }) => {
         return product;
     }
 
+    const updateProduct= async(updateProduct, id)=>{
+        const response = await updateProductFunction(`/adminDashboard/products/update/${id}`,updateProduct)
+        return response
+
+    }
+
     return (
-        <ProductContext.Provider value={{ product, findProduct, response, allProducts,detailProducts,getDetailProducts, postProduct, getAllProducts }}>
+        <ProductContext.Provider value={{ product, findProduct, response, allProducts, detailProducts, getDetailProducts, postProduct, getAllProducts, updateProduct }}>
             {children}
         </ ProductContext.Provider >
     )

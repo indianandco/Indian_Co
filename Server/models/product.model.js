@@ -38,23 +38,10 @@ const productsSchema = new mongoose.Schema(
             type:Boolean,
             default: false
         } ,
-        reviews: {
-            type: [
-                {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref:'reviews'
-                }
-            ],
-            default: []
-        } 
     }
 );
 
 productsSchema.plugin(mongoosePaginate);
-
-productsSchema.pre('find', function (){
-    this.populate('reviews');
-});
 
 
 const productModel = mongoose.model(productsCollection, productsSchema);
