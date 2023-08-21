@@ -6,15 +6,14 @@ const loginHandler = async (req, res) => {
             .send({status: 'error', message: 'Invalid Credentials'});
     
         const accessToken = await generateToken(req.user);
-        
+        const user = req.user
+
         res.cookie('cookieToken', accessToken, {
             maxAge: 2 * 60 * 60 * 1000, // 2hs
             httpOnly: true
         });
     
-        console.log(accessToken)
-    
-        res.status(200).send({ status: 'success', acces_token: accessToken, message: 'login success' });
+        res.status(200).json(user);
         
     } catch (error) {
         console.log(error)
