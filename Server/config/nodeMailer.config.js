@@ -20,6 +20,16 @@ const newUserMailing = async (email, name) =>{
     });
 };
 
+/* const newUserMailing = async (email, name) =>{
+    await transport.sendMail({
+
+        from: 'Indian Co <mail indian>',
+        to: email,
+        subject: 'Bienvenido!',
+        html: ``
+    });
+}; */
+
 const shopOrderMailng = async (email, name, code, amount) =>{
     await transport.sendMail({
 

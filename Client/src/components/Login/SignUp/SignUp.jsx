@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { fetcherCreateUser } from '../../../utils/fetcherPost';
+import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
@@ -57,7 +57,7 @@ function SignUp() {
     }
 
     const handleSubmit = () => {
-        fetcherCreateUser("/users/register", form)
+        fetcherUserPost("/users/register", form)
         setShow(false);
     }
 

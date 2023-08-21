@@ -15,6 +15,6 @@ export const fetcher = async (endpoint) => {
 
   } catch (error) {
     console.error('Error fetching data:', error);
-    return error.response.data
+    return error.response?.data
   }
 };

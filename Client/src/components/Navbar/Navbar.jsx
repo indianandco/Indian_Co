@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../services/CartContext";
 import SignIn from "../Login/SignIn/SignIn";
 import UserProfile from "../../views/UserProfile/UserProfile";
+import { fetcher } from "../../utils/fetcherGet";
 
 const NavBar = () => {
 
@@ -19,6 +20,11 @@ const NavBar = () => {
     const scrollToTop = () => {
         window.scrollTo(0, 0);
     };
+
+    const handleLogOut = () => {
+        fetcher("/users/logout")
+        sessionStorage.clear();
+    }
 
 
     useEffect(() => {
@@ -56,9 +62,9 @@ const NavBar = () => {
                             <div>
                                 <UserProfile></UserProfile>
                             </div>
-                            {false &&
-                                <NavLink onClick={scrollToTop} className="buttons" to="/">SALIR</NavLink>
-                            }
+
+                            <NavLink onClick={() => handleLogOut()} className="buttons" to="/">SALIR</NavLink>
+
                             <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>
 
                         </Nav>
