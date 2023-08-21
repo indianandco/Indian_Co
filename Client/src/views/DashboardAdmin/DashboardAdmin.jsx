@@ -13,6 +13,8 @@ import CreateProduct from './CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
 import Products from './Products/Products';
 import { Tab, Tabs, Card, Row, Col, Container } from 'react-bootstrap'
+import Spinner from 'react-bootstrap/Spinner';
+
 
 
 const DashboardAdmin = () => {
@@ -22,6 +24,8 @@ const DashboardAdmin = () => {
     const [userCount, setUserCount] = useState()
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const calculateProfits = (salesResponse) => {
 
@@ -37,7 +41,6 @@ const DashboardAdmin = () => {
         const usersResponse = await fetcher(`/admindashboard/users`)
         const productsResponse = await fetcher(`/admindashboard/products`)
         const salesResponse = await fetcher(`/admindashboard/tickets`)
-        console.log("salesResposne", salesResponse)
         setUserCount(usersResponse)
         setProductsCount(productsResponse)
         setSalesCount(salesResponse)
@@ -46,6 +49,10 @@ const DashboardAdmin = () => {
 
 
     useEffect(() => {
+        setTimeout(() => {
+              setIsLoading(true);
+        }, 1700);
+      
         getInfo();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -60,6 +67,13 @@ const DashboardAdmin = () => {
 
 
     return (
+        !isLoading ? (
+            <div className="loading-spinner">
+                <Spinner animation="border" role="status" aria-hidden="true">
+                    <span className="visually-hidden">Cargando...</span>
+                </Spinner>
+            </div>
+         ) : (
         <div style={{ marginRight: "70px" }}>
             <div>
                 <div>
@@ -167,7 +181,7 @@ const DashboardAdmin = () => {
                 </div>
             </div>
         </div>
-    )
+    ))
 }
 
 export default DashboardAdmin;
