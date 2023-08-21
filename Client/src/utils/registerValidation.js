@@ -34,24 +34,24 @@ const validation = (form) =>{
         errors.password = 'La Contraseña debe contener al menos una letra y un número';
       }
 
-    /* if (form.address.trim() === '') {
+    if (form?.address?.trim() === '') {
       errors.address = 'El campo Dirección es requerido';
     }
 
-    if (form.city.trim() === '') {
+    if (form?.city?.trim() === '') {
       errors.city = 'El campo Ciudad es requerido';
     }
 
-    if (form.zipcode.trim() === '') {
+    if (form?.zipcode?.trim() === '') {
       errors.zipcode = 'El campo Código postal es requerido';
     }
 
-    if (form.phone.trim() === '') {
+    if (form?.phone?.trim() === '') {
         errors.phone = 'El campo Télefono es requerido';
     }
-    else if (!numberRegex.test(form.phone)) {
+    else if (form?.phone && !numberRegex.test(form?.phone?.trim())) {
         errors.phone = "Solo se permiten números";
-    } */
+    }
   
     return errors;
 }

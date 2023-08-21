@@ -10,6 +10,7 @@ export const fetcher = async (endpoint) => {
       throw new Error('Error en la petición');
     }
     
+    console.log(response.data);
     return response.data
 
   } catch (error) {
