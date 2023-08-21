@@ -38,16 +38,8 @@ function SignUp() {
     }
 
     const handleChange = (event) => {
-        const checked = event.target.checked
         const value = event.target.value
         const name = event.target.name
-
-        if (checked) {
-            setForm({
-                ...form,
-                [name]: checked
-            })
-        }
 
         setForm({
             ...form,
