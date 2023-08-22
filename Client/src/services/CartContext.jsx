@@ -18,34 +18,49 @@ export const CartProvider = ({ children }) => {
   const saveCartData = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }; //función que actualiza el LocalStorage al valor de cart
-
+  console.log(cart);
 
   const addProduct = (product) => {
     const existingProduct = cart.find((p) => p._id === product._id);
-    if (existingProduct) {
+    let existingProductFragance = true
+
+    if (product.fragance !== "--") {
+      existingProductFragance = cart.find(p => p.fragance === product.fragance);
+    }
+
+    if (existingProduct && existingProductFragance) {
       const updatedCart = cart.map((p) =>
-        p.id === product.id ? p.quantity < p.stock ? { ...p, quantity: p.quantity + 1 } : p : p
+        (p._id === product._id && p.fragance === product.fragance) ? p.quantity < p.stock ? { ...p, quantity: p.quantity + product.quantity } : p : p
       );
       setCart(updatedCart);
     } else {
-      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+      setCart((prevCart) => [...prevCart, { ...product }]);
     }
 
   };
 
   const removeProduct = (item) => {
-    const existingProduct = cart.find((product) => product.id === item.id);
 
-    if (existingProduct) {
+    const existingProduct = cart.find((product) => product._id === item._id);
+    let existingProductFragance
+
+    if (item.fragance !== "--") {
+      existingProductFragance = cart.find(p => p.fragance === item.fragance);
+    }
+    else {
+      existingProductFragance = true
+    }
+
+    if (existingProduct && existingProductFragance) {
       const updatedCart = cart.map((product) =>
-        item.id === product.id ? { ...product, quantity: product.quantity - 1 } : product
+        (item._id === product._id && item.fragance === product.fragance) ? { ...product, quantity: product.quantity - 1 } : product
       );
       setCart(updatedCart);
     }
   };
 
   const removeStack = (item) => {
-    const updatedCart = cart.filter((product) => product.id !== item.id);
+    const updatedCart = cart.filter((product) => product._id !== item._id || product.fragance !== item.fragance);
     setCart(updatedCart);
     if (updatedCart.length === 0) {
       localStorage.setItem("cart", JSON.stringify(updatedCart));

@@ -22,7 +22,6 @@ const Container = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [limit])
 
-
     return (
         !isLoading ? (
             <div className="loading-spinner">
