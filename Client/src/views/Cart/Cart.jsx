@@ -111,6 +111,7 @@ const Cart = () => {
                       </Col>
                       <Col xs={8} md={7} className={styles.tarjeta_contenido}>
                         <p className={styles.tarjeta_titulo}>{item?.title}</p>
+                        <p className={styles.tarjeta_titulo}>{item?.fragance}</p>
                         {item?.offer_price ? (
                           <b className='tarjeta-precio'>${applyCustomFormat(item?.offer_price, numberWithCommas)}</b>
                         ) : (

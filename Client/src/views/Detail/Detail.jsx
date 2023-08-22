@@ -14,6 +14,8 @@ const Detail = () => {
 
     const { detailProducts, getDetailProducts, clearSearch } = useContext(ProductContext);
     const { addProduct } = useContext(CartContext);
+    const [frag, setFragance] = useState(null)
+    const [show, setShow] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
     const [quant, setQuantity] = useState(1);
 
@@ -29,11 +31,23 @@ const Detail = () => {
         }
     };
 
+    const handleSelect = (event) => {
+        setFragance(event.target.value)
+        setShow(false)
+    }
+
     const sendProductDetail = () => {
-        addProduct({
-            ...detailProducts,
-            quantity: quant
-        });
+        if (detailProducts.fragance !== "--" && (!frag)) {
+            setShow(true);
+            return;
+        } else {
+            const productToAdd = {
+                ...detailProducts,
+                quantity: quant,
+                fragance: frag
+            };
+            addProduct(productToAdd);
+        }
     }
 
     useEffect(() => {
@@ -100,15 +114,17 @@ const Detail = () => {
                         </div>
                         <div className={styles.boxAromas}>
                             <h3 className={styles.h3Aromas}>Fragancia:</h3>
-                            <Form.Select className={styles.option}>
-                                <option className={styles.option} value="1">Coco</option>
-                                <option className={styles.option} value="2">Vainilla</option>
-                                <option className={styles.option} value="3">Chocolate</option>
-                                <option className={styles.option} value="4">Limón</option>
-                                <option className={styles.option} value="5">Neutro</option>
+                            <Form.Select className={styles.option} onChange={handleSelect}>
+                                <option value="" disabled selected>
+                                    Selecciona una opción
+                                </option>
+                                {detailProducts?.fragance?.split(",").map(fragance => {
+                                    return (<option key={fragance} className={styles.option} value={fragance}>{fragance}</option>)
+                                })
+                                }
                             </Form.Select>
+                            <span>{show ? "Por favor elija una fragancia" : <span></span>}</span>
                         </div>
-
                         <div className={styles.cartContainer}>
                             <div className={styles.counter}>
                                 <Button className={styles.buttonCounter} variant="light" onClick={restar}>-</Button>
