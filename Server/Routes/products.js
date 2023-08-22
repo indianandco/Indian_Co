@@ -7,8 +7,8 @@ const { getProductByCategoryHandler } = require("../Handlers/get/getProductByCat
 const { getProductByTitleHandler } = require("../Handlers/get/getProductByTitleHandler");
 
 router.get("/", getProductsHandler);
+router.get("/category/:category", getProductByCategoryHandler);
 router.get("/search", getProductByTitleHandler);
 router.get("/:id", getProductByIdHandler);
-router.get("/:category", getProductByCategoryHandler);
 
 module.exports = router;

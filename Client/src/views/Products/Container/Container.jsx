@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Container = () => {
 
-    const { allProducts, getAllProducts, foundProduct } = useContext(ProductContext);
+    const { displayedProducts, getAllProducts } = useContext(ProductContext);
     const limit = false
     const [isLoading, setIsLoading] = useState(false);
 
@@ -33,25 +33,11 @@ const Container = () => {
             <div className="containerSearch">
                 < SearchBar />
                 <div className="products_container">
-                    {
-                        foundProduct.length > 0 ? foundProduct?.map(product => (
-                            <Cards
-                                key={product?._id}
-                                product={product}
-
-                            />))
-                            :
-                            allProducts.payload?.map(product => (
-                                <Cards
-                                    key={product?.id}
-                                    product={product}
-                                />
-                            ))
-                    }
-
+                    {displayedProducts?.map(product => (
+                        <Cards key={product?._id} product={product} />
+                    ))}
                 </div>
             </div>
-
         ))
 }
 
