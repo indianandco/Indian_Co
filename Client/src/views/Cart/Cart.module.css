@@ -2,6 +2,7 @@
     min-height: 90vh;
     height: fit-content;
     display: flex;
+     
     
     padding: 3rem;
 }
@@ -29,7 +30,7 @@
     height: fit-content;
     width: fit-content;
     min-width: 28rem;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);
 }
 
 .subTotalColumn {
@@ -37,12 +38,13 @@
     border-radius: 6px;
     min-height: 18rem;
     height: fit-content;
-    width: fit-content;
+    max-width: fit-content ;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
     display: flex;
     flex-direction: column;
     align-items: none; 
     justify-content: space-around; 
+    padding: 0.5rem;
     padding-bottom: .7rem;  
 }  
 
@@ -146,8 +148,122 @@
     font-size: larger;
 }
 
+.banner {
+    padding: .4rem;
+}
 
-@media (max-width: 1200px) {
+.checkbox {
+    padding: 0rem 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.checkbox i {
+    text-align: center;
+}
+
+.paymentButton {
+    margin: 1rem .4rem;
+}
+
+.bannerMp {
+    margin: auto;
+    max-width: 26.6rem;
+    max-height: 32.8rem ;
+    padding: 24px 16px;
+    background-color: #ffffff;
+    border-radius: 6px;
+
+}
+.bannerMp_Title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bannerMp_benefitList {
+    margin-bottom: .4rem;
+}
+
+.bannerMp_benefitList_Item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.bannerMp_benefitList_Item > div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center ;
+}
+
+.bannerMp_benefitList_logo {
+    width: 3.25rem;
+    height: 3.4rem;
+    padding: 10px;
+}
+
+.bannerMp_benefitList_p_title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.bannerMp_benefitList_p_subTitle {
+    
+    font-size: 12px;
+    color: #0000008c;
+    margin: 0;
+    text-align: left !important;
+}
+
+.bannerMp_benefitList_p_subTitle:last-child {
+    margin-top: .2rem;
+    text-align: center !important;
+}
+
+.bannerMp_redirect {
+    margin: auto;
+    background-color: #eae6dd;
+    max-height: 3.4rem;
+    max-width: 23.6rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: none;
+    padding: 12px;
+    border-radius: 6px
+}
+.bannerMp_redirect > i {
+    width: 15px;
+    height: 22px;
+    margin: 0px 0px 0px 10px;
+    color: #0000008c ;
+    padding: 0;
+}
+
+.bannerMp_redirect > p {
+    max-width: 306px;
+    text-align: left;
+    font-size: 11px;
+    width: 80%;
+    vertical-align: baseline;
+};
+
+.formBox {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673); 
+    border-radius: 6px;
+    padding: 0.2rem;
+    background-color:aqua ;
+    width: 100%;
+
+}
+
+
+
+@media (max-width: 1200px){
+    .container {
+        padding: .5rem;
+    }
 
     .cart_prueba {
         width: 100%;
