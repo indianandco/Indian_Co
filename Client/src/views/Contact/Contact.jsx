@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import './Contact.css'
 
 const Contact = () => {
@@ -24,13 +23,6 @@ const Contact = () => {
 
     return (
         <div className='allContact'>
-            <div className='headerContact'>
-                <NavLink to='/home' className='title'>
-                    <h3 className='h3Contact'>DESCUBRE NOVEDADES</h3>
-                    <h1 className='h1Contact'>DÓNDE COMPRAR LOS PRODUCTOS</h1>
-                </NavLink>
-            </div>
-            <div>
                 <form className='form' onSubmit={handleSubmit}>
                     <div className='formBox'>
                         <div className='form-1'>
@@ -78,7 +70,6 @@ const Contact = () => {
                         </div>
                     </div>
                 </form>
-            </div>
             <div className='footer'>
                 <div className='desc'>
                     <div className='box'>
@@ -88,12 +79,6 @@ const Contact = () => {
                                 <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
                             </div>
                             <div className='smallBox'>
-                                <h6 className='h6Contact'>Medios de pago</h6>
-                                <p className='p1Contact'>· Efectivo</p>
-                                <p className='p1Contact'>· Mercado Pago</p>
-                                <p className='p1Contact'>· Transferencia bancaria</p>
-                            </div>
-                            <div className='smallBox'>
                                 <h6 className='h6Contact'>Abierto</h6>
                                 <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
                             </div>
@@ -101,19 +86,6 @@ const Contact = () => {
                                 <h6 className='h6Contact'>CONTACTO</h6>
                                 <p className='pContact'>indianandco09@gmail.com</p>
                             </div>
-                        </div>
-                        <div className='box-2'>
-                            <h4 className='h6Contact'>Nuestros Clientes</h4>
-                            <p className='p2Contact'>·Grupo Lemark</p>
-                            <p className='p2Contact'>·Estudio4k</p>
-                            <p className='p2Contact'>·Naranjo_pijamas</p>
-                            <p className='p2Contact'>·CFQ Medicina Estética</p>
-                            <p className='p2Contact'>·Sinapsiskinesiologíaintegral</p>
-                            <p className='p2Contact'>·Queens Home Deco</p>
-                            <p className='p2Contact'>·Creando.universos</p>
-                            <p className='p2Contact'>·Pijamadas_almacendesuenios</p>
-                            <p className='p2Contact'>·hocicosboutique</p>
-                            <p className='p2Contact'>·wos_espaciosverdes</p>
                         </div>
                     </div>
                 </div>
