@@ -12,10 +12,9 @@ const Detail = () => {
 
     const { id } = useParams()
 
-    const { detailProducts, getDetailProducts } = useContext(ProductContext);
+    const { detailProducts, getDetailProducts, clearSearch } = useContext(ProductContext);
     const { addProduct } = useContext(CartContext);
     const [isLoading, setIsLoading] = useState(false);
-
     const [quant, setQuantity] = useState(1);
 
     const incrementar = () => {
@@ -45,7 +44,9 @@ const Detail = () => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    const handleClear = async () => {
+        await clearSearch()
+    }
     return (
         <div className='all'>
             {!isLoading ? (
@@ -66,7 +67,7 @@ const Detail = () => {
                             </NavLink>
                             <span className={styles.p}>|</span>
                             <NavLink to='/products'>
-                                <button className={styles.firstButton} >Productos</button >
+                                <button className={styles.firstButton} onClick={handleClear}>Productos</button >
                             </NavLink>
                         </div>
 

@@ -8,19 +8,19 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../services/CartContext";
 
 const Cards = ({ product }) => {
-    const { id, image, title, price } = product;
+    const { _id, image, title, price } = product;
     const { addProduct } = useContext(CartContext);
     // eslint-disable-next-line no-unused-vars
     const [noStock, setNoStock] = useState();
-
     const sendProduct = () => {
         addProduct(product);
     };
 
+
     return (
         <div className='containerCards'>
             <Card className="mx-4 my-4 customCard">
-                <NavLink to={`/detail/${id}`} >
+                <NavLink to={`/detail/${_id}`} >
                     <Card.Img className="imageCards" variant="top" src={image} image={image} />
                 </NavLink>
                 <Card.Header className="pb-1"><Card.Title className="text-center pTitle" >{title}</Card.Title></Card.Header>
