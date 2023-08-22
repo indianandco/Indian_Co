@@ -21,8 +21,6 @@ const Container = () => {
         getAllProducts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [limit])
-    console.log("allProducts", allProducts)
-    console.log("foundProduct en el container", foundProduct)
 
     return (
         !isLoading ? (
