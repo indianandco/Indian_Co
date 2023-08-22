@@ -14,6 +14,7 @@ const Detail = () => {
 
     const { detailProducts, getDetailProducts } = useContext(ProductContext);
     const { addProduct } = useContext(CartContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [quant, setQuantity] = useState(1);
 
@@ -37,27 +38,38 @@ const Detail = () => {
     }
 
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 500);
         getDetailProducts(id);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <div className='all'>
-            {detailProducts ? (
+            {!isLoading ? (
+                <div className="loading-spinner">
+                    <Spinner animation="border" role="status" aria-hidden="true">
+                        <span className="visually-hidden">Cargando...</span>
+                    </Spinner>
+                </div>
+            ) : (
                 <div className={styles.containerDetail}>
                     <div className={styles.imageDetail}>
                         <img className={styles.imageDetails} alt="" src={detailProducts?.image}></img>
                     </div>
                     <div className={styles.containerDesc}>
                         <div className={styles.firstButtons}>
-                            <NavLink className={styles.firstButtonResponsive} to='/home'>
+                            <NavLink to='/'>
                                 <button className={styles.firstButton} >Inicio</button >
                             </NavLink>
                             <span className={styles.p}>|</span>
-                            <NavLink className={styles.firstButtonResponsive} to='/products'>
+                            <NavLink to='/products'>
                                 <button className={styles.firstButton} >Productos</button >
                             </NavLink>
                         </div>
+
                         <div className={styles.boxTitle}>
                             <h1 className={styles.productTitle}>
                                 {detailProducts?.title}
@@ -70,49 +82,48 @@ const Detail = () => {
                                 <h1 className={styles.price}>${detailProducts?.price}</h1>
                             )}
                         </div>
+
+                        <div className={styles.boxFooter}>
+                            <div className={styles.boxDesc}>
+                                <span>- {detailProducts?.description}</span>
+                            </div>
+                            {detailProducts?.size === true ? (
+                                <div className={styles.boxSize}>
+                                    <span className={styles.span}>- Tamaño: {detailProducts?.size}</span>
+                                </div>
+                            ) : (
+                                <span className={styles.span}>- Tamaño: No está definido</span>
+                            )
+                            }
+
+                        </div>
                         <div className={styles.boxAromas}>
-                            <h3 className={styles.h3Aromas}>Aromas</h3>
+                            <h3 className={styles.h3Aromas}>Fragancia:</h3>
                             <Form.Select className={styles.option}>
-                                <option className={styles.option} value="1">I</option>
-                                <option className={styles.option} value="2">II</option>
-                                <option className={styles.option} value="3">III</option>
-                                <option className={styles.option} value="4">IV</option>
-                                <option className={styles.option} value="5">V</option>
+                                <option className={styles.option} value="1">Coco</option>
+                                <option className={styles.option} value="2">Vainilla</option>
+                                <option className={styles.option} value="3">Chocolate</option>
+                                <option className={styles.option} value="4">Limón</option>
+                                <option className={styles.option} value="5">Neutro</option>
                             </Form.Select>
                         </div>
-                      <div className={styles.containCart}>
+
+                        <div className={styles.cartContainer}>
                             <div className={styles.counter}>
                                 <Button className={styles.buttonCounter} variant="light" onClick={restar}>-</Button>
-                                <span className={styles.span}>{quant}</span>
+                                <span className={styles.number}>{quant}</span>
                                 <Button className={styles.buttonCounter} variant="light" onClick={incrementar}>+</Button>
                             </div>
                             <div className={styles.boxCart}>
                                 <Button onClick={sendProductDetail} className={styles.buttonCart} variant="warning">Agregar al carrito</Button>
                             </div>
                         </div>
-                        <div className={styles.boxFooter}>
-                            {detailProducts?.size === true ? (
-                                <div className={styles.boxSize}>
-                                    <span className={styles.span}>Tamaño: {detailProducts?.size}</span>
-                                </div>
-                            ) : (
-                                <span className={styles.span}>Tamaño: No está definido</span>
-                            )
-                            }
-                            <div className={styles.boxDesc}>
-                                <span>{detailProducts?.description}</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
-            ) : (
-                <div>
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                </div>
-            )}
 
+            )
+            }
         </div>
     )
 }

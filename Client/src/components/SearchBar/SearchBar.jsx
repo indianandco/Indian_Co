@@ -23,7 +23,7 @@ const SearchBar = () => {
         }
 
         const response = await findProduct(title);
-
+console.log(response)
         if (typeof response === "string") {
             Swal.fire({
                 width: '25em',
