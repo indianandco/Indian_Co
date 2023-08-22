@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { postProductFunction } from "../utils/fetcherPost"
-import {updateProductFunction } from "../utils/fetcherPut"
+import { updateProductFunction } from "../utils/fetcherPut"
 import { fetcher } from "../utils/fetcherGet";
 
 export const ProductContext = createContext()
@@ -8,9 +8,12 @@ export const ProductContext = createContext()
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
     const [response, setResponse] = useState([]);
-    const [allProducts, setAllProducts] = useState([]);
     const [detailProducts, setDetailProducts] = useState([]);
-    const [product, setProduct] = useState([]);
+    const [foundProduct, setFoundProduct] = useState([]);
+    const [displayedProducts, setDisplayedProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
+    const [error, setError] = useState(null);
+
 
     const postProduct = async (product) => {
         const responseBack = await postProductFunction('/adminDashboard/products/create', product)
@@ -19,10 +22,10 @@ export const ProductProvider = ({ children }) => {
     }
 
     const getAllProducts = async () => {
-        const response = await fetcher(`/products`)
-        setAllProducts(response);
-        return allProducts
-    }
+        const response = await fetcher(`/products`);
+        setAllProducts(response.payload);
+        setDisplayedProducts(response.payload); 
+    };
 
     const getDetailProducts = async (id) => {
         const response = await fetcher(`/products/${id}`)
@@ -32,24 +35,40 @@ export const ProductProvider = ({ children }) => {
 
 
     const findProduct = async (title) => {
-        let response = await fetcher(`/products/search?title=${title}`)
-
-        if (typeof response.error === "string") {
-            return response.error
+        if (title === "") {
+            setDisplayedProducts(allProducts); 
+            return;
         }
+        const response = await fetcher(`/products/search?title=${title}`);
+        if(response.error){
+            setError(response.error); 
+        }else{
+            setDisplayedProducts(response);
+        }
+    };
+    
+    
+    const filterByCategory = async (category) => {
+        const response = await fetcher(`/products/category/${category}`);
+        setDisplayedProducts(response);
+    };
 
-        setProduct(response)
-        return product;
+    const clearSearch = () => {
+        setFoundProduct([]);
     }
-
-    const updateProduct= async(updateProduct, id)=>{
-        const response = await updateProductFunction(`/adminDashboard/products/update/${id}`,updateProduct)
+    const clearError = () => {
+        setError(null);
+    }
+    const updateProduct = async (updateProduct, id) => {
+        const response = await updateProductFunction(`/adminDashboard/products/update/${id}`, updateProduct)
         return response
-
     }
+
+   
+
 
     return (
-        <ProductContext.Provider value={{ product, findProduct, response, allProducts, detailProducts, getDetailProducts, postProduct, getAllProducts, updateProduct }}>
+        <ProductContext.Provider value={{clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
             {children}
         </ ProductContext.Provider >
     )

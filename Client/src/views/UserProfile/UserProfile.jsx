@@ -71,6 +71,7 @@ const UserProfile = () => {
     useEffect(() => {
         /* setUser(sessionStorage.getItem('user')); */ // Esto lo descomentamos cuando el usuario se este guardando en sessions
         setUser(userHardcode)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -226,7 +227,7 @@ const UserProfile = () => {
                             </Form.Group>
                         </Form.Group>
                         <Modal.Footer className='p-2 d-flex flex-row'>
-                            <Button style={{ width: "100%" }} onClick={() => handleClick()} size='lg' variant="primary" type="submit">
+                            <Button style={{ width: "100%" }} onClick={() => handleClick()} size='lg' variant="primary">
                                 Modificar
                             </Button>
                             <Button style={{ width: "100%" }} disabled={disabled && validated} size='lg' variant="success" type="submit">

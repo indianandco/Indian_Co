@@ -1,37 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
-/* Estilos generales */
 
 
-.containerDetail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    border-radius: 6px;
-    min-width: 100%;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    background-color: azure;
-    margin-top: 6.5em;
-    padding: 1.5rem;
-    height: 90vh;
-  }
-  
-  .imageDetail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 1rem;
-  }
-
-  .imageDetails {
-    border-radius: 6px;
-    max-width: 80%;
-    border: .5px solid black;
-    box-shadow: 0 0 20px 5px black; /* Ajusta los valores según tu preferencia */
-  }
-  
+body {
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
 .containerDesc{
     display: flex;
@@ -44,7 +19,7 @@
 
 .firstButtons{
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: row;
     width: 100%;
@@ -54,7 +29,7 @@
     position: relative;
     font-weight: bold;
     color: black;
-    background-color:azure;
+    background-color:rgb(255, 255, 255);
     padding: 10px;
     text-decoration: none;
     border: none;
@@ -83,220 +58,188 @@
     color: pink;
 }
 
-.productTitle{
+.containerDetail {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    margin: calc(3em + 90px) auto 3em auto; 
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+ 
+}
+.imageDetails {
+    border-radius: 10px;
+    width: 450px;       
+    height: 450px;    
+    object-fit: cover;
+    box-shadow: 0 0 5px black;
+}
+
+.imageDetail {
+    width: 50%;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5.5em;
-    font-size: 2.5em;
-    font-weight: 700;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    margin-bottom: .5em;
-    color: rgb(62, 18, 18);
-    text-shadow: 2px 2px 2px black;
-    width: 100%;
-    text-decoration: underline;
+    padding-right: 2em;
+    border-right: 2px dashed #eaeaea;
 }
 
-.boxPrice{
+
+.containerDesc {
+    flex: 1;
+    padding-left: 2em;
+}
+
+.productTitle {
+    font-size: 2.7em;  
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #2c3e50; 
+    text-transform: capitalize;
+}
+
+.boxPrice {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    width: 90%;
-    margin-left: 1em;
+    align-items: baseline;  
+margin-bottom: 1em;
 }
 
-.price{
-    font-weight: 1000;
-    font-size: 2em;
-}
-
-.p{
-    color: black;
-    font-weight: 1000;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    font-size: 2em;
+.price {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #001aff;
+    margin-right: 0.5em; 
 }
 
 .counter {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    border-radius: 6px;
-    border: 1px solid black;
-    padding: .1em;
-    background-color: white;
-  }
-  
-  .buttonCounter {
-    display: inline;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    margin: 0.2em;
-  }
-
-.h3Aromas{
-    font-weight: 500;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    flex-direction:row;
+    align-self: flex-start;
 }
 
-.boxAromas{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1em;
-    margin-left: 1em;
-}
-
-.option{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    background-color:#ffffff ;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    font-weight: bold;
+.buttonCounter {
+    background-color: #eaeaea;
+    border: none;
+    font-size: 0.8em;
     border: 1px solid black;
-    border-radius: 6px;
-    max-width: 5em;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
 }
 
-.span{
-    font-size: larger;
-    font-weight: bold;
-}
+.buttonCounter:hover {
+    background-color: #ddd;
 
-.containCart{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 3em;
-    margin-left: 1em;
 }
-
 .boxCart{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10em;
+    justify-content: flex-end;
+    align-items: flex-end;
+
 }
 
-.buttonCart{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 15em;
-    min-height: 3.5em; 
-    margin-left: 5em;
+
+.buttonCart {
+    background-color: #2c3e50; 
+    color: white;
+    border: none;
+    padding: 0.8em 2em;
+    border-radius: 25px;  
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px; 
+
+}
+.buttonCart:hover {
+    background-color: #515dfd;
 }
 
-.boxFooter{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    text-align: left;
+.boxFooter, .boxDesc {
+    margin-bottom: 1em;
+}
+
+.option {
+    background-color: #eaeaea;
+    border: none;
+    padding-right: 2.5em;
+    margin: 0.5em 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;  
+    border: 1px solid black;
     width: 100%;
-    margin-left: 1em;
 }
 
-.boxDesc{
+.option:hover {
+    background-color: #ddd;
+}
+
+.number{
+    font-size: 25px;
+    margin: 10px;
+}
+.cartContainer {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: .5em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    font-weight: lighter;
-    font-size: 1em;
+    flex-direction: column; 
+    align-items: flex-end; 
+    width: 100%; 
 }
+.h3Aromas{
+    font-size: 20px;
 
- /* Estilos para dispositivos móviles */
- @media screen and (max-width: 767px) {
-  
+}
+@media screen and (max-width: 767px) {
+ .imageDetail {
+        order: 0;
+        width: 100%;
+        padding: 0;
+        border-right: none;
+        margin-bottom: 1em;
+    }
+
+    .firstButtons{
+        order: 0;
+    }
+    .productTitle {
+        order: 1;
+    }
     .containerDetail {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
-        min-width: 767px;
-        margin-top: 8em;
+        margin-top: 1em;
         padding: 1em;
+        width: 95%; 
+    }
+
+   
+    .containerDesc {
+        order: 3;
     }
 
     .imageDetails {
-    border-radius: 6px;
-    max-width: 50%;
-    border: .5px solid black;
-    box-shadow: 1px 1px 50px 5px black; /* Ajusta los valores según tu preferencia */
+        width: 300px;       
+        height: 300px;
     }
 
-
-    .p {
-      font-size: 1.5em; /* Reducir el tamaño de la fuente del párrafo */
+    .productTitle {
+        font-size: 2em;
+       
     }
 
-    .price{
-        font-size: 3em;
+    .price {
+        font-size: 1.5em;
+
     }
 
-    .productTitle{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 2em;
-        font-size: 3.5em;
-        font-weight: 800;
-        font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-        margin-bottom: 1em;
-        color: rgb(62, 18, 18);
-        text-shadow: 2px 2px 2px black;
-        width: 100%;
-        text-decoration: underline;
+    .counter, .buttonCart {
+        font-size: 1em;
     }
- 
-    .firstButton {
-        display: flex;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 2em; /* Reducir el tamaño de los botones */
-        font-weight: bold;
-        color: black;
-        padding: 10px;
-    }
-    .firstButtonResponsive{
-        text-decoration: none;
-        border-radius: 1em;
-        margin-right: 4em;
-        margin-left: 4em;
-        margin-bottom: 1em;
-        margin-top: 1em;
-    }
+}
 
-    .firstButtons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        margin-top: 2.5em;
-        width: 100%;
-    }
-
-    .counter {
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 10px;
-      }
-    
-      .buttonCounter {
-        flex-direction: row;
-        align-items: center;
-        margin: 0.1em;
-      }
-  }
-  

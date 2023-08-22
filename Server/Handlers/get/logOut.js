@@ -6,7 +6,6 @@ const logOut =  async (req,res) =>{
             } else {
               console.log('Session destroyed successfully!');
               res.clearCookie('cookieToken');
-              res.redirect('/users/login');
             }
           });
         

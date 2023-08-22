@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { fetcherCreateUser } from '../../../utils/fetcherPost';
+import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
@@ -11,27 +11,54 @@ import { fetcher } from '../../../utils/fetcherGet';
 function SignIn() {
 
     const [validated, setValidated] = useState(true);
-    const [showLogin, setShowLogin] = useState(false)
+    const [showLogin, setShowLogin] = useState(false);
+    const [showRecover, setShowRecover] = useState(false);
 
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: ''
     })
+
+    const [email, setEmail] = useState({
+        email: ''
+    })
+
     const [loginError, setLoginError] = useState({
         email: 'El campo Email es requerido',
         password: 'El campo Contraseña es requerido',
     })
 
-    const handleShow = () => setShowLogin(true)
+    //----------FUNCIONES DE RECUPERAR CONTRASEÑA
+    const handleRecoverShow = () => {
+        setShowLogin(false)
+        setShowRecover(true)
+    }
 
-    const handleClose = () => {
-        setShowLogin(false);
-        setLoginForm({
-            email: '',
-            password: ''
+    const handleChangeRecover = (event) => {
+
+        const value = event.target.value
+        const name = event.target.name
+
+        setEmail({
+            ...email,
+            [name]: value
         })
     }
 
+    const handleRecoverClose = () => {
+        setShowRecover(false);
+        setEmail({
+            email: ''
+        })
+    }
+
+    const handleRecoverPassword = () => {
+        console.log("hola");
+    }
+
+
+    //-----------------FUNCIONES DE LOGIN
+    const handleShow = () => setShowLogin(true)
     const handleChange = (event) => {
 
         const value = event.target.value
@@ -52,14 +79,26 @@ function SignIn() {
         }
     }
 
-    const handleSubmit = () => {
-        fetcherCreateUser("/users/login", loginForm)
+    const handleClose = () => {
+        setLoginForm(false);
+        loginForm({
+            email: '',
+            password: ''
+        })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const response = await fetcherUserPost("/users/login", loginForm)
+        console.log(response);
+        sessionStorage.setItem('sessions', JSON.stringify(response));
         setShowLogin(false);
     }
 
     const handleAuth = (event) => {
         const data = event.target.dataset.social
-        fetcher(`/users/auth/${data}`)
+        const auth = fetcher(`/users/auth/${data}`)
+        sessionStorage.setItem('sessions', JSON.stringify(auth));
     }
 
     useEffect(() => {
@@ -71,7 +110,8 @@ function SignIn() {
             <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
                 INGRESAR
             </Button>
-
+            {//-------------------------MODAL DE LOGIN
+            }
             <Modal show={showLogin} onHide={handleClose}>
                 <Modal.Header className="pb-0" closeButton>
                     <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Ingresar como usuario</Modal.Title>
@@ -116,15 +156,47 @@ function SignIn() {
                                 Ingresar con tu cuenta
                             </Button>
                         </Modal.Footer>
+                        <Modal.Footer className='p-1'>
+                            <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
+                                Ingresar con <i className="bi bi-google"></i> Google
+                            </Button>
+                        </Modal.Footer>
                     </Form>
-                    <Modal.Footer className='p-1'>
-                        <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
-                            Ingresar con <i className="bi bi-google"></i> Google
+                    <Modal.Footer className='p-1 text-decoration-underline'>
+                        <Button style={{ width: "100%" }} data-social="google" onClick={handleRecoverShow} size='lg' variant="none">
+                            Recuperar <strong>contraseña</strong>
                         </Button>
                     </Modal.Footer>
                 </Modal.Body>
-
-            </Modal>
+            </Modal >
+            {//-------------------------MODAL DE RECUPERAR CONTRASEÑA
+            }
+            <Modal show={showRecover} onHide={handleRecoverClose}>
+                <Modal.Header className="pb-0" closeButton>
+                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Recuperar contraseña</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleRecoverPassword}>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Email:</Form.Label>
+                            <Form.Control
+                                required
+                                onChange={handleChangeRecover}
+                                name="email"
+                                value={email.email}
+                                type="text"
+                                placeholder="Ingrese el email con el que se registro"
+                                autoFocus
+                            />
+                        </Form.Group>
+                    </Form>
+                    <Modal.Footer className='p-1'>
+                        <Button style={{ width: "100%" }} type='submit' size='lg' variant="success">
+                            Enviar email para recuperar contraseña
+                        </Button>
+                    </Modal.Footer>
+                </Modal.Body>
+            </Modal >
         </>
     );
 }
