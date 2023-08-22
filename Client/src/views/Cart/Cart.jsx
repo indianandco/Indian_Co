@@ -44,6 +44,7 @@ const Cart = () => {
   };
 
   
+  
   useEffect(() => {
     loadCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
