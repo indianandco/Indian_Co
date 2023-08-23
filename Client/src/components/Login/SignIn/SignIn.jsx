@@ -71,7 +71,7 @@ function SignIn() {
 
         setLoginError((validation({ ...loginForm, [name]: value })))
 
-        if (!Object.keys((validation({ ...loginForm, [name]: value }))).length) {
+        if (!Object.keys((validation({ ...loginForm, [name]: value })))?.length) {
             setValidated(false)
         }
         else {
