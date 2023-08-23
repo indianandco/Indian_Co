@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL= "http://localhost:3001"
+const BASE_URL= "https://mere-hands-production.up.railway.app"
 
 
 export const updateProductFunction= async (endpoint, updateProduct)=>{
