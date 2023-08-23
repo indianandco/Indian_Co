@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-//Deberia guardarse como variable de entorno
-const PRIVATE_KEY = 'indianCoKey';
+const { PRIVATE_KEY } = process.env;
 
 const generateToken = async (user) => {
     const token = jwt.sign({
