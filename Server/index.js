@@ -6,9 +6,10 @@ const MongoStore = require('connect-mongo');
 //Import Passport:
 const passport = require('passport');
 const { initializePassport } = require('./config/passport.config');
+require('dotenv').config();
+const { PORT, USER, PW, DB_URL } = process.env;
 
 const server = express();
-const port = 3001;
 
 const productsRoutes = require ("./Routes/products")
 const usersRoutes = require("./Routes/users")
@@ -17,7 +18,7 @@ const cartsRoutes = require("./Routes/carts")
 
 const adminDashboard = require('./Routes/adminDashboard');
 
-const bdConnection = require('./db')
+const mongoose = require('./db');
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
@@ -34,7 +35,7 @@ server.use((req, res, next) => {
 //Configuracion express-session:
 server.use(session({
   store: MongoStore.create({
-      mongoUrl: 'mongodb+srv://admin:Patoka1503@indianandco.w5ajsr2.mongodb.net/', //Guardar en .env
+      mongoUrl: `mongodb+srv://${USER}:${PW}@${DB_URL}`,
       mongoOptions: { useNewUrlParser: true },
       ttl: 3600
      }),
@@ -54,5 +55,5 @@ server.use("/users", usersRoutes);
 server.use("/carts", cartsRoutes);
 server.use('/admindashboard', adminDashboard);
 
-server.listen(port, () => {
-console.log(`Server is running on port ${port}`)});
+server.listen(PORT, () => {
+console.log(`Server is running on port ${PORT}`)});
