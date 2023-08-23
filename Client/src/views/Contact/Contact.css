@@ -9,9 +9,6 @@
   margin-top: 8em;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
-  background-color: #DCD9D4;
- background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
- background-blend-mode: soft-light,screen;
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
   cursor: default;
   font-family: Montserrat;
@@ -40,9 +37,8 @@
     height: 100%;
     width: 25em;
     border-radius: 6px;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    box-shadow: 0.5px 1.5px 0px 0 rgb(0, 0, 0);
     font-weight: bold;
+    border: 0.5px solid black;
   }
   
   .formBox {
@@ -51,28 +47,25 @@
     align-items: center;
     min-height: 32em;
     min-width: 15em;
-    border-radius: 0.5em;
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
+    border-radius: 6px;
     width: 100%;
     height: 100%;
   }
   
   .input {
     display: inline;
-    border-radius: 0.6em;
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
-    width: 90%; /* Asegura que los campos de entrada ocupen todo el ancho disponible */
-    max-width: 20em; /* Establece un ancho máximo para los campos de entrada */
+    border-radius: 6px;
+    width: 90%;
+    max-width: 20em;
   }
   
   .input1 {
     display: inline;
     min-height: 3em;
     max-height: 10em;
-    border-radius: 0.6em;
-    box-shadow: 0.5 0.5em 0.5em 0 rgba(255, 255, 255, 0.611);
-    width: 90%; /* Asegura que los campos de entrada ocupen todo el ancho disponible */
-    max-width: 20em; /* Establece un ancho máximo para los campos de entrada */
+    border-radius: 6px;
+    width: 90%;
+    max-width: 20em;
   }
   
   .send {
@@ -96,7 +89,7 @@
     background-color: #ffffff5b;
     color: #000;
     font-weight: bold;
-    transform: scale(1.12);
+    transform: scale(1.1);
   }
   
   .send svg {
