@@ -53,6 +53,22 @@ export const ProductProvider = ({ children }) => {
         setDisplayedProducts(response);
     };
 
+    const sortProducts=async(prop)=>{
+        const response = await fetcher(`/products?sort=${prop}`)
+        setDisplayedProducts(response.payload)
+    }
+    const offerProducts=async(prop)=>{
+        if(prop ==="true"){
+            const filtered= allProducts.filter((product)=>{
+                return product.offer === true})
+                setDisplayedProducts(filtered)
+        }else if (prop ==="false"){
+            const filtered= allProducts.filter((product)=>{
+                return product.offer === false})
+                setDisplayedProducts(filtered)
+        }
+    }
+
     const clearSearch = () => {
         setFoundProduct([]);
     }
@@ -68,7 +84,7 @@ export const ProductProvider = ({ children }) => {
 
 
     return (
-        <ProductContext.Provider value={{clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
+        <ProductContext.Provider value={{offerProducts,sortProducts,clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
             {children}
         </ ProductContext.Provider >
     )
