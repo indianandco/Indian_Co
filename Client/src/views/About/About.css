@@ -44,20 +44,7 @@
     color: rgb(255, 255, 255);
     font-size: clamp(0.5em, 4vw, 2em);
   }
-  
-  /* Media Query para dispositivos móviles */
-  @media (max-width: 768px) {
-    .header {
-      min-height: 20em;
-      max-height: auto;
-      margin-top: 22em;
-    }
-    
-    .title {
-        max-width: 100%;
-        height: auto;
-    }
-  }
+
 
 .footerAbout {
     display: flex;
@@ -136,17 +123,6 @@
     margin: 3em;
 }
 
-/* Media Query para dispositivos móviles */
-@media (max-width: 768px) {
-.box-1 {
-    max-width: 100%; /* Eliminamos el ancho máximo para que ocupe todo el ancho en dispositivos móviles */
-    margin-right: 0; /* Eliminamos el margen derecho para que ocupe todo el ancho en dispositivos móviles */
-}
-.box-3 {
-    margin: 1em;
-    margin-top: 0;
-}
-}
 
 .img {
     max-width: 300px;
@@ -161,11 +137,6 @@
     background-repeat: no-repeat;
 }
 
-@media only screen and (max-width: 600px) {
-    .img {
-        max-width: 100%; /* La imagen ocupará todo el ancho disponible */
-    }
-}
 .textTitle {
     font-size: 35px;
     text-align: start;
@@ -191,11 +162,9 @@
 
 /* Estilos para pantallas más pequeñas, como dispositivos móviles */
 @media only screen and (max-width: 600px) {
-
     .img {
         max-width: 100%; /* La imagen ocupará todo el ancho disponible */
     }
-
     .textTitle {
         font-size: 35px;
         text-align: start;
@@ -203,7 +172,6 @@
         color: white;
         text-align: center !important ;
     }
-
     .h4About{
         font-size: 35px;
         text-align: start;
@@ -211,7 +179,6 @@
         color: white;
         text-align: center !important ;
     }
-
     .pAbout {
         font-size: 20px;
         text-align: start;
@@ -222,13 +189,28 @@
         font-size: 15px; /* Tamaño de fuente más pequeño para títulos en pantallas pequeñas */
         text-align: center !important ;
     }
-
     .pAbout {
         font-size: 10px; /* Tamaño de fuente más pequeño para párrafos en pantallas pequeñas */
     }
-
     .h4About{
         font-size: 15px;
         text-align: center !important ;
+    }
+    .header {
+        min-height: 20em;
+        max-height: auto;
+        margin-top: 22em;
+    }
+    .title {
+          max-width: 100%;
+          height: auto;
+    }
+    .box-1 {
+        max-width: 100%; /* Eliminamos el ancho máximo para que ocupe todo el ancho en dispositivos móviles */
+        margin-right: 0; /* Eliminamos el margen derecho para que ocupe todo el ancho en dispositivos móviles */
+    }
+    .box-3 {
+        margin: 1em;
+        margin-top: 0;
     }
 }
