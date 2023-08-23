@@ -86,54 +86,7 @@ const initializePassport = () =>{
             return done(`Error al loguear usuario, ${error}`);
         }
     }));
-    
-// //Login con Facebook:
-//     passport.use('facebook', new FacebookStrategy({
-//         //Necesitamos el acceso al id y secreto de fb.
-//         //Acceder como variables de entorno
 
-//         clientID: '699066058726054', 
-//         clientSecret: '60bbf1124c11fab806f737772b4b25d7',
-//         callbackURL: "http://localhost:3001/users/auth/facebook/callback", //Cambiar la Url
-//         profileFields: ['first_name', 'last_name', 'email', 'birthday', 'gender', 'hometown']
-//     },
-//     async function(accessToken, refreshToken, profile, done) {
-//         try {
-//             //Revisar la informacionque trae el profile
-//             console.log(profile);
-//             const user = await userModel.findOne({ email: profile.email });
-//             // userModel.findOne({ email: profile.email }, function (err, user) {
-//             // return cb(err, user);
-//             // });
-//             if(!user) {
-//                 const newUser = {
-//                     //rellenar con los datos, que envie el profile
-//                     first_name: profile._json.first_name, 
-//                     last_name: profile._json.last_name,
-//                     email,
-//                     gender,
-//                     birthdate,
-//                     address,
-//                     zipcode,
-//                     city,
-//                     phone,
-//                     age,
-//                     password: ''
-//                 };
-//                 const result = await userModel.create( newUser );
-                
-//                 console.log(`El usuario con el mail: ${user.email} se registro con 'facebook`);
-
-//                 return done(null, result);
-//             } else {
-//                 console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
-//                 return done(null, user);
-//             };
-//         } catch (error) {
-//             console.log(`${error}`);
-//             return done(error)
-//         };
-//     }));
 
 //Login con Google:
     // passport.use('google', new GoogleStrategy({

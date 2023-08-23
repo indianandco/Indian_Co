@@ -1,11 +1,28 @@
 /* CSS */
-.search_container {
-    display: flex;
-    align-items: center;
-
-    height: 0em;
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.canva{
+  margin-top: calc(3em + 68px);
+  border-radius: 0px 15px 0px 0px;
+}
+.filtros {
+margin-bottom: 20px;
+}
+.filterButton {
+  position: fixed;
+  top: calc(3em + 68px);
+  left: 0;
+  z-index: 999; 
+  width: 50px;  
+  height: 50px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 15px 0px 0px; 
+}
 .search_item {
   padding: 10px;
   border-radius: 6px;

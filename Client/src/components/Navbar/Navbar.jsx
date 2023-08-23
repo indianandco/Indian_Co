@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./NavBar.css";
+import "./Navbar.css";
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navbar from 'react-bootstrap/Navbar';

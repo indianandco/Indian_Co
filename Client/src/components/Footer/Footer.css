@@ -1,14 +1,14 @@
 .footer_container {
-    background-image: url('https://d1di2lzuh97fh2.cloudfront.net/files/4c/4c5/4c5fs8.jpg?ph=e7cd32bc42');
-    border-top: 2px solid black;
+    background-color: rgb(41, 41, 41);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     border-radius: 2px;
     padding: 1em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    font-family: Montserrat;
     margin-top: 1em;
+    cursor: default;
 }
 
 .left_container {
@@ -48,8 +48,14 @@
     height: auto;
 }
 
-.icon {
+.iconIg {
     font-size: 2em;
+    margin-right: .5em;
+    color: #DD2A7B;
+}
+.iconWpp{
+    font-size: 2em;
+    color: #25D366;
 }
 
 .icon_container {
@@ -65,24 +71,16 @@
     width: 100%;
     padding: 5px;
     color: rgb(189, 189, 189);
-    border-bottom: 0.5px solid rgb(189, 189, 189);
-}
-
-.modals:hover {
-    color: #4B5320;
-    border-bottom: 0.5px solid #4B5320;
 }
 
 .menu {
     color: rgb(255, 255, 255);
     margin-bottom:1rem;
-    border-bottom: 3px solid #3a1001ad;
 }
 
 .info {
     color: rgb(255, 255, 255);
     margin-bottom:1rem;
-    border-bottom: 3px solid #3a1001ad;
 }
 
 .links_container {
@@ -94,15 +92,33 @@
 }
 
 .links {
-    text-decoration: none;
     width: 100%;
     padding: 5px;
     color: rgb(189, 189, 189);
-    border-bottom: 0.5px solid rgb(189, 189, 189);
+    position: relative;
+    font-style:normal;
+    font-weight: 300;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.links:hover {
+    color: rgb(91, 91, 91);
+  }
+
+.links:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    bottom: 1px; 
+    min-height: 1px;
+    width: 0%;
+    transition: 0.3s;
 }
 
-.links:hover {
-    color: #4B5320;
+.links:hover:after{
+    width: 100%;
 }
 
 .footerContact{

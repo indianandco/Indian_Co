@@ -1,5 +1,7 @@
 const mercadopago = require('mercadopago');
 const { getCartByIdController } = require('../../Controllers/get/getCartByIdController');
+require('dotenv').config();
+const { MP_TOKEN } = process.env;
 
 const paymentMP = async (req,res) =>{
     try {
@@ -14,7 +16,7 @@ const paymentMP = async (req,res) =>{
 
 
         mercadopago.configure({
-            access_token: 'APP_USR-8308714918569828-081010-cf3aca25b863259f0ccc2d1e01c46b97-1446032450'
+            access_token: MP_TOKEN
         });
 
 
@@ -28,9 +30,9 @@ const paymentMP = async (req,res) =>{
               }
             ],
             back_urls: {
-              success: "http://localhost:3001/carts/purchase/success",
-              failure: "http://localhost:3001/carts/purchase/failure",
-              pending: "http://localhost:3001/carts/purchase/pending"
+              success: "https://mere-hands-production.up.railway.app/carts/purchase/success",
+              failure: "https://mere-hands-production.up.railway.app/carts/purchase/failure",
+              pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
             },
             notification_url: "https://7b28-2803-9800-9016-aefa-5c23-8b7e-c4fb-a596.ngrok.io/carts/purchase/webhook",
 
