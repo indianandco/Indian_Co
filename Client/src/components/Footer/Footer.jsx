@@ -18,8 +18,11 @@ const Footer = () => {
                 <img className="imageFooter" src="logo.png" alt="IndianCO" />
                 <p>Ayudamos que a través de los aromas sientas que todos tus días son únicos y exclusivos.</p>
                 <div className="icon_container">
-                    <NavLink to={"https://www.instagram.com/indianandco/"} className={"icon"}>
+                    <NavLink to={"https://www.instagram.com/indianandco/"} className={"iconIg"}>
                         <i className="bi bi-instagram" width="321" height="321"></i>
+                    </NavLink>
+                    <NavLink to={'https://wa.me/5491134424505'} className={"iconWpp"}>
+                        <i className="bi bi-whatsapp"></i>
                     </NavLink>
                 </div>
                 <div className="footerContact">
@@ -41,8 +44,7 @@ const Footer = () => {
                 <div className="right_container">
                     <h1 className="info">Información</h1>
                     <div className="links_container">
-                        <button className="modals" onClick={handleShow} >¿Cómo Comprar?</button>
-                        <button className="modals" onClick={handleShow} >Lorem ipsu</button>
+                        <button className="modals links" onClick={handleShow} >¿Cómo Comprar?</button>
                     </div>
                 </div>
             </div>
