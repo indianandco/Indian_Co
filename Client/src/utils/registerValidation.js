@@ -30,7 +30,7 @@ const validation = (form) =>{
         errors.password = 'El campo Contraseña es requerido';
       } else if (form.password.length < 6) {
         errors.password = 'La Contraseña debe tener al menos 6 caracteres';
-      } else if (numberRegex.test(form.password) || wordRegex.test(form.password)) {
+      } else if (numberRegex.test(form.password) || wordRegex.test(form?.password)) {
         errors.password = 'La Contraseña debe contener al menos una letra y un número';
       }
 
