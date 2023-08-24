@@ -12,10 +12,10 @@ const Contact = () => {
 
     const handleChange = (event) => {
         setTicket((prevTicket) => ({
-          ...prevTicket,
-          [event.target.name]: event.target.value
+            ...prevTicket,
+            [event.target.name]: event.target.value
         }));
-      };
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,11 +23,11 @@ const Contact = () => {
 
     return (
         <div className='allContact'>
-                <form className='form' onSubmit={handleSubmit}>
-                    <div className='formBox'>
-                        <div className='form-1'>
-                            <label>Nombre completo</label>
-                            <input
+            <form className='form' onSubmit={handleSubmit}>
+                <div className='formBox'>
+                    <div className='form-1'>
+                        <label>Nombre completo</label>
+                        <input
                             required
                             autoComplete='off'
                             className="input"
@@ -37,11 +37,11 @@ const Contact = () => {
                             value={ticket.name}
                             name='name'
                             placeholder="Ingrese su nombre..."
-                            />
-                        </div>
-                        <div className='form-2'>
-                            <label>Email</label>
-                            <input
+                        />
+                    </div>
+                    <div className='form-2'>
+                        <label>Email</label>
+                        <input
                             required
                             className="input"
                             type='email'
@@ -49,11 +49,11 @@ const Contact = () => {
                             name='email'
                             onChange={handleChange}
                             placeholder="Ingrese su email..."
-                            />
-                        </div>
-                        <div className='form-2'>
-                            <label>Hace tu consulta</label>
-                            <textarea
+                        />
+                    </div>
+                    <div className='form-2'>
+                        <label>Hace tu consulta</label>
+                        <textarea
                             required
                             className="input1"
                             autoComplete='off'
@@ -63,13 +63,13 @@ const Contact = () => {
                             name='description'
                             onChange={handleChange}
                             placeholder="Ingrese su consulta..."
-                            />
-                        </div>
-                        <div>
-                            <button className='send' onClick={(e) => handleSubmit(e)}>ENVIAR</button>
-                        </div>
+                        />
                     </div>
-                </form>
+                    <div>
+                        <button className='send' onClick={(e) => handleSubmit(e)}>ENVIAR</button>
+                    </div>
+                </div>
+            </form>
             <div className='footer'>
                 <div className='desc'>
                     <div className='smallBox'>

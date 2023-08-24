@@ -17,16 +17,16 @@ import { useEffect, useState } from 'react';
 function App() {
 
 
-const location = useLocation();
-const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('role'));
+  const location = useLocation();
+  const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('role'));
 
-useEffect(()=>{
-const role=sessionStorage.getItem('role')
-setIsAdmin(role)
-},[isAdmin])
+  useEffect(() => {
+    const role = sessionStorage.getItem('role')
+    setIsAdmin(role)
+  }, [isAdmin])
 
   return (
-    <div>
+    <>
 
       {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
 
@@ -34,10 +34,10 @@ setIsAdmin(role)
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
-        {isAdmin === 'admin' &&(
-           <Route path='/dashboardadmin' element={<DashboardAdmin />} />
+        {isAdmin === 'admin' && (
+          <Route path='/dashboardadmin' element={<DashboardAdmin />} />
         )}
-       
+
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
@@ -45,8 +45,8 @@ setIsAdmin(role)
       </Routes>
 
       {location.pathname !== "/dashboardadmin" && <Footer />}
-      
-    </div>
+
+    </>
   )
 }
 
