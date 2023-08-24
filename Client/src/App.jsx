@@ -20,7 +20,7 @@ function App() {
 
 
   return (
-    <div>
+    <>
 
       {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
 
@@ -35,9 +35,9 @@ function App() {
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
-      <Footer></Footer>
-      
-    </div>
+      {location.pathname !== ("/*" && "/dashboardadmin") && <Footer></Footer>}
+
+    </>
   )
 }
 
