@@ -1,17 +1,18 @@
-/* CSS */
-.search_container {
-    display: flex;
-    align-items: center;
+ .search_container {
+  display: flex;
+  align-items: center;
+  width: 40em;
 
-    height: 0em;
+}
+.resetBoton, .buscarBoton{
+  font-size: 16px;
+ 
 }
 
-.search_item {
-  padding: 10px;
-  border-radius: 6px;
-}
 
-/* Media Query para dispositivos móviles */
+
+/*
+
 @media screen and (max-width: 768px) {
   .search_container {
     display: flex;
@@ -24,7 +25,7 @@
 
   .search_item {
     margin: 4px;
-    font-size: 12px; /* Ajustamos el tamaño de fuente en pantallas más pequeñas */
-    padding: 5px; /* Ajustamos el padding en pantallas más pequeñas */
+    font-size: 12px;
+    padding: 5px; 
   }
-}
+}  */

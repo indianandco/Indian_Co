@@ -43,16 +43,16 @@ const Cart = () => {
     }
   };
 
-  
-  
+
+
   useEffect(() => {
     loadCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
+
   //OPCIONES DE ENVIO y PAGO
   const [selectedShippingOption, setSelectedShippingOption] = useState('');
-  const [selectedPaymentMethodOpt,setselectedPaymentMethodOpt] = useState('')
+  const [selectedPaymentMethodOpt, setselectedPaymentMethodOpt] = useState('')
   const [showBanner, setShowBanner] = useState(false);
   const [showShippingInfo, setShowShippingInfo] = useState(false)
 
@@ -60,7 +60,7 @@ const Cart = () => {
     setSelectedShippingOption(event.target.value);
     setShowShippingInfo(true)
   };
-  const handlePaymentMethod = (event) =>{
+  const handlePaymentMethod = (event) => {
     setselectedPaymentMethodOpt(event.target.value);
     setShowBanner(true);
   };
@@ -165,104 +165,104 @@ const Cart = () => {
               <Row className={styles.container}>
                 <Col xs={12} md={12} lg={7} className={styles.subTotalColumn}>
                   <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                      <Row className="mb-3">
-                        <h2 className="text-center">DETALLES DE FACTURACIÓN</h2>
-                        <Form.Group as={Col} md="6" controlId="validationCustom01">
-                          <Form.Label>Nombre/s</Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="nombre"
-                          />
-                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="6" controlId="validationCustom02">
-                          <Form.Label>Apellido/s</Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="apellido"
-                          />
-                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                      </Row>
-                      <Row className="mb-3">
-                        <Form.Group>
-                          <Form.Label>Dirección de correo electrónico</Form.Label>
-                              <Form.Control
-                                  required
-                                  name="email"
-                                  type="email"
-                                  placeholder="ejemplo@ejemplo.com.ar"
-                                  autoFocus
-                              />
-                        </Form.Group>
-                      </Row>
-                      <Row className="mb-3">
-                        <Form.Group as={Col} md="6" controlId="validationCustom02">
-                          <Form.Label>Teléfono Personal</Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="ej: 1122334455"
-                          />
-                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                      </Row>
-                      <hr />
-                    { showShippingInfo && ( selectedShippingOption === "envio" ?
-                    <>
-                      <Row className="mb-3">
-                        <h3 className="text-center">DATOS DE ENVÍO</h3>
-                        <Form.Group as={Col} md="6" controlId="validationCustom03">
-                          <Form.Label>Ciudad</Form.Label>
-                          <Form.Control type="text" placeholder="ciudad" required />
-                          <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="3" controlId="validationCustom04">
-                          <Form.Label>Provincia</Form.Label>
-                          <Form.Control type="text" placeholder="provincia" required />
-                          <Form.Control.Feedback type="invalid">
-                            Please provide a valid state.
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="3" controlId="validationCustom05">
-                          <Form.Label>Código Postal</Form.Label>
-                          <Form.Control type="text" placeholder="codigo postal" required />
-                          <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Row>
-                      <Row className="mb-3">
-                        <Form.Group as={Col} md="12" controlId="validationCustom05">
-                          <Form.Label>Dirección de entrega</Form.Label>
+                    <Row className="mb-3">
+                      <h2 className="text-center">DETALLES DE FACTURACIÓN</h2>
+                      <Form.Group as={Col} md="6" controlId="validationCustom01">
+                        <Form.Label>Nombre/s</Form.Label>
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="nombre"
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      </Form.Group>
+                      <Form.Group as={Col} md="6" controlId="validationCustom02">
+                        <Form.Label>Apellido/s</Form.Label>
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="apellido"
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group>
+                        <Form.Label>Dirección de correo electrónico</Form.Label>
+                        <Form.Control
+                          required
+                          name="email"
+                          type="email"
+                          placeholder="ejemplo@ejemplo.com.ar"
+                          autoFocus
+                        />
+                      </Form.Group>
+                    </Row>
+                    <Row className="mb-3">
+                      <Form.Group as={Col} md="6" controlId="validationCustom02">
+                        <Form.Label>Teléfono Personal</Form.Label>
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="ej: 1122334455"
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      </Form.Group>
+                    </Row>
+                    <hr />
+                    {showShippingInfo && (selectedShippingOption === "envio" ?
+                      <>
+                        <Row className="mb-3">
+                          <h3 className="text-center">DATOS DE ENVÍO</h3>
+                          <Form.Group as={Col} md="6" controlId="validationCustom03">
+                            <Form.Label>Ciudad</Form.Label>
+                            <Form.Control type="text" placeholder="ciudad" required />
+                            <Form.Control.Feedback type="invalid">
+                              Please provide a valid city.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                          <Form.Group as={Col} md="3" controlId="validationCustom04">
+                            <Form.Label>Provincia</Form.Label>
+                            <Form.Control type="text" placeholder="provincia" required />
+                            <Form.Control.Feedback type="invalid">
+                              Please provide a valid state.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                          <Form.Group as={Col} md="3" controlId="validationCustom05">
+                            <Form.Label>Código Postal</Form.Label>
+                            <Form.Control type="text" placeholder="codigo postal" required />
+                            <Form.Control.Feedback type="invalid">
+                              Please provide a valid zip.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                          <Form.Group as={Col} md="12" controlId="validationCustom05">
+                            <Form.Label>Dirección de entrega</Form.Label>
                             <div className="d-flex justify-content-evenly">
                               <Form.Control className="me-1" type="text" placeholder="Av Mitre 5850 " required />
-                              <Form.Control className="ms-1" type="text" placeholder="Apartamento, habitacion, etc(OPCIONAL)"/>
+                              <Form.Control className="ms-1" type="text" placeholder="Apartamento, habitacion, etc(OPCIONAL)" />
                             </div>
-                          <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Row>
-                      <hr />
-                    </>
+                            <Form.Control.Feedback type="invalid">
+                              Please provide a valid zip.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                        <hr />
+                      </>
                       : <></>)
-                      }
-                      <Row className="mb-3">
-                        <Form.Group>
+                    }
+                    <Row className="mb-3">
+                      <Form.Group>
                         <Form.Label>Notas del pedido (opcional)</Form.Label>
                         <Form.Control
                           as="textarea"
                           placeholder="Deja tu comentario aca"
                           style={{ height: '100px' }}
-                          />
-                        </Form.Group>
-                      </Row>
-                    </Form> 
+                        />
+                      </Form.Group>
+                    </Row>
+                  </Form>
                 </Col>
                 <Col xs={12} md={12} lg={5}>
                   <div className={styles.subTotalColumn}>
@@ -284,80 +284,80 @@ const Cart = () => {
                       <b>Opciones de Envío:</b>
                       <label>
                         <input
-                        type="radio"
-                        value="envio"
-                        checked={selectedShippingOption === 'envio'}
-                        onChange={handleShippingChange}
+                          type="radio"
+                          value="envio"
+                          checked={selectedShippingOption === 'envio'}
+                          onChange={handleShippingChange}
                         /> Envío por correo
                       </label>
-                    
+
                       <label>
                         <input
-                        type="radio"
-                        value="punto_encuentro"
-                        checked={selectedShippingOption === 'punto_encuentro'}
-                        onChange={handleShippingChange}
+                          type="radio"
+                          value="punto_encuentro"
+                          checked={selectedShippingOption === 'punto_encuentro'}
+                          onChange={handleShippingChange}
                         /> Punto de encuentro
                       </label>
                     </div>
-                      <hr />
+                    <hr />
                     <div className={styles.checkbox}>
                       <b>Opciones de Pago: </b>
                       <label>
                         <input
-                        type="radio"
-                        value="MercadoPago"
-                        checked={selectedPaymentMethodOpt === 'MercadoPago'}
-                        onChange={handlePaymentMethod}
+                          type="radio"
+                          value="MercadoPago"
+                          checked={selectedPaymentMethodOpt === 'MercadoPago'}
+                          onChange={handlePaymentMethod}
                         /> Mercado Pago <img src="/mpLogos/mercadopagoLogo.png" alt="" />
                       </label>
-                      
+
                       <label>
                         <input
-                        type="radio"
-                        value="TransferenciaBancaria"
-                        checked={selectedPaymentMethodOpt === 'TransferenciaBancaria'}
-                        onChange={handlePaymentMethod}
+                          type="radio"
+                          value="TransferenciaBancaria"
+                          checked={selectedPaymentMethodOpt === 'TransferenciaBancaria'}
+                          onChange={handlePaymentMethod}
                         /> Transferencia Bancaria
                       </label>
                     </div>
-                      <hr />
+                    <hr />
                     {showBanner && (
                       <div className={styles.checkbox}>
-                          {selectedPaymentMethodOpt === "MercadoPago" ?
+                        {selectedPaymentMethodOpt === "MercadoPago" ?
                           <>
                             <div className={styles.bannerMp}>
                               <p className={styles.bannerMp_Title}>Inicia sesión en Mercado Pago y obtén beneficios</p>
                               <div className={styles.bannerMp_benefitList}>
-                                  <div className={styles.bannerMp_benefitList_Item}>
-                                    <img className={styles.bannerMp_benefitList_logo} src="/mpLogos/blue-wallet.png" alt="" />
-                                    <div>
-                                      <p className={styles.bannerMp_benefitList_p_title}>Paga rápido</p>
-                                      <p className={styles.bannerMp_benefitList_p_subTitle}>Usa tu dinero disponible o tarjetas guardadas.</p>
-                                    </div>
+                                <div className={styles.bannerMp_benefitList_Item}>
+                                  <img className={styles.bannerMp_benefitList_logo} src="/mpLogos/blue-wallet.png" alt="" />
+                                  <div>
+                                    <p className={styles.bannerMp_benefitList_p_title}>Paga rápido</p>
+                                    <p className={styles.bannerMp_benefitList_p_subTitle}>Usa tu dinero disponible o tarjetas guardadas.</p>
                                   </div>
-                                  <div className={styles.bannerMp_benefitList_Item}>
+                                </div>
+                                <div className={styles.bannerMp_benefitList_Item}>
                                   <img className={styles.bannerMp_benefitList_logo} src="/mpLogos/blue-phone-installments.png" alt="" />
-                                    <div>
-                                      <p className={styles.bannerMp_benefitList_p_title}>Accede a cuotas</p>
-                                      <p className={styles.bannerMp_benefitList_p_subTitle}>Paga con o sin tarjeta de crédito.</p>
-                                    </div>
+                                  <div>
+                                    <p className={styles.bannerMp_benefitList_p_title}>Accede a cuotas</p>
+                                    <p className={styles.bannerMp_benefitList_p_subTitle}>Paga con o sin tarjeta de crédito.</p>
                                   </div>
-                                  <div className={styles.bannerMp_benefitList_Item}>
-                                    <img className={styles.bannerMp_benefitList_logo} src="/mpLogos/blue-protection.png" alt="" />
-                                    <div>
-                                      <p className={styles.bannerMp_benefitList_p_title}>Compra con confianza</p>
-                                      <p className={styles.bannerMp_benefitList_p_subTitle}>Recibe ayuda si tienes algún problema con tu compra.</p>
-                                    </div>
+                                </div>
+                                <div className={styles.bannerMp_benefitList_Item}>
+                                  <img className={styles.bannerMp_benefitList_logo} src="/mpLogos/blue-protection.png" alt="" />
+                                  <div>
+                                    <p className={styles.bannerMp_benefitList_p_title}>Compra con confianza</p>
+                                    <p className={styles.bannerMp_benefitList_p_subTitle}>Recibe ayuda si tienes algún problema con tu compra.</p>
                                   </div>
+                                </div>
                               </div>
                               <div className={styles.bannerMp_redirect}>
-                              <i class="bi bi-lock-fill"></i>
+                                <i className="bi bi-lock-fill"></i>
                                 <p >Al continuar, te llevaremos a Mercado Pago para completar tu compra de forma segura.</p>
                               </div>
-                              
+
                             </div>
-                            <p className={styles.bannerMp_benefitList_p_subTitle}>Al continuar, aceptas nuestros <a href="https://www.mercadopago.com.ar/ayuda/terminos-y-politicas_194" target='_blank'>Términos y condiciones</a>.</p>
+                            <p className={styles.bannerMp_benefitList_p_subTitle}>Al continuar, aceptas nuestros <a href="https://www.mercadopago.com.ar/ayuda/terminos-y-politicas_194" target='_blank' rel="noreferrer">Términos y condiciones</a>.</p>
                           </>
                           : <i>Realiza tu pago directamente en nuestra cuenta bancaria. Por favor, usa el número del pedido como referencia de pago. y envía el comprobante a ventas@indianandco.com.ar . Tu pedido no se procesará hasta que se haya recibido el importe en nuestra cuenta.</i>}
                       </div>
