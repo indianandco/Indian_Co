@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 
-/* CSS */
 .allContact {
   display: flex;
   justify-content: space-evenly;
@@ -12,106 +11,108 @@
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.147);
   cursor: default;
   font-family: Montserrat;
+  background-color: white;
   width: 100%;
+}
+  
+.h3Contact {
+  font-weight: bold;
+  color: black;
+  font-size: clamp(0.2em, 2vw, 1.25em);
+}
+
+.h1Contact {
+  font-weight: bold;
+  color: black;
+  font-size: clamp(0.5em, 4vw, 2em);
   }
   
-  .h3Contact {
-    font-weight: bold;
-    color: black;
-    font-size: clamp(0.2em, 2vw, 1.25em);
-  }
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0.5em;
+  color: black;
+  height: 100%;
+  width: 25em;
+  border-radius: 6px;
+  font-weight: bold;
+  border: 0.5px solid black;
+  background-color: rgb(250, 250, 250);
+}
   
-  .h1Contact {
-    font-weight: bold;
-    color: black;
-    font-size: clamp(0.5em, 4vw, 2em);
-  }
+.formBox {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  min-height: 32em;
+  min-width: 15em;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+}
   
-  .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0.5em;
-    color: black;
-    height: 100%;
-    width: 25em;
-    border-radius: 6px;
-    font-weight: bold;
-    border: 0.5px solid black;
-  }
+.input {
+  display: inline;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 20em;
+}
   
-  .formBox {
-    display: inline;
-    justify-content: center;
-    align-items: center;
-    min-height: 32em;
-    min-width: 15em;
-    border-radius: 6px;
-    width: 100%;
-    height: 100%;
-  }
+.input1 {
+  display: inline;
+  min-height: 3em;
+  max-height: 10em;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 20em;
+}
+
+.send {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5em;
+  background-color: #000000;
+  color: #fff;
+  width: 90%;
+  height: 2em;
+  border: #ffffff 0.1em solid;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.6s ease;
+}
   
-  .input {
-    display: inline;
-    border-radius: 6px;
-    width: 90%;
-    max-width: 20em;
-  }
+.send:hover {
+  background-color: #ffffff5b;
+  color: #000;
+  font-weight: bold;
+  transform: scale(1.1);
+}
   
-  .input1 {
-    display: inline;
-    min-height: 3em;
-    max-height: 10em;
-    border-radius: 6px;
-    width: 90%;
-    max-width: 20em;
-  }
+.send svg {
+  width: 1.6em;
+  margin: -0.2em 0.8em 1em;
+  position: absolute;
+  display: flex;
+  transition: all 0.6s ease;
+}
   
-  .send {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5em;
-    background-color: #000000;
-    color: #fff;
-    width: 90%;
-    height: 2em;
-    border: #ffffff 0.1em solid;
-    border-radius: 6px;
-    text-align: center;
-    transition: all 0.6s ease;
-  }
+.send:hover svg {
+  transform: translateX(0.5em);
+}
   
-  .send:hover {
-    background-color: #ffffff5b;
-    color: #000;
-    font-weight: bold;
-    transform: scale(1.1);
-  }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
   
-  .send svg {
-    width: 1.6em;
-    margin: -0.2em 0.8em 1em;
-    position: absolute;
-    display: flex;
-    transition: all 0.6s ease;
-  }
-  
-  .send:hover svg {
-    transform: translateX(0.5em);
-  }
-  
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .form-1 {
+.form-1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,21 +122,19 @@
 }
 
 .form-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 1em;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
   
-  .desc {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width: 15em;
-  }
-
+.desc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start !important;
+  flex-direction:column !important;
+  width: 25em;
+}
 
 .pContact,
 .p1Contact,
@@ -144,7 +143,6 @@
 .h6Contact {
   display: flex;
   color: black;
-  /* Tamaño de fuente mínimo y máximo */
   font-size: clamp(10px, 2vw, 20px);
 }
 
@@ -158,23 +156,32 @@
 }
 
 .smallBox {
-  display: block;
-  margin-bottom: 0;
+  display: flex;
 }
 
-/* Media Query para dispositivos móviles */
 @media (max-width: 1140px) {
   .allContact{
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 1em;
+  }
+  .desc{
+    margin-top: .5em;
+    width: 15em;
+  }
+  .smallBox {
+    display: flex;
+    width: 15em;
+    height: .5em;
   }
   .form{
     width: 15em;
   }
   .input,
   .input1 {
-    max-width: 100%; /* Eliminamos el ancho máximo para que los campos de entrada ocupen todo el ancho en dispositivos móviles */
+    max-width: 100%;
   }
   .h1Contact{
     text-align: center !important ;

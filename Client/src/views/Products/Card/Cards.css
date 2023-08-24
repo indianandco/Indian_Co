@@ -1,7 +1,5 @@
-/* Cards.css */
-
 .customCard {
-    width: 100%; /* Tamaño fijo para todas las cartas */
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -12,17 +10,16 @@
 }
 
 .addToCart {
-    margin-top: auto;/* Alinear el botón en la parte inferior */
+    margin-top: auto;
     bottom: 0;
 }
-
 
 .containerCards {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  max-width: 100%; /* Adjusted maximum width */
-  box-shadow: 0 1px 25px 0 rgb(0, 0, 0);
+  max-width: 100%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   margin: 2em;
   border-radius: 6px;
   width: 18em;
@@ -34,42 +31,14 @@
 
 .imageCards {
   height: 15em;
-  width: 15em; /* Adjusted image width */
-  object-fit: cover; /* La imagen de fondo cubrirá todo el contenedor */
+  width: 15em; 
+  object-fit: cover;
   object-position: center;
   background-repeat: no-repeat;
 }
 .pTitle {
   font-size: 15px;
-  white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
-  overflow: hidden; /* Ocultar cualquier exceso de texto que no quepa en la línea */
-  text-overflow: ellipsis; /* Agregar puntos suspensivos si el texto está recortado */
-}
-
-
-@media (max-width: 768px) {
-  .containerCards .mx-4 {
-    display: inline;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 20em;
-    height: auto;
-    padding: 4em; /* Added padding for spacing */
-  }
-  
-  .imageCards {
-    width: 25em;
-    height: 25em;
-    object-fit: cover;
-    margin-bottom: 1em; /* Added margin for spacing */
-  }
-
-  .addToCart{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
