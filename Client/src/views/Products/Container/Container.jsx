@@ -59,8 +59,7 @@ const Container = () => {
         ) : (
             <div>
                 <div className="containerSearch">
-
-                    < SearchBar />
+                    < SearchBar className='SearchBar' />
                     <div className="categoriaFiltro">
                         <Dropdown >
                             <Dropdown.Toggle id="dropdown-categoria" className="botonCategoria">

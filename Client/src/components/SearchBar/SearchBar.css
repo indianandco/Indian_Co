@@ -9,23 +9,16 @@
  
 }
 
-
-
-/*
-
 @media screen and (max-width: 768px) {
   .search_container {
     display: flex;
     justify-content: center; 
     align-items: center;
-    flex-wrap: wrap;
-    width: 90%;
-   
+    margin: auto;
+    width: 22em;
   }
 
   .search_item {
-    margin: 4px;
     font-size: 12px;
-    padding: 5px; 
   }
-}  */
+} 
