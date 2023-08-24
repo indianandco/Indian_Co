@@ -16,6 +16,8 @@ const NavBar = () => {
 
     const { cart } = useContext(CartContext);
     let [cartLength, setCartLength] = useState(null)
+    const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('role'));
+
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
@@ -24,13 +26,16 @@ const NavBar = () => {
     const handleLogOut = () => {
         fetcher("/users/logout")
         sessionStorage.clear();
-    }
+        setIsAdmin(null);
+    };
 
 
     useEffect(() => {
         setCartLength(cart?.length)
+         const role = sessionStorage.getItem('role')
+        setIsAdmin(role)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cart])
+    }, [cart,isAdmin])
 
     return (
         <div>
@@ -64,8 +69,11 @@ const NavBar = () => {
                             </div>
 
                             <NavLink onClick={() => handleLogOut()} className="buttons" to="/">SALIR</NavLink>
+                            {
+                                isAdmin === 'admin' &&
+                                <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>
+                            }
 
-                            <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>
 
                         </Nav>
                     </Navbar.Collapse>
