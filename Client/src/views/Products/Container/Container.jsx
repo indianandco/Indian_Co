@@ -59,7 +59,7 @@ const Container = () => {
         ) : (
             <div>
                 <div className="containerSearch">
-                    <div>
+                    <div className="SearchProducts">
                         < SearchBar className='SearchBar' />
                     </div>
                     <div className="categoriaFiltro">

@@ -72,6 +72,13 @@
         margin: auto;
         width: 100%;
     }
+    .SearchProducts{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 100%;
+    }
 
     .botonFiltro, .botonCategoria {
         width: 100%; 
