@@ -71,7 +71,7 @@ function SignIn() {
 
         setLoginError((validation({ ...loginForm, [name]: value })))
 
-        if (!Object.keys((validation({ ...loginForm, [name]: value }))).length) {
+        if (!Object.keys((validation({ ...loginForm, [name]: value })))?.length) {
             setValidated(false)
         }
         else {
@@ -80,7 +80,7 @@ function SignIn() {
     }
 
     const handleClose = () => {
-        loginForm({
+        setShowLogin({
             email: '',
             password: ''
         })
@@ -90,7 +90,7 @@ function SignIn() {
         event.preventDefault()
         const response = await fetcherUserPost("/users/login", loginForm)
         sessionStorage.setItem('sessions', JSON.stringify(response));
-          sessionStorage.setItem('role',response.role)
+        sessionStorage.setItem('role', response.role)
         setShowLogin(false);
     }
 
@@ -98,7 +98,7 @@ function SignIn() {
         const data = event.target.dataset.social
         const auth = fetcher(`/users/auth/${data}`)
         sessionStorage.setItem('sessions', JSON.stringify(auth));
-      
+
     }
 
     useEffect(() => {
