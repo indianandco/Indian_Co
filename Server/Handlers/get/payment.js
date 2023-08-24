@@ -28,9 +28,8 @@ const payment = async (req, res) => {
           },
         ],
         back_urls: {
-          success: "http://localhost:3001/carts/purchase/success",
-          failure:
-            "https://mere-hands-production.up.railway.app/carts/purchase/failure",
+          success: "https://mere-hands-production.up.railway.app/carts/purchase/success",
+          failure: "https://mere-hands-production.up.railway.app/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
         auto_return: "approved",
