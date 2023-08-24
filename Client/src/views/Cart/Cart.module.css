@@ -38,7 +38,8 @@
     border-radius: 6px;
     min-height: 18rem;
     height: fit-content;
-    max-width: fit-content ;
+    min-width: fit-content ;
+
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
     display: flex;
     flex-direction: column;
@@ -96,9 +97,8 @@
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673); 
 
     width: 100%;
-    height: 6rem;
+    height:7.5rem;
 }
-
 
 .imgColumn {
    padding: 0;
@@ -120,6 +120,14 @@
     justify-content: flex-start;
     flex-flow: column nowrap;
     padding-left: 1rem ;
+}
+
+.tarjeta_titulo{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+    margin: 0;
 }
 
 .counterCart {
@@ -298,6 +306,12 @@
         align-items: center;
         justify-content: center;
     }
+
+    .subTotalColumn {
+        min-width: fit-content ;
+    }  
+
+
     .tarjeta_contenido {
         padding-left: 0.2rem ;
     }
