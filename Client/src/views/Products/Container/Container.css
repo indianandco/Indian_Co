@@ -67,17 +67,16 @@
   @media screen and (max-width: 768px) {
     .containerSearch {
         flex-direction: column; 
+        max-width: 380px;
     }
 
     .botonFiltro, .botonCategoria {
         width: 100%; 
         margin-top: 10px; 
- 
     }
 
     .categoriaFiltro {
-        gap: 10px; 
-        justify-content: flex-start;
-        width: 90%;
+        justify-content: center;
+        width: 380px;
     }
 }
