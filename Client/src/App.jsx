@@ -35,7 +35,7 @@ function App() {
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
-      <Footer></Footer>
+      {location.pathname !== "/dashboardadmin" && <Footer />}
       
     </div>
   )
