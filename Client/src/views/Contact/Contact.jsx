@@ -83,7 +83,7 @@ const Contact = () => {
                     <div className='smallBox'>
                         <h6 className='h6Contact'>Contacto</h6>
                         <p className='pContact'>indianandco09@gmail.com</p>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
