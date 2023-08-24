@@ -66,8 +66,11 @@
 
   @media screen and (max-width: 768px) {
     .containerSearch {
+        justify-content: center;
+        align-items: center;
         flex-direction: column; 
-        max-width: 380px;
+        margin: auto;
+        width: 100%;
     }
 
     .botonFiltro, .botonCategoria {
