@@ -80,14 +80,14 @@ function SignIn() {
     }
 
     const handleClose = () => {
-        setShowLogin({
+        setShowLogin(false);
+        setLoginForm({
             email: '',
             password: ''
         })
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const handleSubmit = async () => {
         const response = await fetcherUserPost("/users/login", loginForm)
         sessionStorage.setItem('sessions', JSON.stringify(response));
         sessionStorage.setItem('role', response.role)
