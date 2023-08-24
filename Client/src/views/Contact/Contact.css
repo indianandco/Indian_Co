@@ -127,17 +127,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 1em;
   }
   
   .desc {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width: 15em;
+    justify-content: flex-start;
+    align-items: flex-start !important;
+    flex-direction:column !important;
+    width: 25em;
   }
-
 
 .pContact,
 .p1Contact,
@@ -146,7 +144,6 @@
 .h6Contact {
   display: flex;
   color: black;
-  /* Tamaño de fuente mínimo y máximo */
   font-size: clamp(10px, 2vw, 20px);
 }
 
@@ -160,16 +157,26 @@
 }
 
 .smallBox {
-  display: block;
-  margin-bottom: 0;
+  display: flex;
 }
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 1140px) {
   .allContact{
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 1em;
+  }
+  .desc{
+    margin-top: .5em;
+    width: 15em;
+  }
+  .smallBox {
+    display: flex;
+    width: 15em;
+    height: .5em;
   }
   .form{
     width: 15em;

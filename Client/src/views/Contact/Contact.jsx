@@ -72,22 +72,18 @@ const Contact = () => {
                 </form>
             <div className='footer'>
                 <div className='desc'>
-                    <div className='box'>
-                        <div className='box-1'>
-                            <div className='smallBox'>
-                                <h6 className='h6Contact'>Visitanos</h6>
-                                <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
-                            </div>
-                            <div className='smallBox'>
-                                <h6 className='h6Contact'>Abierto</h6>
-                                <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
-                            </div>
-                            <div className='smallBox'>
-                                <h6 className='h6Contact'>CONTACTO</h6>
-                                <p className='pContact'>indianandco09@gmail.com</p>
-                            </div>
-                        </div>
+                    <div className='smallBox'>
+                        <h6 className='h6Contact'>Visitanos</h6>
+                        <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
                     </div>
+                    <div className='smallBox'>
+                        <h6 className='h6Contact'>Abierto</h6>
+                        <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
+                    </div>
+                    <div className='smallBox'>
+                        <h6 className='h6Contact'>Contacto</h6>
+                        <p className='pContact'>indianandco09@gmail.com</p>
+                </div>
                 </div>
             </div>
         </div>
