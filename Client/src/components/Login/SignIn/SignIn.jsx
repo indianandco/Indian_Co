@@ -80,8 +80,8 @@ function SignIn() {
     }
 
     const handleClose = () => {
-        setLoginForm(false);
-        loginForm({
+        setShowLogin(false);
+        setLoginForm({
             email: '',
             password: ''
         })
