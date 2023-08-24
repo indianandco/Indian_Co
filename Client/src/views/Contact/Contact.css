@@ -130,7 +130,7 @@
   
   .desc {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     width: 15em;
@@ -166,7 +166,7 @@
 @media (max-width: 1140px) {
   .allContact{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     margin-bottom: 1em;
   }
   .form{

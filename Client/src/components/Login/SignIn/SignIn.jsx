@@ -90,8 +90,8 @@ function SignIn() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const response = await fetcherUserPost("/users/login", loginForm)
-        console.log(response);
         sessionStorage.setItem('sessions', JSON.stringify(response));
+        sessionStorage.setItem('role', response.role)
         setShowLogin(false);
     }
 
@@ -99,6 +99,7 @@ function SignIn() {
         const data = event.target.dataset.social
         const auth = fetcher(`/users/auth/${data}`)
         sessionStorage.setItem('sessions', JSON.stringify(auth));
+
     }
 
     useEffect(() => {
