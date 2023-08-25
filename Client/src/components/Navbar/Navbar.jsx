@@ -11,12 +11,13 @@ import { CartContext } from "../../services/CartContext";
 import SignIn from "../Login/SignIn/SignIn";
 import UserProfile from "../../views/UserProfile/UserProfile";
 import { fetcher } from "../../utils/fetcherGet";
+import { AuthContext } from "../../services/AuthContext";
 
 const NavBar = () => {
 
     const { cart } = useContext(CartContext);
     let [cartLength, setCartLength] = useState(null)
-    const [user, setUser] = useState(undefined);
+    const { user, setUser } = useContext(AuthContext);
 
 
     const scrollToTop = () => {
@@ -31,9 +32,6 @@ const NavBar = () => {
 
     useEffect(() => {
         setCartLength(cart?.length)
-        const role = JSON.parse(sessionStorage.getItem('sessions'))
-        setUser(role)
-        console.log(user);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, user])
 

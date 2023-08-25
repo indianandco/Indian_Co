@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from "../services/AuthContext";
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoutes = ({ children }) => {
 
-    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("sessions")))
-
-    useEffect(() => {
-        setUser(JSON.parse(sessionStorage.getItem("sessions")))
-    }, [user])
+    const { user } = useContext(AuthContext);
 
     if (user?.role !== "admin") {
         return <Navigate to="/" />

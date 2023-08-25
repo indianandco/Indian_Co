@@ -11,19 +11,11 @@ import NotFound from './views/Error/NotFound';
 import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
 import Cart from './views/Cart/Cart'
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from 'react';
 import ProtectedRoutes from './utils/ProtectedRoutes';
-
 
 function App() {
 
-
   const location = useLocation();
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    setUser(JSON.parse(sessionStorage.getItem('sessions')))
-  }, [user])
 
   return (
     <>
