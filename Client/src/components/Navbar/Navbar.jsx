@@ -16,7 +16,7 @@ const NavBar = () => {
 
     const { cart } = useContext(CartContext);
     let [cartLength, setCartLength] = useState(null)
-    const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('role'));
+    const [user, setUser] = useState(undefined);
 
 
     const scrollToTop = () => {
@@ -26,16 +26,16 @@ const NavBar = () => {
     const handleLogOut = () => {
         fetcher("/users/logout")
         sessionStorage.clear();
-        setIsAdmin(null);
+        setUser(null);
     };
-
 
     useEffect(() => {
         setCartLength(cart?.length)
-         const role = sessionStorage.getItem('role')
-        setIsAdmin(role)
+        const role = JSON.parse(sessionStorage.getItem('sessions'))
+        setUser(role)
+        console.log(user);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cart,isAdmin])
+    }, [cart, user])
 
     return (
         <div>
@@ -59,22 +59,17 @@ const NavBar = () => {
                                 </NavLink>
                             </div>
                             <div>
-                                <SignIn></SignIn>
+                                {!user && <SignIn></SignIn>}
                             </div>
                             <div>
-                                <SignUp></SignUp>
+                                {!user && <SignUp></SignUp>}
                             </div>
                             <div>
-                                <UserProfile></UserProfile>
+                                {(user?.role === "user") && <UserProfile></UserProfile>}
                             </div>
 
                             <NavLink onClick={() => handleLogOut()} className="buttons" to="/">SALIR</NavLink>
-                            {
-                                isAdmin === 'admin' &&
-                                <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>
-                            }
-
-
+                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
