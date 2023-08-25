@@ -1,9 +1,14 @@
 
-/* CSS */
 .allAbout {
     font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
   }
-  
+  .remodelado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15em;
+    font-size: 30px;
+  }
   .headerAbout {
     display: flex;
     justify-content: center;
@@ -100,7 +105,6 @@
     display: flex;
     margin-bottom: 1em;
     color: rgb(255, 255, 255);
-    /* Tamaño de fuente mínimo y máximo */
     font-size: clamp(10px, 2vw, 20px);
 }
 
@@ -133,7 +137,7 @@
     display: flex;
     min-height: 15em;
     background-image: url('../../../public/HeaderAbout.jpg');
-    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -160,10 +164,9 @@
     line-height: normal;
 }
 
-/* Estilos para pantallas más pequeñas, como dispositivos móviles */
 @media only screen and (max-width: 600px) {
     .img {
-        max-width: 100%; /* La imagen ocupará todo el ancho disponible */
+        max-width: 100%;
     }
     .textTitle {
         font-size: 35px;
@@ -186,11 +189,11 @@
         line-height: normal;
     }
     .textTitle {
-        font-size: 15px; /* Tamaño de fuente más pequeño para títulos en pantallas pequeñas */
+        font-size: 15px;
         text-align: center !important ;
     }
     .pAbout {
-        font-size: 10px; /* Tamaño de fuente más pequeño para párrafos en pantallas pequeñas */
+        font-size: 10px;
     }
     .h4About{
         font-size: 15px;
@@ -206,8 +209,8 @@
           height: auto;
     }
     .box-1 {
-        max-width: 100%; /* Eliminamos el ancho máximo para que ocupe todo el ancho en dispositivos móviles */
-        margin-right: 0; /* Eliminamos el margen derecho para que ocupe todo el ancho en dispositivos móviles */
+        max-width: 100%;
+        margin-right: 0;
     }
     .box-3 {
         margin: 1em;
