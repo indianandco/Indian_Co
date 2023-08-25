@@ -11,19 +11,11 @@ import NotFound from './views/Error/NotFound';
 import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
 import Cart from './views/Cart/Cart'
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from 'react';
-
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 function App() {
 
-
   const location = useLocation();
-  const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('role'));
-
-  useEffect(() => {
-    const role = sessionStorage.getItem('role')
-    setIsAdmin(role)
-  }, [isAdmin])
 
   return (
     <>
@@ -34,10 +26,12 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
-        {isAdmin === 'admin' && (
-          <Route path='/dashboardadmin' element={<DashboardAdmin />} />
-        )}
-
+        <Route path='/dashboardadmin' element={
+          <ProtectedRoutes>
+            <DashboardAdmin />
+          </ProtectedRoutes>
+        }
+        />
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
