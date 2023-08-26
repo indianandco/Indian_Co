@@ -29,6 +29,7 @@ const Footer = () => {
                         </NavLink>
                     </div>
                 </div>
+
                 <div className="mid_container">
                     <h1 className="menu">Menu</h1>
                     <div className="links_container">
