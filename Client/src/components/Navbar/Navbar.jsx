@@ -40,7 +40,7 @@ const NavBar = () => {
             <div className="nav_container">
                 <Navbar fixed="top" collapseOnSelect expand="lg" className="navbar">
                     <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
-                        <img className="logo" src="/logo.png" alt="logo" />
+                        <img className="logo" src="/logo-principal.png" alt="Indian&Co" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
