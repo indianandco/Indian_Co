@@ -39,16 +39,16 @@ const NavBar = () => {
         <div>
             <div className="nav_container">
                 <Navbar fixed="top" collapseOnSelect expand="lg" className="navbar">
-                    <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
-                        <img className="logo" src="/logo-principal.png" alt="Indian&Co" />
-                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                        <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
+                            <img className="logo" src="/logo-principal.png" alt="Indian&Co" />
+                        </Navbar.Brand>
                         <Nav className="justify-content-end p-4 ">
-                            <NavLink onClick={scrollToTop} className="buttons" to="/">INICIO</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/contact">CONTACTO</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/about">SOBRE NOSOTROS</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/products">PRODUCTOS</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/">Inicio</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/contact">Contacto</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/about">Sobre nosotros</NavLink>
+                            <NavLink onClick={scrollToTop} className="buttons" to="/products">Productos</NavLink>
                             <div>
                                 <NavLink onClick={scrollToTop} className="cart_button" to="/cart">
                                     <Badge badgeContent={cartLength} color="secondary" className="buttons">
@@ -66,8 +66,8 @@ const NavBar = () => {
                                 {(user?.role === "user") && <UserProfile></UserProfile>}
                             </div>
 
-                            <NavLink onClick={() => handleLogOut()} className="buttons" to="/">SALIR</NavLink>
-                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">DASHBOARD</NavLink>}
+                            <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>
+                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

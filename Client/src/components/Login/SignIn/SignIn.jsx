@@ -113,7 +113,7 @@ function SignIn() {
     return (
         <>
             <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
-                INGRESAR
+                Ingresar
             </Button>
             {//-------------------------MODAL DE LOGIN
             }

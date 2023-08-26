@@ -73,7 +73,7 @@ function SignUp() {
     return (
         <>
             <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
-                REGISTRARSE
+                Registrarse
             </Button>
 
             <Modal show={show} onHide={handleClose}>

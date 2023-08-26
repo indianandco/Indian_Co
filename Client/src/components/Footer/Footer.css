@@ -83,12 +83,14 @@
 
 .menu {
     color: rgb(255, 255, 255);
+    border-bottom: 2px solid white;
     margin-bottom:1rem;
 }
 
 .info {
     color: rgb(255, 255, 255);
     margin-bottom:1rem;
+    border-bottom: 2px solid white;
 }
 
 .links_container {
