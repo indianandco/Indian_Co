@@ -18,6 +18,7 @@ const NavBar = () => {
     const { cart } = useContext(CartContext);
     let [cartLength, setCartLength] = useState(null)
     const { user, setUser } = useContext(AuthContext);
+    const [scrolled, setScrolled] = useState(false);
 
 
     const scrollToTop = () => {
@@ -31,6 +32,22 @@ const NavBar = () => {
     };
 
     useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 1) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
         setCartLength(cart?.length)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, user])
@@ -38,36 +55,36 @@ const NavBar = () => {
     return (
         <div>
             <div className="nav_container">
-                <Navbar fixed="top" collapseOnSelect expand="lg" className="navbar">
+                <Navbar fixed="top" collapseOnSelect expand="lg" className={scrolled ? "navbar_scrolled" : "navbar"}>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
-                            <img className="logo" src="/logo-principal.png" alt="Indian&Co" />
+                            <img className={scrolled ? "logo_scrolled" : "logo"} src="/logo-principal.png" alt="Indian&Co" />
                         </Navbar.Brand>
                         <Nav className="justify-content-end p-4 ">
-                            <NavLink onClick={scrollToTop} className="buttons" to="/">Inicio</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/contact">Contacto</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/about">Sobre nosotros</NavLink>
-                            <NavLink onClick={scrollToTop} className="buttons" to="/products">Productos</NavLink>
+                            <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/">Inicio</NavLink>
+                            <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/contact">Contacto</NavLink>
+                            <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/about">Sobre nosotros</NavLink>
+                            <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/products">Productos</NavLink>
                             <div>
                                 <NavLink onClick={scrollToTop} className="cart_button" to="/cart">
-                                    <Badge badgeContent={cartLength} color="secondary" className="buttons">
-                                        <ShoppingCart color="action" />
+                                    <Badge badgeContent={cartLength} color="secondary" className={scrolled ? "buttons_scrolled" : "buttons"}>
+                                        <ShoppingCart />
                                     </Badge>
                                 </NavLink>
                             </div>
                             <div>
-                                {!user && <SignIn></SignIn>}
+                                {!user && <SignIn scrolled={scrolled}></SignIn>}
                             </div>
                             <div>
-                                {!user && <SignUp></SignUp>}
+                                {!user && <SignUp scrolled={scrolled}></SignUp>}
                             </div>
                             <div>
                                 {(user?.role === "user") && <UserProfile></UserProfile>}
                             </div>
 
-                            <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>
-                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
+                            <NavLink onClick={() => handleLogOut()} className={scrolled ? "buttons_scrolled" : "buttons"} to="/">Salir</NavLink>
+                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/dashboardadmin">Dashboard</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
