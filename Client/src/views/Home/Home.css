@@ -4,7 +4,6 @@
     color: rgb(0, 0, 0);
 }
 .banners_container {
-    margin: 0.5em;
     height: 100%;
     width: 100%;
 }
@@ -22,9 +21,8 @@
     align-items: center;
     flex-direction: column;
     text-align: center !important;
-    background-color: rgba(0, 0, 0, 0.59);
+    background-color: rgb(0, 0, 0);
     padding: 1em;
-    border: 1px solid wheat;
     color: white;
 }
 .SubTitleHome{
@@ -73,12 +71,7 @@
     margin: 1em;
     width: 100%;
 }
-.imageHome{
-    width: 400px;
-    height: 400px;
-    border-radius: 6px;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
-}
+
 .ContainerBoxHome{
     display: flex;
     justify-content: center;
