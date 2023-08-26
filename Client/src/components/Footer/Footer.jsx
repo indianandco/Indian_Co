@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer_container" >
             <div className="mid-right_container">
                 <div className="left_container">
-                    <h1>Redes</h1>
+                    <h1 className="menu">Redes</h1>
                     <div className="icon_container">
                         <NavLink to={"https://www.instagram.com/indianandco/"} className={"iconIg"}>
                             <i className="bi bi-instagram" width="321" height="321"></i>
