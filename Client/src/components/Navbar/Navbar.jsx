@@ -15,13 +15,11 @@ import { AuthContext } from "../../services/AuthContext";
 
 const NavBar = () => {
 
-
     const location = useLocation();
     const { cart } = useContext(CartContext);
     let [cartLength, setCartLength] = useState(null)
     const { user, setUser } = useContext(AuthContext);
     const [scrolled, setScrolled] = useState(false);
-
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
@@ -35,7 +33,7 @@ const NavBar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 200 || location.pathname === "/") {
+            if (window.scrollY > 200) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
@@ -47,21 +45,22 @@ const NavBar = () => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        setCartLength(cart?.length)
+        setCartLength(cart?.lengt)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, user])
 
     return (
         <div>
             <div className="nav_container">
-                <Navbar fixed="top" collapseOnSelect expand="lg" className={scrolled ? "navbar_scrolled" : "navbar"}>
+                <Navbar fixed="top" collapseOnSelect expand="lg" className={location.pathname === "/" ? scrolled ? "navbar_scrolled" : "navbar" : "navbar_scrolled"}>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
-                            <img className={scrolled ? "logo_scrolled" : "logo"} src="/logo-principal.png" alt="Indian&Co" />
+                            <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
                         </Navbar.Brand>
                         <Nav className="justify-content-end p-1">
                             <NavLink onClick={scrollToTop} className="buttons" to="/">Inicio</NavLink>
