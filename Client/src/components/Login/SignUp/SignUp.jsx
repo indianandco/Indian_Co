@@ -8,7 +8,7 @@ import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
 // eslint-disable-next-line react/prop-types
-function SignUp({ scrolled }) {
+function SignUp() {
 
     const [validated, setValidated] = useState(true);
     const [show, setShow] = useState(false)
@@ -72,7 +72,7 @@ function SignUp({ scrolled }) {
 
     return (
         <>
-            <Button variant="none" className={scrolled ? "buttons_scrolled d-flex justify-content-start" : "buttons d-flex justify-content-start"} onClick={handleShow}>
+            <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
                 Registrarse
             </Button>
 

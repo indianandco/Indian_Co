@@ -67,8 +67,8 @@
   }
 
    .logo {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     padding: 0;
     margin: 0;
   }
@@ -80,9 +80,8 @@
   .navbar {
     display: flex;
     align-items:center;
-    min-height: 6em;
     background-color: rgba(255, 255, 255, 0);
-    transition: background-color 0.7s ease;
+    transition: background-color 0.7s ease,height 1s ease;
   }
 
   .nav_container {
@@ -94,21 +93,10 @@
   .navbar_scrolled {
     margin: 0;
     display: flex;
-    height: 1em;
+    height: auto;
     justify-content:space-evenly;
     background-color: black;
-  }
-
-  .buttons_scrolled {
-    position: relative;
-    font-style:normal;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: rgb(255, 255, 255);
-    padding: 10px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: font-size 0.7s ease;
+    transition: background-color 0.7s ease,height 1s ease;
   }
 
   @media (max-width: 768px) {
