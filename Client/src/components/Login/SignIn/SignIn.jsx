@@ -9,7 +9,7 @@ import { fetcher } from '../../../utils/fetcherGet';
 import { AuthContext } from '../../../services/AuthContext';
 
 // eslint-disable-next-line react/prop-types
-function SignIn({ scrolled }) {
+function SignIn() {
 
     const { setUser } = useContext(AuthContext);
     const [validated, setValidated] = useState(true);
@@ -112,7 +112,7 @@ function SignIn({ scrolled }) {
 
     return (
         <>
-            <Button variant="none" className={scrolled ? "buttons_scrolled d-flex justify-content-start" : "buttons d-flex justify-content-start"} onClick={handleShow}>
+            <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
                 Ingresar
             </Button>
             {//-------------------------MODAL DE LOGIN
