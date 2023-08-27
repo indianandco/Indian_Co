@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer_container" >
             <div className="mid-right_container">
                 <div className="left_container">
-                    <h1 className="menu">Redes</h1>
+                    <h2 className="redes">Redes</h2>
                     <div className="icon_container">
                         <NavLink to={"https://www.instagram.com/indianandco/"} className={"iconIg"}>
                             <i className="bi bi-instagram" width="321" height="321"></i>
@@ -31,7 +31,7 @@ const Footer = () => {
                 </div>
 
                 <div className="mid_container">
-                    <h1 className="menu">Menu</h1>
+                    <h2 className="menu">Menu</h2>
                     <div className="links_container">
                         <NavLink className="links" to={"/home"} >Inicio</NavLink>
                         <NavLink className="links" to={"/products"} >Productos</NavLink>
@@ -41,7 +41,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="right_container">
-                    <h1 className="info">Información</h1>
+                    <h2 className="info">Información</h2>
                     <div className="links_container">
                         <button className="modals links" onClick={handleShow} >¿Cómo Comprar?</button>
                     </div>
