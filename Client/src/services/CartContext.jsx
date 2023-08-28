@@ -79,6 +79,16 @@ export const CartProvider = ({ children }) => {
   };
 
 
+  
+  const numberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+  const applyCustomFormat = (value, formatterFunction) => {
+    const formattedValue = formatterFunction(value);
+    return formattedValue;
+  };
+
+
   useEffect(() => {
     if (cart.length > 0) {
       saveCartData();
@@ -86,7 +96,7 @@ export const CartProvider = ({ children }) => {
   }, [cart])
 
   return (
-    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalPerItem }}>
+    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalPerItem, numberWithCommas, applyCustomFormat }}>
       {children}
     </CartContext.Provider>
   )

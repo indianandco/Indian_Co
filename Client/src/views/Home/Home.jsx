@@ -1,5 +1,7 @@
 import "./Home.css"
 import { NavLink } from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel';
+import Image from 'react-bootstrap/Image';
 
 const Home = () => {
 
@@ -10,17 +12,38 @@ const Home = () => {
     return (
         <div className="home_container">
             <div className="banners_container">
-                <NavLink to="/products" className="Link">
-                    <div className="BannerHome1">
-                        <div className="PaddingTitleHome">
-                            <div className="titleHome">
-                                <h3 className="SubTitleHome">100% NATURAL</h3>
-                                <h1 className="TitleHome">Armonización Decoración & Diseño</h1>
-                                <p className="TextHome">¡Asegurá tu bienestar con nuestros únicos aromas 100% naturales!</p>
-                            </div>
-                        </div>
-                    </div>
-                </NavLink>
+                <Carousel>
+                    <Carousel.Item interval={5000}>
+                        <NavLink to="/products" className="Link">
+                            <Image src="carrousel1.png" fluid />
+                        </NavLink>
+                        <Carousel.Caption>
+                            <h3>First slide label</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item interval={5000}>
+                        <Image src="carrousel2.png" fluid />
+                        <Carousel.Caption>
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item interval={5000}>
+                        <Image src="carrousel3.png" fluid />
+                        <Carousel.Caption>
+                            <h3>Third slide label</h3>
+                            <p>
+                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                            </p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+                <div className="titleHome">
+                    <h3 className="SubTitleHome">100% NATURAL</h3>
+                    <h1 className="TitleHome">Armonización Decoración & Diseño</h1>
+                    <p className="TextHome">¡Asegurá tu bienestar con nuestros únicos aromas 100% naturales!</p>
+                </div>
                 <NavLink to="/products" className="Link" onClick={scrollToTop}>
                     <div className="BannerHome2">
                         <div className="ContainerBannerHome2">
@@ -73,7 +96,7 @@ const Home = () => {
                     </div>
                 </NavLink>
             </div>
-        </div>
+        </div >
     )
 }
 

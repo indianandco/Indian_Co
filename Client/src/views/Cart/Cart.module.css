@@ -1,37 +1,37 @@
-.container {
+.columna1 {
     min-height: 90vh;
+    width: 100%;
     height: fit-content;
-    display: flex;
-     
-    
-    padding: 3rem;
-}
-
-.emptyCart {
-    margin: auto;
-    border-radius: 6px;
-    border: 1px solid black;
-    padding: 0rem 2.5rem 1.5rem 2.5rem;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
-    background-color: rgba(255, 194, 82, 0.078);
-};
-
-
-.cart_prueba {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    min-height: 50.5rem;
-    height: fit-content;
-    width: fit-content;
-    min-width: 28rem;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);
+   
+    flex-flow: row nowrap;
+    
+    padding: 1.5rem;
 }
+
+
+.cartProducts{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formStyles {
+    margin-top: 2.5rem;
+    border-radius: 6px;
+    min-height: 18rem;
+    height: fit-content;
+
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
+    display: flex;
+    flex-direction: column;
+    align-items: none; 
+    justify-content: space-around; 
+    padding: 0.5rem;
+    padding-bottom: .7rem;  
+}  
 
 .subTotalColumn {
     margin-top: 2.5rem;
@@ -39,7 +39,6 @@
     min-height: 18rem;
     height: fit-content;
     min-width: fit-content ;
-
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673);   
     display: flex;
     flex-direction: column;
@@ -83,7 +82,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-between;
+  
     border-bottom: 1px solid rgba(0, 0, 0, 0.311);
     border-radius: 6px;
 
@@ -91,12 +90,10 @@
     margin-bottom: 0.4rem;
 
     padding: 5px 0.5rem;
-
-    margin-right: 1.5rem;
     background-color: rgba(255, 194, 82, 0.078);
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673); 
 
-    width: 100%;
+    
     height:7.5rem;
 }
 
@@ -119,7 +116,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-flow: column nowrap;
-    padding-left: 1rem ;
+    margin-left: .5rem;
 }
 
 .tarjeta_titulo{
@@ -154,6 +151,10 @@
 
 .buttonCounterCart > b {
     font-size: larger;
+}
+
+.deleteButton {
+    padding-right: 1.5rem;
 }
 
 .banner {
@@ -224,7 +225,7 @@
     text-align: left !important;
 }
 
-.bannerMp_benefitList_p_subTitle:last-child {
+.bannerMp_TermnsCondition {
     margin-top: .2rem;
     text-align: center !important;
 }
@@ -269,25 +270,28 @@
 
 
 @media (max-width: 1200px){
-    .container {
+    .container1 {
         padding: .5rem;
+        flex-flow: row wrap;
     }
 
-    .cart_prueba {
-        width: 100%;
+    .cartContainer {
+        width: 50rem;
+        background-color: aqua;
     }
 
     .tarjeta {
-        max-width: 100%;
-        margin-right: 0px;
+        width: 100%;
+        max-width: 90%;
+        margin-right: 0px !important;
     }
 
     .tarjeta_contenido {
-        padding-left: 1.5rem ;
+        padding-left: .5rem ;
     }
 
     .deleteButton {
-        margin-right: 1rem;
+        padding-right: 1.5rem;
     }
 
     .tarjeta_imagen{
@@ -296,15 +300,19 @@
         margin-left: 0.10rem;
         padding: 0;
     }
+
+    .subTotalColumn {
+        width: 100%;
+        max-width: 90%;
+    }
 }
 
 
 @media (max-width: 792px) {
 
-    .container {
+    .container1 {
         padding: .5rem;
-        align-items: center;
-        justify-content: center;
+        width: fit-content;
     }
 
     .subTotalColumn {
@@ -314,6 +322,7 @@
 
     .tarjeta_contenido {
         padding-left: 0.2rem ;
+        margin-left: 0rem;
     }
 
     .tarjeta_titulo{
@@ -330,6 +339,63 @@
     .tarjeta_imagen {
         display: none;
     }
+
+
+    .bannerMp{
+        padding: .2rem;
+        margin: 0.2rem;
+    }
+    .bannerMp_benefitList_Item > div{
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .bannerMp_benefitList_p_subTitle{
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .bannerMp_redirect{
+        display: flex;
+        align-items: space-around;
+        justify-content: space-around;
+        font-size: 10px;
+        padding: 10px 2px;
+    }
+    .bannerMp_redirect >p {
+        margin: 0;
+        text-align: left;
+    }
+
+
+
+
+}
+
+@media (max-width: 450px){
+    .subTotalColumn{
+        width: 20%;
+        max-width: 90%;
+    }
+
+    .bannerMp_TermnsCondition {
+        font-size: 12px;
+        margin-bottom: .2rem;
+    }
+
+    .bannerMp_redirect{
+        padding: 0;
+        min-height: fit-content !important;
+    }
+    .bannerMp_redirect > i {
+        display: none;
+    }
+
+    .bannerMp_redirect >p {
+        text-align: center;
+        max-width: 100%;
+    }
+
 }
 
 
