@@ -29,7 +29,7 @@
     font-size: 30px;    
 }
 .TitleHome{
-    font-size: 50px;
+    font-size: 25px;
 }
 .TextHome{
     font-size: 20px;
@@ -48,26 +48,37 @@
     background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
     background-repeat: no-repeat;
     margin-bottom: 2em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
 }
 .BannerHome2{
     display: flex;
-    min-height: 40em;
-    border-radius: 6px;
-    border: 0.1px solid black;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
+    flex-direction:row;
+    justify-content: flex-end;
     background-image: url('../../../public/BannerHome2.png');
     cursor: pointer;
+    margin-bottom: 1em;
     background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
     background-repeat: no-repeat;
-    margin-bottom: 2em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+}
+
+.iconStyle{
+    font-size: 40px;
+}
+
+.iconsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 3em;
+}
+
+.text_container {
+    display: flex;
+    flex-direction: column;
 }
 .ContainerBannerHome2{
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex-direction: row;
     margin: 1em;
     width: 100%;
 }
@@ -77,23 +88,29 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 50em;
+    width: 40em;
     text-align: center !important;
+    margin-top: 1em;
+    margin-right: 100px;
 }
+
+.border-bottom {
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.571);
+}
+
 .SubTitleHome2{
     font-size: 30px;
     color: black; 
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);   
 }
 .TitleHome2{
-    font-size: 50px;
-    color: black; 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);  
+    font-size: 25px;
+    color: black;  
 }
 .TextHome2{
-    font-size: 20px;
+    font-size: 15px;
     color: black;  
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); 
+    font-weight: 500;
 }
 .BannerHome3{
     display: flex;
@@ -103,10 +120,9 @@
     box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
     background-image: url('../../../public/BannerHome4.png');
     cursor: pointer;
-    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+    background-size: cover; 
     background-repeat: no-repeat;
     margin-bottom: 2em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
 }
 
 .BannerHome4{
@@ -121,7 +137,6 @@
     cursor: pointer;
     background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
     background-repeat: no-repeat;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
     margin-bottom: 2em;
 }
 @media (max-width: 995px) {
