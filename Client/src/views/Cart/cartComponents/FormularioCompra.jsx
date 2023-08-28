@@ -1,10 +1,11 @@
 import Form from "react-bootstrap/Form";
-import {Tab,Tabs,Row,Col,Container,Button} from "react-bootstrap";
+import {Row,Col} from "react-bootstrap";
+import styles from "./FormularioCompra.module.css"
 
 const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showShippingInfo, selectedShippingOption}) => {
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form className={styles.formStyles} noValidate validated={validated} onSubmit={handleSubmit}>
     <Row className="mb-3">
       <h2 className="text-center">DETALLES DE FACTURACIÓN</h2>
       <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -66,11 +67,7 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
         <>
           <Row className="mb-3">
             <h3 className="text-center">DATOS DE ENVÍO</h3>
-            <Form.Group
-              as={Col}
-              md="6"
-              controlId="validationCustom03"
-            >
+            <Form.Group as={Col} md="6" controlId="validationCustom03">
               <Form.Label>Ciudad</Form.Label>
               <Form.Control
                 type="text"
@@ -84,11 +81,7 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
                 Please provide a valid city.
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group
-              as={Col}
-              md="3"
-              controlId="validationCustom04"
-            >
+            <Form.Group as={Col} md="3" controlId="validationCustom04">
               <Form.Label>Provincia</Form.Label>
               <Form.Control
                 type="text"
@@ -102,11 +95,7 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group
-              as={Col}
-              md="3"
-              controlId="validationCustom05"
-            >
+            <Form.Group as={Col} md="3" controlId="validationCustom05">
               <Form.Label>C.P</Form.Label>
               <Form.Control
                 type="text"
@@ -122,10 +111,7 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
             </Form.Group>
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              as={Col}
-              md="12"
-              controlId="validationCustom05"
+            <Form.Group as={Col} md="12" controlId="validationCustom05"
             >
               <Form.Label>Dirección de entrega</Form.Label>
               <div className="d-flex justify-content-evenly">
@@ -160,14 +146,7 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
     <Row className="mb-3">
       <Form.Group>
         <Form.Label>Notas del pedido (opcional)</Form.Label>
-        <Form.Control
-          as="textarea"
-          placeholder="Deja tu comentario aca"
-          style={{height: "100px"}}
-          name="notes"
-          value={form.notes}
-          onChange={handleOnChange}
-        />
+        <Form.Control as="textarea" placeholder="Deja tu comentario aca" style={{height: "100px"}} name="notes" value={form.notes} onChange={handleOnChange}/>
       </Form.Group>
     </Row>
   </Form>
