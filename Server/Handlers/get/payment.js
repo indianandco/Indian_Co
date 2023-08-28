@@ -43,6 +43,7 @@ const payment = async (req, res) => {
           res.status(200).send({ response });
 
         })
+        .then(()=> console.log("Aca iria el manejo del stocl, y la creacion del ticket??"))
         //ACA iria el manejo del stock, y la creacion del ticket
         // .then( await crearTicket, restar stock)
         .then(async () => {
