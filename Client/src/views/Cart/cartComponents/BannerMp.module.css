@@ -1,0 +1,141 @@
+
+.bannerMp {
+    margin: auto;
+    max-width: 26.6rem;
+    max-height: 32.8rem ;
+    padding: 24px 16px;
+    background-color: #ffffff;
+    border-radius: 6px;
+
+}
+.bannerMp_Title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bannerMp_benefitList {
+    margin-bottom: .4rem;
+}
+
+.bannerMp_benefitList_Item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.bannerMp_benefitList_Item > div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center ;
+}
+
+.bannerMp_benefitList_logo {
+    width: 3.25rem;
+    height: 3.4rem;
+    padding: 10px;
+}
+
+.bannerMp_benefitList_p_title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.bannerMp_benefitList_p_subTitle {
+    
+    font-size: 12px;
+    color: #0000008c;
+    margin: 0;
+    text-align: left !important;
+}
+
+.bannerMp_TermnsCondition {
+    margin-top: .2rem;
+    text-align: center !important;
+}
+
+.bannerMp_redirect {
+    margin: auto;
+    background-color: #eae6dd;
+    max-height: 3.4rem;
+    max-width: 23.6rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: none;
+    padding: 12px;
+    border-radius: 6px
+}
+.bannerMp_redirect > i {
+    width: 15px;
+    height: 22px;
+    margin: 0px 0px 0px 10px;
+    color: #0000008c ;
+    padding: 0;
+}
+
+.bannerMp_redirect > p {
+    max-width: 306px;
+    text-align: left;
+    font-size: 11px;
+    width: 80%;
+    vertical-align: baseline;
+};
+
+
+@media (max-width: 792px) {
+
+    .bannerMp{
+        padding: .2rem;
+        margin: 0.2rem;
+    }
+    .bannerMp_benefitList_Item > div{
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .bannerMp_benefitList_p_subTitle{
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .bannerMp_redirect{
+        display: flex;
+        align-items: space-around;
+        justify-content: space-around;
+        font-size: 10px;
+        padding: 10px 2px;
+    }
+    .bannerMp_redirect >p {
+        margin: 0;
+        text-align: left;
+    }
+
+
+
+
+}
+
+@media (max-width: 450px){
+
+    .bannerMp_TermnsCondition {
+        font-size: 12px;
+        margin-bottom: .2rem;
+    }
+
+    .bannerMp_redirect{
+        padding: 0;
+        min-height: fit-content !important;
+    }
+    .bannerMp_redirect > i {
+        display: none;
+    }
+
+    .bannerMp_redirect >p {
+        text-align: center;
+        max-width: 100%;
+    }
+
+}
+
+

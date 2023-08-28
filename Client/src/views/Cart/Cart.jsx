@@ -1,23 +1,17 @@
 import styles from "./Cart.module.css";
 import {useContext, useEffect, useState} from "react";
-import Form from "react-bootstrap/Form";
 import {Tab,Tabs,Row,Col,Container,Button} from "react-bootstrap";
 import {CartContext} from "../../services/CartContext";
 import {fetcherPaymentMethod} from "../../utils/fetcherPost";
 import { EmptyCart } from "./cartComponents/EmptyCart.jsx"; 
 import CartItem from "./cartComponents/CartItem";
 import FormularioCompra from "./cartComponents/FormularioCompra";
+import { SubtotalColumn } from "./cartComponents/SubtotalColumn";
+import  SubTotalCheckout from "./cartComponents/SubTotalCheckout";
+
 
 const Cart = () => {
-  const {
-    cart,
-    loadCartData,
-    calcTotal,
-    calcTotalPerItem,
-    applyCustomFormat,
-    numberWithCommas
-
-  } = useContext(CartContext);
+  const {cart, loadCartData, calcTotal, calcTotalPerItem, applyCustomFormat, numberWithCommas} = useContext(CartContext);
 
   const [activeTab, setActiveTab] = useState("general");
   const handleTabs = (tab) => {
@@ -103,7 +97,7 @@ const Cart = () => {
   };
 
   return (
-    <Container fluid className="d-flex justify-content-center">
+    <Container fluid className="d-flex justify-content-center min-vh-100">
       
 
         {!cart.length > 0 ? (
@@ -112,279 +106,26 @@ const Cart = () => {
           <Tabs
             defaultActiveKey="general"
             activeKey={activeTab}
-            className="d-none">
-            <Tab eventKey="general" title="general">
-              <Row>
-                <Col xs={12} md={8} lg={7} >
-
-                      {cart?.map((item) => (
-                       <CartItem  key={item.id} item={item}/>
-                      ))}
-
-          
-                </Col>
-                <Col xs={12} md={4} lg={5} >
-                  <p className="text-center mt-2">Detalle del Carrito</p>
-                  <ol className={styles.product_list}>
-                    {cart?.map((item) => {
-                      return (
-                        <li key={item.id} className={styles.product_item}>
-                          <span className={styles.product_name}>
-                            {item?.title}
-                          </span>
-                          <span className={styles.product_price}>
-                            $
-                            {applyCustomFormat(
-                              calcTotalPerItem(item),
-                              numberWithCommas
-                            )}
-                          </span>
-                        </li>
-                      );
-                    })}
-                    <li className={styles.product_item}>
-                      <span className={styles.product_name}>Total:</span>
-                      <span>
-                        <b>${applyCustomFormat(calcTotal(), numberWithCommas)}</b>
-                      </span>
-                    </li>
-                  </ol>
-                  <Button variant="success" onClick={() => handleTabs("test")}>
-                    CHECKOUT
-                  </Button>
-                </Col>
-              </Row>
+            className="m-0 p-0 w-100 d-none">
+            <Tab className='w-100' eventKey="general" title="general">
+                <Row className="d-flex justify-content-evenly">
+                  <Col xs={12} md={12} lg={7}>
+                    <div className="w-100">
+                      {cart?.map((item) => (<CartItem  key={item._id} item={item}/>))}
+                    </div>
+                  </Col>
+                  <Col xs={12} md={12} lg={5}>
+                    <SubTotalCheckout handleTabs={handleTabs}/>
+                  </Col>
+                </Row>
             </Tab>
-            <Tab eventKey="test" className={styles.container}>
-              <Row>
-                <Col xs={12} md={12} lg={8} className={styles.formStyles}>
+            <Tab className='w-100' eventKey="test" title="formPayment">
+              <Row className="d-flex justify-content-evenly">
+                <Col xs={12} md={12} lg={4}>
                   <FormularioCompra form={form} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
                 </Col>
                 <Col xs={12} md={12} lg={4}>
-                  <div className={styles.subTotalColumn}>
-                    <b className="text-center mt-2">Detalle de tu Pedido</b>
-                    <ol className={styles.product_list}>
-                      <li className={styles.product_item}>
-                        <span>Producto</span> <span>Subtotal</span>
-                      </li>
-                      {cart?.map((item) => {
-                        return (
-                          <li key={item.id} className={styles.product_item}>
-                            <span className={styles.product_name}>
-                              {item?.title}
-                            </span>
-                            <span>
-                              x<b>{item?.quantity}</b>
-                            </span>
-                            <span className={styles.product_price}>
-                              $
-                              {applyCustomFormat(
-                                calcTotalPerItem(item),
-                                numberWithCommas
-                              )}
-                            </span>
-                          </li>
-                        );
-                      })}
-                      <li className={styles.product_item}>
-                        <b className={styles.product_name}>Total:</b>
-                        <span>
-                          <b>
-                            ${applyCustomFormat(calcTotal(), numberWithCommas)}
-                          </b>
-                        </span>
-                      </li>
-                    </ol>
-                    <div className={styles.checkbox}>
-                      <b>Opciones de Envío:</b>
-                      <label>
-                        <input
-                          required
-                          type="radio"
-                          value="envio"
-                          checked={selectedShippingOption === "envio"}
-                          name="shippingOption"
-                          onChange={handleShippingChange}
-                        />
-                        Envío por correo
-                      </label>
-
-                      <label>
-                        <input
-                          required
-                          type="radio"
-                          value="punto_encuentro"
-                          checked={selectedShippingOption === "punto_encuentro"}
-                          name="shippingOption"
-                          onChange={handleShippingChange}
-                        />
-                        Punto de encuentro
-                      </label>
-                      {showPoints && ( selectedShippingOption==="punto_encuentro" ? <p>Zonas de entrega disponibles: CAPITAL FEDERAL</p>: <></>)}
-
-                    </div>
-                    <hr />
-                    <div className={styles.checkbox}>
-                      <b>Opciones de Pago: </b>
-                      <label>
-                        <input
-                          type="radio"
-                          value="MercadoPago"
-                          checked={selectedPaymentMethodOpt === "MercadoPago"}
-                          name="paymentMethod"
-                          onChange={handlePaymentMethod}
-                        />
-                        Mercado Pago
-                        <img src="/mpLogos/mercadopagoLogo.png" alt="" />
-                      </label>
-
-                      <label>
-                        <input
-                          type="radio"
-                          value="TransferenciaBancaria"
-                          checked={
-                            selectedPaymentMethodOpt === "TransferenciaBancaria"
-                          }
-                          name="paymentMethod"
-                          onChange={handlePaymentMethod}
-                        />
-                        Transferencia Bancaria
-                      </label>
-                    </div>
-                    <hr />
-                    {showBanner && (
-                      <div className={styles.checkbox}>
-                        {selectedPaymentMethodOpt === "MercadoPago" ? (
-                          <>
-                            <div className={styles.bannerMp}>
-                              <p className={styles.bannerMp_Title}>
-                                Inicia sesión en Mercado Pago y obtén beneficios
-                              </p>
-                              <div className={styles.bannerMp_benefitList}>
-                                <div className={styles.bannerMp_benefitList_Item}>
-                                  <img
-                                    className={styles.bannerMp_benefitList_logo}
-                                    src="/mpLogos/blue-wallet.png"
-                                    alt=""
-                                  />
-                                  <div>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_title
-                                      }
-                                    >
-                                      Paga rápido
-                                    </p>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_subTitle
-                                      }
-                                    >
-                                      Usa tu dinero disponible o tarjetas
-                                      guardadas.
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className={styles.bannerMp_benefitList_Item}>
-                                  <img
-                                    className={styles.bannerMp_benefitList_logo}
-                                    src="/mpLogos/blue-phone-installments.png"
-                                    alt=""
-                                  />
-                                  <div>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_title
-                                      }
-                                    >
-                                      Accede a cuotas
-                                    </p>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_subTitle
-                                      }
-                                    >
-                                      Paga con o sin tarjeta de crédito.
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className={styles.bannerMp_benefitList_Item}>
-                                  <img
-                                    className={styles.bannerMp_benefitList_logo}
-                                    src="/mpLogos/blue-protection.png"
-                                    alt=""
-                                  />
-                                  <div>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_title
-                                      }
-                                    >
-                                      Compra con confianza
-                                    </p>
-                                    <p
-                                      className={
-                                        styles.bannerMp_benefitList_p_subTitle
-                                      }
-                                    >
-                                      Recibe ayuda si tienes algún problema con tu
-                                      compra.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className={styles.bannerMp_redirect}>
-                                <i className="bi bi-lock-fill"></i>
-                                <p>
-                                  Al continuar, te llevaremos a Mercado Pago para
-                                  completar tu compra de forma segura.
-                                </p>
-                              </div>
-                            </div>
-                            <p className={styles.bannerMp_TermnsCondition}>
-                              Al continuar, aceptas nuestros
-                              <a
-                                href="https://www.mercadopago.com.ar/ayuda/terminos-y-politicas_194"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                Términos y condiciones
-                              </a>
-                              .
-                            </p>
-                          </>
-                        ) : (
-                          <i>
-                            Realiza tu pago directamente en nuestra cuenta
-                            bancaria.
-                            <b>
-                              Por favor, usa el número del pedido como referencia
-                              de pago.
-                            </b>
-                            <br />
-                            Tu pedido se procesará una vez que hayamos recibido
-                            los fondos.
-                          </i>
-                        )}
-                      </div>
-                    )}
-
-                    <Button
-                      className={styles.paymentButton}
-                      variant="success"
-                      type="submit"
-                      onClick={(event) => handleSubmit(event)}
-                    >
-                      Realizar Pedido
-                    </Button>
-                    <div className={styles.checkbox}>
-                      <i>
-                        Sus datos personales se utilizarán para procesar su
-                        pedido, respaldar su experiencia en este sitio web y para
-                        otros fines descritos en nuestro política de privacidad.
-                      </i>
-                    </div>
-                  </div>
+                  <SubtotalColumn handlePaymentMethod={handlePaymentMethod} selectedPaymentMethodOpt={selectedPaymentMethodOpt} handleShippingChange={handleShippingChange}  selectedShippingOption={selectedShippingOption} handleSubmit={handleSubmit} showPoints={showPoints} showBanner={showBanner}/>
                 </Col>
               </Row>
             </Tab>
