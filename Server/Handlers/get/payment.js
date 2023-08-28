@@ -39,7 +39,9 @@ const payment = async (req, res) => {
       await mercadopago.preferences
         .create(preference)
         .then(function (response) {
+          console.log(response)
           res.status(200).send({ response });
+
         })
         //ACA iria el manejo del stock, y la creacion del ticket
         // .then( await crearTicket, restar stock)
