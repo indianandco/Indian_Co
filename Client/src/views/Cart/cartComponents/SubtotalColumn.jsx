@@ -51,18 +51,18 @@ export const SubtotalColumn = ({selectedShippingOption, handleShippingChange, se
         </div>
             <hr />
                     {showBanner && (
-                      <div className={styles.checkbox}>
+                      <div className={styles.bannerContainer}>
                         {selectedPaymentMethodOpt === "MercadoPago" ? (
                           <BannerMp />
                         ) : (
-                          <i>Realiza tu pago directamente en nuestra cuentabancaria.<b>Por favor, usa el número del pedido como referenciade pago.</b><br />Tu pedido se procesará una vez que hayamos recibido los fondos.</i>
+                          <i className={styles.text}>Realiza tu pago directamente en nuestra cuentabancaria.<b>Por favor, usa el número del pedido como referenciade pago.</b><br />Tu pedido se procesará una vez que hayamos recibido los fondos.</i>
                         )}
                       </div>
                     )}
 
         <Button className={styles.paymentButton} variant="success" type="submit" onClick={(event) => handleSubmit(event)}>Realizar Pedido</Button>
-        <div className={styles.checkbox}>
-            <i>Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y para otros fines descritos en nuestro política de privacidad.</i>
+        <div className={styles.bannerContainer}>
+            <i className={styles.text}>Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y para otros fines descritos en nuestro política de privacidad.</i>
         </div>
     </div>
   )

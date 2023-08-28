@@ -1,193 +1,20 @@
 
-
-
-
-
-.product_price {
-    margin-left: 20px;
-}
-
-.tarjeta {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-  
-    border-bottom: 1px solid rgba(0, 0, 0, 0.311);
-    border-radius: 6px;
-
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
-
-    padding: 5px 0.5rem;
-    background-color: rgba(255, 194, 82, 0.078);
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673); 
-
-    width: fit-content;
-    height:7.5rem;
-    margin-right: .5rem
-
-}
-
-.imgColumn {
-   padding: 0;
-}
-
-.tarjeta_imagen{
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    object-position: center;
-    padding: 0;
-    margin-left: 0.40rem;
-    border-radius: 6px;
-}
-
-.tarjeta_contenido {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-flow: column nowrap;
-    margin-left: .5rem;
-}
-
-.tarjeta_titulo{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80%;
-    margin: 0;
-}
-
-.counterCart {
+.itemContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    border-radius: 6px;
-    margin-right: 0.1rem;
-}
-
-.quantityView {
-    margin: .5rem;
-}
-
-.buttonCounterCart {
-    width: 2em;
-    height: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: .5px solid grey;
-}
-
-.buttonCounterCart > b {
-    font-size: larger;
-}
-
-.deleteButton {
-    padding-right: 1.5rem;
-}
-
-.banner {
-    padding: .4rem;
-}
-
-.checkbox {
-    padding: 0rem 1rem;
-    display: flex;
     flex-flow: column nowrap;
-}
-
-.checkbox i {
-    text-align: center;
-}
-
-.paymentButton {
-    margin: 1rem .4rem;
-}
-
-
-.formBox {
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.673); 
-    border-radius: 6px;
-    padding: 0.2rem;
-    background-color:aqua ;
     width: 100%;
-
 }
 
-
-
-@media (max-width: 1200px){
-    .container1 {
-        padding: .5rem;
-        flex-flow: row wrap;
+@media (max-width: 950px) {
+    .itemContainer {
+        padding: 1rem;
     }
+}
 
-    .cartContainer {
-        width: 50rem;
-        background-color: aqua;
-    }
-
-    .tarjeta {
-        width: 100%;
-        max-width: 90%;
-        margin-right: 0px !important;
-    }
-
-    .tarjeta_contenido {
-        padding-left: .5rem ;
-    }
-
-    .deleteButton {
-        padding-right: 1.5rem;
-    }
-
-    .tarjeta_imagen{
-        width: 75px;
-        height: 75px;
-        margin-left: 0.10rem;
+@media (max-width: 600px) {
+    .itemContainer {
         padding: 0;
     }
-
-    .subTotalColumn {
-        width: 100%;
-        max-width: 90%;
-    }
 }
-
-
-@media (max-width: 792px) {
-
-    .container1 {
-        padding: .5rem;
-        width: fit-content;
-    }
-
-    .subTotalColumn {
-        min-width: fit-content ;
-    }  
-
-
-    .tarjeta_contenido {
-        padding-left: 0.2rem ;
-        margin-left: 0rem;
-    }
-
-    .tarjeta_titulo{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-    }
-
-    .imgColumn {
-        display: none;
-    }
-
-    .tarjeta_imagen {
-        display: none;
-    }
-}
-
 
