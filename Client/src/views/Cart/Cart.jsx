@@ -103,7 +103,7 @@ const Cart = () => {
         {!cart.length > 0 ? (
           <EmptyCart />
         ) : (
-          <div className="w-100">
+          <div className="w-100 mt-xs-1 mt-md-5">
             <Tabs
               defaultActiveKey="general"
               activeKey={activeTab}
@@ -122,10 +122,10 @@ const Cart = () => {
               </Tab>
               <Tab className='w-100' eventKey="test" title="formPayment">
                 <Row className="d-flex justify-content-center mt-4">
-                  <Col xs={12} md={12} lg={5}>
+                  <Col xs={12} md={12} lg={6}>
                     <FormularioCompra form={form} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
                   </Col>
-                  <Col xs={12} md={12} lg={5}>
+                  <Col xs={12} md={12} lg={4}>
                     <SubtotalColumn handlePaymentMethod={handlePaymentMethod} selectedPaymentMethodOpt={selectedPaymentMethodOpt} handleShippingChange={handleShippingChange}  selectedShippingOption={selectedShippingOption} handleSubmit={handleSubmit} showPoints={showPoints} showBanner={showBanner}/>
                   </Col>
                 </Row>
