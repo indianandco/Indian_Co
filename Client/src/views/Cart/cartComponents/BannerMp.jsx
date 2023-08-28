@@ -29,7 +29,9 @@ const BannerMp = () => {
             </div>
         </div>
         <div className={styles.bannerMp_redirect}>
-            <i className="bi bi-lock-fill"></i>
+            <div className={styles.iconContainer}>
+                <i className="bi bi-lock-fill"></i>
+            </div>
             <p>Al continuar, te llevaremos a Mercado Pago para completar tu compra de forma segura.</p>
         </div>
     </div>
