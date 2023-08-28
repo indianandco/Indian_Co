@@ -103,33 +103,35 @@ const Cart = () => {
         {!cart.length > 0 ? (
           <EmptyCart />
         ) : (
-          <Tabs
-            defaultActiveKey="general"
-            activeKey={activeTab}
-            className="m-0 p-0 w-100 d-none">
-            <Tab className='w-100' eventKey="general" title="general">
-                <Row className="d-flex justify-content-evenly">
-                  <Col xs={12} md={12} lg={7}>
-                    <div className="w-100">
-                      {cart?.map((item) => (<CartItem  key={item._id} item={item}/>))}
-                    </div>
+          <div className="w-100">
+            <Tabs
+              defaultActiveKey="general"
+              activeKey={activeTab}
+              className="m-0 p-0 w-100 d-none">
+              <Tab className='w-100' eventKey="general" title="general">
+                  <Row className="d-flex justify-content-center mt-5">
+                    <Col xs={12} md={12} lg={6} className="d-flex justify-content-center ">
+                      <div className={styles.itemContainer}>
+                        {cart?.map((item) => (<CartItem  key={item._id} item={item}/>))}
+                      </div>
+                    </Col>
+                    <Col xs={12} md={12} lg={4}>
+                      <SubTotalCheckout handleTabs={handleTabs}/>
+                    </Col>
+                  </Row>
+              </Tab>
+              <Tab className='w-100' eventKey="test" title="formPayment">
+                <Row className="d-flex justify-content-center mt-4">
+                  <Col xs={12} md={12} lg={5}>
+                    <FormularioCompra form={form} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
                   </Col>
                   <Col xs={12} md={12} lg={5}>
-                    <SubTotalCheckout handleTabs={handleTabs}/>
+                    <SubtotalColumn handlePaymentMethod={handlePaymentMethod} selectedPaymentMethodOpt={selectedPaymentMethodOpt} handleShippingChange={handleShippingChange}  selectedShippingOption={selectedShippingOption} handleSubmit={handleSubmit} showPoints={showPoints} showBanner={showBanner}/>
                   </Col>
                 </Row>
-            </Tab>
-            <Tab className='w-100' eventKey="test" title="formPayment">
-              <Row className="d-flex justify-content-evenly">
-                <Col xs={12} md={12} lg={4}>
-                  <FormularioCompra form={form} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
-                </Col>
-                <Col xs={12} md={12} lg={4}>
-                  <SubtotalColumn handlePaymentMethod={handlePaymentMethod} selectedPaymentMethodOpt={selectedPaymentMethodOpt} handleShippingChange={handleShippingChange}  selectedShippingOption={selectedShippingOption} handleSubmit={handleSubmit} showPoints={showPoints} showBanner={showBanner}/>
-                </Col>
-              </Row>
-            </Tab>
-          </Tabs>
+              </Tab>
+            </Tabs>
+          </div>
         )}
       
     </Container>
