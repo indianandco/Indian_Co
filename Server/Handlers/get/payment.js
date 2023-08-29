@@ -27,9 +27,10 @@ const payment = async (req, res) => {
             unit_price: info.shop.total,
           },
         ],
+        notification_url: "https://www.indianandco.com.ar/carts/purchase/notification",
         back_urls: {
-          success: "https://mere-hands-production.up.railway.app/carts/purchase/success",
-          failure: "https://mere-hands-production.up.railway.app/carts/purchase/failure",
+          success: "https://www.indianandco.com.ar/carts/purchase/success",
+          failure: "https://www.indianandco.com.ar/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
         auto_return: "approved",
@@ -41,10 +42,7 @@ const payment = async (req, res) => {
         .then(function (response) {
           console.log(response)
           res.status(200).send({ response });
-
         })
-        //ACA iria el manejo del stock, y la creacion del ticket
-        // .then( await crearTicket, restar stock)
         .then(async () => {
           if (info.shippingOption === "envio") {
             await shopOrderMailMPwShipping(
