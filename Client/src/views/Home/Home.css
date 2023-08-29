@@ -79,6 +79,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .ContainerBannerHome2{
     display: flex;
     align-items: center;
@@ -115,6 +116,7 @@
     color: black;  
     font-weight: 500;
 }
+
 .our_products_container{
     display: flex;
     min-height: 40em;
@@ -144,8 +146,6 @@
     font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
     margin-bottom: 2em;
 }
-
-
 
 @media (max-width: 995px) {
     .home_container {
