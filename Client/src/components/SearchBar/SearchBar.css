@@ -1,12 +1,18 @@
  .search_container {
   display: flex;
   align-items: center;
-  width: 40em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 30em;
 
 }
 .resetBoton, .buscarBoton{
   font-size: 16px;
  
+}
+.formControl{
+  display: flex;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -15,7 +21,7 @@
     justify-content: center; 
     align-items: center;
     margin: auto;
-    width: 22em;
+    width: 20em;
   }
 
   .search_item {

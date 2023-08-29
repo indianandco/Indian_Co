@@ -9,10 +9,11 @@ export const ProductContext = createContext()
 export const ProductProvider = ({ children }) => {
     const [response, setResponse] = useState([]);
     const [detailProducts, setDetailProducts] = useState([]);
-    const [foundProduct, setFoundProduct] = useState([]);
+    const [/* foundProduct */, setFoundProduct] = useState([]);
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [error, setError] = useState(null);
+    const [productStorage, setProductStorage] = useState([])
 
 
     const postProduct = async (product) => {
@@ -24,7 +25,8 @@ export const ProductProvider = ({ children }) => {
     const getAllProducts = async () => {
         const response = await fetcher(`/products`);
         setAllProducts(response.payload);
-        setDisplayedProducts(response.payload); 
+        setDisplayedProducts(response.payload);
+        setProductStorage(response.payload) 
     };
 
     const getDetailProducts = async (id) => {
@@ -33,10 +35,9 @@ export const ProductProvider = ({ children }) => {
         return detailProducts
     }
 
-
     const findProduct = async (title) => {
         if (title === "") {
-            setDisplayedProducts(allProducts); 
+            setDisplayedProducts(allProducts);
             return;
         }
         const response = await fetcher(`/products/search?title=${title}`);
@@ -46,26 +47,37 @@ export const ProductProvider = ({ children }) => {
             setDisplayedProducts(response);
         }
     };
+
+    const findProductStorage = (title) => {
+        const newProducts = allProducts
+    
+        const filteredProducts = newProducts.filter(product => 
+            product.title.toLowerCase().includes(title.toLowerCase())
+        );
+    
+        setProductStorage(filteredProducts);
+    };
     
     
     const filterByCategory = async (category) => {
         const response = await fetcher(`/products/category/${category}`);
-        setDisplayedProducts(response);
+        setProductStorage(response);
     };
 
     const sortProducts=async(prop)=>{
         const response = await fetcher(`/products?sort=${prop}`)
-        setDisplayedProducts(response.payload)
+        setProductStorage(response.payload)
     }
+
     const offerProducts=async(prop)=>{
         if(prop ==="true"){
             const filtered= allProducts.filter((product)=>{
                 return product.offer === true})
-                setDisplayedProducts(filtered)
+                setProductStorage(filtered)
         }else if (prop ==="false"){
             const filtered= allProducts.filter((product)=>{
                 return product.offer === false})
-                setDisplayedProducts(filtered)
+                setProductStorage(filtered)
         }
     }
 
@@ -84,7 +96,7 @@ export const ProductProvider = ({ children }) => {
 
 
     return (
-        <ProductContext.Provider value={{offerProducts,sortProducts,clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
+        <ProductContext.Provider value={{offerProducts,sortProducts,clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, findProductStorage,productStorage, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
             {children}
         </ ProductContext.Provider >
     )
