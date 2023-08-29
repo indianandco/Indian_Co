@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import {Tab,Tabs,Row,Col,Container,Button} from "react-bootstrap";
-import styles from "../Cart.module.css";
+import {Row,Col,Button} from "react-bootstrap";
+import styles from "./CartItem.module.css";
 import {CartContext} from "../../../services/CartContext";
 
 const CartItem = ({item}) => {
@@ -20,62 +20,62 @@ const CartItem = ({item}) => {
     }
   };
 
-
   return (
-    <Row className={styles.tarjeta} key={item?.id}>
-    <Col xs={0} md={2} className={styles.imgColumn}>
-      <img
-        src={item?.image}
-        alt={item?.title}
-        className={styles.tarjeta_imagen}
-      />
-    </Col>
-    <Col xs={7} md={6} className={styles.tarjeta_contenido}>
-      <p className={styles.tarjeta_titulo}>{item?.title}</p>
-      <p className={styles.tarjeta_titulo}>{item?.fragance}</p>
-      {item?.offer_price ? (
-        <b className="tarjeta-precio">
-          $
-          {applyCustomFormat(
-            item?.offer_price,
-            numberWithCommas
-          )}
-        </b>
-      ) : (
-        <b className="tarjeta-precio">
-          ${applyCustomFormat(item?.price, numberWithCommas)}
-        </b>
-      )}
-    </Col>
-    <Col xs={3} md={2} className={styles.counterCart}>
-      <Button
-        variant="light"
-        className={styles.buttonCounterCart}
-        onClick={() => restar(item)}
-      >
-        <b>-</b>
-      </Button>
-      <p className={styles.quantityView}>
-        <b>{item?.quantity}</b>
-      </p>
-      <Button
-        variant="light"
-        className={styles.buttonCounterCart}
-        onClick={() => incrementar(item)}
-      >
-        <b>+</b>
-      </Button>
-    </Col>
-    <Col xs={2} md={2} className={styles.deleteButton}>
-      <Button
-        variant="danger"
-        onClick={() => removeStack(item)}
-        type="button"
-      >
-        <i className="bi bi-trash"></i>
-      </Button>
-    </Col>
-  </Row>
+   
+      <Row key={item?._id} className="d-flex justify-content-center">
+        <div  className={styles.tarjeta}> 
+
+          <Col xs={0} md="auto" lg="auto" >
+            <div className={styles.imgContainer}>
+              <img className={styles.tarjeta_imagen} src={item?.image} alt={item?.title}/>
+            </div>
+          </Col>
+          <Col xs={7} md={8} lg={7}>
+            <div className={styles.contentContainer}>
+              <p className={styles.tarjeta_titulo}>{item?.title}</p>
+              <p>{item?.fragance}</p>
+              {item?.offer_price ? (
+                <b className="tarjeta-precio">${applyCustomFormat(item?.offer_price, numberWithCommas)}</b>
+              ) : (
+                <b className="tarjeta-precio">${applyCustomFormat(item?.price, numberWithCommas)}</b>
+              )}
+            </div>
+
+          </Col>
+          <Col xs={2} md={2} lg={2}>
+            <div className={styles.qtyContainer}>
+              <Button
+                variant="light"
+                className={styles.buttonCounterCart}
+                onClick={() => restar(item)}
+              >
+                <b>-</b>
+              </Button>
+              <p className={styles.quantityView}>
+                <b>{item?.quantity}</b>
+              </p>
+              <Button
+                variant="light"
+                className={styles.buttonCounterCart}
+                onClick={() => incrementar(item)}
+              >
+                <b>+</b>
+              </Button>
+            </div>
+          </Col>
+          <Col xs={2} md={1} lg={1}>
+            <div className={styles.deleteButton}>
+              <Button
+                variant="danger"
+                onClick={() => removeStack(item)}
+                type="button"
+                
+              ><i className="bi bi-trash"></i>
+              </Button>
+            </div>
+          </Col>
+        </div>
+      </Row>
   )
 }
 

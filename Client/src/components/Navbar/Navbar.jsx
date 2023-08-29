@@ -17,7 +17,6 @@ const NavBar = () => {
 
     const location = useLocation();
     const { cart } = useContext(CartContext);
-    let [cartLength, setCartLength] = useState(null)
     const { user, setUser } = useContext(AuthContext);
     const [scrolled, setScrolled] = useState(false);
 
@@ -49,7 +48,7 @@ const NavBar = () => {
     }, []);
 
     useEffect(() => {
-        setCartLength(cart?.lengt)
+        console.log("cart", cart?.length);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, user])
 
@@ -69,7 +68,7 @@ const NavBar = () => {
                             <NavLink onClick={scrollToTop} className="buttons" to="/products">Productos</NavLink>
                             <div>
                                 <NavLink onClick={scrollToTop} className="cart_button" to="/cart">
-                                    <Badge badgeContent={cartLength} color="secondary" className="buttons">
+                                    <Badge badgeContent={cart?.length} color="secondary" className="buttons">
                                         <ShoppingCart />
                                     </Badge>
                                 </NavLink>

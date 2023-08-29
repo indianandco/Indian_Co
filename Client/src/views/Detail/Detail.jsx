@@ -132,7 +132,7 @@ const Detail = () => {
                                 <Button className={styles.buttonCounter} variant="light" onClick={incrementar}>+</Button>
                             </div>
                             <div className={styles.boxCart}>
-                                <Button onClick={sendProductDetail} className={styles.buttonCart} variant="warning">Agregar al carrito</Button>
+                                <Button onClick={sendProductDetail} className={styles.buttonCart} variant="warning">Ver producto</Button>
                             </div>
                         </div>
 
