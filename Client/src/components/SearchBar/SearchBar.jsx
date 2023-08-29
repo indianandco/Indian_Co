@@ -1,72 +1,41 @@
 import "./SearchBar.css";
-import Swal from 'sweetalert2';
-import { Form, InputGroup, Button } from 'react-bootstrap';
-import { useContext, useState, useEffect } from "react";
-import { ProductContext } from "../../services/ProductContext";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import { Form, InputGroup } from 'react-bootstrap';
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../services/ProductContext";
 
 const SearchBar = () => {
-    const [title, setTitle] = useState("");
-    const { findProduct,  error, clearError } = useContext(ProductContext);
+    const [searchQuery, setSearchQuery] = useState("")
+    const { findProductStorage  } = useContext(ProductContext);
     
     useEffect(() => {
-        if (error) {
-            Swal.fire({
-                width: '25em',
-                icon: 'error',
-                title: 'Oops...',
-                text: 'No se encontraron coincidencias con el valor ingresado.',
-            });
-            clearError();
+        if (searchQuery === "") {
+            findProductStorage("");
         }
-    }, [error]);
-    const handleSearch = async () => {
-        if (title.length === 0) {
-            Swal.fire({
-                width: '25em',
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Por favor ingrese un valor en la barra de búsqueda.',
-            });
-            return;
-        }
-
-        await findProduct(title);
-        setTitle('');
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchQuery]);
 
     const handleChange = (event) => {
-        setTitle(event.target.value);
-    };
-
-    const handleReset = () => {
-        setTitle('');
-        findProduct('');
+        const inputValue = event.target.value.slice(0, 30);
+        setSearchQuery(inputValue);
+        findProductStorage(inputValue);
     };
 
     return (
-        <div >
-            <div >
+        <div>
+            <div>
                 <InputGroup className="search_container m-5">
                     <Form.Control
-                        value={title}
+                        maxLength={30}
                         onChange={handleChange}
+                        value={searchQuery}
                         placeholder="¿Qué estás buscando?"
                         aria-label="¿Qué estás buscando?"
                         aria-describedby="basic-addon2"
+                        className="formControl"
                     />
-                    <Button onClick={handleSearch}className="buscarBoton" variant="dark" id="button-addon2">
-                        Buscar
-                    </Button>
-                    <Button onClick={handleReset}className="resetBoton" variant="secondary" id="button-addon2">
-                        Reset
-                    </Button>
                 </InputGroup>
-                
             </div>
-           
-
         </div>
     );
 }
