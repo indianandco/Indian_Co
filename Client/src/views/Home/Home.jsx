@@ -3,8 +3,17 @@ import { NavLink } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../../services/ProductContext";
 
 const Home = () => {
+
+    const { displayedProducts, getAllProducts } = useContext(ProductContext)
+
+    useEffect(() => {
+        getAllProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <main className="home_container">
@@ -36,12 +45,12 @@ const Home = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-                <div className="titleHome">
+                <header className="titleHome">
                     <h3 className="SubTitleHome">100% NATURAL</h3>
                     <h1 className="TitleHome">Armonización, Decoración & Diseño</h1>
                     <p className="TextHome">¡Asegurá tu bienestar con nuestros únicos aromas 100% naturales!</p>
-                </div>
-                <div className="BannerHome2">
+                </header>
+                <section className="BannerHome2">
                     <div className="iconsContainer">
                         <i className="bi bi-tree iconStyle"></i>
                         <i className="bi bi-heart iconStyle"></i>
@@ -61,10 +70,24 @@ const Home = () => {
                             <p className="TextHome2">Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
                         </div>
                     </div>
-                </div>
-                <div className="our_products_container">
-
-                </div>
+                </section>
+                <section className="our_products_container">
+                    <div className="our_products_title_container">
+                        <h1 className="our_products_title">Nuestros productos</h1>
+                    </div>
+                    <div className="our_products_product_container">
+                        {displayedProducts?.slice(0, 6).map(product => {
+                            return (<div key={product._id} className="our_products_product">
+                                <img className="our_products_image" src={product.image} alt={product.image} />
+                                <p className="background_container">
+                                    <h6 className="background_title">{product.title}</h6>
+                                    <button className="background_button">Ver productos</button>
+                                </p>
+                            </div>)
+                        })
+                        }
+                    </div>
+                </section>
             </div>
         </main >
     )
