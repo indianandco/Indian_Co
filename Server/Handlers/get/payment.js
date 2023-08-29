@@ -11,6 +11,7 @@ const { MP_TOKEN } = process.env;
 
 const payment = async (req, res) => {
   const info = req.body;
+  
   console.log(info);
   try {
     if (info.paymentMethod === "MercadoPago") {
@@ -90,7 +91,7 @@ const payment = async (req, res) => {
     //   }
 
       res.send("todo ok");
-      
+
     }
   } catch (error) {
     console.log(error);
