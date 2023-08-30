@@ -36,7 +36,7 @@ router.get("/purchase/failure", (req, res) =>
 );
 
 
-router.use("/purchase/notification", async (req, res) =>{
+router.post("/purchase/notification", async (req, res) =>{
   try {
     console.log("notificar");
     
@@ -47,7 +47,7 @@ router.use("/purchase/notification", async (req, res) =>{
     const topic = query.topic; 
 
     console.log(topic);
-    
+
     let merchantOrder;
 
     switch (topic) {
