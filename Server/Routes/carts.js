@@ -25,7 +25,7 @@ router.get("/purchase/success", (req, res) =>{
     estado: req.query.status
   }
 
-  res.status(200).send(infoPagoAprobado);
+  res.status(204).send(infoPagoAprobado);
 });
 router.get("/purchase/failure", (req, res) =>
   res.json({
@@ -55,7 +55,9 @@ router.post("/purchase/notification", async (req, res) =>{
         const paymentId = query.id;
         console.log(paymentId)
         let payment = await mercadopago.payment.findById(paymentId);
+        console.log("payment:", payment)
         merchantOrder = await mercadopago.merchant_orders.findById(payment.body.order.id);
+        console.log("merchantOrder:", merchantOrder )
         break;
       case "merchant_order":
         const orderId = query.id;
@@ -78,7 +80,7 @@ router.post("/purchase/notification", async (req, res) =>{
       console.log("el pago NO se completo")
     }
  
-    res.sendStatus(201);
+    res.status(201).send({message: "flujoMp notificationUrl"});
 
   } catch (error) {
     console.log(error);
