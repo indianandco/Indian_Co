@@ -8,6 +8,9 @@ const payment = async (req, res) => {
   const info = req.body;
 
   console.log(info);
+
+  console.log(info.shop.cart)
+  console.log(JSON.parse(info.shop.cart))
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
