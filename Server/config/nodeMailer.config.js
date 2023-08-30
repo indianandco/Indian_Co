@@ -222,15 +222,7 @@ const shopOrderMailTransferMeetPoint = async (email,name,code,amount,  cart,ship
                 <p><b>Referencia:</b> Por favor, utiliza el número de pedido ${code} como referencia al realizar la transferencia.</p>
             </div>
           
-            <p>Tan pronto como verifiquemos el pago en nuestra cuenta, nos pondremos manos a la obra para preparar tu pedido y lo enviaremos a:</p>
-
-            <div class="cuadro">
-                <p>Direccion de entrega: ${shippingInfo.address}</p>
-                <p>Codigo Postal:${shippingInfo.zipcode}</p>
-                <p>Ciudad: ${shippingInfo.city}</p>
-                <p>Provincia: ${shippingInfo.province}</p>
-            </div>
-
+            <p>Tan pronto como verifiquemos el pago en nuestra cuenta, nos pondremos manos a la obra para preparar tu pedido y coordinar un punto de entrega.</p>
             
             <p>Ante cualquier consulta, no dudes en ponerte en contacto con nuestro equipo de atención al cliente en <b>ventas@indianandco.com.ar</b> o <b><a href="https://wa.me/5491134424505">1134424505</a></b>. Estamos aquí para ayudarte en cada paso del proceso.</p>
             

@@ -82,7 +82,6 @@ const initializePassport = () =>{
             return done(null, user);
             
         } catch (error) {
-            console.log(`${error}`);
             return done(`Error al loguear usuario, ${error}`);
         }
     }));

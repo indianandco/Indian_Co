@@ -48,7 +48,6 @@ const NavBar = () => {
     }, []);
 
     useEffect(() => {
-        console.log("cart", cart?.length);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, user])
 
@@ -84,7 +83,7 @@ const NavBar = () => {
                             </div>
 
                             <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>
-                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className={scrolled ? "buttons_scrolled" : "buttons"} to="/dashboardadmin">Dashboard</NavLink>}
+                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
