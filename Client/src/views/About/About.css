@@ -1,219 +1,99 @@
-
-.allAbout {
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-  }
-  .remodelado{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15em;
-    font-size: 30px;
-  }
-  .headerAbout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../../../public/headerContact.jpg');
-    min-height: 20em;
-    min-width: 100%;
-    margin: 0.5em;
-
-  }
-  
-  .title {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.756);
-    color: rgb(255, 255, 255);
-    margin-top: 0%;
-    width: 60%;
-    max-width: 60%;
-    padding: 1em;
-    border-radius: 0.5em;
-    cursor: pointer;
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
-    border: 0.1em solid rgb(255, 255, 255);
+.LinkAbout{
     text-decoration: none;
-  }
-  
-  .h3About {
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    font-size: clamp(0.2em, 2vw, 1.25em);
-  }
-  
-  .h1About {
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    font-size: clamp(0.5em, 4vw, 2em);
-  }
-
-
-.footerAbout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5em;
-    min-width: 100%;
-    background-image: url('../../../public/BackgroundBlack.jpg');
-    text-align: center !important ;
 }
 
-.form-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 1em;
+.imageAbout{
+    width: 100%;
+    height: 42em;
+    object-fit: cover;
+    object-position: center;
+}
+
+.BoxAboutAll{
+    padding-left: 8em;
+    padding-right: 8em;
     margin-top: 1em;
-}
-
-.form-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     margin-bottom: 1em;
 }
 
-.desc {
+.imageAbout1{
+    width: 25em;
+    height: 25em;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+}
+
+.BoxAbout1{
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-    margin-left: 1em;
-    margin-right: 1em;
+    padding: 1em;
+    flex-wrap: wrap;
 }
 
-.box {
-    display: flex;
-    margin-top: 5em;
-}
-
-.box-1 {
-    display: inline;
-    max-width: 30em;
-}
-
-.pAbout,
-.p1About,
-.p2About,
-.h4About,
-.h6About {
-    display: flex;
+.h1TitleAboutDesc{
+    font-size: 3em;
+    border-bottom: 1px solid black;
     margin-bottom: 1em;
-    color: rgb(255, 255, 255);
-    font-size: clamp(10px, 2vw, 20px);
+    font-weight: 600;
 }
 
-.p2About {
-    font-weight: bold;
-    margin-bottom: 2.3em;
-}
-
-.h6About {
-    margin-bottom: 2em;
-    color: #ee4c7c;
-}
-
-.smallBox {
-    display: block;
-    margin-bottom: 4em;
-}
-
-.box-3{
-    margin: 3em;
-}
-
-
-.img {
-    max-width: 300px;
-    margin-bottom: 4em;
-}
-
-.headerAbout {
+.BoxAboutDesc1{
     display: flex;
-    min-height: 15em;
-    background-image: url('../../../public/HeaderAbout.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 25em;
+    height: 25em;
 }
 
-.textTitle {
-    font-size: 35px;
-    text-align: start;
-    line-height: normal; 
-    color: white;
-    text-align: center !important ;
+.BoxAbout2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 1em;
+    flex-wrap: wrap;
 }
 
-.h4About{
-    font-size: 35px;
-    text-align: start;
-    line-height: normal; 
-    color: white;
-    text-align: center !important ;
+.BoxAboutDesc2{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 25em;
+    height: 25em;
 }
+@media (max-width: 790px) {
 
-.pAbout {
-    font-size: 20px;
-    text-align: start;
-    margin-top: 0.5em;
-    line-height: normal;
-}
-
-@media only screen and (max-width: 600px) {
-    .img {
-        max-width: 100%;
+    .h1TitleAboutDesc{
+        font-size: 2em;
+        border-bottom: 1px solid black;
+        margin-bottom: 1em;
+        font-weight: 600;
     }
-    .textTitle {
-        font-size: 35px;
-        text-align: start;
-        line-height: normal; 
-        color: white;
-        text-align: center !important ;
+    .imageAbout1{
+        width: 20em;
+        height: 20em;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 6px;
+        margin-bottom: 1em;
     }
-    .h4About{
-        font-size: 35px;
-        text-align: start;
-        line-height: normal; 
-        color: white;
-        text-align: center !important ;
+    .BoxAboutAll{
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
-    .pAbout {
-        font-size: 20px;
-        text-align: start;
-        margin-top: 0.5em;
-        line-height: normal;
+    .BoxAboutTop{
+        display: flex;
+        margin-top: 10em;
     }
-    .textTitle {
-        font-size: 15px;
-        text-align: center !important ;
-    }
-    .pAbout {
-        font-size: 10px;
-    }
-    .h4About{
-        font-size: 15px;
-        text-align: center !important ;
-    }
-    .header {
-        min-height: 20em;
-        max-height: auto;
-        margin-top: 22em;
-    }
-    .title {
-          max-width: 100%;
-          height: auto;
-    }
-    .box-1 {
-        max-width: 100%;
-        margin-right: 0;
-    }
-    .box-3 {
-        margin: 1em;
-        margin-top: 0;
+    .imageAbout{
+        width: 100%;
+        height: 15em;
     }
 }

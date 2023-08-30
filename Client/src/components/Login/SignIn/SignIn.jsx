@@ -7,6 +7,7 @@ import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 import { AuthContext } from '../../../services/AuthContext';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
 function SignIn() {
@@ -91,18 +92,19 @@ function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-          const response = await fetcherUserPost("/users/login", loginForm);
-          sessionStorage.setItem('sessions', JSON.stringify(response));
-          setUser(JSON.parse(sessionStorage.getItem('sessions')));
-          setShowLogin(false);
-        } catch (error) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Error al iniciar sesión. Por favor, verifica tus credenciales.'
-          });
-        }
+
+        const response = await fetcherUserPost("/users/login", loginForm);
+        sessionStorage.setItem('sessions', JSON.stringify(response))
+        setUser(JSON.parse(sessionStorage.getItem('sessions')));
+        setShowLogin(false);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Iniciaste sesión correctamente',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
     }
     
     const handleAuth = (event) => {

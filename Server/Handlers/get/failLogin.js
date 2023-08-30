@@ -1,8 +1,7 @@
 const failLogin = async (req,res)=>{
     try {
-        res.status(404).send({status: 'error', message:'login-failed'});
+        res.status(404).json({error:"login-failure"});
     } catch (error) {
-        console.log(error);
         res.status(500).send({ status: 'error', error });
     }
 };
