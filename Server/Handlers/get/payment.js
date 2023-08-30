@@ -9,28 +9,29 @@ const payment = async (req, res) => {
 
   console.log(info);
   
-  const products = info.shop.cart.map( ( product ) => {
-    `{
-      id: ${product._id}
-      title: ${product.title},
-      fragance: ${product.fragance}
-      quantity: ${product.quantity},
-      currency_id: "ARS",
-      unit_price: ${product.offer === true ? product.offer_price : product.price}
-    }`}
-  );
+  const generateProductList = async () =>{
+    const products = info.shop.cart.map( ( product ) => {
+      `{
+        id: ${product._id}
+        title: ${product.title},
+        fragance: ${product.fragance}
+        quantity: ${product.quantity},
+        currency_id: "ARS",
+        unit_price: ${product.offer === true ? product.offer_price : product.price}
+      }`}
+    );
 
-    console.log(products);
+    return products
+  };
+
+    console.log(generateProductList);
 
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
 
       const preference = {
-        items: [
-          products
-
-        ],
+        items: generateProductList(),
         notification_url: "https://www.indianandco.com.ar/carts/purchase/notification",
         back_urls: {
           success: "https://www.indianandco.com.ar/carts/purchase/success",
