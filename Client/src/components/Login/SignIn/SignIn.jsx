@@ -93,7 +93,6 @@ function SignIn() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await fetcherUserPost("/users/login", loginForm);
-        console.log(response.data);
         sessionStorage.setItem('sessions', JSON.stringify(response))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);

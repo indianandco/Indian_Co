@@ -17,7 +17,6 @@ const initializePassport = () =>{
 
         try {
             const { first_name, last_name, gender, birthdate, address, zipcode, city, phone, age, email } = req.body;
-            console.log(req.body)
 
             //Falta validar los datos  
             const user = await userModel.findOne({ email: username });
@@ -58,19 +57,18 @@ const initializePassport = () =>{
 
 //Login:
     passport.use('login', new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email',
     }, async (username, password, done) =>{
         try {
             const user = await userModel.findOne({ email: username });
             
 
             if (!user) {
-                return done(null, false);
+                return done(null, false, {message: "Usuario no existe"});
             };
 
             if(!isValidPassword(user, password)) {
-                
-                return done(null, false)
+               return done(null, false, {message: "login-failure"})
             };
 
             //Para calcular la ultima conexion, siempre que el usuario el se loguee, se actualiza el campo:
@@ -82,7 +80,7 @@ const initializePassport = () =>{
             return done(null, user);
             
         } catch (error) {
-            return done(`Error al loguear usuario, ${error}`);
+            return done({message: `Error al loguear usuario`});
         }
     }));
 

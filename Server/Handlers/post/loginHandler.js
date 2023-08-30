@@ -1,9 +1,10 @@
 const { generateToken } = require('../../config/jwt.config');
 
 const loginHandler = async (req, res) => {
+    console.log("mostrar error");
     try {
-        if(!req.user) return res.status(400)
-            .send({status: 'error', message: 'Invalid Credentials'});
+        const error = req.flash("message")
+        if(!req.user) return res.status(400).send(error)
     
         const accessToken = await generateToken(req.user);
         const user = req.user
@@ -16,7 +17,6 @@ const loginHandler = async (req, res) => {
         res.status(200).json(user);
         
     } catch (error) {
-        console.log(error)
         res.status(500).send({ status: 'error', error });
     }
 };

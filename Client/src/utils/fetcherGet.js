@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://www.indianandco.com.ar"; 
+const BASE_URL = "http://localhost:3001"; 
 
 export const fetcher = async (endpoint) => {
   try {
