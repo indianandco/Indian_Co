@@ -10,8 +10,7 @@
     align-items: center; 
     margin-top: 3.5em;
     width: 100%;
-
-
+    flex-wrap: wrap;
 }
 
 .dropdownsContainer {
@@ -66,18 +65,27 @@
 
   @media screen and (max-width: 768px) {
     .containerSearch {
+        justify-content: center;
+        align-items: center;
         flex-direction: column; 
+        margin: auto;
+    }
+    .SearchProducts{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
     }
 
     .botonFiltro, .botonCategoria {
         width: 100%; 
         margin-top: 10px; 
- 
     }
 
     .categoriaFiltro {
-        gap: 10px; 
-        justify-content: flex-start;
-        width: 90%;
+        justify-content: center;
+        width: 380px;
     }
 }

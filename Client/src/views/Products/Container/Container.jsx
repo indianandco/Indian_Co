@@ -11,7 +11,7 @@ const Container = () => {
 
     const limit = false
     const [isLoading, setIsLoading] = useState(false);
-    const { filterByCategory, sortProducts, offerProducts, displayedProducts, getAllProducts } = useContext(ProductContext);
+    const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage} = useContext(ProductContext);
 
     useEffect(() => {
         setTimeout(() => {
@@ -28,11 +28,10 @@ const Container = () => {
         } else {
             await filterByCategory(prop);
         }
-
     };
+
     const handlerSort = async (prop) => {
         prop
-        console.log(prop)
         if (prop === "true") {
             await offerProducts(prop)
         }
@@ -47,8 +46,6 @@ const Container = () => {
         }
     }
 
-
-
     return (
         !isLoading ? (
             <div className="loading-spinner">
@@ -59,8 +56,9 @@ const Container = () => {
         ) : (
             <div>
                 <div className="containerSearch">
-
-                    < SearchBar />
+                    <div className="SearchProducts">
+                        < SearchBar className='SearchBar' />
+                    </div>
                     <div className="categoriaFiltro">
                         <Dropdown >
                             <Dropdown.Toggle id="dropdown-categoria" className="botonCategoria">
@@ -89,7 +87,7 @@ const Container = () => {
                 <div>
 
                     <div className="products_container">
-                        {displayedProducts?.map(product => (
+                        {productStorage?.map(product => (
                             <Cards key={product?._id} product={product} />
                         ))}
                     </div>

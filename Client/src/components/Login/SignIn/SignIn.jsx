@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -6,10 +6,12 @@ import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
+import { AuthContext } from '../../../services/AuthContext';
 
 // eslint-disable-next-line react/prop-types
 function SignIn() {
 
+    const { setUser } = useContext(AuthContext);
     const [validated, setValidated] = useState(true);
     const [showLogin, setShowLogin] = useState(false);
     const [showRecover, setShowRecover] = useState(false);
@@ -80,25 +82,28 @@ function SignIn() {
     }
 
     const handleClose = () => {
-        setShowLogin({
+        setShowLogin(false);
+        setLoginForm({
             email: '',
             password: ''
         })
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
-        const response = await fetcherUserPost("/users/login", loginForm)
-        sessionStorage.setItem('sessions', JSON.stringify(response));
-        sessionStorage.setItem('role', response.role)
+        event.preventDefault();
+        const response = await fetcherUserPost("/users/login", loginForm);
+        sessionStorage.setItem('sessions', JSON.stringify(response))
+        setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);
     }
 
     const handleAuth = (event) => {
+        event.preventDefault();
         const data = event.target.dataset.social
         const auth = fetcher(`/users/auth/${data}`)
-        sessionStorage.setItem('sessions', JSON.stringify(auth));
-
+        sessionStorage.setItem('sessions', JSON.stringify(auth))
+        setUser(JSON.parse(sessionStorage.getItem('sessions')));
+        setShowLogin(false);
     }
 
     useEffect(() => {
@@ -108,7 +113,7 @@ function SignIn() {
     return (
         <>
             <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
-                INGRESAR
+                Ingresar
             </Button>
             {//-------------------------MODAL DE LOGIN
             }
