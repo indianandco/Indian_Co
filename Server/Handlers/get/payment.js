@@ -9,18 +9,17 @@ const payment = async (req, res) => {
 
   console.log(info);
   
-  const generateProductList = async () =>{
-    const products = info.shop.cart.map( ( product ) => {
-      `{
-        id: ${product._id}
-        title: ${product.title},
-        fragance: ${product.fragance}
-        quantity: ${product.quantity},
+  const generateProductList = () =>{
+    const products = info.shop.cart.map( ( product ) =>  (
+      {
+        id: product._id,
+        title: product.title,
+        fragance: product.fragance,
+        quantity: product.quantity,
         currency_id: "ARS",
-        unit_price: ${product.offer === true ? product.offer_price : product.price}
-      }`}
-    );
-
+        unit_price: product.offer === true ? product.offer_price : product.price
+      }
+    ));
     return products
   };
 
