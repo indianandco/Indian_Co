@@ -21,7 +21,7 @@ const Home = () => {
                 <Carousel>
                     <Carousel.Item interval={5000}>
                         <NavLink to="/products" className="Link">
-                            <Image src="carrousel1.png" fluid />
+                            <Image className="banners_image" src="carrousel1.png" />
                         </NavLink>
                         <Carousel.Caption>
                             <h3>First slide label</h3>
@@ -29,14 +29,14 @@ const Home = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image src="carrousel2.png" fluid />
+                        <Image className="banners_image" src="carrousel2.png" />
                         <Carousel.Caption>
                             <h3>Second slide label</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image src="carrousel3.png" fluid />
+                        <Image className="banners_image" src="carrousel3.png" />
                         <Carousel.Caption>
                             <h3>Third slide label</h3>
                             <p>
@@ -52,9 +52,9 @@ const Home = () => {
                 </header>
                 <section className="BannerHome2">
                     <div className="iconsContainer">
-                        <i className="bi bi-tree iconStyle"></i>
                         <i className="bi bi-heart iconStyle"></i>
                         <i className="bi bi-award iconStyle"></i>
+                        <i className="bi bi-tree iconStyle"></i>
                     </div>
                     <div className="text_container">
                         <div className="ContainerBoxHome border-bottom">
@@ -72,17 +72,19 @@ const Home = () => {
                     </div>
                 </section>
                 <section className="our_products_container">
-                    <div className="our_products_title_container">
-                        <h1 className="our_products_title">Nuestros productos</h1>
+                    <div className="titleHome">
+                        <h2 className="TitleHome">Esencias de Calidad</h2>
+                        <h1 className="SubTitleHome">100% BIO</h1>
                     </div>
+                    <h1 className="our_products_title">Nuestros productos</h1>
                     <div className="our_products_product_container">
                         {displayedProducts?.slice(0, 6).map(product => {
                             return (<div key={product._id} className="our_products_product">
                                 <img className="our_products_image" src={product.image} alt={product.image} />
-                                <p className="background_container">
+                                <div className="background_container">
                                     <h6 className="background_title">{product.title}</h6>
-                                    <button className="background_button">Ver productos</button>
-                                </p>
+                                    <NavLink to="/products" className="background_button">Ver productos</NavLink>
+                                </div>
                             </div>)
                         })
                         }
