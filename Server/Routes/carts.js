@@ -52,7 +52,7 @@ router.use("/purchase/notification", async (req, res) =>{
         const paymentId = query.id;
 
         let payment = await mercadopago.payment.findById(paymentId);
-        merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
+        merchantOrder = await mercadopago.merchant_orders.findById(payment.body.order.id);
         break;
       case "merchant_order":
         const orderId = query.id;
