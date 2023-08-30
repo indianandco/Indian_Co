@@ -20,10 +20,10 @@ const payment = async (req, res) => {
         unit_price: product.offer === true ? product.offer_price : product.price
       }
     ));
+
+    console.log(products)
     return products
   };
-
-    console.log(generateProductList);
 
   try {
     if (info.paymentMethod === "MercadoPago") {
