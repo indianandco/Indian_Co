@@ -91,12 +91,20 @@ function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetcherUserPost("/users/login", loginForm);
-        sessionStorage.setItem('sessions', JSON.stringify(response))
-        setUser(JSON.parse(sessionStorage.getItem('sessions')));
-        setShowLogin(false);
+        try {
+          const response = await fetcherUserPost("/users/login", loginForm);
+          sessionStorage.setItem('sessions', JSON.stringify(response));
+          setUser(JSON.parse(sessionStorage.getItem('sessions')));
+          setShowLogin(false);
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al iniciar sesión. Por favor, verifica tus credenciales.'
+          });
+        }
     }
-
+    
     const handleAuth = (event) => {
         event.preventDefault();
         const data = event.target.dataset.social
