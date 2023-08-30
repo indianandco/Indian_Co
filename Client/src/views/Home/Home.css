@@ -48,7 +48,7 @@
     display: flex;
     flex-direction:row;
     justify-content: flex-end;
-    background-image: url('../../assets/banner_products.png');
+    background-image: url('banner_products.png');
     background-size:cover; 
     object-position:center;
     object-fit:cover;
