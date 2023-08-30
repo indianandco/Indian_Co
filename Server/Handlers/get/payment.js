@@ -39,7 +39,7 @@ const payment = async (req, res) => {
         },
         notification_url: "https://indianandco.com.ar/carts/purchase/notification",
         auto_return: "approved",
-        binary_mode: true,
+        binary_mode: true
       };
 
       await mercadopago.preferences.create(preference)
