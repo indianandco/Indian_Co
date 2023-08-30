@@ -68,7 +68,7 @@ const CreateProduct = () => {
     });
 
 
-    const { values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting, setFieldValue } = formik
+    const { values, errors, touched, handleSubmit, handleChange, handleBlur, isSubmitting } = formik
 
     const handleProductThumbnailUpload = (event) => {
         const file = event.target.files[0];

@@ -7,6 +7,7 @@ import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 import { AuthContext } from '../../../services/AuthContext';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
 function SignIn() {
@@ -92,9 +93,17 @@ function SignIn() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await fetcherUserPost("/users/login", loginForm);
+        console.log(response.data);
         sessionStorage.setItem('sessions', JSON.stringify(response))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Iniciaste sesión correctamente',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 
     const handleAuth = (event) => {
