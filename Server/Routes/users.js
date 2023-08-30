@@ -2,7 +2,6 @@ const { Router } = require('express');
 const passport = require('passport');
 const router = Router();
 
-const { postUsersHandler } = require('../Handlers/post/postUsersHandler');
 const { failRegister } = require('../Handlers/get/failRegister');
 const { loginHandler } = require('../Handlers/post/loginHandler');
 const { failLogin } = require('../Handlers/get/failLogin');
@@ -12,10 +11,10 @@ const { putUserHandler } = require('../Handlers/put/putUserHandler');
 
 
 //Registro:
-router.post('/register', passport.authenticate('register', {failureRedirect: 'fail-register'}), postUsersHandler);
+router.post('/register', passport.authenticate('register', {failureRedirect: 'fail-register'}));
 router.get('/fail-register', failRegister);
 //Login:
-router.post('/login', passport.authenticate('login', {failureRedirect: 'fail-login'}), loginHandler);
+router.post('/login', passport.authenticate('login', {failureFlash: true}), loginHandler);
 router.get('/fail-login', failLogin );
 
 //Login/register con Google:
