@@ -30,5 +30,6 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
           window.location.href = res.data.response.body.init_point;
         });
     }
-  } catch (error) {}
+  } catch (error) {
+  }
 };
