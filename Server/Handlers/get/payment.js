@@ -8,31 +8,28 @@ const payment = async (req, res) => {
   const info = req.body;
 
   console.log(info);
-  console.log(info.shop.cart)
+  
+  const products = info.shop.cart.map( ( product ) => {
+    `{
+      id: ${product._id}
+      title: ${product.title},
+      fragance: ${product.fragance}
+      quantity: ${product.quantity},
+      currency_id: "ARS",
+      unit_price: ${product.offer === true ? product.offer_price : product.price}
+    }`}
+  );
+
+    console.log(products);
+
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
 
       const preference = {
         items: [
-          {
-            title: "Productos IndianCo",
-            quantity: 1,
-            currency_id: "ARS",
-            unit_price: info.shop.total,
-          },
-          {
-            title: "test2",
-            quantity: 2,
-            currency_id: "ARS",
-            unit_price: 250,
-          },
-          {
-            title: "test3",
-            quantity: 3,
-            currency_id: "ARS",
-            unit_price: 150,
-          },
+          products
+
         ],
         notification_url: "https://www.indianandco.com.ar/carts/purchase/notification",
         back_urls: {
@@ -44,36 +41,12 @@ const payment = async (req, res) => {
         binary_mode: true,
       };
 
-      await mercadopago.preferences
-        .create(preference)
+      await mercadopago.preferences.create(preference)
         .then(function (response) {
           console.log(response)
           res.status(200).send({ response });
         })
-    //     .then(async () => {
-    //       if (info.shippingOption === "envio") {
-    //         await shopOrderMailMPwShipping(
-    //           info.user.userInfo.email,
-    //           `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-    //           "test",
-    //           info.shop.total,
-    //           info.shop.cart,
-    //           info.user.deliverInfo
-    //         );
-    //       }
-    //       if (info.shippingOption === "punto_encuentro") {
-    //         await shopOrderMailMPpoint(
-    //           info.user.userInfo.email,
-    //           `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-    //           "test",
-    //           info.shop.total,
-    //           info.shop.cart
-    //         );
-    //       }
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
+
     } else {
       if (info.shippingOption === "envio") {
         await shopOrderMailTransferWShipping(
