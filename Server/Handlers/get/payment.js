@@ -31,7 +31,7 @@ const payment = async (req, res) => {
 
       const preference = {
         items: generateProductList(),
-        notification_url: "https://www.indianandco.com.ar/carts/purchase/notification",
+        notification_url: "https://indianandco.com.ar/carts/purchase/notification",
         back_urls: {
           success: "https://www.indianandco.com.ar/carts/purchase/success",
           failure: "https://www.indianandco.com.ar/carts/purchase/failure",
