@@ -41,22 +41,26 @@ router.use("/purchase/notification", async (req, res) =>{
     console.log("notificar");
     
     const {body, query} = req;
+
     console.log({body, query});
     
     const topic = query.topic; 
 
+    console.log(topic);
+    
     let merchantOrder;
 
     switch (topic) {
       case "payment":
         const paymentId = query.id;
-
+        console.log(paymentId)
         let payment = await mercadopago.payment.findById(paymentId);
         merchantOrder = await mercadopago.merchant_orders.findById(payment.body.order.id);
         break;
       case "merchant_order":
         const orderId = query.id;
-        merchantOrder= await mercadopago.merchant_orders.findById(orderId);
+        console.log(orderId)
+        merchantOrder = await mercadopago.merchant_orders.findById(orderId);
         break; 
     };
 
@@ -75,6 +79,7 @@ router.use("/purchase/notification", async (req, res) =>{
     }
  
     res.sendStatus(201);
+
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something goes wrong" });
