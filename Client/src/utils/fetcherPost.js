@@ -30,5 +30,13 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
           window.location.href = res.data.response.body.init_point;
         });
     }
-  } catch (error) {}
+
+    if (data.paymentMethod === "TransferenciaBancaria") {
+      await axios.post(`${BASE_URL}${endpoint}`, data)
+    }
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 };

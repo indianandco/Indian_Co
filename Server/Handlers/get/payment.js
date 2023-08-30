@@ -1,4 +1,6 @@
 const mercadopago = require("mercadopago");
+const { shopOrderMailTransferWShipping,
+  shopOrderMailTransferMeetPoint } = require('../../config/nodeMailer.config');
 
 require("dotenv").config();
 
@@ -8,9 +10,7 @@ const payment = async (req, res) => {
   const info = req.body;
 
   console.log(info);
-
-  console.log(info.shop.cart)
-  console.log(JSON.parse(info.shop.cart))
+  console.log(typeof info.shop.cart)
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
@@ -89,7 +89,7 @@ const payment = async (req, res) => {
       }
 
       if (info.shippingOption === "punto_encuentro") {
-        await shopOrderMailTransferPoint(
+        await shopOrderMailTransferMeetPoint(
           info.user.userInfo.email,
           `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
           "test",
@@ -98,7 +98,7 @@ const payment = async (req, res) => {
         );
       }
 
-      res.send("todo ok");
+      res.status(200).send("todo ok");
 
     }
   } catch (error) {
