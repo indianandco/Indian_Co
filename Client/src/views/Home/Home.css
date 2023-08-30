@@ -7,6 +7,14 @@
     height: 100%;
     width: 100%;
 }
+
+.banners_image{
+    height: 950px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .Link{
     text-decoration: none;
 }
@@ -24,6 +32,7 @@
     background-color: rgb(0, 0, 0);
     padding: 1em;
     color: white;
+    width: 100%;
 }
 .SubTitleHome{
     font-size: 30px;    
@@ -34,30 +43,13 @@
 .TextHome{
     font-size: 20px;
 }
-.BannerHome1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 40em;
-    border-radius: 6px;
-    border: 0.1px solid black;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
-    width: 99%;
-    background-image: url('../../../public/BannerHome1.jpeg');
-    cursor: pointer;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-bottom: 2em;
-}
+
 .BannerHome2{
     display: flex;
-    min-height: 40em;
-    border-radius: 6px;
-    border: 0.1px solid black;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
-    background-image: url('../../../public/BannerHome2.png');
-    cursor: pointer;
-    background-size:cover; /* La imagen de fondo cubrirá todo el contenedor */
+    flex-direction:row;
+    justify-content: flex-end;
+    background-image: url('../../assets/banner_products.png');
+    background-size:cover; 
     object-position:center;
     object-fit:cover;
     background-repeat:no-repeat;
@@ -103,61 +95,127 @@
 }
 
 .SubTitleHome2{
-    font-size: 30px;
+    font-size: 1.8em;
     color: black; 
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);   
 }
 .TitleHome2{
-    font-size: 25px;
+    font-size: 1.5em;
     color: black;  
 }
 .TextHome2{
-    font-size: 15px;
+    font-size: 1.2em;
     color: black;  
     font-weight: 500;
 }
 
 .our_products_container{
     display: flex;
-    min-height: 40em;
-    border-radius: 6px;
-    border: 0.1px solid black;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
-    background-image: url('../../../public/BannerHome4.png');
-    cursor: pointer;
-    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
-    background-repeat: no-repeat;
-    margin-bottom: 2em;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.our_products_title_container{
+.our_products_title{
+    color: rgb(0, 0, 0);
+    padding-bottom: 1rem;
+    border-bottom: 2.0px solid rgb(0, 0, 0);
+    margin: 1em;
+}
+
+.our_products_product_container{
     display: flex;
+    width: 60%;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 15em;
-    border-radius: 6px;
-    border: 0.1px solid black;
-    box-shadow: 0 8px 32px 0 rgb(0, 0, 0);
-    background-image: url('../../../public/BannerHome3.png');
-    cursor: pointer;
-    background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
-    background-repeat: no-repeat;
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    margin-bottom: 2em;
+    margin-bottom: 5em;
 }
 
-@media (max-width: 995px) {
+.our_products_product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 18.75em;
+    height: 18.75em;
+    margin: 1em;
+}
+
+.background_container {
+    opacity: 0;
+    z-index: 999;
+    width: 18.75em;
+    height: 18.75em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.505);
+    margin: 1em;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.background_title{
+    color: white;
+    width: 180px;
+    font-size: 2em;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.background_button {
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.background_button:hover {
+    background-color: white;
+    color: black;
+}
+
+.our_products_product:hover .background_container {
+    opacity: 1;
+}
+
+.our_products_image{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+
+@media (max-width: 600px) {
     .home_container {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 0.5em;
+        
     }
-  
-    .banners_container {
-      margin: 0.5em 0;
+
+    .BannerHome2{
+        display: flex;
+        flex-direction:row;
+        align-items: center;
+        background-image:none;
+    }
+
+    .iconsContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-right: 3em;
+        height: 712px;
     }
   
     .PaddingTitleHome {
@@ -166,31 +224,44 @@
     }
   
     .titleHome {
-      padding: 1em;
       font-size: 30px;
       text-align: center;
     }
   
     .SubTitleHome{
         font-size: 14px;
-        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
     }
     .TitleHome{
         font-size: 25px;
-        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
     }
     .TextHome {
         font-size: 12px;
-        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
     }
   
-    .BannerHome1,
-    .BannerHome2,
-    .BannerHome3,
-    .BannerHome4 {
+
+    .BannerHome2 {
       min-height: 20em;
       margin-bottom: 1em;
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .background_container {
+        opacity: 1;
+        z-index: 999;
+        width: 18.75em;
+        height: 18.75em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0);
+        justify-content: center;
+        flex-direction: column;
+        margin: 1em;
+    }
+
+    .banners_image{
+        height: 450px;
+        object-fit: cover;
+        object-position: center;
     }
   
     .imageHome {
@@ -200,23 +271,19 @@
       margin:1em;
     }
   
-    .ContainerBannerHome2 {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-  
     .ContainerBoxHome {
         max-width: 250px;
       width: 100%;
     }
   
-    .SubTitleHome2,
-    .TitleHome2,
-    .TextHome2 {
-        text-shadow: 10px 10px 20px rgba(255, 255, 255, 0.8); 
-        font-size: 18px;
-        font-weight: 800;
+    .TextHome2 { 
+        font-size: 14px;
+    }
+
+    .text_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
   }
   
