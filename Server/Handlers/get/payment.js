@@ -29,15 +29,15 @@ const payment = async (req, res) => {
         console.log(products)
         return products
       };
-      
+
       const preference = {
         items: generateProductList(),
-        notification_url: "https://indianandco.com.ar/carts/purchase/notification",
         back_urls: {
           success: "https://www.indianandco.com.ar/carts/purchase/success",
           failure: "https://www.indianandco.com.ar/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
+        notification_url: "https://indianandco.com.ar/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true,
       };
