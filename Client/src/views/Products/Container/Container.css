@@ -10,8 +10,7 @@
     align-items: center; 
     margin-top: 3.5em;
     width: 100%;
-
-
+    flex-wrap: wrap;
 }
 
 .dropdownsContainer {

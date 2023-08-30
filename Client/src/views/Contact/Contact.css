@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row-reverse;
+  flex-wrap: wrap;
   margin-top: 8em;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
@@ -13,6 +14,7 @@
   font-family: Montserrat;
   background-color: white;
   width: 100%;
+  height: 100%;
 }
   
 .h3Contact {
@@ -109,6 +111,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  font-size: auto;
   height: 100%;
 }
   
@@ -133,6 +137,7 @@
   justify-content: flex-start;
   align-items: flex-start !important;
   flex-direction:column !important;
+  flex-wrap: wrap;
   width: 25em;
 }
 
@@ -166,6 +171,15 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+  }
+  .pContact,
+  .p1Contact,
+  .p2Contact,
+  .h4Contact,
+  .h6Contact {
+    display: flex;
+    color: black;
+    font-size: clamp(10px, 2vw, 2px);
   }
   .desc{
     margin-top: .5em;

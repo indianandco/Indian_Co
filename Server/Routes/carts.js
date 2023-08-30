@@ -18,18 +18,15 @@ router.get("/:cid", getCartByIdHandler);
 //Finalizar venta + redireccion/cobro con mercadopago
 router.post("/:cid/purchase", postTicketsHandler);
 router.post("/purchase", payment);
-router.get("/purchase/success", (req, res) =>
-  res.send(
-    `<div>
-    <ol>
-      <li>Comprobante de Mercado Pago: ${req.query.payment_id}</li>
-      <li>Status: ${req.query.status}</li>
-      <li>MerchantOrder: ${req.query.merchant_order_id}</li>
-    </ol>
-    <button><a href="http://localhost:5173"> Volver al sitio</></button>
-  </div>`
-  )
-);
+router.get("/purchase/success", (req, res) =>{
+
+  const infoPagoAprobado = {
+    comprobanteMp: req.query.payment_id,
+    estado: req.query.status
+  }
+
+  res.status(200).send(infoPagoAprobado);
+});
 router.get("/purchase/failure", (req, res) =>
   res.json({
     Payment: req.query.payment_id,
@@ -37,5 +34,51 @@ router.get("/purchase/failure", (req, res) =>
     MerchantOrder: req.query.merchant_order_id,
   })
 );
+
+
+router.post("/purchase/notification", async (req, res) =>{
+  try {
+    console.log("notificar");
+    
+    const {body, query} = req;
+    console.log({body, query});
+    
+    const topic = query.topic; 
+
+    let merchantOrder;
+
+    switch (topic) {
+      case "payment":
+        const paymentId = query.id;
+
+        let payment = await mercadopago.payment.findById(paymentId);
+        merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
+        break;
+      case "merchant_order":
+        const orderId = query.id;
+        merchantOrder= await mercadopago.merchant_orders.findById(orderId);
+        break; 
+    };
+
+    let paidAmount = 0;
+    merchantOrder.body.payments.forEach( payment => {
+      if(payment.status === "approved") {
+        paidAmount += payment.transaction_amount; 
+      }
+    });
+
+    if (paidAmount >= merchantOrder.body.total_amount) {
+      console.log("el pago se completo")
+      //Aca implementar la logica del mail y del stock
+    } else {
+      console.log("el pago NO se completo")
+    }
+ 
+    res.sendStatus(201);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Something goes wrong" });
+  }
+})
 
 module.exports = router;
