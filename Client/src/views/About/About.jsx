@@ -17,14 +17,14 @@ const About = () => {
                     </div>
                 </div>
                 <div className='BoxAbout2'>
-                    <Image alt='' className='imageAbout1' fluid src='/BannerHomeImage3.webp' /> 
+                    <Image alt='' className='imageAbout1' fluid src='/carrousel1.png' /> 
                     <div className='BoxAboutDesc2'>
                         <h1 className='h1TitleAboutDesc'>Calidad</h1>
                         <p>La calidad de nuestros productos es una prioridad fundamental. Nos esforzamos por ofrecer a nuestros clientes productos que no solo sean bonitos de ver, sino también duraderos y funcionales para garantizar la resistencia y longevidad de nuestros artículos. Realizamos rigurosas pruebas y evaluaciones para asegurarnos de cumplir con nuestros estándares antes de que lleguen a manos de nuestros clientes. Por eso, podemos afirmar con confianza que la calidad de nuestros productos está garantizada y satisfacerá  incluso a los clientes más exigentes.</p>             
                     </div>
                 </div>
                 <div className='BoxAbout1'>
-                    <Image alt='' className='imageAbout1' fluid src='/BannerHomeImage2.webp' /> 
+                    <Image alt='' className='imageAbout1' fluid src='/carrousel2.png' /> 
                     <div className='BoxAboutDesc1'>
                         <h1 className='h1TitleAboutDesc'>Sustentable</h1>
                         <p>Nuestros productos se destacan por su enfoque en la sostenibilidad ofreciendo soluciones que sean respetuosas con el medio ambiente. Desde el diseño hasta la producción, utilizamos materiales reciclables. Nuestro compromiso es proporcionar productos de alta calidad que no solo cumplan con las expectativas de nuestros clientes, sino que también sean amigables con el planeta.</p>             
