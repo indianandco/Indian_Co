@@ -10,9 +10,7 @@ const payment = async (req, res) => {
   console.log(info);
   try {
     if (info.paymentMethod === "MercadoPago") {
-      mercadopago.configure({
-        access_token: MP_TOKEN,
-      });
+      mercadopago.configure({access_token: MP_TOKEN});
 
       const preference = {
         items: [
@@ -21,6 +19,18 @@ const payment = async (req, res) => {
             quantity: 1,
             currency_id: "ARS",
             unit_price: info.shop.total,
+          },
+          {
+            title: "test2",
+            quantity: 2,
+            currency_id: "ARS",
+            unit_price: "250",
+          },
+          {
+            title: "test3",
+            quantity: 3,
+            currency_id: "ARS",
+            unit_price: "150",
           },
         ],
         notification_url: "https://www.indianandco.com.ar/carts/purchase/notification",
@@ -63,27 +73,27 @@ const payment = async (req, res) => {
     //     .catch(function (error) {
     //       console.log(error);
     //     });
-    // } else {
-    //   if (info.shippingOption === "envio") {
-    //     await shopOrderMailTransferWShipping(
-    //       info.user.userInfo.email,
-    //       `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-    //       "test",
-    //       info.shop.total,
-    //       info.shop.cart,
-    //       info.user.deliverInfo
-    //     );
-    //   }
+    } else {
+      if (info.shippingOption === "envio") {
+        await shopOrderMailTransferWShipping(
+          info.user.userInfo.email,
+          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
+          "test",
+          info.shop.total,
+          info.shop.cart,
+          info.user.deliverInfo
+        );
+      }
 
-    //   if (info.shippingOption === "punto_encuentro") {
-    //     await shopOrderMailTransferPoint(
-    //       info.user.userInfo.email,
-    //       `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-    //       "test",
-    //       info.shop.total,
-    //       info.shop.cart
-    //     );
-    //   }
+      if (info.shippingOption === "punto_encuentro") {
+        await shopOrderMailTransferPoint(
+          info.user.userInfo.email,
+          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
+          "test",
+          info.shop.total,
+          info.shop.cart
+        );
+      }
 
       res.send("todo ok");
 
