@@ -1,8 +1,6 @@
 const mercadopago = require("mercadopago");
-const { shopOrderMailTransferWShipping,
-  shopOrderMailTransferMeetPoint } = require('../../config/nodeMailer.config');
-
 require("dotenv").config();
+const { shopOrderMailTransferWShipping, shopOrderMailTransferMeetPoint } = require('../../config/nodeMailer.config');
 
 const { MP_TOKEN } = process.env;
 
@@ -10,7 +8,7 @@ const payment = async (req, res) => {
   const info = req.body;
 
   console.log(info);
-  console.log(typeof info.shop.cart)
+  console.log(info.shop.cart)
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});

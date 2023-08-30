@@ -36,7 +36,7 @@ router.get("/purchase/failure", (req, res) =>
 );
 
 
-router.post("/purchase/notification", async (req, res) =>{
+router.use("/purchase/notification", async (req, res) =>{
   try {
     console.log("notificar");
     
