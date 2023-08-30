@@ -1,6 +1,6 @@
 /* import axios from "axios";
 
-const BASE_URL = "https://mere-hands-production.up.railway.app";
+const BASE_URL = "https://www.indianandco.com.ar";
 
 export const sendEmail = async (endpoint, info) => {
     try {
