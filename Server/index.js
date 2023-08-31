@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const { initializePassport } = require('./config/passport.config');
 require('dotenv').config();
+const flash = require("express-flash")
 const { PORT, USER, PW, DB_URL } = process.env;
 
 const server = express();
@@ -15,7 +16,6 @@ const productsRoutes = require ("./Routes/products")
 const usersRoutes = require("./Routes/users")
 const ticketsRoutes = require("./Routes/tickets")
 const cartsRoutes = require("./Routes/carts")
-
 const adminDashboard = require('./Routes/adminDashboard');
 
 const mongoose = require('./db');
@@ -24,6 +24,7 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(express.json());
 server.use(morgan('dev'));
+server.use(flash())
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); 
   res.header('Access-Control-Allow-Credentials', 'true');

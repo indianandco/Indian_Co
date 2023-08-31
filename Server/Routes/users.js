@@ -14,7 +14,7 @@ const { putUserHandler } = require('../Handlers/put/putUserHandler');
 router.post('/register', passport.authenticate('register', {failureRedirect: 'fail-register'}));
 router.get('/fail-register', failRegister);
 //Login:
-router.post('/login', passport.authenticate('login', {failureRedirect: 'fail-login'}), loginHandler);
+router.post('/login', passport.authenticate('login', {failureFlash: true}), loginHandler);
 router.get('/fail-login', failLogin );
 
 //Login/register con Google:
