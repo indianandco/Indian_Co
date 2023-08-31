@@ -37,16 +37,12 @@ router.get("/purchase/failure", (req, res) =>
 
 
 router.post("/purchase/notification", async (req, res) =>{
-  try {
-    console.log("notificar");
-    
+  try {    
     const {body, query} = req;
 
     console.log({body, query});
     
     const topic = query.topic; 
-
-    console.log(topic);
 
     let merchantOrder;
 
@@ -67,7 +63,7 @@ router.post("/purchase/notification", async (req, res) =>{
     };
 
     let paidAmount = 0;
-    merchantOrder.body.payments.forEach( payment => {
+    merchantOrder.body?.payments.forEach( payment => {
       if(payment.status === "approved") {
         paidAmount += payment.transaction_amount; 
       }
@@ -75,31 +71,21 @@ router.post("/purchase/notification", async (req, res) =>{
 
     if (paidAmount >= merchantOrder.body.total_amount) {
       console.log("el pago se completo")
-      //Aca implementar la logica del mail y del stock
+
+      let products = merchantOrder.body.items;
+
       res.status(201).send({message: "flujoMp notificationUrl"});
+      console.log(products)
+      
     } else {
       console.log("el pago NO se completo")
     }
- 
-
+    
+    
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something goes wrong" });
   }
-
-  // try {
-  //   const payment = req.query;
-  //   console.log(payment);
-  //   if (payment.type === "payment") {
-  //     const data = await mercadopago.payment.findById(payment["data.id"]);
-  //     console.log(data);
-  //   }
-
-  //   res.sendStatus(204);
-  // } catch (error) {
-  //   console.log(error);
-  //   return res.status(500).json({ message: "Something goes wrong" });
-  // }
 })
 
 module.exports = router;
