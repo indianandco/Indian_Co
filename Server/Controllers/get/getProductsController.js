@@ -1,6 +1,6 @@
 const {productModel} = require('../../models/product.model');
 
-const getProductsController = async (limit, page, sort) => {  
+const getProductsController = async ( sort) => {  
     
     try {
       if (sort) {
@@ -22,7 +22,7 @@ const getProductsController = async (limit, page, sort) => {
         sort = sortOption;
     }
     
-      const allProducts = await productModel.paginate({}, { limit, page, sort, lean: true });
+      const allProducts = await productModel.paginate({}, {  sort, lean: true });
 
       return allProducts;
     } catch(error) {

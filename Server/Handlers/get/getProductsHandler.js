@@ -1,11 +1,10 @@
 const {getProductsController} = require("../../Controllers/get/getProductsController")
 
 const getProductsHandler = async (req, res) => {
-    const { limit = 10 } = req.query;
-    const { page = 1 } = req.query;
+   
     const sort = req.query.sort;
     try {
-        const { docs, hasPrevPage, hasNextPage, nextPage, prevPage } = await getProductsController(limit, page, sort);
+        const { docs, hasPrevPage, hasNextPage, nextPage, prevPage } = await getProductsController( sort);
    
         const products = docs;
      
