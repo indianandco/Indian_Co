@@ -78,13 +78,13 @@ const NavBar = () => {
                                 </NavLink>
                             </div>
                             <div>
-                                {!user && <SignIn scrolled={scrolled}></SignIn>}
+                                {!user && <SignIn scrolled={scrolled} onClick={() => setExpanded(false)}></SignIn>}
                             </div>
                             <div>
-                                {!user && <SignUp scrolled={scrolled}></SignUp>}
+                                {!user && <SignUp scrolled={scrolled} onClick={() => setExpanded(false)}></SignUp>}
                             </div>
                             <div>
-                                {(user?.role === "user") && <UserProfile></UserProfile>}
+                                {(user?.role === "user") && <UserProfile onClick={() => setExpanded(false)}></UserProfile>}
                             </div>
 
                             {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>}

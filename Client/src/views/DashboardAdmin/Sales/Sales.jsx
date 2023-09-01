@@ -65,10 +65,6 @@ const Sales = () => {
         setModal(false);
     };
 
-
-
-console.log("products",products)
-console.log("selectedSale",selectedSale)
     return (
         <Container className='container'>
             <Row className='sale_title'>
@@ -116,9 +112,7 @@ console.log("selectedSale",selectedSale)
                             <p>Productos:</p>
                             {
                                 selectedSale?.products.map((productId, index) => {
-                                    console.log("Matching productID:", productId);
                                     const product = products.find(p => {
-                                        console.log("Checking product with ID:", p._id);
                                         return p._id === productId.id});
                             
                                     return (
