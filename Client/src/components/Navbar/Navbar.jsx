@@ -84,7 +84,7 @@ const NavBar = () => {
                                 {(user?.role === "user") && <UserProfile></UserProfile>}
                             </div>
 
-                            <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>
+                            {(user || userNav) && <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>}
                             {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
