@@ -48,7 +48,7 @@ const Sales = () => {
 
     const getProductsInfo = async () => {
         const products = await fetcher(`/products`)
-        setProducts(products)
+        setProducts(products.payload)
     }
     useEffect(() => {
         getInfo();
@@ -67,6 +67,8 @@ const Sales = () => {
 
 
 
+console.log("products",products)
+console.log("selectedSale",selectedSale)
     return (
         <Container className='container'>
             <Row className='sale_title'>
@@ -114,7 +116,11 @@ const Sales = () => {
                             <p>Productos:</p>
                             {
                                 selectedSale?.products.map((productId, index) => {
-                                    const product = products.payload.find(p => p._id === productId);
+                                    console.log("Matching productID:", productId);
+                                    const product = products.find(p => {
+                                        console.log("Checking product with ID:", p._id);
+                                        return p._id === productId.id});
+                            
                                     return (
                                         <span key={index}>
                                             - {product ? product.title : 'Producto no encontrado'}
