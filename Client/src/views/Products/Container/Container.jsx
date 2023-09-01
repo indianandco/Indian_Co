@@ -41,7 +41,13 @@ const Container = () => {
         getAllProducts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    const handlerCategory = async (prop) => {
+        if (prop === "---") {
+            null
+        } else {
+            await filterByCategory(prop);
+        }
+    };
 
 
     const handlerSort = async (prop) => {
