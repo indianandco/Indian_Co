@@ -6,7 +6,7 @@ import { ProductContext } from "../../services/ProductContext";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("")
-    const { findProductStorage  } = useContext(ProductContext);
+    const { findProductStorage , resetPagination } = useContext(ProductContext);
     
     useEffect(() => {
         if (searchQuery === "") {
@@ -19,6 +19,8 @@ const SearchBar = () => {
         const inputValue = event.target.value.slice(0, 30);
         setSearchQuery(inputValue);
         findProductStorage(inputValue);
+
+        resetPagination();
     };
 
     return (
