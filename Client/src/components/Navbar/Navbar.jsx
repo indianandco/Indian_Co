@@ -18,6 +18,7 @@ const NavBar = () => {
     const location = useLocation();
     const { cart } = useContext(CartContext);
     const { user, setUser } = useContext(AuthContext);
+    const [userNav, setUserNav] = useState(JSON.parse(sessionStorage.getItem("sessions")))
     const [scrolled, setScrolled] = useState(false);
 
     const scrollToTop = () => {
@@ -28,6 +29,7 @@ const NavBar = () => {
         fetcher("/users/logout")
         sessionStorage.clear();
         setUser(null);
+        setUserNav(null);
     };
 
     useEffect(() => {
@@ -83,7 +85,7 @@ const NavBar = () => {
                             </div>
 
                             <NavLink onClick={() => handleLogOut()} className="buttons" to="/">Salir</NavLink>
-                            {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
+                            {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
