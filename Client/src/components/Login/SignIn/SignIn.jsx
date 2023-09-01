@@ -10,7 +10,7 @@ import { AuthContext } from '../../../services/AuthContext';
 import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
-function SignIn() {
+function SignIn({ onClick }) {
 
     const { setUser } = useContext(AuthContext);
     const [validated, setValidated] = useState(true);
@@ -61,7 +61,11 @@ function SignIn() {
 
 
     //-----------------FUNCIONES DE LOGIN
-    const handleShow = () => setShowLogin(true)
+    const handleShow = () => {
+        if(onClick) onClick(); 
+        setShowLogin(true);
+    }
+    
     const handleChange = (event) => {
 
         const value = event.target.value

@@ -48,7 +48,7 @@ const Sales = () => {
 
     const getProductsInfo = async () => {
         const products = await fetcher(`/products`)
-        setProducts(products)
+        setProducts(products.payload)
     }
     useEffect(() => {
         getInfo();
@@ -64,8 +64,6 @@ const Sales = () => {
     const handleModalClose = () => {
         setModal(false);
     };
-
-
 
     return (
         <Container className='container'>
@@ -114,7 +112,9 @@ const Sales = () => {
                             <p>Productos:</p>
                             {
                                 selectedSale?.products.map((productId, index) => {
-                                    const product = products.payload.find(p => p._id === productId);
+                                    const product = products.find(p => {
+                                        return p._id === productId.id});
+                            
                                     return (
                                         <span key={index}>
                                             - {product ? product.title : 'Producto no encontrado'}
