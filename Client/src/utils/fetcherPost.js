@@ -14,15 +14,11 @@ export const postProductFunction = async (endpoint, product) => {
 export const fetcherUserPost = async (endpoint, form) => {
   try {
     const response = await axios.post(`${BASE_URL}${endpoint}`, form);
-    console.log(response);
     return response.data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
-      console.log("error",error)
-      return "login-failure"
+      return error
     }
-    console.log("error",error)
-    return error.response.data.message
   }
 };
 

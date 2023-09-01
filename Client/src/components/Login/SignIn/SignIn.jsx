@@ -94,17 +94,27 @@ function SignIn() {
         event.preventDefault();
 
         const response = await fetcherUserPost("/users/login", loginForm);
-        sessionStorage.setItem('sessions', JSON.stringify(response))
-        setUser(JSON.parse(sessionStorage.getItem('sessions')));
-        setShowLogin(false);
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Iniciaste sesión correctamente',
-            showConfirmButton: false,
-            timer: 1500
-        })
 
+        if(response){
+            sessionStorage.setItem('sessions', JSON.stringify(response))
+            setUser(JSON.parse(sessionStorage.getItem('sessions')));
+            setShowLogin(false);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Iniciaste sesión correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        } else {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Email o Contraseña inválidos!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
     
     const handleAuth = (event) => {
