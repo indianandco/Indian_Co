@@ -5,7 +5,7 @@ const ticketsCollection = 'tickets';
 const ticketsSchema = new mongoose.Schema(
     {
         total_amount: String,
-        products: [],
+        products: Array,
         owner:{
             type: String,
             require: true,
