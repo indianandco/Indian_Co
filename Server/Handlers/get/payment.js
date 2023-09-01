@@ -24,19 +24,18 @@ const payment = async (req, res) => {
             unit_price: product.offer === true ? product.offer_price : product.price
           }
         ));
-    
-        console.log(products)
+  
         return products
       };
 
       const preference = {
         items: generateProductList(),
         back_urls: {
-          success: "http://localhost:3001/carts/purchase/success",
-          failure: "http://localhost:3001/carts/purchase/failure",
+          success: "http://localhost:5173/cart",
+          // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://bd05-2803-9800-9016-aefa-7525-8c71-33ed-1f69.ngrok.io/carts/purchase/notification",
+        notification_url: "https://9604-2803-9800-9016-aefa-f15b-d88d-d83a-4abb.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -78,5 +77,5 @@ const payment = async (req, res) => {
 };
 
 module.exports = {
-  payment,
+  payment
 };
