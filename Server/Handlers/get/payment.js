@@ -9,7 +9,6 @@ const payment = async (req, res) => {
 
   console.log(info);
   
-  
   try {
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
@@ -33,13 +32,13 @@ const payment = async (req, res) => {
       const preference = {
         items: generateProductList(),
         back_urls: {
-          success: "https://www.indianandco.com.ar/carts/purchase/success",
-          failure: "https://www.indianandco.com.ar/carts/purchase/failure",
+          success: "http://localhost:3001/carts/purchase/success",
+          failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://indianandco.com.ar/carts/purchase/notification",
+        notification_url: "https://bd05-2803-9800-9016-aefa-7525-8c71-33ed-1f69.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
-        binary_mode: true,
+        binary_mode: true
       };
 
       await mercadopago.preferences.create(preference)

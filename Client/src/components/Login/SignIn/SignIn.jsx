@@ -92,6 +92,7 @@ function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         const response = await fetcherUserPost("/users/login", loginForm);
         sessionStorage.setItem('sessions', JSON.stringify(response))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
@@ -103,8 +104,9 @@ function SignIn() {
             showConfirmButton: false,
             timer: 1500
         })
-    }
 
+    }
+    
     const handleAuth = (event) => {
         event.preventDefault();
         const data = event.target.dataset.social

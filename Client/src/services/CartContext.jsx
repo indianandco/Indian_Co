@@ -69,7 +69,11 @@ export const CartProvider = ({ children }) => {
 
   //Calculo del subtotal de cada articulo:
   const calcTotalPerItem = (item) => {
-    return item.price * item.quantity;
+    if(item.offer === true ) {
+      return item.offer_price * item.quantity;
+    }else {
+      return item.price * item.quantity;
+    }
   };
 
   // Calculo total de la compra:
