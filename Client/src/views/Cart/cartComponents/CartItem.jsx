@@ -34,7 +34,7 @@ const CartItem = ({item}) => {
             <div className={styles.contentContainer}>
               <p className={styles.tarjeta_titulo}>{item?.title}</p>
               <p>{item?.fragance}</p>
-              {item?.offer_price ? (
+              {item?.offer ? (
                 <b className="tarjeta-precio">${applyCustomFormat(item?.offer_price, numberWithCommas)}</b>
               ) : (
                 <b className="tarjeta-precio">${applyCustomFormat(item?.price, numberWithCommas)}</b>

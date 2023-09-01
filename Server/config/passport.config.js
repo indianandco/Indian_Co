@@ -60,15 +60,17 @@ const initializePassport = () =>{
         usernameField: 'email',
     }, async (username, password, done) =>{
         try {
+
+
             const user = await userModel.findOne({ email: username });
             
 
             if (!user) {
-                return done(null, false, {message: "Usuario no existe"});
+                return done(null, false);
             };
 
             if(!isValidPassword(user, password)) {
-               return done(null, false, {message: "login-failure"})
+               return done(null, false)
             };
 
             //Para calcular la ultima conexion, siempre que el usuario el se loguee, se actualiza el campo:
