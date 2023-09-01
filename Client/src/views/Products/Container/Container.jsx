@@ -47,6 +47,7 @@ const Container = () => {
         } else {
             await filterByCategory(prop);
         }
+        resetPagination()
     };
 
 
@@ -64,6 +65,7 @@ const Container = () => {
         if (prop === "priceDesc") {
             await sortProducts(prop)
         }
+        resetPagination()
     }
 
     return (
