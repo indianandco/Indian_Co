@@ -100,10 +100,6 @@
     transition: background-color 0.7s ease,height 1s ease;
   }
 
-  .ButtonResponsive{
-    background-color: rgb(240, 240, 240);
-  }
-
   @media (max-width: 768px) {
     .navbar {
       align-items: center;
