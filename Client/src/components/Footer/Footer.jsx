@@ -33,7 +33,7 @@ const Footer = () => {
                 <div className="mid_container">
                     <h2 className="menu">Menu</h2>
                     <div className="links_container">
-                        <NavLink className="links" to={"/home"} >Inicio</NavLink>
+                        <NavLink className="links" to={"/"} >Inicio</NavLink>
                         <NavLink className="links" to={"/products"} >Productos</NavLink>
                         <NavLink className="links" to={"/contact"} >Contacto</NavLink>
                         <NavLink className="links" to={"/about"} >Sobre nosotros</NavLink>

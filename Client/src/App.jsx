@@ -16,11 +16,23 @@ import ProtectedRoutes from './utils/ProtectedRoutes';
 function App() {
 
   const location = useLocation();
+  const routesWithFooter = [
+    "/",
+    "/about",
+    "/contact",
+    "/products",
+    "/detail/:id",
+    "/cart",
+  ];
+  const showFooter = routesWithFooter.some(route => {
+    return route === location.pathname || 
+           (route.includes(":") && location.pathname.startsWith(route.split(":")[0]));
+  });
 
   return (
     <>
 
-      {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
+      {location.pathname !==  "/dashboardadmin" && < Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -38,7 +50,8 @@ function App() {
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
-      {location.pathname !== "/dashboardadmin" && <Footer />}
+      {showFooter && <Footer />}
+
 
     </>
   )
