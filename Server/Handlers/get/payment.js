@@ -35,7 +35,7 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://5f5d-2803-9800-9016-aefa-f15b-d88d-d83a-4abb.ngrok.io/carts/purchase/notification",
+        notification_url: "https://51b6-2803-9800-9016-4e03-a109-8530-9670-8dbf.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -43,6 +43,9 @@ const payment = async (req, res) => {
       await mercadopago.preferences.create(preference)
         .then(function (response) {
           res.status(200).send({ response });
+          console.log("RESPUESTA DEL BACK:", response)
+          // response.id coincide con el response del cobro (response.preference_id )
+  
         })
 
     } else {
