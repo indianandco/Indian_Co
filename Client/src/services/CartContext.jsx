@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
   const saveCartData = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }; //función que actualiza el LocalStorage al valor de cart
-  console.log(cart);
+  // console.log(cart);
 
   const addProduct = (product) => {
     const existingProduct = cart.find((p) => p._id === product._id);

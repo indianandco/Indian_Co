@@ -79,8 +79,6 @@ const NavBar = () => {
                         {!isNotFoundPage ? (
                             <>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}}className="buttons" to="/contact">Contacto</NavLink>
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/products">Productos</NavLink>
                             <div>
                                 <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="cart_button" to="/cart">
@@ -89,6 +87,8 @@ const NavBar = () => {
                                     </Badge>
                                 </NavLink>
                             </div>
+                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
+                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}}className="buttons" to="/contact">Contacto</NavLink>
                             <div>
                                 {!user && <SignIn scrolled={scrolled} onClick={() => setExpanded(false)}></SignIn>}
                             </div>
