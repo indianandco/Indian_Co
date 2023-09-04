@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import Nav from 'react-bootstrap/Nav';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import SignUp from "../Login/SignUp/SignUp";
 import Badge from '@mui/material/Badge';
@@ -60,7 +60,7 @@ const NavBar = () => {
         <div>
             <div className="nav_container">
                 <Navbar fixed="top" expanded={expanded}onToggle={() => setExpanded(!expanded)} collapseOnSelect expand="lg" className={location.pathname === "/" ? scrolled ? "navbar_scrolled" : "navbar" : "navbar_scrolled"}>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" className="ButtonResponsive" />
+                    <Navbar.Toggle data-bs-theme="dark" aria-controls="responsive-navbar-nav" className="ButtonResponsive" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
                             <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
