@@ -18,7 +18,7 @@ const payment = async (req, res) => {
           {
             id: product._id,
             title: product.title,
-            fragance: product.fragance,
+            description: (product.fragance ? product.fragance : "none"),
             quantity: product.quantity,
             currency_id: "ARS",
             unit_price: product.offer === true ? product.offer_price : product.price
@@ -35,7 +35,7 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://9604-2803-9800-9016-aefa-f15b-d88d-d83a-4abb.ngrok.io/carts/purchase/notification",
+        notification_url: "https://5f5d-2803-9800-9016-aefa-f15b-d88d-d83a-4abb.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -46,6 +46,7 @@ const payment = async (req, res) => {
         })
 
     } else {
+
       if (info.shippingOption === "envio") {
         await shopOrderMailTransferWShipping(
           info.user.userInfo.email,
@@ -54,19 +55,20 @@ const payment = async (req, res) => {
           info.shop.total,
           info.shop.cart,
           info.user.deliverInfo
-        );
-      }
-
-      if (info.shippingOption === "punto_encuentro") {
-        await shopOrderMailTransferMeetPoint(
-          info.user.userInfo.email,
-          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-          "test",
-          info.shop.total,
-          info.shop.cart
-        );
-      }
-
+          );
+        }
+        
+        if (info.shippingOption === "punto_encuentro") {
+          await shopOrderMailTransferMeetPoint(
+            info.user.userInfo.email,
+            `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
+            "test",
+            info.shop.total,
+            info.shop.cart
+            );
+          }
+          
+        await postTicketsController(info.shop.total, `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}` ,info.shop.cart);
       res.status(200).send("todo ok");
 
     }

@@ -42,21 +42,21 @@ router.get("/purchase/failure", (req, res) =>
 
 router.post("/purchase/notification", async (req, res) =>{
   try {    
-    const {body, query} = req;
+    const {query} = req;
     
     const topic = query.topic; 
 
     let merchantOrder;
 
     switch (topic) {
-      // case "payment":
-      //   const paymentId = query.id;
-      //   console.log(paymentId)
-      //   let payment = await mercadopago.payment.findById(paymentId);
-      //   console.log("payment:", payment)
-      //   merchantOrder = await mercadopago.merchant_orders.findById(payment.body.order.id);
-      //   console.log("merchantOrder:", merchantOrder )
-      //   break;
+      case "payment":
+        const paymentId = query.id;
+        console.log(paymentId) //Numero del comprobante MERCADOPAGO
+        let payment = await mercadopago.payment.findById(paymentId);
+      
+        merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
+        // console.log("merchantOrder:", merchantOrder )
+        break;
       case "merchant_order":
         const orderId = query.id;
         merchantOrder = await mercadopago.merchant_orders.findById(orderId);
