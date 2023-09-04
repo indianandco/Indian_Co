@@ -156,7 +156,7 @@ const shopOrderMailTransferWShipping = async (email,name, code, amount, cart, sh
   });
 };
 
-const shopOrderMailTransferMeetPoint = async (email,name,code,amount,  cart,shippingInfo) => {
+const shopOrderMailTransferMeetPoint = async (email,name,code,amount,  cart,) => {
   await transport.sendMail({
     from: "VentasIndian&Co <testindian@gmail.com>",
     to: email,
@@ -204,7 +204,7 @@ const shopOrderMailTransferMeetPoint = async (email,name,code,amount,  cart,ship
                 <p><b>Envio: </b> ${envio}</p>
                 <p><b>Precio Total:</b> ${amount}</p>
                 <p><b>Forma de Pago:</b> Transferencia Bancaria</p>
-                <p><b>Notas del pedido: </b> ${notas-pedido} </p>
+                <p><b>Notas del pedido: </b> ${notas-pedido ? notas-pedido : "-----"} </p>
             </div>
 
             <p>Nos estaremos poniendo en contacto para coordinar el punto de encuetro dentro de las <b>48hs</b> de haber recibido el depósito</p>
