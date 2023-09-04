@@ -55,6 +55,7 @@ const Products = () => {
         if (selectedProduct) {
             formik.setValues({
                 title: selectedProduct.title,
+                catalog_listing: selectedProduct.catalog_listing,
                 price: selectedProduct.price,
                 offer: selectedProduct.offer,
                 offer_price: selectedProduct.offer_price,
@@ -73,6 +74,7 @@ const Products = () => {
 
     const contacFormInitialValues = {
         title: "",
+        catalog_listing:false,
         price: "",
         offer: false,
         offer_price: "",
@@ -108,7 +110,7 @@ const Products = () => {
                     try {
 
                         const productResponse = await updateProduct(
-                            updateValues, selectedProduct.id);
+                            updateValues, selectedProduct._id);
 
                         await Swal.fire({
                             title: 'Producto actualizado correctamente!',
@@ -224,6 +226,17 @@ const Products = () => {
                             <Form.Control className="form-control" type="text" name="title" value={values.title}
                                 isInvalid={touched.title && !!errors.title}
                                 onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
+                        </Form.Group>
+                        
+                        <Form.Group controlId="catalog_listing">
+                            <Form.Label className="form-label">Ocultar el Producto:</Form.Label>
+                            <Form.Select name="catalog_listing" value={values.catalog_listing}
+                                isInvalid={touched.catalog_listing && !!errors.catalog_listing}
+                                onBlur={handleBlur} onChange={handleChange}>
+                                <option value={false}>No</option>
+                                <option value={true}>Sí</option>
+                            </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
                         </Form.Group>
 

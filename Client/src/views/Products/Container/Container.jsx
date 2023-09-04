@@ -12,9 +12,9 @@ const Container = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage, pagActive, setPagActive, resetPagination } = useContext(ProductContext);
     const [displayedProducts, setDisplayedProducts] = useState([]);
-    
+    const [paginate, setPaginate] = useState([])
     const productsPerPage = 8;
-    const totalPages = Math.ceil(productStorage?.length / productsPerPage)
+    const totalPages = Math.ceil(paginate?.length / productsPerPage)
     let items = []
     for (let i = 1; i <= totalPages; i++) {
         items.push(
@@ -25,7 +25,12 @@ const Container = () => {
     }
 
     useEffect(() => {
-        const productSubset = productStorage.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage);
+        const catalog = productStorage.filter(product =>
+            product.catalog_listing === false
+
+        )
+        setPaginate(catalog)
+        const productSubset = catalog.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage);
         setDisplayedProducts(productSubset);
     }, [pagActive, productStorage]);
 

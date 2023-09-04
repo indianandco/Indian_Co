@@ -10,6 +10,8 @@ const formEdit = Yup.object().shape({
         .required("El precio es requerido"),
     offer: Yup.boolean()
         .required("Campo requerido"),
+    catalog_listing: Yup.boolean()
+        .required("Campo requerido"),
     offer_price: Yup.number()
         .positive(0, "El precio no puede ser igual o menor a 0"),
     description: Yup.string()
@@ -23,7 +25,7 @@ const formEdit = Yup.object().shape({
         .required("Campo requerido"),
     fragance: Yup.string()
         .required("Campo requerido"),
-    
+
 
 });
 
