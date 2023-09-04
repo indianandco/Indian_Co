@@ -129,24 +129,25 @@ const FormularioCompra = ({form, error, validated, handleSubmit, handleOnChange,
             <Form.Group as={Col} md="12" controlId="validationCustom05"
             >
               <Form.Label>Dirección de entrega</Form.Label>
-              <div className="d-flex justify-content-evenly">
+              <div className="">
                 <Form.Control
                   type="text"
                   placeholder="ej: Av Mitre 5850 "
                   required
                   name="address"
                   value={form.address}
-                  className={`form-control ${!error.address?.length ? "is-valid" : "is-invalid"}`}
+                  className={`form-control m-1 ${!error.address?.length ? "is-valid" : "is-invalid"}`}
                   onChange={handleOnChange}
                 />
                 <Form.Control
                   type="text"
-                  placeholder="Apartamento, habitacion, etc(OPCIONAL)"
-                  name="address"
-                  className={`form-control ${!error.address?.length ? "is-valid" : "is-invalid"}`}
-                  value={form.address}
+                  placeholder="ej: depto n: 4a, habitacion, etc(OPCIONAL)"
+                  name="addressDetail"
+                  className={`form-control m-1 ${!error.address?.length ? "is-valid" : "is-invalid"}`}
+                  value={form.addressDetail}
                   onChange={handleOnChange}
                 />
+            
               <Form.Control.Feedback type="invalid">
                 {error.address}
               </Form.Control.Feedback>
