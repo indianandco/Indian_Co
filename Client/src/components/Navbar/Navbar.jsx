@@ -31,7 +31,15 @@ const NavBar = () => {
     "/cart",
     ];
     
-    const isNotFoundPage = !validRoutes.includes(location.pathname);
+    const isRouteMatch = (pattern) => {
+        if (pattern.includes(":id")) {
+            const basePattern = pattern.split("/:")[0];
+            return location.pathname.startsWith(basePattern);
+        } 
+        return pattern === location.pathname;
+    };
+    
+    const isNotFoundPage = !validRoutes.some(isRouteMatch);
 
 
     const scrollToTop = () => {
