@@ -80,7 +80,7 @@ const Container = () => {
             </div>
         ) : (
             <div>
-                <div className="containerSearch">
+                <div className="containerSearch mt-5">
                     <div className="SearchProducts">
                         < SearchBar className='SearchBar' />
                     </div>
