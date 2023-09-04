@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { postProductFunction } from "../utils/fetcherPost"
 import { updateProductFunction } from "../utils/fetcherPut"
 import { fetcher } from "../utils/fetcherGet";
+import{ deleteProduct} from "../utils/fetcherDelete"
 
 export const ProductContext = createContext()
 
@@ -101,10 +102,12 @@ export const ProductProvider = ({ children }) => {
         setPagActive(1);
     }
    
-
+const deleteProductFn= async(id)=>{
+    const response = await deleteProduct(`/adminDashboard/products/delete/${id}`)
+}
 
     return (
-        <ProductContext.Provider value={{offerProducts,pagActive, setPagActive,resetPagination,sortProducts,clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, findProductStorage,productStorage, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
+        <ProductContext.Provider value={{deleteProductFn,offerProducts,pagActive, setPagActive,resetPagination,sortProducts,clearSearch,error, clearError,displayedProducts, getAllProducts, findProduct, findProductStorage,productStorage, filterByCategory, response, allProducts, detailProducts, getDetailProducts, postProduct, updateProduct }}>
             {children}
         </ ProductContext.Provider >
     )

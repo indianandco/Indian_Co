@@ -15,10 +15,11 @@ const Products = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [modal, setModal] = useState(false)
-    const { updateProduct } = useContext(ProductContext)
+    const { updateProduct, deleteProductFn } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
     const [pagActive, setPagActive] = useState(1)
     const productsPerPage = 4;
+
 
     const totalPages = Math.ceil(filteredProducts?.length / productsPerPage)
     let items = []
@@ -74,7 +75,7 @@ const Products = () => {
 
     const contacFormInitialValues = {
         title: "",
-        catalog_listing:false,
+        catalog_listing: false,
         price: "",
         offer: false,
         offer_price: "",
@@ -170,6 +171,41 @@ const Products = () => {
         setPagActive(1)
     }
 
+    const deleteProduct = async () => {
+        Swal.fire({
+            title: 'Está seguro que quiere eliminar este producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const id = selectedProduct._id
+                    try {
+                        const productResponse = await deleteProductFn(id);
+                        await Swal.fire({
+                            icon:"success",
+                            title: 'Producto eliminido correctamente!',
+                        });
+                        setModal(false)
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
+                }
+            });
+
+
+    }
+
+
 
     return (
         <Container className='container'>
@@ -228,7 +264,7 @@ const Products = () => {
                                 onBlur={handleBlur} onChange={handleChange} />
                             <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
                         </Form.Group>
-                        
+
                         <Form.Group controlId="catalog_listing">
                             <Form.Label className="form-label">Ocultar el Producto:</Form.Label>
                             <Form.Select name="catalog_listing" value={values.catalog_listing}
@@ -325,7 +361,8 @@ const Products = () => {
                         </Form.Group>
                         <div className="boton">
                             {/* <Button variant="primary" type="submit" disabled={isSubmitting}>ACTUALIZAR PRODUCTO</Button> */}
-                            <Button variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
+                            <Button style={{marginLeft: "5%", marginRight:"15%", width:"37,5%"}}variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
+                            <Button style={{marginRight:"5%", width:"37,5%"}} variant="danger" onClick={deleteProduct}>ELIMINAR PRODUCTO</Button>
                         </div>
                     </Form>
                 </Modal.Body>
@@ -333,6 +370,7 @@ const Products = () => {
                     <Button variant="secondary" onClick={handleModalClose}>
                         Cerrar
                     </Button>
+
                 </Modal.Footer>
             </Modal>
             <div className='pagination'>
