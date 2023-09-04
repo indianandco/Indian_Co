@@ -22,6 +22,16 @@ const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [expanded, setExpanded] = useState(false);
 
+    const validRoutes = [
+        "/",
+    "/about",
+    "/contact",
+    "/products",
+    "/detail/:id",
+    "/cart",
+    ];
+    
+    const isNotFoundPage = !validRoutes.includes(location.pathname);
 
 
     const scrollToTop = () => {
@@ -66,6 +76,8 @@ const NavBar = () => {
                             <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
                         </Navbar.Brand>
                         <Nav className="justify-content-end p-1">
+                        {!isNotFoundPage ? (
+                            <>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}}className="buttons" to="/contact">Contacto</NavLink>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
@@ -89,7 +101,16 @@ const NavBar = () => {
 
                             {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>}
                             {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
+                            </>
+                        ):(
+
+                            <Nav className="justify-content-end p-1">
+                                 <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
+                            </Nav>
+                        )}
                         </Nav>
+                  
+                        
                     </Navbar.Collapse>
                 </Navbar>
             </div>
