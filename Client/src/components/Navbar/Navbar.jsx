@@ -75,9 +75,11 @@ const NavBar = () => {
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
                             <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
                         </Navbar.Brand>
-                        <Nav className="justify-content-end p-1">
-                        {!isNotFoundPage ? (
-                            <>
+                       
+                        {!isNotFoundPage &&
+                            <> 
+                           
+                            <Nav className="justify-content-end p-1">
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}}className="buttons" to="/contact">Contacto</NavLink>
                             <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
@@ -101,14 +103,17 @@ const NavBar = () => {
 
                             {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>}
                             {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
-                            </>
-                        ):(
+                           </Nav> 
+                           </>
+                            
+                        }
+                        {isNotFoundPage &&
+                            <Nav className="notFound p-1" >
 
-                            <Nav className="justify-content-end p-1">
                                  <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
                             </Nav>
-                        )}
-                        </Nav>
+                        }
+                        
                   
                         
                     </Navbar.Collapse>
