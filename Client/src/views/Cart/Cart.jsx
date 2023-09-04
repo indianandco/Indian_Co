@@ -79,6 +79,7 @@ const Cart = () => {
       },
       deliverInfo: {
         address: form.address,
+        addressDetail: form.addressDetail,
         city: form.city,
         province: form.province,
         zipcode: form.zipcode,
