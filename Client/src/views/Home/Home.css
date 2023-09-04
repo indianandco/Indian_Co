@@ -9,7 +9,7 @@
 }
 
 .banners_image{
-    height: 950px;
+    height: 100vh;
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -259,7 +259,7 @@
     }
 
     .banners_image{
-        height: 450px;
+        /* height: 450px; */
         object-fit: cover;
         object-position: center;
     }

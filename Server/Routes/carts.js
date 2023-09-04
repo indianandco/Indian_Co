@@ -55,7 +55,7 @@ router.post("/purchase/notification", async (req, res) =>{
         let payment = await mercadopago.payment.findById(paymentId);
       
         merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
-        // console.log("merchantOrder:", merchantOrder )
+        console.log("merchantOrder:", merchantOrder )
         break;
       case "merchant_order":
         const orderId = query.id;
@@ -84,20 +84,23 @@ router.post("/purchase/notification", async (req, res) =>{
             const products = merchantOrder.body.items;
     
             let totalAmount = 0;
+            // Restar del stock del producto
             for (const product of products) {
               const { id, quantity } = product;
               const productData = await getProductByIdController(id);
     
-    
               totalAmount += ( productData.offer ? productData.offer_price : productData.price ) * quantity;
     
-              // Restar del stock del producto
               productData.stock -= quantity;
               await putProductController(id, productData);
             }
             
             //Creacion del ticket
             await postTicketsController(totalAmount, compra ,products);
+           
+            // aca obtengo el response.preference_id.
+            // si es igual al response.id  lo anexo al ticket
+
             console.log("el pago se completo");
 
             res.status(201).send({payload: "success", message: "Compra exitosa"});
