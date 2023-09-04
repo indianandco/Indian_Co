@@ -31,7 +31,7 @@ const DashboardAdmin = () => {
 
         let total = 0;
         salesResponse.forEach(sale => {
-            total += sale.total_amount
+            total += +sale.total_amount
         });
 
         return total;
