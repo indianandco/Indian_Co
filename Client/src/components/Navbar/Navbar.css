@@ -1,4 +1,12 @@
 
+.notFound{
+  margin-right: 90% !important;
+  
+}
+.not-found-page .navbar-toggler {
+  display: none !important;
+}
+
    .buttons {
     position: relative;
     font-style:normal;
@@ -99,10 +107,7 @@
     background-color: black;
     transition: background-color 0.7s ease,height 1s ease;
   }
-
-  .ButtonResponsive{
-    background-color: rgb(240, 240, 240);
-  }
+  
 
   @media (max-width: 768px) {
     .navbar {
@@ -125,5 +130,10 @@
     .logo{
       display: none;
     }
+    .notFound{
+      margin-right: 80% !important;
+      
+    }
 
+   
   }

@@ -8,6 +8,7 @@ import CartItem from "./cartComponents/CartItem";
 import FormularioCompra from "./cartComponents/FormularioCompra";
 import { SubtotalColumn } from "./cartComponents/SubtotalColumn";
 import  SubTotalCheckout from "./cartComponents/SubTotalCheckout";
+import validation from "../../utils/registerValidation";
 
 
 const Cart = () => {
@@ -40,6 +41,19 @@ const Cart = () => {
   };
 
   //Formulario:
+  const [error, setError] = useState({
+    first_name: 'El campo Nombre es requerido',
+    last_name: 'El campo Apellido es requerido',
+    phone: 'El campo Telefono es requerido', 
+    email: 'El campo Email es requerido',
+    zipcode: 'El campo Codigo Postal es requerido',
+    city: 'El campo Ciudad es requerido',
+    province: 'El campo Provincia es requerido',
+    phone: 'El campo Telefono es requerido',
+    address: 'El campo Direccion es requerido'
+  })
+
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -65,6 +79,7 @@ const Cart = () => {
       },
       deliverInfo: {
         address: form.address,
+        addressDetail: form.addressDetail,
         city: form.city,
         province: form.province,
         zipcode: form.zipcode,
@@ -86,15 +101,28 @@ const Cart = () => {
   };
 
   const handleOnChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
+      const value = event.target.value;
+      const name = event.target.name;
 
-    setForm({
-      ...form,
-      [name]: value,
-    });
-    setValidated(true);
-  };
+      setForm({
+        ...form,
+        [name]: value,
+      });
+
+      setError((validation({ ...form, [name]: value })))
+
+      if (!Object.keys((validation({ ...form, [name]: value })))) {
+        setValidated(false)
+      }
+      else {
+          setValidated(true)
+      }
+    };
+
+  
+    useEffect(() => {
+      validation({ ...form })
+    }, [form])
 
   return (
     <Container fluid className="d-flex justify-content-center min-vh-100">
@@ -123,7 +151,7 @@ const Cart = () => {
               <Tab className='w-100' eventKey="test" title="formPayment">
                 <Row className="d-flex justify-content-center mt-4">
                   <Col xs={12} md={12} lg={6}>
-                    <FormularioCompra form={form} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
+                    <FormularioCompra form={form} error={error} handleOnChange={handleOnChange} handleSubmit={handleSubmit} selectedShippingOption={selectedShippingOption} showShippingInfo={showShippingInfo} validated={validated}/>
                   </Col>
                   <Col xs={12} md={12} lg={4}>
                     <SubtotalColumn handlePaymentMethod={handlePaymentMethod} selectedPaymentMethodOpt={selectedPaymentMethodOpt} handleShippingChange={handleShippingChange}  selectedShippingOption={selectedShippingOption} handleSubmit={handleSubmit} showPoints={showPoints} showBanner={showBanner}/>

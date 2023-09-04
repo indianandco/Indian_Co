@@ -4,17 +4,8 @@ const ticketsCollection = 'tickets';
 
 const ticketsSchema = new mongoose.Schema(
     {
-        total_amount: {
-            type: Number,
-            require: true,
-          },
-      
-        products: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'products'  
-            }
-        ],
+        total_amount: String,
+        products: Array,
         owner:{
             type: String,
             require: true,
@@ -33,9 +24,6 @@ const ticketsSchema = new mongoose.Schema(
     }
 );
 
-ticketsSchema.pre('find', function (){
-  this.populate('products.product')
-})
 
 const ticketModel = mongoose.model(ticketsCollection, ticketsSchema);
 

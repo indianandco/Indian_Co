@@ -4,14 +4,36 @@ import Cards from "../Card/Cards"
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from '../../../services/ProductContext';
 import SearchBar from "../../../components/SearchBar/SearchBar";
-import { Spinner, Dropdown } from 'react-bootstrap';
+import { Spinner, Dropdown, Pagination } from 'react-bootstrap';
 
 
 const Container = () => {
 
-    const limit = false
     const [isLoading, setIsLoading] = useState(false);
-    const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage} = useContext(ProductContext);
+    const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage, pagActive, setPagActive, resetPagination } = useContext(ProductContext);
+    const [displayedProducts, setDisplayedProducts] = useState([]);
+    const [paginate, setPaginate] = useState([])
+    const productsPerPage = 8;
+    const totalPages = Math.ceil(paginate?.length / productsPerPage)
+    let items = []
+    for (let i = 1; i <= totalPages; i++) {
+        items.push(
+            <Pagination.Item key={i} active={i === pagActive} onClick={() => setPagActive(i)}>
+                {i}
+            </Pagination.Item>
+        )
+    }
+
+    useEffect(() => {
+        const catalog = productStorage.filter(product =>
+            product.catalog_listing === false
+
+        )
+        setPaginate(catalog)
+        const productSubset = catalog.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage);
+        setDisplayedProducts(productSubset);
+    }, [pagActive, productStorage]);
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -19,16 +41,18 @@ const Container = () => {
         }, 1500);
 
         getAllProducts();
+        resetPagination()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit])
-
+    }, [])
     const handlerCategory = async (prop) => {
         if (prop === "---") {
             null
         } else {
             await filterByCategory(prop);
         }
+        resetPagination()
     };
+
 
     const handlerSort = async (prop) => {
         prop
@@ -44,6 +68,7 @@ const Container = () => {
         if (prop === "priceDesc") {
             await sortProducts(prop)
         }
+        resetPagination()
     }
 
     return (
@@ -87,10 +112,22 @@ const Container = () => {
                 <div>
 
                     <div className="products_container">
-                        {productStorage?.map(product => (
+                        {displayedProducts?.map(product => (
                             <Cards key={product?._id} product={product} />
                         ))}
                     </div>
+
+                </div>
+                <div className='pagination'>
+                    <Pagination >
+                        <Pagination.First onClick={() => setPagActive(1)} />
+                        <Pagination.Prev onClick={() => setPagActive(prev => Math.max(prev - 1, 1))} />
+                        {items}
+                        <Pagination.Next onClick={() => setPagActive(prev => Math.min(prev + 1, totalPages))} />
+                        <Pagination.Last onClick={() => setPagActive(totalPages)} />
+
+                    </Pagination>
+
                 </div>
             </div>
         ))

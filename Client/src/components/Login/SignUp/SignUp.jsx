@@ -8,7 +8,7 @@ import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
 
 // eslint-disable-next-line react/prop-types
-function SignUp() {
+function SignUp({ onClick }) {
 
     const [validated, setValidated] = useState(true);
     const [show, setShow] = useState(false)
@@ -25,7 +25,9 @@ function SignUp() {
         email: 'El campo Email es requerido',
     })
 
-    const handleShow = () => setShow(true)
+    const handleShow = () => {
+        if(onClick) onClick(); 
+        setShow(true)}
 
     const handleClose = () => {
         setShow(false);

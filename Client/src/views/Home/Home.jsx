@@ -24,24 +24,22 @@ const Home = () => {
                             <Image className="banners_image" src="carrousel1.png" />
                         </NavLink>
                         <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3>Hecho a mano</h3>
+                            <p>En nuestra empresa, nos enorgullece crear productos hechos a mano con amor y dedicación. Cada artículo es elaborado minuciosamente, desde la selección de los materiales hasta el acabado final, garantizando así productos únicos y de alta calidad.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
                         <Image className="banners_image" src="carrousel2.png" />
                         <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Calidad</h3>
+                            <p>La calidad es primordial en nuestros productos. Nos dedicamos a brindar artículos atractivos y resistentes, sometidos a rigurosas pruebas para asegurar que cumplan nuestros estándares. Nuestra confianza en la calidad nos permite satisfacer incluso a los clientes más exigentes.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
                         <Image className="banners_image" src="carrousel3.png" />
                         <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                            </p>
+                            <h3>Sustentable</h3>
+                            <p>Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

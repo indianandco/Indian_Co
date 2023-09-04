@@ -1,6 +1,11 @@
 const { Router } = require("express");
 const router = Router();
 
+const { getProductByIdController } = require('../Controllers/get/getProductByIdController');
+const { putProductController } = require('../Controllers/put/putProductController')
+const { getSaleById } = require("../Controllers/get/getSaleById");
+const { postTicketsController } = require('../Controllers/post/postTicketsController')
+
 const { emptyCartHandler } = require("../Handlers/put/emptyCartHandler");
 const { getCartByIdHandler } = require("../Handlers/get/getCartById");
 const { postTicketsHandler } = require("../Handlers/post/postTicketsHandler");
@@ -35,12 +40,9 @@ router.get("/purchase/failure", (req, res) =>
   })
 );
 
-
 router.post("/purchase/notification", async (req, res) =>{
   try {    
-    const {body, query} = req;
-
-    console.log({body, query});
+    const {query} = req;
     
     const topic = query.topic; 
 
@@ -49,15 +51,14 @@ router.post("/purchase/notification", async (req, res) =>{
     switch (topic) {
       case "payment":
         const paymentId = query.id;
-        console.log(paymentId)
+        console.log(paymentId) //Numero del comprobante MERCADOPAGO
         let payment = await mercadopago.payment.findById(paymentId);
-        console.log("payment:", payment)
-        merchantOrder = await mercadopago.merchant_orders.findById(payment.body.order.id);
-        console.log("merchantOrder:", merchantOrder )
+      
+        merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
+        // console.log("merchantOrder:", merchantOrder )
         break;
       case "merchant_order":
         const orderId = query.id;
-        console.log(orderId)
         merchantOrder = await mercadopago.merchant_orders.findById(orderId);
         break; 
     };
@@ -70,22 +71,49 @@ router.post("/purchase/notification", async (req, res) =>{
     });
 
     if (paidAmount >= merchantOrder.body.total_amount) {
-      console.log("el pago se completo")
+      
+      const compra = merchantOrder.body.id.toString() ;
+      const ticket = await getSaleById(compra);
 
-      let products = merchantOrder.body.items;
+        if (ticket){
+          console.log("el pago ya fue registrado")
 
-      res.status(201).send({message: "flujoMp notificationUrl"});
-      console.log(products)
+          res.status(201).send({payload: "success", message: "La compra ya fue registrada en la BD"});
+  
+        }else{
+            const products = merchantOrder.body.items;
+    
+            let totalAmount = 0;
+            for (const product of products) {
+              const { id, quantity } = product;
+              const productData = await getProductByIdController(id);
+    
+    
+              totalAmount += ( productData.offer ? productData.offer_price : productData.price ) * quantity;
+    
+              // Restar del stock del producto
+              productData.stock -= quantity;
+              await putProductController(id, productData);
+            }
+            
+            //Creacion del ticket
+            await postTicketsController(totalAmount, compra ,products);
+            console.log("el pago se completo");
+
+            res.status(201).send({payload: "success", message: "Compra exitosa"});
+
+          }
       
     } else {
       console.log("el pago NO se completo")
     }
     
-    
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Something goes wrong" });
+    res.status(404).json({ message: "Something goes wrong" });
   }
 })
 
 module.exports = router;
+
+
