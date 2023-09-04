@@ -2,7 +2,8 @@ import Form from "react-bootstrap/Form";
 import {Row,Col} from "react-bootstrap";
 import styles from "./FormularioCompra.module.css"
 
-const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showShippingInfo, selectedShippingOption}) => {
+const FormularioCompra = ({form, error, validated, handleSubmit, handleOnChange, showShippingInfo, selectedShippingOption}) => {
+
 
   return (
     <Form className={styles.formStyles} noValidate validated={validated} onSubmit={handleSubmit}>
@@ -17,34 +18,44 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
           name="first_name"
           value={form.first_name}
           onChange={handleOnChange}
+          className={`form-control ${error?.first_name ? "is-invalid" : "is-valid"}`}
+          feedback={error.first_name}
+          autoFocus
         />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">{error.first_name}</Form.Control.Feedback>
       </Form.Group>
       <Form.Group as={Col} md="6" controlId="validationCustom02">
         <Form.Label>Apellido/s</Form.Label>
         <Form.Control
-          required
-          type="text"
-          placeholder="apellido"
-          name="last_name"
-          value={form.last_name}
-          onChange={handleOnChange}
+        required
+        onChange={handleOnChange}
+        name="last_name"
+        value={form.last_name}
+        className={`form-control ${!error.last_name?.length ? "is-valid" : "is-invalid"}`}
+        type="text"
+        placeholder="Ingrese su apellido"
+        feedback={error.last_name}
+        autoFocus
         />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">{error.last_name}</Form.Control.Feedback>
       </Form.Group>
     </Row>
     <Row className="mb-3">
       <Form.Group>
         <Form.Label>Dirección de correo electrónico</Form.Label>
         <Form.Control
-          required
-          name="email"
-          type="email"
-          placeholder="ejemplo@ejemplo.com.ar"
-          autoFocus
-          value={form.email}
-          onChange={handleOnChange}
+           required
+           onChange={handleOnChange}
+           name="email"
+           value={form.email}
+           className={`form-control ${!error.email?.length ? "is-valid" : "is-invalid"}`}
+           type="email"
+           placeholder="ejemplo@ejemplo.com.ar"
+           autoFocus
         />
+        <Form.Control.Feedback type="invalid">
+                                {error.email}
+        </Form.Control.Feedback>
       </Form.Group>
     </Row>
     <Row className="mb-3">
@@ -57,8 +68,9 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
           name="phone"
           value={form.phone}
           onChange={handleOnChange}
+          className={`form-control ${!error.phone?.length ? "is-valid" : "is-invalid"}`}
         />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">{error.phone}</Form.Control.Feedback>
       </Form.Group>
     </Row>
     <hr />
@@ -71,14 +83,15 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
               <Form.Label>Ciudad</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="ciudad"
+                placeholder="ej: Lanus"
                 required
                 name="city"
                 value={form.city}
+                className={`form-control ${!error.city?.length ? "is-valid" : "is-invalid"}`}
                 onChange={handleOnChange}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid city.
+                {error.city}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom04">
@@ -89,10 +102,11 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
                 required
                 name="province"
                 value={form.province}
+                className={`form-control ${!error.province?.length ? "is-valid" : "is-invalid"}`}
                 onChange={handleOnChange}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid state.
+                {error.province}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom05">
@@ -103,10 +117,11 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
                 required
                 name="zipcode"
                 value={form.zipcode}
+                className={`form-control ${!error.zipcode?.length ? "is-valid" : "is-invalid"}`}
                 onChange={handleOnChange}
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
+                {error.zipcode}
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
@@ -116,26 +131,26 @@ const FormularioCompra = ({form, validated, handleSubmit, handleOnChange, showSh
               <Form.Label>Dirección de entrega</Form.Label>
               <div className="d-flex justify-content-evenly">
                 <Form.Control
-                  className="me-1"
                   type="text"
-                  placeholder="Av Mitre 5850 "
+                  placeholder="ej: Av Mitre 5850 "
                   required
                   name="address"
                   value={form.address}
+                  className={`form-control ${!error.address?.length ? "is-valid" : "is-invalid"}`}
                   onChange={handleOnChange}
                 />
                 <Form.Control
-                  className="ms-1"
                   type="text"
                   placeholder="Apartamento, habitacion, etc(OPCIONAL)"
                   name="address"
+                  className={`form-control ${!error.address?.length ? "is-valid" : "is-invalid"}`}
                   value={form.address}
                   onChange={handleOnChange}
                 />
-              </div>
               <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
+                {error.address}
               </Form.Control.Feedback>
+              </div>
             </Form.Group>
           </Row>
           <hr />

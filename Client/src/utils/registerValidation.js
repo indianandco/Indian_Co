@@ -28,7 +28,7 @@ const validation = (form) =>{
   
     if (form?.password?.trim() === '') {
         errors.password = 'El campo Contraseña es requerido';
-      } else if (form.password.length < 6) {
+      } else if (form?.password?.length < 6) {
         errors.password = 'La Contraseña debe tener al menos 6 caracteres';
       } else if (numberRegex.test(form.password) || wordRegex.test(form?.password)) {
         errors.password = 'La Contraseña debe contener al menos una letra y un número';
@@ -36,6 +36,10 @@ const validation = (form) =>{
 
     if (form?.address?.trim() === '') {
       errors.address = 'El campo Dirección es requerido';
+    }
+    
+    if (form?.province?.trim() === '') {
+      errors.province = 'El campo Provincia es requerido';
     }
 
     if (form?.city?.trim() === '') {
