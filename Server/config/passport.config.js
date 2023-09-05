@@ -97,25 +97,16 @@ const initializePassport = () =>{
          },
          async function(accessToken, refreshToken, profile, done) {
              try {
-                 console.log(profile);
-                 const user = await userModel.findOne({ email: profile.email });
-                  userModel.findOne({ email: profile.email }, function (err, user) {
-                  return cb(err, user);
-                  });
+                 console.log("este es e; profile",profile.emails[0].value);
+                 const user = await userModel.findOne({ email: profile.emails[0].value });
+                  
                  if(!user) {
                      const newUser = {
                          //rellenar con los datos, que envie el profile
-                         first_name, 
-                         last_name,
-                         email,
-                         gender,
-                         birthdate,
-                         address,
-                         zipcode,
-                         city,
-                         phone,
-                         age,
-                         password: ''
+                         first_name:profile.name.givenName, 
+                         last_name:profile.name.familyName,
+                         email:profile.emails[0].value,
+                     
                     };
                     const result = await userModel.create( newUser );
         
