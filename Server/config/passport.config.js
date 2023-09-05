@@ -62,11 +62,8 @@ const initializePassport = () =>{
         usernameField: 'email',
     }, async (username, password, done) =>{
         try {
-
-
             const user = await userModel.findOne({ email: username });
             
-
             if (!user) {
                 return done(null, false);
             };
@@ -97,12 +94,10 @@ const initializePassport = () =>{
          },
          async function(accessToken, refreshToken, profile, done) {
              try {
-                 console.log("este es e; profile",profile.emails[0].value);
                  const user = await userModel.findOne({ email: profile.emails[0].value });
                   
                  if(!user) {
                      const newUser = {
-                         //rellenar con los datos, que envie el profile
                          first_name:profile.name.givenName, 
                          last_name:profile.name.familyName,
                          email:profile.emails[0].value,
@@ -110,10 +105,11 @@ const initializePassport = () =>{
                     };
                     const result = await userModel.create( newUser );
         
-                    console.log(`El usuario con el mail: ${user.email} se registro con 'google`);
+                    console.log(`El usuario con el mail: ${newUser.email} se registro con 'google`);
         
                      return done(null, result);
                  } else {
+
                      console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
                      done(null, user);
                  };

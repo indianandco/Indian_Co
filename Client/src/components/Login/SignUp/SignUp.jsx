@@ -6,11 +6,11 @@ import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import { fetcher } from '../../../utils/fetcherGet';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
 function SignUp({ onClick }) {
 
-    const loginHandler = () => window.open("http://localhost:3001/users/auth/google", "_self")
     const [validated, setValidated] = useState(true);
     const [show, setShow] = useState(false)
     const [form, setForm] = useState({
@@ -65,13 +65,7 @@ function SignUp({ onClick }) {
         setShow(false);
     }
 
-    const handleAuth = (event) => {
-        const data = event.target.dataset.social
-        console.log(data);
-        loginHandler()
-        fetcher(`/users/auth/${data}`)
-    }
-
+ 
     useEffect(() => {
         validation({ ...form })
     }, [form])
@@ -159,11 +153,6 @@ function SignUp({ onClick }) {
                             </Button>
                         </Modal.Footer>
                     </Form>
-                    <Modal.Footer className='p-1'>
-                        <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
-                            <i className="bi bi-google"></i> Registrarse con Google
-                        </Button>
-                    </Modal.Footer>
                 </Modal.Body>
             </Modal>
         </>

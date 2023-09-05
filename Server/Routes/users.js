@@ -18,8 +18,8 @@ router.post('/login', passport.authenticate('login', {failureFlash: true}), logi
 router.get('/fail-login', failLogin );
 
 //Login/register con Google:
-router.get('/auth/google', passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/userinfo.profile","https://www.googleapis.com/auth/userinfo.email"] }), loginHandler);
-router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), callBackAuthenticate);
+router.get('/auth/google', passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/userinfo.profile","https://www.googleapis.com/auth/userinfo.email"], successRedirect:"http://localhost:5173" }), loginHandler);
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: "http://localhost:5173/12312315645465" }), callBackAuthenticate);
 
 //Logout:
 router.get('/logout', logOut);
