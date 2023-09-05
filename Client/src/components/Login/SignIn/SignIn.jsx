@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
 // eslint-disable-next-line react/prop-types
 function SignIn({ onClick }) {
 
+    const loginHandler = () => window.open("http://localhost:3001/users/auth/google", "_self")
     const { setUser } = useContext(AuthContext);
     const [validated, setValidated] = useState(true);
     const [showLogin, setShowLogin] = useState(false);
@@ -124,11 +125,15 @@ function SignIn({ onClick }) {
     const handleAuth = (event) => {
         event.preventDefault();
         const data = event.target.dataset.social
+        loginHandler();
+        
         const auth = fetcher(`/users/auth/${data}`)
         sessionStorage.setItem('sessions', JSON.stringify(auth))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);
-    }
+    };
+
+
 
     useEffect(() => {
         validation({ ...loginForm })
@@ -192,7 +197,7 @@ function SignIn({ onClick }) {
                         </Modal.Footer>
                     </Form>
                     <Modal.Footer className='p-1 text-decoration-underline'>
-                        <Button style={{ width: "100%" }} data-social="google" onClick={handleRecoverShow} size='lg' variant="none">
+                        <Button style={{ width: "100%" }} onClick={handleRecoverShow} size='lg' variant="none">
                             Recuperar <strong>contraseña</strong>
                         </Button>
                     </Modal.Footer>
