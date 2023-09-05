@@ -10,6 +10,7 @@ import { fetcher } from '../../../utils/fetcherGet';
 // eslint-disable-next-line react/prop-types
 function SignUp({ onClick }) {
 
+    const loginHandler = () => window.open("http://localhost:3001/users/auth/google", "_self")
     const [validated, setValidated] = useState(true);
     const [show, setShow] = useState(false)
     const [form, setForm] = useState({
@@ -26,8 +27,9 @@ function SignUp({ onClick }) {
     })
 
     const handleShow = () => {
-        if(onClick) onClick(); 
-        setShow(true)}
+        if (onClick) onClick();
+        setShow(true)
+    }
 
     const handleClose = () => {
         setShow(false);
@@ -65,6 +67,8 @@ function SignUp({ onClick }) {
 
     const handleAuth = (event) => {
         const data = event.target.dataset.social
+        console.log(data);
+        loginHandler()
         fetcher(`/users/auth/${data}`)
     }
 

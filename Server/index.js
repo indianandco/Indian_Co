@@ -9,14 +9,13 @@ const { initializePassport } = require('./config/passport.config');
 require('dotenv').config();
 
 const { PORT, USER, PW, DB_URL } = process.env;
-
-const server = express();
-
 const productsRoutes = require ("./Routes/products")
 const usersRoutes = require("./Routes/users")
 const ticketsRoutes = require("./Routes/tickets")
 const cartsRoutes = require("./Routes/carts")
 const adminDashboard = require('./Routes/adminDashboard');
+
+const server = express();
 
 const mongoose = require('./db');
 
@@ -35,14 +34,14 @@ server.use((req, res, next) => {
 //Configuracion express-session:
 server.use(session({
   store: MongoStore.create({
-      mongoUrl: `mongodb+srv://${USER}:${PW}@${DB_URL}`,
+    mongoUrl: `mongodb+srv://${USER}:${PW}@${DB_URL}`,
       mongoOptions: { useNewUrlParser: true },
       ttl: 3600
-     }),
-  secret: 'secretCoder',  
-  resave: true,
-  saveUninitialized: true
-}));
+    }),
+    secret: 'secretCoder',  
+    resave: true,
+    saveUninitialized: true
+  }));
 
 //Configuracion passport:
 initializePassport();

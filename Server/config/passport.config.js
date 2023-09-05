@@ -1,6 +1,8 @@
 const passport  = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
-//const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, CALLBACK_URL} = process.env;
 
 const { createHash, isValidPassword } = require('./bcrypt.config');
 
@@ -87,52 +89,48 @@ const initializePassport = () =>{
     }));
 
 
-//Login con Google:
-    // passport.use('google', new GoogleStrategy({
-    // //Necesitamos el acceso al id y secreto de fb.
-    // //Acceder como variables de entorno
-
-    //     clientID: GOOGLE_CLIENT_ID,
-    //     clientSecret: GOOGLE_CLIENT_SECRET,
-    //     callbackURL: "http://www.example.com/auth/google/callback" //Cambiar la Url
-    // },
-    // async function(accessToken, refreshToken, profile, done) {
-    //     try {
-    //         //Revisar la informacionque trae el profile
-    //         console.log(profile);
-    //         const user = await userModel.findOne({ email: profile.email });
-    //         // userModel.findOne({ email: profile.email }, function (err, user) {
-    //         // return cb(err, user);
-    //         // });
-    //         if(!user) {
-    //             const newUser = {
-    //                 //rellenar con los datos, que envie el profile
-    //                 first_name, 
-    //                 last_name,
-    //                 email,
-    //                 gender,
-    //                 birthdate,
-    //                 address,
-    //                 zipcode,
-    //                 city,
-    //                 phone,
-    //                 age,
-    //                 password: ''
-    //             };
-    //             const result = await userModel.create( newUser );
-    
-    //             console.log(`El usuario con el mail: ${user.email} se registro con 'google`);
-    
-    //             return done(null, result);
-    //         } else {
-    //             console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
-    //             done(null, user);
-    //         };
-    //     } catch (error) {
-    //         console.log(`${error}`);
-    //         return done(error)
-    //     };
-    // }));
+//LOGIN CON GOOGLE:
+         passport.use('google', new GoogleStrategy({
+            clientID:GOOGLE_CLIENT_ID,
+            clientSecret:GOOGLE_CLIENT_SECRET,
+            callbackURL:CALLBACK_URL  
+         },
+         async function(accessToken, refreshToken, profile, done) {
+             try {
+                 console.log(profile);
+                 const user = await userModel.findOne({ email: profile.email });
+                  userModel.findOne({ email: profile.email }, function (err, user) {
+                  return cb(err, user);
+                  });
+                 if(!user) {
+                     const newUser = {
+                         //rellenar con los datos, que envie el profile
+                         first_name, 
+                         last_name,
+                         email,
+                         gender,
+                         birthdate,
+                         address,
+                         zipcode,
+                         city,
+                         phone,
+                         age,
+                         password: ''
+                    };
+                    const result = await userModel.create( newUser );
+        
+                    console.log(`El usuario con el mail: ${user.email} se registro con 'google`);
+        
+                     return done(null, result);
+                 } else {
+                     console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
+                     done(null, user);
+                 };
+            } catch (error) {
+             console.log(`${error}`);
+             return done(error)
+         };
+     }));
 
     passport.serializeUser((user, done) =>{
         done(null, user._id);
