@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-//Import Passport:
 const passport = require('passport');
+const cors = require('cors');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { initializePassport } = require('./config/passport.config');
 require('dotenv').config();
 
@@ -19,17 +20,18 @@ const server = express();
 
 const mongoose = require('./db');
 
+server.use(cors({
+  origin: ['http://localhost:5173'],  
+  methods: 'GET, POST, OPTIONS, PUT, DELETE',
+  allowedHeaders: 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+}));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(express.json());
 server.use(morgan('dev'));
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); 
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  next();
-});
 
 //Configuracion express-session:
 server.use(session({

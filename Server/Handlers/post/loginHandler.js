@@ -3,7 +3,7 @@ const { generateToken } = require('../../config/jwt.config');
 const loginHandler = async (req, res) => {
     try {
         if(!req.user) return res.status(400).send(error)
-    
+        console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         const accessToken = await generateToken(req.user);
         const user = req.user
 
