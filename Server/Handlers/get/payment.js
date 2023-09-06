@@ -1,6 +1,7 @@
 const mercadopago = require("mercadopago");
 require("dotenv").config();
 const { shopOrderMailTransferWShipping, shopOrderMailTransferMeetPoint } = require('../../config/nodeMailer.config');
+const { postTicketsController } = require('../../Controllers/post/postTicketsController')
 
 const { MP_TOKEN } = process.env;
 
@@ -35,17 +36,19 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://51b6-2803-9800-9016-4e03-a109-8530-9670-8dbf.ngrok.io/carts/purchase/notification",
+        notification_url: "https://d87a-2803-9800-9016-4e03-5db9-e855-1352-c552.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
 
       await mercadopago.preferences.create(preference)
-        .then(function (response) {
+        .then(async  (response) => {
           res.status(200).send({ response });
-          console.log("RESPUESTA DEL BACK:", response)
-          // response.id coincide con el response del cobro (response.preference_id )
-  
+          // console.log("RESPUESTA DEL BACK:", response)
+          const identificador = response.response.id;
+          console.log("esto es el identificador para la operacion", identificador)
+          // // response.id coincide con el response del cobro (response.preference_id )
+          await postTicketsController(identificador, info.shop.total, `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}` ,info.shop.cart);
         })
 
     } else {
