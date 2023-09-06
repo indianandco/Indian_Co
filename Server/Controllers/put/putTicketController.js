@@ -1,7 +1,7 @@
 const { ticketModel } = require('../../models/ticket.model');
 
-const putTicketController = async (tid, status) =>{
-    return await ticketModel.findByIdAndUpdate({_id: tid}, status);
+const putTicketController = async (preference, newStatus) =>{
+    return await ticketModel.findOneAndUpdate({preferenceId: preference},{ status: newStatus },{ new: true });
 };
 
 module.exports = {

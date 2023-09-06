@@ -3,9 +3,8 @@ const router = Router();
 
 const { getProductByIdController } = require('../Controllers/get/getProductByIdController');
 const { putProductController } = require('../Controllers/put/putProductController')
-const { getSaleById } = require("../Controllers/get/getSaleById");
-const { postTicketsController } = require('../Controllers/post/postTicketsController')
-
+const { getSaleByPreference } = require("../Controllers/get/getSaleByPreference");
+const { putTicketController } = require('../Controllers/put/putTicketController')
 const { emptyCartHandler } = require("../Handlers/put/emptyCartHandler");
 const { getCartByIdHandler } = require("../Handlers/get/getCartById");
 const { postTicketsHandler } = require("../Handlers/post/postTicketsHandler");
@@ -51,11 +50,11 @@ router.post("/purchase/notification", async (req, res) =>{
     switch (topic) {
       case "payment":
         const paymentId = query.id;
-        console.log(paymentId) //Numero del comprobante MERCADOPAGO
+        // console.log(paymentId) Numero del comprobante MERCADOPAGO
         let payment = await mercadopago.payment.findById(paymentId);
       
         merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
-        console.log("merchantOrder:", merchantOrder )
+        // console.log("merchantOrder:", merchantOrder )
         break;
       case "merchant_order":
         const orderId = query.id;
@@ -70,12 +69,15 @@ router.post("/purchase/notification", async (req, res) =>{
       }
     });
 
+
+    //Si la condicion se cumple significa que el pago se concreto
     if (paidAmount >= merchantOrder.body.total_amount) {
       
-      const compra = merchantOrder.body.id.toString() ;
-      const ticket = await getSaleById(compra);
+      const preference = merchantOrder.body.preference_id.toString() ;
+      const ticket = await getSaleByPreference(preference);
 
-        if (ticket){
+        //Este if sirve para que los pagos no se registren duplicados en nuestra BD
+        if (ticket.status === true){
           console.log("el pago ya fue registrado")
 
           res.status(201).send({payload: "success", message: "La compra ya fue registrada en la BD"});
@@ -83,28 +85,21 @@ router.post("/purchase/notification", async (req, res) =>{
         }else{
             const products = merchantOrder.body.items;
     
-            let totalAmount = 0;
-            // Restar del stock del producto
+            // Itera los productos que compro y Resta el stock en la BD:
             for (const product of products) {
               const { id, quantity } = product;
               const productData = await getProductByIdController(id);
-    
-              totalAmount += ( productData.offer ? productData.offer_price : productData.price ) * quantity;
     
               productData.stock -= quantity;
               await putProductController(id, productData);
             }
             
-            //Creacion del ticket
-            await postTicketsController(totalAmount, compra ,products);
+            //Modifica el ticket a status TRUE => Esta pago listo para entregar
+            const updatedTicket = await putTicketController(preference, true);
+            // console.log(updatedTicket)
            
-            // aca obtengo el response.preference_id.
-            // si es igual al response.id  lo anexo al ticket
-
             console.log("el pago se completo");
-
             res.status(201).send({payload: "success", message: "Compra exitosa"});
-
           }
       
     } else {
