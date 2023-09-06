@@ -92,8 +92,9 @@ const initializePassport = () =>{
             clientSecret:GOOGLE_CLIENT_SECRET,
             callbackURL:CALLBACK_URL  
          },
-         async function(accessToken, refreshToken, profile, done) {
+         async function(accessToken, refreshToken, profile, cb) {
              try {
+                console.log(CALLBACK_URL);
                  const user = await userModel.findOne({ email: profile.emails[0].value });
                   
                  if(!user) {
@@ -107,15 +108,15 @@ const initializePassport = () =>{
         
                     console.log(`El usuario con el mail: ${newUser.email} se registro con 'google`);
         
-                     return done(null, result);
+                     return cb(null, result);
                  } else {
 
-                     console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
-                     done(null, user);
+                    console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
+                    return cb(null, user);
                  };
             } catch (error) {
              console.log(`${error}`);
-             return done(error)
+             return cb(error)
          };
      }));
 

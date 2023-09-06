@@ -12,7 +12,6 @@ import Swal from 'sweetalert2'
 // eslint-disable-next-line react/prop-types
 function SignIn({ onClick }) {
 
-    const loginHandler = () => window.open("http://localhost:3001/users/auth/google", "_self")
     const { setUser } = useContext(AuthContext);
     const [validated, setValidated] = useState(true);
     const [showLogin, setShowLogin] = useState(false);
@@ -63,10 +62,10 @@ function SignIn({ onClick }) {
 
     //-----------------FUNCIONES DE LOGIN
     const handleShow = () => {
-        if(onClick) onClick(); 
+        if (onClick) onClick();
         setShowLogin(true);
     }
-    
+
     const handleChange = (event) => {
 
         const value = event.target.value
@@ -100,7 +99,7 @@ function SignIn({ onClick }) {
 
         const response = await fetcherUserPost("/users/login", loginForm);
 
-        if(response){
+        if (response) {
             sessionStorage.setItem('sessions', JSON.stringify(response))
             setUser(JSON.parse(sessionStorage.getItem('sessions')));
             setShowLogin(false);
@@ -121,13 +120,10 @@ function SignIn({ onClick }) {
             })
         }
     }
-    
+
     const handleAuth = (event) => {
         event.preventDefault();
-        const data = event.target.dataset.social
-        loginHandler();
-        
-        const auth = fetcher(`/users/auth/${data}`)
+        const auth = fetcher(`/users/auth/google`)
         sessionStorage.setItem('sessions', JSON.stringify(auth))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);
@@ -191,7 +187,7 @@ function SignIn({ onClick }) {
                             </Button>
                         </Modal.Footer>
                         <Modal.Footer className='p-1'>
-                            <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
+                            <Button style={{ width: "100%" }} onClick={handleAuth} size='lg' variant="danger" type="submit">
                                 Ingresar con <i className="bi bi-google"></i> Google
                             </Button>
                         </Modal.Footer>
