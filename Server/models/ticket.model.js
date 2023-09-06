@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const ticketsCollection = 'tickets';
 
 const ticketsSchema = new mongoose.Schema(
-    {
+    { 
+        preferenceId: String,
         total_amount: String,
         products: Array,
         owner:{
