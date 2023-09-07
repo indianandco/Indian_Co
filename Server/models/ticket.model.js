@@ -6,16 +6,25 @@ const ticketsSchema = new mongoose.Schema(
     { 
         preferenceId: String,
         total_amount: String,
+        paymentMethod: String,
+        shippingOption: String,
         products: Array,
         owner:{
             type: String,
             require: true,
          
         },
+        phone: String,
+        email: String,
+        address: String,
+        city: String,
+        province: String,
+        zipcode: String,
         status:{
           type: Boolean,
           default: false
-        }
+        },
+        notes: String
     },
     {
         timestamps: {

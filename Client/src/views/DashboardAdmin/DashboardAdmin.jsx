@@ -29,11 +29,10 @@ const DashboardAdmin = () => {
 
     const calculateProfits = (salesResponse) => {
 
-        let total = 0;
-        salesResponse.forEach(sale => {
-            total += +sale.total_amount
-        });
+        const filteredSales = salesResponse.filter(sale => sale.status === true);
 
+        const total = filteredSales.reduce((accumulator, sale) => accumulator + parseFloat(sale.total_amount), 0);
+    
         return total;
     }
 

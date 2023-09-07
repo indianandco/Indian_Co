@@ -6,9 +6,8 @@ const { postTicketsController } = require('../../Controllers/post/postTicketsCon
 const { MP_TOKEN } = process.env;
 
 const payment = async (req, res) => {
-  const info = req.body;
-
-  console.log(info);
+  let info = req.body;
+  // console.log(info);
   
   try {
     if (info.paymentMethod === "MercadoPago") {
@@ -36,7 +35,7 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://d87a-2803-9800-9016-4e03-5db9-e855-1352-c552.ngrok.io/carts/purchase/notification",
+        notification_url: "https://eed1-2803-9800-9016-4e03-147c-e8ef-532f-7104.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -44,37 +43,40 @@ const payment = async (req, res) => {
       await mercadopago.preferences.create(preference)
         .then(async  (response) => {
           res.status(200).send({ response });
-          // console.log("RESPUESTA DEL BACK:", response)
+          // console.log("1er RESPUESTA DEL BACK de ML (Solo genera el link de pago):", response)
           const identificador = response.response.id;
-          console.log("esto es el identificador para la operacion", identificador)
+          info.preferenceId = identificador
+
+          console.log("INFORMACION PARA EL TICKET",info)
+  
           // // response.id coincide con el response del cobro (response.preference_id )
-          await postTicketsController(identificador, info.shop.total, `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}` ,info.shop.cart);
+          await postTicketsController(info);
         })
 
     } else {
 
-      if (info.shippingOption === "envio") {
-        await shopOrderMailTransferWShipping(
-          info.user.userInfo.email,
-          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-          "test",
-          info.shop.total,
-          info.shop.cart,
-          info.user.deliverInfo
-          );
-        }
+      // if (info.shippingOption === "envio") {
+      //   await shopOrderMailTransferWShipping(
+      //     info.user.userInfo.email,
+      //     `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
+      //     "test",
+      //     info.shop.total,
+      //     info.shop.cart,
+      //     info.user.deliverInfo
+      //     );
+      //   }
         
-        if (info.shippingOption === "punto_encuentro") {
-          await shopOrderMailTransferMeetPoint(
-            info.user.userInfo.email,
-            `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-            "test",
-            info.shop.total,
-            info.shop.cart
-            );
-          }
+      //   if (info.shippingOption === "punto_encuentro") {
+      //     await shopOrderMailTransferMeetPoint(
+      //       info.user.userInfo.email,
+      //       `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
+      //       "test",
+      //       info.shop.total,
+      //       info.shop.cart
+      //       );
+      //     }
           
-        await postTicketsController(info.shop.total, `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}` ,info.shop.cart);
+        await postTicketsController(info);
       res.status(200).send("todo ok");
 
     }
