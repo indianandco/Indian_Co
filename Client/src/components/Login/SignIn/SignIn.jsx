@@ -129,8 +129,6 @@ function SignIn({ onClick }) {
         setShowLogin(false);
     };
 
-
-
     useEffect(() => {
         validation({ ...loginForm })
     }, [loginForm])
