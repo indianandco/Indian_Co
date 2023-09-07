@@ -21,7 +21,7 @@ const Home = () => {
                 <Carousel>
                     <Carousel.Item interval={5000}>
                         <NavLink to="/products" className="Link">
-                            <Image className="banners_image" src="carrousel1.jpg" />
+                            <Image className="banners_image" src="carousel1.webp" />
                         </NavLink>
                         <Carousel.Caption>
                             <h3>Hecho a mano</h3>
@@ -29,14 +29,14 @@ const Home = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image className="banners_image" src="carrousel2.png" />
+                        <Image className="banners_image" src="carrousel2.jpg" />
                         <Carousel.Caption>
                             <h3>Calidad</h3>
                             <p>La calidad es primordial en nuestros productos. Nos dedicamos a brindar artículos atractivos y resistentes, sometidos a rigurosas pruebas para asegurar que cumplan nuestros estándares. Nuestra confianza en la calidad nos permite satisfacer incluso a los clientes más exigentes.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image className="banners_image" src="carrousel3.png" />
+                        <Image className="banners_image" src="carrousel3.jpg" />
                         <Carousel.Caption>
                             <h3>Sustentable</h3>
                             <p>Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
