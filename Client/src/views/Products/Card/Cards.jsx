@@ -16,7 +16,7 @@ const Cards = ({ product }) => {
                 </NavLink>
                 <Card.Header className="pb-1"><Card.Title className="text-center pTitle" >{title}</Card.Title></Card.Header>
                 <ListGroup className="list-group-flush align-items-center">
-                    <Button className="border-0 rounded-0 addToCart" style={{ width: '100%' }} variant="outline-success" size="lg"><NavLink to={`/detail/${_id}`} className="nav-link no-underline">Ver Producto</NavLink></Button>
+                    <Button className="border-0 rounded-0 addToCart" style={{ width: '100%' }} variant="light" size="lg"><NavLink to={`/detail/${_id}`} className="nav-link no-underline">Ver Producto</NavLink></Button>
                 </ListGroup>
                 <ListGroup horizontal className="d-flex align-items-center justify-content-between list-group-flush">
                     <ListGroup.Item variant="dark" className="px-2">Precio</ListGroup.Item>
