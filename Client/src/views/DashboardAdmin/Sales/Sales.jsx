@@ -25,7 +25,9 @@ const Sales = () => {
             </Pagination.Item>
         )
     }
-    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage)
+    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage).filter((sale) => (sale.paymentMethod === 'MercadoPago' && sale.status === true) || (sale.paymentMethod === 'TransferenciaBancaria' && sale.status === false));
+    console.log("ventas PRE FILTRO",paginatedSales)
+
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -74,8 +76,7 @@ const Sales = () => {
 
             <Row className='sales'>
                 <Col className='columna' xs={3}>Nombre</Col>
-
-                <Col className='columna' xs={4}>Fecha</Col>
+                <Col className='columna' xs={2}>Fecha</Col>
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
@@ -83,9 +84,8 @@ const Sales = () => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
-                            <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : 'Usuario no encontrado'}</Col>
-
-                            <Col xs={4}>{formatDate(sale.purchase_datetime)}</Col>
+                            <Col xs={3}>{user ? '✔' : '❌'}-{user ? `${user.first_name} ${user.last_name}` : sale.owner || 'Usuario no encontrado'}</Col>
+                            <Col xs={2}>{formatDate(sale.purchase_datetime)}</Col>
                             <Col xs={2}>
                                 <Button className="editButton" onClick={() => handleModalShow(sale)}>
                                     <i className="icon_detail bi bi-clipboard-check"></i>
@@ -111,15 +111,17 @@ const Sales = () => {
                         <div>
                             <p>Productos:</p>
                             {
-                                selectedSale?.products.map((productId, index) => {
-                                    const product = products.find(p => {
-                                        return p._id === productId.id});
-                            
+                                selectedSale?.products.map((product) => {
+                                    console.log(selectedSale)
+                                    
                                     return (
-                                        <span key={index}>
-                                            - {product ? product.title : 'Producto no encontrado'}
-                                            {index !== selectedSale.products.length - 1 && <br />}
-                                        </span>
+                                        <div key={product._id}>
+                                           <span>-{product ? product.title : 'Producto no encontrado'}</span>
+                                           <br />
+                                           <span>-cant:<b>{product?.quantity}</b></span> 
+                                           <br />
+                                            <span>-fragancia:{product?.fragance}</span>
+                                        </div>
                                     );
                                 })
                             }
