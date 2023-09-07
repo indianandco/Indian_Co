@@ -25,7 +25,7 @@ const Container = () => {
     }
 
     useEffect(() => {
-        const catalog = productStorage.filter(product =>
+        const catalog = productStorage?.filter(product =>
             product.catalog_listing === false
 
         )

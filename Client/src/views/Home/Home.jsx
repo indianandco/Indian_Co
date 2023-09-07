@@ -21,7 +21,7 @@ const Home = () => {
                 <Carousel>
                     <Carousel.Item interval={5000}>
                         <NavLink to="/products" className="Link">
-                            <Image className="banners_image" src="carrousel1.png" />
+                            <Image className="banners_image" src="carrousel1.jpg" />
                         </NavLink>
                         <Carousel.Caption>
                             <h3>Hecho a mano</h3>
