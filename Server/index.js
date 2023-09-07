@@ -21,7 +21,7 @@ const server = express();
 const mongoose = require('./db');
 
 server.use(cors({
-  origin: ['http://localhost:5173'],  
+  origin: "*",  
   methods: 'GET, POST, OPTIONS, PUT, DELETE',
   allowedHeaders: 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
   credentials: true,
