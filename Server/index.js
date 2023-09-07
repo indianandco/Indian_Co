@@ -5,7 +5,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const cors = require('cors');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { initializePassport } = require('./config/passport.config');
 require('dotenv').config();
 
