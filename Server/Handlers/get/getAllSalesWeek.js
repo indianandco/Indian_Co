@@ -4,7 +4,7 @@ const { getAllSalesWeekController } = require("../../Controllers/get/getAllSales
 const getAllSalesWeek = async (req, res) => {
     try {
         const response = await getAllSalesWeekController();
-        
+
         return res.status(200).json(response)
         
     } catch (error) {

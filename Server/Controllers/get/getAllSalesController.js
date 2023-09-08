@@ -7,7 +7,7 @@ const getAllSalesController= async()=>{
 
         return allSales;
     } catch (error) {
-        console.log("este es el error",error);
+       
         return ({error: "No se pude acceder a la BDD"});
     }
 };
