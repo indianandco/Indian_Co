@@ -47,7 +47,7 @@ const payment = async (req, res) => {
           const identificador = response.response.id;
           info.preferenceId = identificador
 
-          console.log("INFORMACION PARA EL TICKET",info)
+         
   
           // // response.id coincide con el response del cobro (response.preference_id )
           await postTicketsController(info);
@@ -81,7 +81,7 @@ const payment = async (req, res) => {
 
     }
   } catch (error) {
-    console.log(error);
+    
     res.status(500).send({ status: "error", error });
   }
 };
