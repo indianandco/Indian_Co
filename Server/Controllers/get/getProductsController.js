@@ -22,8 +22,8 @@ const getProductsController = async (sort) => {
       const allProducts = await productModel.find({}).sort(sortOption).lean();
       return allProducts;
   } catch(error) {
-      console.error('Error in getProductsController:', error.message);
-      throw error;
+    throw new Error("No se puede acceder a la BDD");
+
   };
 };
 
