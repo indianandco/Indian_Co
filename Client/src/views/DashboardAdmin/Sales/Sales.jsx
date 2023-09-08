@@ -153,7 +153,7 @@ const Sales = () => {
                     return (
                         <Row className='sales' key={index}>
                             <Col xs={3}>{user ? '✔' : '❌'}-{user ? `${user.first_name} ${user.last_name}` : sale.owner || 'Usuario no encontrado'}</Col>
-                            <Col xs={2}>{formatDate(sale.purchase_datetime)}</Col>
+                            <Col xs={2}>{sale.fecha}</Col>
                             <Col xs={2} >{sale.status ? 'Pagado' : 'Pendiente'}</Col>
                             <Col xs={2}>
                                 <Button className="editButton" onClick={() => handleModalShow(sale)}>
