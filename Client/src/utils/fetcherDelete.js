@@ -11,3 +11,13 @@ export const deleteProduct = async(endpoint)=>{
         
     }
 }
+
+export const deleteTicket = async (endpoint)=>{
+    try {
+        const response = await axios.delete(`${BASE_URL}${endpoint}`)
+        return response.data
+    } catch (error) {
+        throw error.response?.data.error
+        
+    }
+}

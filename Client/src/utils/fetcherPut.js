@@ -24,6 +24,7 @@ export const updateUserInfo = async (endpoint, updateUser) => {
 
 export const updateTicketFunction = async(endpoint, status)=>{
     try {
+    
         const response = await axios.put(`${BASE_URL}${endpoint}`,status)
         return response.data
     } catch (error) {

@@ -3,8 +3,10 @@ import Modal from 'react-bootstrap/Modal';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import { fetcher } from '../../../utils/fetcherGet';
 import { updateTicketFunction } from '../../../utils/fetcherPut'
+import {deleteTicket} from '../../../utils/fetcherDelete'
 import Pagination from 'react-bootstrap/Pagination';
 import Swal from 'sweetalert2'
+import "./Sales.css"
 
 
 const Sales = () => {
@@ -15,7 +17,6 @@ const Sales = () => {
     const [selectedSale, setSelectedSale] = useState(null)
     const [products, setProducts] = useState(null)
     const [filteredSales, setFilteredSales] = useState([]);
-    const [message, setMessage] = useState([])
     const [pagActive, setPagActive] = useState(1)
     const salesPerPage = 4;
 
@@ -69,50 +70,69 @@ const Sales = () => {
     const handleModalClose = () => {
         setModal(false);
     };
-
-
-    // const handlerStatus = (event) => {
-    //     const status = event.target.value
-    //     const response =updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
-    //   setMessage(response)
-    // }
-    const handlerStatus = (event) => {
-    Swal.fire({
-        title: 'Está seguro que quiere actualizar este venta?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Confirmar'
-    })
-        .then(async (result) => {
-            if (result.isConfirmed) {
-                const status = event.target.value
-            
-                try {
-                    const response = await updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
-                    await Swal.fire({
-                        icon:"success",
-                        title: 'Venta actualizada correctamente!',
-                    });
-                    getInfo()
-                } catch (error) {
-                    await Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Algo salio mal, volvé a intentarlo!'
-                    })
+    const handleDeleteTicket=()=>{
+        Swal.fire({
+            title: 'Está seguro que quiere eliminar esta venta?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const id = selectedSale._id
+                    try {
+                        const response = await deleteTicket(`/tickets/deleteTicket/${id}`)
+                        await Swal.fire({
+                            icon:"success",
+                            title: 'Venta eliminida correctamente!',
+                        });
+                        setModal(false)
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
                 }
-            }
-        });
-
+            });
     }
 
+    const handlerStatus = (event) => {
+        Swal.fire({
+            title: 'Está seguro que quiere actualizar este venta?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const status = event.target.value
+                    try {
+                        const response = await updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
+                        await Swal.fire({
+                            icon: "success",
+                            title: 'Venta actualizada correctamente!',
+                        });
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
+                }
+            });
 
-
-
-
+    }
 
     return (
         <Container className='container'>
@@ -179,22 +199,11 @@ const Sales = () => {
 
                         </div>
                         <div>
-                            {/*   <Form.Group >
-                                                    <Form.Label className="form-label">Estado:  </Form.Label>
-                                                    <Form.Select name="offer" value={product.status}>
-                                                        <option value={product.status}>Pagado</option>
-                                                        <option value={product.status}>Pendiente</option>
-                                                    </Form.Select>
-                                                </Form.Group>*/}
-
-                            <select name="estado" onChange={handlerStatus}>
-                                <option value={true} selected={selectedSale?.status === true}>Pagado</option>
-                                <option value={false} selected={selectedSale?.status === false}>Pendiente</option>
+                            <select className='status' name="estado" onChange={handlerStatus} defaultValue={selectedSale?.status ? "true" : "false"}>
+                                <option value={true} >Pagado</option>
+                                <option value={false} >Pendiente</option>
                             </select>
                         </div>
-
-
-
                         <br />
                         <div>
                             <p>Total: ${selectedSale?.total_amount}</p>
@@ -208,6 +217,9 @@ const Sales = () => {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>
                         Cerrar
+                    </Button>
+                    <Button variant="danger" onClick={handleDeleteTicket}>
+                       Eliminar
                     </Button>
                 </Modal.Footer>
             </Modal>
