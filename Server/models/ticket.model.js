@@ -7,6 +7,10 @@ const ticketsSchema = new mongoose.Schema(
         preferenceId: String,
         total_amount: String,
         paymentMethod: String,
+        comprobanteMercadoPago: {
+          type: String,
+          default: undefined
+        },
         shippingOption: String,
         products: Array,
         owner:{
@@ -24,14 +28,9 @@ const ticketsSchema = new mongoose.Schema(
           type: Boolean,
           default: false
         },
-        notes: String
-    },
-    {
-        timestamps: {
-            createdAt: "purchase_datetime",
-          },
-        versionKey: false
-    }
+        notes: String,
+        fecha: String
+      }
 );
 
 

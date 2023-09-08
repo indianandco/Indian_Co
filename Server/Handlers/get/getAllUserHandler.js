@@ -6,7 +6,7 @@ try {
     if(!findAll.length){
             throw new Error ("Error en el controller")
         }
-    
+
     return res.status(200).json(findAll)
 } catch (error) {
       
