@@ -9,7 +9,7 @@ const ticketsSchema = new mongoose.Schema(
         paymentMethod: String,
         comprobanteMercadoPago: {
           type: String,
-          default: undefined
+          default: ''
         },
         shippingOption: String,
         products: Array,
