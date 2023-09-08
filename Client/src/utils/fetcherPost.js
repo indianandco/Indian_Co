@@ -1,8 +1,12 @@
 import axios from "axios";
 
+<<<<<<< HEAD
  const BASE_URL = "http://localhost:3001"; 
 
 // const BASE_URL= "mere-hands-production.up.railway.app"
+=======
+const BASE_URL = "http://localhost:3001";
+>>>>>>> d11795c5b801c7b151a766cde4b79cb1fb4eec4a
 
 export const postProductFunction = async (endpoint, product) => {
   try {
