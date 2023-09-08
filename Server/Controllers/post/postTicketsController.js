@@ -1,4 +1,10 @@
 const { ticketModel } = require('../../models/ticket.model');
+const moment = require('moment-timezone');
+
+// Formatear la fecha en el formato ISO estándar
+const argentinaTime = moment().tz('America/Argentina/Buenos_Aires').toISOString();
+
+
 
 const postTicketsController = async (info) => {
     const {
@@ -26,7 +32,8 @@ const postTicketsController = async (info) => {
         province,
         zipcode,
         notes,
-        shippingOption
+        shippingOption,
+        fecha: argentinaTime
     });
 
     return newTicket;
