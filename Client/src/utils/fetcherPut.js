@@ -20,13 +20,11 @@ export const updateUserInfo = async (endpoint, updateUser) => {
     } catch (error) {
         throw error.response?.data.error
     }
-
-
 }
 
-export const updateTicketFunction = async(endpoint, updateTicket)=>{
+export const updateTicketFunction = async(endpoint, status)=>{
     try {
-        const response = await axios.put(`${BASE_URL}${endpoint}`,updateTicket)
+        const response = await axios.put(`${BASE_URL}${endpoint}`,status)
         return response.data
     } catch (error) {
         throw error.response?.data.error

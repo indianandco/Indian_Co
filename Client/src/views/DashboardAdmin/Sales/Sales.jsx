@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import { fetcher } from '../../../utils/fetcherGet';
-import {updateTicketFunction} from '../../../utils/fetcherPut'
+import { updateTicketFunction } from '../../../utils/fetcherPut'
 import Pagination from 'react-bootstrap/Pagination';
+import Swal from 'sweetalert2'
 
 
 const Sales = () => {
@@ -14,6 +15,7 @@ const Sales = () => {
     const [selectedSale, setSelectedSale] = useState(null)
     const [products, setProducts] = useState(null)
     const [filteredSales, setFilteredSales] = useState([]);
+    const [message, setMessage] = useState([])
     const [pagActive, setPagActive] = useState(1)
     const salesPerPage = 4;
 
@@ -26,7 +28,7 @@ const Sales = () => {
             </Pagination.Item>
         )
     }
-    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage).filter((sale) => (sale.paymentMethod === 'MercadoPago' && sale.status === true) || (sale.paymentMethod === 'TransferenciaBancaria' && sale.status === false));
+    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage);
 
 
 
@@ -69,12 +71,49 @@ const Sales = () => {
     };
 
 
+    // const handlerStatus = (event) => {
+    //     const status = event.target.value
+    //     const response =updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
+    //   setMessage(response)
+    // }
     const handlerStatus = (event) => {
-        const status = event.target.value
-        updateTicketFunction({
+    Swal.fire({
+        title: 'Está seguro que quiere actualizar este venta?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+    })
+        .then(async (result) => {
+            if (result.isConfirmed) {
+                const status = event.target.value
+            
+                try {
+                    const response = await updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
+                    await Swal.fire({
+                        icon:"success",
+                        title: 'Venta actualizada correctamente!',
+                    });
+                    getInfo()
+                } catch (error) {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salio mal, volvé a intentarlo!'
+                    })
+                }
+            }
+        });
 
-        })
     }
+
+
+
+
+
+
     return (
         <Container className='container'>
             <Row className='sale_title'>
@@ -137,9 +176,9 @@ const Sales = () => {
 
                                     );
                                 })
-                                 }
- 
-                                 </div>
+                            }
+
+                        </div>
                         <div>
                             {/*   <Form.Group >
                                                     <Form.Label className="form-label">Estado:  </Form.Label>
@@ -154,8 +193,8 @@ const Sales = () => {
                                 <option value={false} selected={selectedSale?.status === false}>Pendiente</option>
                             </select>
                         </div>
-                                          
-                           
+
+
 
                         <br />
                         <div>
