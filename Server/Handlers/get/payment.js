@@ -35,7 +35,7 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://877a-2803-9800-9016-4e03-147c-e8ef-532f-7104.ngrok.io/carts/purchase/notification",
+        notification_url: "https://1f35-2803-9800-9016-4e03-8cf0-6f63-bb9e-6fa3.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -47,22 +47,20 @@ const payment = async (req, res) => {
           const identificador = response.response.id;
           info.preferenceId = identificador
 
-         
-  
         // response.id coincide con el response del cobro (response.preference_id )
           await postTicketsController(info);
         })
 
     } else {
       const ticket = await postTicketsController(info);
-      console.log("este es el Ticket:" ,ticket)
-      // if (info.shippingOption === "envio") {
-      //   await shopOrderMailTransferWShipping(ticket);
-      //   }
+      // console.log("este es el Ticket:" ,ticket)
+      if (info.shippingOption === "envio") {
+        await shopOrderMailTransferWShipping(ticket);
+        }
         
-      //   if (info.shippingOption === "punto_encuentro") {
-      //     await shopOrderMailTransferMeetPoint(ticket);
-      //   }
+        if (info.shippingOption === "punto_encuentro") {
+          await shopOrderMailTransferMeetPoint(ticket);
+        }
           
       res.status(200).send("todo ok");
 
