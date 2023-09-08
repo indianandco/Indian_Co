@@ -4,7 +4,7 @@ const logOut =  async (req,res) =>{
             if (err) {
               res.status(500).send({ status: 'error', error: 'couldnt logout' });
             } else {
-              console.log('Session destroyed successfully!');
+          
               res.clearCookie('cookieToken');
             }
           });

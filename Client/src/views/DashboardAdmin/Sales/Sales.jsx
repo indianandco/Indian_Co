@@ -161,7 +161,6 @@ const Sales = () => {
                             <p>Productos:</p>
                             {
                                 selectedSale?.products.map((product) => {
-                                    console.log(selectedSale)
                                     return (
                                         <div key={product._id}>
                                             <span>-{product ? product.title : 'Producto no encontrado'}</span>
