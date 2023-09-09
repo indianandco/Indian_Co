@@ -6,15 +6,16 @@ const { postTicketsController } = require('../../Controllers/post/postTicketsCon
 const { MP_TOKEN } = process.env;
 
 const payment = async (req, res) => {
-  let info = req.body;
-  // console.log(info);
   
   try {
+    let info = req.body;
+ 
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
       
       const generateProductList = () =>{
         const products = info.shop.cart.map( ( product ) =>  (
+          
           {
             id: product._id,
             title: product.title,
@@ -51,23 +52,25 @@ const payment = async (req, res) => {
           await postTicketsController(info);
         })
 
-    } else {
+    } 
+    
+    if(info.paymentMethod === "TransferenciaBancaria"){
       const ticket = await postTicketsController(info);
       // console.log("este es el Ticket:" ,ticket)
-      if (info.shippingOption === "envio") {
-        await shopOrderMailTransferWShipping(ticket);
+        if (info.shippingOption === "envio") {
+          await shopOrderMailTransferWShipping(ticket);
         }
         
         if (info.shippingOption === "punto_encuentro") {
           await shopOrderMailTransferMeetPoint(ticket);
         }
           
-      res.status(200).send("todo ok");
+      res.status(200).send( { result: 'success', payload: ticket} );
 
     }
   } catch (error) {
-    
-    res.status(500).send({ status: "error", error });
+    console.error("Error en el controlador payment:", error);
+    res.status(500).send({ status: "error", error: error.message });
   }
 };
 

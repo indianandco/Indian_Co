@@ -25,16 +25,18 @@ export const fetcherUserPost = async (endpoint, form) => {
 };
 
 export const fetcherPaymentMethod = async (endpoint, data) => {
+  // console.log("axios:", data)
   try {
-    if (data.paymentMethod === "MercadoPago") {
-      // eslint-disable-next-line no-unused-vars
+    if (data.paymentMethod === 'MercadoPago') {
       const response = await axios.post(`${BASE_URL}${endpoint}`, data).then((res) => {
           window.location.href = res.data.response.body.init_point;
         });
     }
 
-    if (data.paymentMethod === "TransferenciaBancaria") {
-      await axios.post(`${BASE_URL}${endpoint}`, data)
+    if (data.paymentMethod === 'TransferenciaBancaria') {
+      const response = await axios.post(`${BASE_URL}${endpoint}`, data);
+      console.log(response)
+      return response.data;
     }
 
   } catch (error) {

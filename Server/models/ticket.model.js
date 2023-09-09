@@ -4,15 +4,30 @@ const ticketsCollection = 'tickets';
 
 const ticketsSchema = new mongoose.Schema(
     { 
-        preferenceId: String,
-        total_amount: String,
-        paymentMethod: String,
+        preferenceId:{
+          type: String,
+          default: "none"
+        }, 
+        total_amount:  {
+          type: String,
+          required: true
+        },
+        paymentMethod: {
+          type: String,
+          required: true
+        },
         comprobanteMercadoPago: {
           type: String,
           default: ''
         },
-        shippingOption: String,
-        products: Array,
+        shippingOption: {
+          type: String,
+          required: true
+        },
+        products:  {
+          type: Array,
+          required: true
+      },
         owner:{
             type: String,
             require: true,
@@ -29,7 +44,10 @@ const ticketsSchema = new mongoose.Schema(
           default: false
         },
         notes: String,
-        fecha: String
+        fecha:  {
+          type: String,
+          required: true
+        }
       }
 );
 
