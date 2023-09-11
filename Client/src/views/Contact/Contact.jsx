@@ -22,8 +22,8 @@ const Contact = () => {
   const validateForm = () => {
     const errors = {};
     if (ticket.name.length < 3) {
-        errors.name = 'El nombre debe tener al menos 3 caracteres.';
-    } else if (!/^[a-zA-Z]+$/.test(ticket.name)) {
+      errors.name = 'El nombre debe tener al menos 3 caracteres.';
+    } else if (!/^[a-zA-Z\s]+$/.test(ticket.name)) {
         errors.name = 'El nombre solo debe contener letras.';
     }
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
