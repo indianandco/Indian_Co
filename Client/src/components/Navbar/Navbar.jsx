@@ -3,22 +3,23 @@ import "./Navbar.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import SignUp from "../Login/SignUp/SignUp";
 import Badge from '@mui/material/Badge';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../services/CartContext";
-import SignIn from "../Login/SignIn/SignIn";
 import UserProfile from "../../views/UserProfile/UserProfile";
-import { fetcher } from "../../utils/fetcherGet";
+//import { fetcher } from "../../utils/fetcherGet";
 import { AuthContext } from "../../services/AuthContext";
 
-const NavBar = () => {
+// eslint-disable-next-line react/prop-types
+const NavBar = ({onClick, setShowLogin}) => {
 
+    // eslint-disable-next-line no-unused-vars
+    const { user, setUser } = useContext(AuthContext);
+    // eslint-disable-next-line no-unused-vars
+    const [userNav, setUserNav] = useState(JSON.parse(sessionStorage.getItem("sessions")))
     const location = useLocation();
     const { cart } = useContext(CartContext);
-    const { user, setUser } = useContext(AuthContext);
-    const [userNav, setUserNav] = useState(JSON.parse(sessionStorage.getItem("sessions")))
     const [scrolled, setScrolled] = useState(false);
     const [expanded, setExpanded] = useState(false);
 
@@ -31,6 +32,11 @@ const NavBar = () => {
     "/cart",
     ];
     
+    const handleShow = () => {
+        if (onClick) onClick();
+        setShowLogin(true);
+    }
+
     const isRouteMatch = (pattern) => {
         if (pattern.includes(":id")) {
             const basePattern = pattern.split("/:")[0];
@@ -46,12 +52,12 @@ const NavBar = () => {
         window.scrollTo(0, 0);
     };
 
-    const handleLogOut = () => {
+/*     const handleLogOut = () => {
         fetcher("/users/logout")
         sessionStorage.clear();
         setUser(null);
         setUserNav(null);
-    };
+    }; */
 
     useEffect(() => {
         const handleScroll = () => {
@@ -86,49 +92,40 @@ const NavBar = () => {
                        
                         {!isNotFoundPage &&
                             <> 
-                           
-                            <Nav className="justify-content-end p-1">
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/products">Productos</NavLink>
-                            <div>
-                                <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="cart_button" to="/cart">
-                                    <Badge badgeContent={cart?.length} color="secondary" className="buttons">
-                                        <ShoppingCart />
-                                    </Badge>
-                                </NavLink>
-                            </div>
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
-                            <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}}className="buttons" to="/contact">Contacto</NavLink>
-                            <div>
-                                {!user && <SignIn scrolled={scrolled} onClick={() => setExpanded(false)}></SignIn>}
-                            </div>
-                            <div>
-                                {!user && <SignUp scrolled={scrolled} onClick={() => setExpanded(false)}></SignUp>}
-                            </div>
-                            <div>
-                                {(user?.role === "user") && <UserProfile onClick={() => setExpanded(false)}></UserProfile>}
-                            </div>
+                                <Nav className="justify-content-end p-1">
+                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
+                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/products">Productos</NavLink>
+                                    <div>
+                                        <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="cart_button" to="/cart">
+                                            <Badge badgeContent={cart?.length} color="secondary" className="buttons">
+                                                <ShoppingCart />
+                                            </Badge>
+                                        </NavLink>
+                                    </div>
+                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
+                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/contact">Contacto</NavLink>
+                                    <div>
+                                        {(user?.role === "user") && <UserProfile onClick={() => setExpanded(false)}></UserProfile>}
+                                    </div>
 
-                            {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>}
-                            {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
-                           </Nav> 
+                                    {/* {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>} */}
+                                    
+                                    {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
+                                </Nav> 
                            </>
-                            
                         }
                         {isNotFoundPage &&
                             <Nav className="notFound p-1" >
-
-                                 <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
+                                <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
+                                {location.pathname === '/adminLogin' ? (
+                                <NavLink onClick={handleShow} className="buttons">Ingresar</NavLink>
+                                ) : (null)
+                                }
                             </Nav>
                         }
-                        
-                  
-                        
                     </Navbar.Collapse>
                 </Navbar>
             </div>
-
-
         </div>
     );
 };

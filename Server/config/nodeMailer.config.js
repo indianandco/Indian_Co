@@ -15,8 +15,9 @@ function generateProductList(products) {
 
 //Configuracion:
 const transport = nodemailer.createTransport({
-  service: "gmail",
-  port: 587,
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.NODEMAILER_EMAIL,
     pass: process.env.NODEMAILER_CREDENTIALS,
@@ -116,6 +117,17 @@ const shopOrderMailMPShipping = async (updatedTicket) => {
     </div>
     </body>
     </html>`,
+    subject: "Orden de compra",
+    html: `<div>
+              <h2>Hola ${name}!! Gracias por tu compra.</h2>\n
+              <p>Informacion de tu pedido:</p>\n
+              <ul>
+                  <li>Codigo de la orden: ${code}</li>
+                  <li>Total de la compra: <b>$${amount}</b></li>
+              </ul>
+              \n
+              <p>Saludos, El equipo de Indian and Co.</p>
+          </div>`,
   });
 };
 
@@ -410,8 +422,21 @@ const shopOrderMailTransferMeetPoint = async (ticket) => {
 });
 };
 
+const sendEmailContact = async ({email, description}) =>{
+  await transport.sendMail({
+    from: 'federicoepaglia@gmail.com',
+    to: 'ventas@indianandco.com.ar',
+    subject: "Formulario de contacto",
+    html: `<div>
+            <p>${description}</p>
+            <p>email: ${email}</p>
+          </div>`,
+  })
+};
+
 module.exports = {
   //newUserMailing,
+  sendEmailContact,
   shopOrderMailMPMeetPoint,
   shopOrderMailMPShipping,
   shopOrderMailTransferWShipping,
