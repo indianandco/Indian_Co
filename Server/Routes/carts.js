@@ -4,12 +4,13 @@ const router = Router();
 const { getProductByIdController } = require('../Controllers/get/getProductByIdController');
 const { putProductController } = require('../Controllers/put/putProductController')
 const { getSaleByPreference } = require("../Controllers/get/getSaleByPreference");
-const { putTicketController } = require('../Controllers/put/putTicketController')
+const { putTicketControllerMP } = require('../Controllers/put/putTicketController')
 const { emptyCartHandler } = require("../Handlers/put/emptyCartHandler");
 const { getCartByIdHandler } = require("../Handlers/get/getCartById");
 const { postTicketsHandler } = require("../Handlers/post/postTicketsHandler");
 const { payment } = require("../Handlers/get/payment");
 const { postCartsHandler } = require("../Handlers/post/postCartsHandler");
+const { shopOrderMailMPMeetPoint, shopOrderMailMPShipping } = require('../config/nodeMailer.config');
 const mercadopago = require("mercadopago");
 
 router.post("/newcart", postCartsHandler);
@@ -46,15 +47,15 @@ router.post("/purchase/notification", async (req, res) =>{
     const topic = query.topic; 
 
     let merchantOrder;
-
+    let paymentId;
     switch (topic) {
       case "payment":
-        const paymentId = query.id;
-        // console.log(paymentId) Numero del comprobante MERCADOPAGO
+        paymentId = query.id || data.id;
+         console.log(paymentId) //Numero del comprobante MERCADOPAGO
         let payment = await mercadopago.payment.findById(paymentId);
       
         merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
-        // console.log("merchantOrder:", merchantOrder )
+        //  console.log("merchantOrder:", merchantOrder )
         break;
       case "merchant_order":
         const orderId = query.id;
@@ -95,9 +96,16 @@ router.post("/purchase/notification", async (req, res) =>{
             }
             
             //Modifica el ticket a status TRUE => Esta pago listo para entregar
-            const updatedTicket = await putTicketController(preference, true);
-            // console.log(updatedTicket)
-           
+            if(paymentId){
+              const updatedTicket = await putTicketControllerMP(preference, true, paymentId);
+              // console.log(updatedTicket)
+
+              if (updatedTicket.shippingOption === "punto_encuentro") {
+                await shopOrderMailMPMeetPoint(updatedTicket);
+              } else {
+                await shopOrderMailMPShipping(updatedTicket);
+              }
+            }
             console.log("el pago se completo");
             res.status(201).send({payload: "success", message: "Compra exitosa"});
           }

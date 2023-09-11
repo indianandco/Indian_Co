@@ -4,7 +4,7 @@ const { getAllSalesYearController } = require("../../Controllers/get/getAllSales
 const getAllSalesYear = async (req, res) => {
     try {
         const response = await getAllSalesYearController();
-        console.log("esta es el response", response)
+       
         return res.status(200).json(response)
         
     } catch (error) {

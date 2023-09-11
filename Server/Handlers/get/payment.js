@@ -6,15 +6,16 @@ const { postTicketsController } = require('../../Controllers/post/postTicketsCon
 const { MP_TOKEN } = process.env;
 
 const payment = async (req, res) => {
-  let info = req.body;
-  // console.log(info);
   
   try {
+    let info = req.body;
+ 
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
       
       const generateProductList = () =>{
         const products = info.shop.cart.map( ( product ) =>  (
+          
           {
             id: product._id,
             title: product.title,
@@ -35,7 +36,7 @@ const payment = async (req, res) => {
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://eed1-2803-9800-9016-4e03-147c-e8ef-532f-7104.ngrok.io/carts/purchase/notification",
+        notification_url: "https://1f35-2803-9800-9016-4e03-8cf0-6f63-bb9e-6fa3.ngrok.io/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
@@ -47,42 +48,29 @@ const payment = async (req, res) => {
           const identificador = response.response.id;
           info.preferenceId = identificador
 
-          console.log("INFORMACION PARA EL TICKET",info)
-  
-          // // response.id coincide con el response del cobro (response.preference_id )
+        // response.id coincide con el response del cobro (response.preference_id )
           await postTicketsController(info);
         })
 
-    } else {
-
-      // if (info.shippingOption === "envio") {
-      //   await shopOrderMailTransferWShipping(
-      //     info.user.userInfo.email,
-      //     `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-      //     "test",
-      //     info.shop.total,
-      //     info.shop.cart,
-      //     info.user.deliverInfo
-      //     );
-      //   }
+    } 
+    
+    if(info.paymentMethod === "TransferenciaBancaria"){
+      const ticket = await postTicketsController(info);
+      // console.log("este es el Ticket:" ,ticket)
+        if (info.shippingOption === "envio") {
+          await shopOrderMailTransferWShipping(ticket);
+        }
         
-      //   if (info.shippingOption === "punto_encuentro") {
-      //     await shopOrderMailTransferMeetPoint(
-      //       info.user.userInfo.email,
-      //       `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-      //       "test",
-      //       info.shop.total,
-      //       info.shop.cart
-      //       );
-      //     }
+        if (info.shippingOption === "punto_encuentro") {
+          await shopOrderMailTransferMeetPoint(ticket);
+        }
           
-        await postTicketsController(info);
-      res.status(200).send("todo ok");
+      res.status(200).send( { result: 'success', payload: ticket} );
 
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", error });
+    console.error("Error en el controlador payment:", error);
+    res.status(500).send({ status: "error", error: error.message });
   }
 };
 

@@ -3,7 +3,6 @@ const callBackAuthenticate =  async (req,res)=>{
         req.session.user = req.user;
         return res.status(200).json(req.session.user)
     } catch (error) {
-        console.log(error);
         res.status(500).send({ status: 'error', error });
     };
 };
