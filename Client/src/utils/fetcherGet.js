@@ -21,3 +21,4 @@ export const fetcher = async (endpoint) => {
     return error.response?.data
   }
 };
+

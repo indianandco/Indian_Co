@@ -7,23 +7,35 @@ import styles1 from "./SubtotalColumn.module.css";
 import { useFormik } from "formik"
 import Swal from 'sweetalert2'
 import validation from "./purchaseFormValidator";
+import { fetcher } from "../../../utils/fetcherGet";
 import {fetcherPaymentMethod} from "../../../utils/fetcherPost";
 
 const NuevoFormulario = () => {
-    const { cart, setCart, applyCustomFormat, numberWithCommas, calcTotal, calcTotalPerItem } = useContext(CartContext)
+    const { cart, setCart, applyCustomFormat, numberWithCommas, calcTotal, calcTotalShipping, calcTotalPerItem } = useContext(CartContext)
 
     const [showPoints, setShowPoints] = useState(false)
     const [showBanner, setShowBanner] = useState(false);
     const [showShippingInfo, setShowShippingInfo] = useState(false);
     const [selectedShippingOption, setSelectedShippingOption] = useState("");
     const [selectedPaymentMethodOpt, setselectedPaymentMethodOpt] = useState("");
+    const [priceShipping, setPriceShipping] = useState('');
+
+      //Traer el costo de envio:
+    const getShippingPrice = () =>{
+        fetcher("/admindashboard/shipping/getprice").then(
+            (response) =>{ console.log(response)
+                setPriceShipping(response.payload)}
+        );
+    }
 
     const handleShippingChange = (event) => {
         setSelectedShippingOption(event.target.value);
         setShowShippingInfo(true);
         setShowPoints(true);
         handleChange(event);
+        getShippingPrice()
     };
+
     const handlePaymentMethod = (event) => {
         setselectedPaymentMethodOpt(event.target.value);
         setShowBanner(true);
@@ -65,7 +77,7 @@ const NuevoFormulario = () => {
                             ...values,
                             shop: {
                               cart,
-                              total: calcTotal(),
+                              total: ( selectedShippingOption === "envio" ? calcTotalShipping(priceShipping): calcTotal()),
                             },
                           };
                         //console.log("info para el back(ENDPOINT: payment):",data)
@@ -206,10 +218,20 @@ const NuevoFormulario = () => {
                         </li>
                         );
                 })}
-                <li className={styles1.product_item}>
-                    <b className={styles1.product_name}>Total:</b>
-                    <span><b>${applyCustomFormat(calcTotal(), numberWithCommas)}</b></span>
-                </li>
+                    {values.shippingOption === "envio" ? (
+                        <>
+                            <li className={styles1.product_item}><span>Costo de envio:</span>${priceShipping}</li>
+                            <li className={styles1.product_item}>
+                                <b className={styles1.product_name}>Total:</b>
+                                <span><b>${applyCustomFormat(calcTotalShipping(priceShipping), numberWithCommas)}</b></span>
+                            </li>
+                        </>
+                    ): <>
+                        <li className={styles1.product_item}>
+                            <b className={styles1.product_name}>Total:</b>
+                            <span><b>${applyCustomFormat(calcTotal(), numberWithCommas)}</b></span>
+                        </li>
+                    </>}
             </ol>
             <div className={styles1.checkbox}>
                 <Form.Group className="mb-3" controlId="shippingOption">

@@ -11,6 +11,10 @@ const { postProductsHandler } = require("../Handlers/post/postProductsHandler");
 const { deleteProductByIdHandler} = require("../Handlers/delete/deleteProductByIdHandler");
 const { putProductHandler } = require("../Handlers/put/putProductHandler");
 
+const { getShippingPrice} = require('../Handlers/get/getShippingPrice');
+const { postShippingPrice} = require('../Handlers/post/postShippingPrice');
+const { putShippingPrice } = require('../Handlers/put/putShippingPrice')
+
 const { getAllSalesHandler } = require ('../Handlers/get/getAllSalesHandler');
 const { putTicketHandler } = require('../Handlers/put/putTicketHandler');
 const { getAllSalesWeek } = require('../Handlers/get/getAllSalesWeek');
@@ -28,6 +32,11 @@ router.get('/products/search', getProductByTitleHandler); //Buscar por titulo
 router.delete('/products/delete/:pid', deleteProductByIdHandler); //Eliminar
 router.post('/products/create', postProductsHandler); //Crear
 router.put('/products/update/:pid', putProductHandler ); //Modificar
+
+//Gestion Precio de envio:
+router.post("/shipping/setprice", postShippingPrice);
+router.get("/shipping/getprice",getShippingPrice);
+router.put("/shipping/setnewprice", putShippingPrice)
 
 //Gestion Pedidos
 router.get('/tickets', getAllSalesHandler); //Todos los tickets

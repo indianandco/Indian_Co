@@ -1,13 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
 
   const [cart, setCart] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+
   const loadCartData = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
     if (savedCart && savedCart.length > 0) {
@@ -81,9 +79,12 @@ export const CartProvider = ({ children }) => {
     const result = cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
     return result
   };
+ 
+  const calcTotalShipping = (shippingPrice) =>{
+    const result = cart.reduce((total, item) => total + shippingPrice + calcTotalPerItem(item), 0);
+    return result
+  };
 
-
-  
   const numberWithCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
@@ -100,7 +101,7 @@ export const CartProvider = ({ children }) => {
   }, [cart])
 
   return (
-    <CartContext.Provider value={{ addProduct, cart, setCart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalPerItem, numberWithCommas, applyCustomFormat }}>
+    <CartContext.Provider value={{ addProduct, cart, setCart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalShipping, calcTotalPerItem, numberWithCommas, applyCustomFormat }}>
       {children}
     </CartContext.Provider>
   )
