@@ -5,17 +5,20 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
-import { fetcher } from '../../../utils/fetcherGet';
+//import { fetcher } from '../../../utils/fetcherGet';
 import { AuthContext } from '../../../services/AuthContext';
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 function SignIn({ onClick }) {
 
     const { setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [validated, setValidated] = useState(true);
-    const [showLogin, setShowLogin] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
     const [showRecover, setShowRecover] = useState(false);
+    
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -104,15 +107,18 @@ function SignIn({ onClick }) {
             setUser(JSON.parse(sessionStorage.getItem('sessions')));
             setShowLogin(false);
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: 'Iniciaste sesión correctamente',
                 showConfirmButton: false,
                 timer: 1500
             })
+            setTimeout(function() {
+                navigate("/dashboardadmin")
+            }, 1500);
         } else {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'error',
                 title: 'Email o Contraseña inválidos!',
                 showConfirmButton: false,
@@ -121,13 +127,13 @@ function SignIn({ onClick }) {
         }
     }
 
-    const handleAuth = (event) => {
+/*     const handleAuth = (event) => {
         event.preventDefault();
         const auth = fetcher(`/users/auth/google`)
         sessionStorage.setItem('sessions', JSON.stringify(auth))
         setUser(JSON.parse(sessionStorage.getItem('sessions')));
         setShowLogin(false);
-    };
+    }; */
 
     useEffect(() => {
         validation({ ...loginForm })
@@ -135,7 +141,7 @@ function SignIn({ onClick }) {
 
     return (
         <>
-            <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
+            <Button variant="none" className="buttons1 d-flex justify-content-start" onClick={handleShow}>
                 Ingresar
             </Button>
             {//-------------------------MODAL DE LOGIN
@@ -184,11 +190,11 @@ function SignIn({ onClick }) {
                                 Ingresar con tu cuenta
                             </Button>
                         </Modal.Footer>
-                        <Modal.Footer className='p-1'>
+                        {/* <Modal.Footer className='p-1'>
                             <Button style={{ width: "100%" }} onClick={handleAuth} size='lg' variant="danger" type="submit">
                                 Ingresar con <i className="bi bi-google"></i> Google
                             </Button>
-                        </Modal.Footer>
+                        </Modal.Footer> */}
                     </Form>
                     <Modal.Footer className='p-1 text-decoration-underline'>
                         <Button style={{ width: "100%" }} onClick={handleRecoverShow} size='lg' variant="none">

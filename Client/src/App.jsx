@@ -12,6 +12,7 @@ import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
 import Cart from './views/Cart/Cart'
 import Footer from "./components/Footer/Footer";
 import ProtectedRoutes from './utils/ProtectedRoutes';
+import SignIn from './components/Login/SignIn/SignIn';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/adminLogin' element={<SignIn />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
