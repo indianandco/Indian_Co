@@ -44,3 +44,15 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
     throw error;
   }
 };
+
+export const fetcherShippingCost = async(endpoint) =>{
+  try {
+    const response = await axios.post(`${BASE_URL}${endpoint}`);
+    console.log(response)
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
