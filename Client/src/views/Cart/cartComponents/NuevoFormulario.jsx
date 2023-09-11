@@ -175,19 +175,20 @@ const NuevoFormulario = () => {
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} md="12" controlId="address"
-                    >
-                    <Form.Label>Dirección de entrega</Form.Label>
-                    <div className="">
-                    <Form.Control className="form-control" type="text" name="address" value={values.address}
-                                isInvalid={touched.address && !!errors.address}
-                                onBlur={handleBlur} onChange={handleChange} />
-                            <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                    <Form.Group as={Col} md="6" controlId="address">
+                        <Form.Label>Dirección de entrega</Form.Label>
+                        <Form.Control className="form-control" type="text" name="address" value={values.address}
+                                    isInvalid={touched.address && !!errors.address}
+                                    onBlur={handleBlur} onChange={handleChange} />
+                                <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="addressDetail">
+                    <Form.Label>Detalle</Form.Label>
+                  
                     <Form.Control className="form-control" type="text" name="addressDetail" value={values.addressDetail}
                                 isInvalid={touched.addressDetail && !!errors.addressDetail}
                                 onBlur={handleBlur} onChange={handleChange} />
                             <Form.Control.Feedback type="invalid">{errors.addressDetail}</Form.Control.Feedback>
-                    </div>
                     </Form.Group>
                 </Row>
                 <hr />
