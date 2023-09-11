@@ -47,12 +47,11 @@ const NavBar = ({onClick, setShowLogin}) => {
     
     const isNotFoundPage = !validRoutes.some(isRouteMatch);
 
-
     const scrollToTop = () => {
         window.scrollTo(0, 0);
     };
 
-/*     const handleLogOut = () => {
+    /*const handleLogOut = () => {
         fetcher("/users/logout")
         sessionStorage.clear();
         setUser(null);
