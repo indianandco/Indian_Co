@@ -1,4 +1,5 @@
 const { ticketModel } = require('../../models/ticket.model');
+const { ProductsDto } = require('../../DTOs/products.dto'); 
 
 const argentinaTime = new Date().toLocaleString()
 
@@ -20,12 +21,14 @@ const postTicketsController = async (info) => {
         shop: { cart, total}
       } = info;
 
+      const filteredCart = cart.map( prod => new ProductsDto(prod))
+
     const newTicket = await ticketModel.create({
         preferenceId,
         paymentMethod,
         total_amount: total.toString(),
         owner: `${first_name} ${last_name}`,
-        products: cart,
+        products: filteredCart,
         phone,
         email,
         address,
