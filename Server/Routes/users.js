@@ -8,7 +8,8 @@ const { failLogin } = require('../Handlers/get/failLogin');
 const { logOut } = require('../Handlers/get/logOut');
 const { callBackAuthenticate } = require('../Handlers/get/callBackAuthenticate');
 const { putUserHandler } = require('../Handlers/put/putUserHandler');
-const { sendEmail } = require('../Controllers/post/postSendEmail')
+const { sendEmail } = require('../Controllers/post/postSendEmail');
+
 //Contacto:
 router.post('/contact', sendEmail)
 //Registro:

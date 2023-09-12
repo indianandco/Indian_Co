@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import LinesChart from './AdminComponents/LineChart/LineChart';
 import { DoughnutChart } from './AdminComponents/DoughnutChart/DoughnutChart';
 import Sales from './Sales/Sales';
-import Users from './Users/Users';
+import Shipping from './Shipping/Shipping'
 import CreateProduct from './CreateProduct/CreateProduct';
 import { fetcher } from '../../utils/fetcherGet';
 import Products from './Products/Products';
@@ -25,7 +25,6 @@ const DashboardAdmin = () => {
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
     const [isLoading, setIsLoading] = useState(false);
-
 
     const calculateProfits = (salesResponse) => {
 
@@ -84,7 +83,7 @@ const DashboardAdmin = () => {
                             <ButtonGroup vertical style={{ width: "90%" }} className='border-0 rounded-0'>
                                 <Button variant='ligth' href='/' className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-house-door"></i>Inicio</Button>
                                 <Button variant='ligth' onClick={() => handleTabs("general")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-grid"></i> Dashboard</Button>
-                                <Button variant='ligth' onClick={() => handleTabs("users")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-people"></i> Usuarios</Button>
+                                <Button variant='ligth' onClick={() => handleTabs("shipping")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="bi bi-send-check"></i>Precio de Envio</Button>
                                 <Button variant='ligth' onClick={() => handleTabs("sales")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-ticket"></i> Órdenes</Button>
                                 <Button variant='ligth' onClick={() => handleTabs("create")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-upload"></i> Subir producto</Button>
                                 <Button variant='ligth' onClick={() => handleTabs("products")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-bag"></i> Productos</Button>
@@ -101,7 +100,7 @@ const DashboardAdmin = () => {
                             <Nav defaultActiveKey="/home" style={{ height: "100%" }} className="flex-column d-flex align-items-start justify-content-start">
                                 <Nav.Link className="icon" href="/"><i className="bi bi-house-door-fill"></i></Nav.Link>
                                 <Nav.Link className='icon' onClick={() => handleTabs("general")} eventKey="link-4"><i className='bi bi-grid'></i></Nav.Link>
-                                <Nav.Link className="icon" onClick={() => handleTabs("users")} eventKey="link-1"><i className="bi bi-people"></i></Nav.Link>
+                                <Nav.Link className="icon" onClick={() => handleTabs("shipping")} eventKey="link-1"><i className="bi bi-send-check"></i></Nav.Link>
                                 <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>
                                 <Nav.Link className='icon' onClick={() => handleTabs("create")} eventKey="link-3"><i className="bi bi-upload"></i></Nav.Link>
                                 <Nav.Link className='icon' onClick={() => handleTabs("products")} eventKey="link-4"><i className='bi bi-bag'></i></Nav.Link>
@@ -163,8 +162,8 @@ const DashboardAdmin = () => {
 
                                 </Container>
                             </Tab>
-                            <Tab className='w-100' eventKey="users" title="users">
-                                <Users />
+                            <Tab className='w-100' eventKey="shipping" title="shipping">
+                                <Shipping/>
                             </Tab>
                             <Tab className='w-100' eventKey="sales" title="sales">
                                 <Sales />
