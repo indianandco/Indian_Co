@@ -26,14 +26,14 @@ function App() {
     "/cart",
   ];
   const showFooter = routesWithFooter.some(route => {
-    return route === location.pathname || 
-           (route.includes(":") && location.pathname.startsWith(route.split(":")[0]));
+    return route === location.pathname ||
+      (route.includes(":") && location.pathname.startsWith(route.split(":")[0]));
   });
 
   return (
     <>
 
-      {location.pathname !==  "/dashboardadmin" && < Navbar />}
+      {location.pathname !== "/dashboardadmin" && < Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -48,7 +48,7 @@ function App() {
         <Route path='/products' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/adminLogin' element={<SignIn />} />
+        <Route path='/admin/login' element={<SignIn />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
