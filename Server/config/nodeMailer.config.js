@@ -6,7 +6,7 @@ function generateProductList(products) {
   products.forEach((product) => {
     productListHTML += `<li>
                           ${product.title} x${product.quantity}u - $${product.offer ? product.offer_price : product.price}<br/>
-                          fragancia: ${products.fragance ?? '---'}
+                          fragancia: ${product.fragance}
                         </li>`;
   });
   productListHTML += "</ul>";
