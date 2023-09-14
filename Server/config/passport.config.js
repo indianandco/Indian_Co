@@ -1,8 +1,6 @@
 const passport  = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, CALLBACK_URL} = process.env;
 
 const { createHash, isValidPassword } = require('./bcrypt.config');
 
@@ -84,41 +82,6 @@ const initializePassport = () =>{
             return done({message: `Error al loguear usuario`});
         }
     }));
-
-
-//LOGIN CON GOOGLE:
-         passport.use('google', new GoogleStrategy({
-            clientID:GOOGLE_CLIENT_ID,
-            clientSecret:GOOGLE_CLIENT_SECRET,
-            callbackURL:CALLBACK_URL  
-         },
-         async function(accessToken, refreshToken, profile, cb) {
-             try {
-                console.log(CALLBACK_URL);
-                 const user = await userModel.findOne({ email: profile.emails[0].value });
-                  
-                 if(!user) {
-                     const newUser = {
-                         first_name:profile.name.givenName, 
-                         last_name:profile.name.familyName,
-                         email:profile.emails[0].value,
-                     
-                    };
-                    const result = await userModel.create( newUser );
-        
-                    console.log(`El usuario con el mail: ${newUser.email} se registro con 'google`);
-        
-                     return cb(null, result);
-                 } else {
-
-                    console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
-                    return cb(null, user);
-                 };
-            } catch (error) {
-             console.log(`${error}`);
-             return cb(error)
-         };
-     }));
 
     passport.serializeUser((user, done) =>{
         done(null, user._id);

@@ -1,8 +1,8 @@
 import axios from "axios";
 
- const BASE_URL = "http://localhost:3001"; 
+//const BASE_URL = "http://localhost:3001"; 
 
-// const BASE_URL= "mere-hands-production.up.railway.app"
+const BASE_URL= "mere-hands-production.up.railway.app"
 
 export const postProductFunction = async (endpoint, product) => {
   try {
@@ -28,7 +28,7 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
   // console.log("axios:", data)
   try {
     if (data.paymentMethod === 'MercadoPago') {
-      const response = await axios.post(`${BASE_URL}${endpoint}`, data).then((res) => {
+          await axios.post(`${BASE_URL}${endpoint}`, data).then((res) => {
           window.location.href = res.data.response.body.init_point;
         });
     }

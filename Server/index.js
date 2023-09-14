@@ -5,6 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const cors = require('cors');
+const mongoose = require('./db');
 const { initializePassport } = require('./config/passport.config');
 require('dotenv').config();
 
@@ -17,7 +18,6 @@ const adminDashboard = require('./Routes/adminDashboard');
 
 const server = express();
 
-const mongoose = require('./db');
 
 server.use(cors({
   origin: "*",  
