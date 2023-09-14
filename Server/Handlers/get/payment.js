@@ -32,11 +32,11 @@ const payment = async (req, res) => {
       const preference = {
         items: generateProductList(),
         back_urls: {
-          success: "http://localhost:5173/cart",
+          success: "https://mere-hands-production.up.railway.app/cart",
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://1f35-2803-9800-9016-4e03-8cf0-6f63-bb9e-6fa3.ngrok.io/carts/purchase/notification",
+        notification_url: "https://mere-hands-production.up.railway.app/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
