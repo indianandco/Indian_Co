@@ -29,7 +29,6 @@ const Footer = () => {
                         </NavLink>
                     </div>
                 </div>
-
                 <div className="mid_container">
                     <h2 className="menu">Menu</h2>
                     <div className="links_container">
