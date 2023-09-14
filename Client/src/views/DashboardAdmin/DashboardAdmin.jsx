@@ -21,13 +21,12 @@ const DashboardAdmin = () => {
 
     const [show, setShow] = useState(false);
     const [productsCount, setProductsCount] = useState()
-    /* const [userCount, setUserCount] = useState() */
+    const [productMostSold, setProductMostSold] = useState()
     const [salesCount, setSalesCount] = useState()
     const [totalProfit, setTotalProfits] = useState()
     const [isLoading, setIsLoading] = useState(false);
 
     const calculateProfits = (salesResponse) => {
-        console.log(salesResponse);
 
         const filteredSales = salesResponse.filter(sale => sale.status === true);
 
@@ -36,18 +35,14 @@ const DashboardAdmin = () => {
         return total;
     }
 
-    /* const calculateTopProduct = (salesResponse) => {
-        salesResponse.filter(sale => {
-
-        })
-    } */
-
     const getInfo = async () => {
-        const productsResponse = await fetcher(`/admindashboard/products`)
-        const salesResponse = await fetcher(`/admindashboard/tickets`)
+        const mostSoldProduct = await fetcher(`/admindashboard/products/top-sale`);
+        console.log(mostSoldProduct);
+        const productsResponse = await fetcher(`/admindashboard/products`);
+        const salesResponse = await fetcher(`/admindashboard/tickets`);
         setProductsCount(productsResponse)
         setSalesCount(salesResponse)
-        /* setUserCount(calculateTopProduct(salesResponse)) */
+        setProductMostSold(mostSoldProduct)
         setTotalProfits(calculateProfits(salesResponse))
     }
 
@@ -128,7 +123,7 @@ const DashboardAdmin = () => {
                                         <Row className="mb-4">
                                             {[
                                                 { title: "Total de productos", value: productsCount?.payload.length, icon: "bi bi-box-seam" },
-                                                { title: "Total de usuarios", value: productsCount?.length, icon: "bi bi-people-fill" },
+                                                { title: "Total de usuarios", value: productMostSold, icon: "bi bi-people-fill" },
                                                 { title: "Total de ventas", value: salesCount?.length, icon: "bi bi-wallet-fill" },
                                                 { title: "Ganancias totales", value: totalProfit ? `$${totalProfit}` : null, icon: "bi bi-cash" },
                                             ].map((metric, index) => (
