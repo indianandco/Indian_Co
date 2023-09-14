@@ -36,8 +36,8 @@ const DashboardAdmin = () => {
     }
 
     const getInfo = async () => {
-        const mostSoldProduct = await fetcher(`/admindashboard/products/top-sale`);
-        console.log(mostSoldProduct);
+        const mostSoldProduct = await fetcher(`/admindashboard/products/top`);
+        console.log("hola", mostSoldProduct);
         const productsResponse = await fetcher(`/admindashboard/products`);
         const salesResponse = await fetcher(`/admindashboard/tickets`);
         setProductsCount(productsResponse)
@@ -45,7 +45,6 @@ const DashboardAdmin = () => {
         setProductMostSold(mostSoldProduct)
         setTotalProfits(calculateProfits(salesResponse))
     }
-
 
     useEffect(() => {
         setTimeout(() => {
@@ -123,7 +122,7 @@ const DashboardAdmin = () => {
                                         <Row className="mb-4">
                                             {[
                                                 { title: "Total de productos", value: productsCount?.payload.length, icon: "bi bi-box-seam" },
-                                                { title: "Total de usuarios", value: productMostSold, icon: "bi bi-people-fill" },
+                                                { title: "Producto mas vendido", value: productMostSold?.title, icon: "bi bi-bag" },
                                                 { title: "Total de ventas", value: salesCount?.length, icon: "bi bi-wallet-fill" },
                                                 { title: "Ganancias totales", value: totalProfit ? `$${totalProfit}` : null, icon: "bi bi-cash" },
                                             ].map((metric, index) => (
