@@ -37,7 +37,6 @@ const DashboardAdmin = () => {
 
     const getInfo = async () => {
         const mostSoldProduct = await fetcher(`/admindashboard/products/top`);
-        console.log("hola", mostSoldProduct);
         const productsResponse = await fetcher(`/admindashboard/products`);
         const salesResponse = await fetcher(`/admindashboard/tickets`);
         setProductsCount(productsResponse)
