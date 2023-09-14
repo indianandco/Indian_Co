@@ -1,6 +1,7 @@
 const { ticketModel } = require('../../models/ticket.model');
+const { productModel } = require('../../models/product.model'); // Importa el modelo de producto
 
-const getMostSoldProduct = async () => {
+const getMostSoldProduct = async (req, res) => {
   try {
     const mostSoldProduct = await ticketModel.aggregate([
       {
@@ -21,10 +22,10 @@ const getMostSoldProduct = async () => {
     ]);
 
     if (mostSoldProduct.length > 0) {
-      // Puedes buscar más detalles del producto en tu base de datos si es necesario
-      return mostSoldProduct[0];
+      const productInfo = await productModel.findOne({ _id: mostSoldProduct[0]._id });
+      res.status(200).json(productInfo)
     } else {
-      return null; // No se encontraron ventas
+      res.status(404).send(error) // No se encontraron ventas
     }
   } catch (error) {
     throw error;
@@ -34,4 +35,3 @@ const getMostSoldProduct = async () => {
 module.exports = {
   getMostSoldProduct,
 };
-

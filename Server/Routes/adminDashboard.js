@@ -33,7 +33,7 @@ router.get('/products/search', getProductByTitleHandler); //Buscar por titulo
 router.delete('/products/delete/:pid', deleteProductByIdHandler); //Eliminar
 router.post('/products/create', postProductsHandler); //Crear
 router.put('/products/update/:pid', putProductHandler ); //Modificar
-router.get('/products/top-sale', getMostSoldProduct);//Producto mas vendido
+router.get('/products/top', getMostSoldProduct);//Producto mas vendido
 
 //Gestion Precio de envio:
 router.post("/shipping/setprice", postShippingPrice);
