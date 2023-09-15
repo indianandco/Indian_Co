@@ -18,13 +18,13 @@ const Footer = () => {
                 <div className="left_container">
                     <h2 className="redes">Redes</h2>
                     <div className="icon_container">
-                        <NavLink to={"https://www.instagram.com/indianandco/"} className={"iconIg"}>
+                        <NavLink to={"https://www.instagram.com/indianandco/"} aria-label="link a instagram" className={"iconIg"}>
                             <i className="bi bi-instagram" width="321" height="321"></i>
                         </NavLink>
-                        <NavLink to={'https://wa.me/5491134424505'} className={"iconWpp"}>
+                        <NavLink to={'https://wa.me/5491134424505'} aria-label="link a whatsapp" className={"iconWpp"}>
                             <i className="bi bi-whatsapp"></i>
                         </NavLink>
-                        <NavLink to={'https://www.facebook.com/indianandco09'} className={"iconFb"}>
+                        <NavLink to={'https://www.facebook.com/indianandco09'} aria-label="link a facebook" className={"iconFb"}>
                             <i className="bi bi-facebook"></i>
                         </NavLink>
                     </div>

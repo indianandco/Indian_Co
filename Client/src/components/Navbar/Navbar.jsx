@@ -12,7 +12,7 @@ import UserProfile from "../../views/UserProfile/UserProfile";
 import { AuthContext } from "../../services/AuthContext";
 
 // eslint-disable-next-line react/prop-types
-const NavBar = ({onClick, setShowLogin}) => {
+const NavBar = ({ onClick, setShowLogin }) => {
 
     // eslint-disable-next-line no-unused-vars
     const { user, setUser } = useContext(AuthContext);
@@ -25,13 +25,13 @@ const NavBar = ({onClick, setShowLogin}) => {
 
     const validRoutes = [
         "/",
-    "/about",
-    "/contact",
-    "/products",
-    "/detail/:id",
-    "/cart",
+        "/about",
+        "/contact",
+        "/products",
+        "/detail/:id",
+        "/cart",
     ];
-    
+
     const handleShow = () => {
         if (onClick) onClick();
         setShowLogin(true);
@@ -41,22 +41,15 @@ const NavBar = ({onClick, setShowLogin}) => {
         if (pattern.includes(":id")) {
             const basePattern = pattern.split("/:")[0];
             return location.pathname.startsWith(basePattern);
-        } 
+        }
         return pattern === location.pathname;
     };
-    
+
     const isNotFoundPage = !validRoutes.some(isRouteMatch);
 
     const scrollToTop = () => {
         window.scrollTo(0, 0);
     };
-
-    /*const handleLogOut = () => {
-        fetcher("/users/logout")
-        sessionStorage.clear();
-        setUser(null);
-        setUserNav(null);
-    }; */
 
     useEffect(() => {
         const handleScroll = () => {
@@ -82,42 +75,42 @@ const NavBar = ({onClick, setShowLogin}) => {
     return (
         <div>
             <div className="nav_container">
-                <Navbar fixed="top" expanded={expanded}onToggle={() => setExpanded(!expanded)} collapseOnSelect expand="lg" className={location.pathname === "/" ? scrolled ? "navbar_scrolled" : "navbar" : "navbar_scrolled"}>
+                <Navbar fixed="top" expanded={expanded} onToggle={() => setExpanded(!expanded)} collapseOnSelect expand="lg" className={location.pathname === "/" ? scrolled ? "navbar_scrolled" : "navbar" : "navbar_scrolled"}>
                     <Navbar.Toggle data-bs-theme="dark" aria-controls="responsive-navbar-nav" className="ButtonResponsive" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
                             <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
                         </Navbar.Brand>
-                       
+
                         {!isNotFoundPage &&
-                            <> 
+                            <>
                                 <Nav className="justify-content-end p-1">
-                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
-                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/products">Productos</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/">Inicio</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/products">Productos</NavLink>
                                     <div>
-                                        <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="cart_button" to="/cart">
+                                        <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="cart_button" to="/cart">
                                             <Badge badgeContent={cart?.length} color="secondary" className="buttons">
                                                 <ShoppingCart />
                                             </Badge>
                                         </NavLink>
                                     </div>
-                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/about">Sobre nosotros</NavLink>
-                                    <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/contact">Contacto</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/about">Sobre nosotros</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
                                     <div>
                                         {(user?.role === "user") && <UserProfile onClick={() => setExpanded(false)}></UserProfile>}
                                     </div>
 
                                     {/* {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>} */}
-                                    
+
                                     {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
-                                </Nav> 
-                           </>
+                                </Nav>
+                            </>
                         }
                         {isNotFoundPage &&
                             <Nav className="notFound p-1" >
-                                <NavLink onClick={()=>{scrollToTop(), setExpanded(false)}} className="buttons" to="/">Inicio</NavLink>
+                                <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/">Inicio</NavLink>
                                 {location.pathname === '/adminLogin' ? (
-                                <NavLink onClick={handleShow} className="buttons">Ingresar</NavLink>
+                                    <NavLink onClick={handleShow} className="buttons">Ingresar</NavLink>
                                 ) : (null)
                                 }
                             </Nav>
