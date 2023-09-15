@@ -6,6 +6,7 @@ import { CartContext } from '../../services/CartContext';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
 const Detail = () => {
@@ -47,6 +48,15 @@ const Detail = () => {
                 fragance: frag
             };
             addProduct(productToAdd);
+            Swal.fire({
+                title: 'Agregaste un producto al carrito!',
+                icon: 'success',
+                position: 'top-end',
+                toast: true,
+                showConfirmButton: false,
+                timer: 4000,
+                html: '<a href="/cart" style="padding: 10px; background-color: green; color: white; text-decoration: none; border-radius: 6px;">Ver carrito</a>'
+            })
         }
     }
 
