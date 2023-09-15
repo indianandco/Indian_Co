@@ -1,11 +1,9 @@
 const { ticketModel } = require('../../models/ticket.model');
 const { ProductsDto } = require('../../DTOs/products.dto'); 
-const moment = require('moment');
+const moment = require('moment-timezone');
 moment.locale('es');
 
-const argentinaTime = moment("America/Argentina/Buenos_aires").format('M/D/YYYY, h:mm:ss A');  
-
-console.log(argentinaTime);
+const argentinaTime = moment().tz("America/Argentina/Buenos_aires").format('M/D/YYYY, h:mm:ss A');  
 
 const postTicketsController = async (info) => {
     const {
