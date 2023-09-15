@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { fetcher } from '../../../utils/fetcherGet';
 import { updateTicketFunction } from '../../../utils/fetcherPut'
 import { deleteTicket } from '../../../utils/fetcherDelete'
