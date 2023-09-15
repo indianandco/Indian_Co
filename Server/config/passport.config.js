@@ -22,7 +22,7 @@ const initializePassport = () =>{
             const user = await userModel.findOne({ email: username });
 
             if(user) {
-                console.log('El usuario ya existe');
+                //console.log('El usuario ya existe');
                 return done(null, false)
             };
 
@@ -40,13 +40,13 @@ const initializePassport = () =>{
                 password: createHash(password)
             };
 
-            console.log(newUser)
+            //console.log(newUser)
 
             const result = await userModel.create( newUser );
 
-            console.log("result ",result)
+            //console.log("result ",result)
 
-            console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
+            //console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
 
             return done(null, result);
 
@@ -74,7 +74,7 @@ const initializePassport = () =>{
             user.lastConnection = new Date();
             await userModel.findByIdAndUpdate(user._id, { lastConnection: user.lastConnection });
 
-            console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
+            //console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
         
             return done(null, user);
             

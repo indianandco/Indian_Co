@@ -49,7 +49,7 @@ router.post("/purchase/notification", async (req, res) =>{
     switch (topic) {
       case "payment":
         paymentId = query.id || data.id;
-         console.log(paymentId) //Numero del comprobante MERCADOPAGO
+        //console.log(paymentId) //Numero del comprobante MERCADOPAGO
         let payment = await mercadopago.payment.findById(paymentId);
       
         merchantOrder = await mercadopago.merchant_orders.findById(payment?.body.order.id);
@@ -77,7 +77,7 @@ router.post("/purchase/notification", async (req, res) =>{
 
         //Este if sirve para que los pagos no se registren duplicados en nuestra BD
         if (ticket.status === true){
-          console.log("el pago ya fue registrado")
+        //console.log("el pago ya fue registrado")
 
           res.status(201).send({payload: "success", message: "La compra ya fue registrada en la BD"});
   
@@ -104,16 +104,16 @@ router.post("/purchase/notification", async (req, res) =>{
                 await shopOrderMailMPShipping(updatedTicket);
               }
             }
-            console.log("el pago se completo");
+            //console.log("el pago se completo");
             res.status(201).send({payload: "success", message: "Compra exitosa"});
           }
       
     } else {
-      console.log("el pago NO se completo")
+      //console.log("el pago NO se completo")
     }
     
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(404).json({ message: "Something goes wrong" });
   }
 })

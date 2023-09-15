@@ -3,7 +3,7 @@ const { postShippingPriceController } = require('../../Controllers/post/postShip
 const postShippingPrice = async (req, res) =>{
     try {
         const { price } = req.query;
-        console.log(price)
+        //console.log(price)
         const response = await postShippingPriceController(price);
 
         res.status(200).send(response);
