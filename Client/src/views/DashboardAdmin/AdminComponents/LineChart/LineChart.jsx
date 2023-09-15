@@ -32,7 +32,7 @@ export default function LinesChart() {
 
 
     const getInfo = async () => {
-        const responseFn = await fetcher(`/adminDashboard/tickets/week`)
+        const responseFn = await fetcher(`/admindashboard/tickets/week`)
         setResponse(responseFn)
     }
 

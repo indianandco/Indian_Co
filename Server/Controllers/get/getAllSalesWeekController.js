@@ -4,11 +4,12 @@ const {ticketModel}= require('../../models/ticket.model'); // Asegúrate de actu
 
 const getAllSalesWeekController = async () => {
     try {
-        const startOfWeek = moment().startOf('week').toDate();
-        const endOfWeek = moment().endOf('week').toDate();
+        const startOfWeek = moment().startOf('week').format('M/D/YYYY, h:mm:ss A');
+        const endOfWeek = moment().endOf('week').format('M/D/YYYY, h:mm:ss A');
 
+        
         const salesThisWeek = await ticketModel.find({
-            purchase_datetime: {
+            fecha: {
                 $gte: startOfWeek,
                 $lte: endOfWeek
             }
@@ -25,7 +26,7 @@ const getAllSalesWeekController = async () => {
         };
 
         salesThisWeek.forEach(sale => {
-            const day = moment(sale.purchase_datetime).format('dddd');
+            const day = moment(sale.fecha).format('dddd');
             dailySales[day] += 1; 
         });
 
