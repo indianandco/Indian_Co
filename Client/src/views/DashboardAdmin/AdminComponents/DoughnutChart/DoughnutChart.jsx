@@ -9,7 +9,7 @@ export function DoughnutChart() {
     const [yearSales, setYearSales] = useState();
 
     const getInfo = async () => {
-        const response = await fetcher(`/adminDashboard/tickets/year`)
+        const response = await fetcher(`/admindashboard/tickets/year`)
         setYearSales(response)
     }
 
@@ -67,7 +67,7 @@ export function DoughnutChart() {
                 }
             }
         }
-   
+
 
 
     }

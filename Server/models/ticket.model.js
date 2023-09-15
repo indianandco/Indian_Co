@@ -48,6 +48,12 @@ const ticketsSchema = new mongoose.Schema(
           type: String,
           required: true
         }
+      },
+      {
+        timestamps: {
+            createdAt: "purchase_datetime",
+          },
+        versionKey: false
       }
 );
 
