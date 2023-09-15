@@ -17,7 +17,6 @@ const NavBar = ({ onClick, setShowLogin }) => {
     // eslint-disable-next-line no-unused-vars
     const { user, setUser } = useContext(AuthContext);
     // eslint-disable-next-line no-unused-vars
-    const [userNav, setUserNav] = useState(JSON.parse(sessionStorage.getItem("sessions")))
     const location = useLocation();
     const { cart } = useContext(CartContext);
     const [scrolled, setScrolled] = useState(false);
@@ -86,7 +85,9 @@ const NavBar = ({ onClick, setShowLogin }) => {
                             <>
                                 <Nav className="justify-content-end p-1">
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/">Inicio</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/about">Sobre nosotros</NavLink>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/products">Productos</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
                                     <div>
                                         <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="cart_button" to="/cart">
                                             <Badge badgeContent={cart?.length} color="secondary" className="buttons">
@@ -94,15 +95,13 @@ const NavBar = ({ onClick, setShowLogin }) => {
                                             </Badge>
                                         </NavLink>
                                     </div>
-                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/about">Sobre nosotros</NavLink>
-                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
                                     <div>
                                         {(user?.role === "user") && <UserProfile onClick={() => setExpanded(false)}></UserProfile>}
                                     </div>
 
                                     {/* {(user || userNav) && <NavLink onClick={() => {handleLogOut(),setExpanded(false)}} className="buttons" to="/">Salir</NavLink>} */}
 
-                                    {(user?.role === 'admin' || userNav?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
+                                    {(user?.role === 'admin') && <NavLink onClick={scrollToTop} className="buttons" to="/dashboardadmin">Dashboard</NavLink>}
                                 </Nav>
                             </>
                         }
