@@ -7,7 +7,6 @@ const { getSaleByPreference } = require("../Controllers/get/getSaleByPreference"
 const { putTicketControllerMP } = require('../Controllers/put/putTicketController')
 const { emptyCartHandler } = require("../Handlers/put/emptyCartHandler");
 const { getCartByIdHandler } = require("../Handlers/get/getCartById");
-const { postTicketsHandler } = require("../Handlers/post/postTicketsHandler");
 const { payment } = require("../Handlers/get/payment");
 const { postCartsHandler } = require("../Handlers/post/postCartsHandler");
 const { shopOrderMailMPMeetPoint, shopOrderMailMPShipping } = require('../config/nodeMailer.config');
@@ -21,7 +20,6 @@ router.get("/:cid", getCartByIdHandler);
 // router.put('/:cid/products/:pid', putAddOrRemoveProductOfCart); //Ponernos de acuerdo.
 
 //Finalizar venta + redireccion/cobro con mercadopago
-router.post("/:cid/purchase", postTicketsHandler);
 router.post("/purchase", payment);
 router.get("/purchase/success", (req, res) =>{
 

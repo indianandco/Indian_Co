@@ -9,11 +9,13 @@ const getAllSalesWeekController = async () => {
 
         
         const salesThisWeek = await ticketModel.find({
-            fecha: {
+            purchase_datetime: {
                 $gte: startOfWeek,
                 $lte: endOfWeek
             }
         }).exec();
+
+       
 
         const dailySales = {
             "lunes": 0,
@@ -26,9 +28,11 @@ const getAllSalesWeekController = async () => {
         };
 
         salesThisWeek.forEach(sale => {
-            const day = moment(sale.fecha).format('dddd');
+            const day = moment(sale.purchase_datetime).format('dddd');
             dailySales[day] += 1; 
         });
+
+        console.log(dailySales);
 
         return dailySales;
     } catch (error) {
