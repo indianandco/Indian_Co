@@ -3,11 +3,11 @@ const { postCartsController } = require("../../Controllers/post/postCartsControl
 const postCartsHandler = async (req, res) =>{
     try {
         const { total_amount, owner, products } = req.body;
-        console.log(total_amount, owner, products )
+        //console.log(total_amount, owner, products )
 
 
        const newCart = await postCartsController({total_amount, owner, products});
-       console.log(newCart)
+       //console.log(newCart)
 
         res.status(200).send({result: 'success', payload: newCart })
         

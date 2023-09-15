@@ -6,7 +6,7 @@ const putTicketController = async (tid, status) =>{
 
 const putTicketControllerMP = async (preference, newStatus, paymentId) =>{
 
-    console.log('controller', paymentId)
+    //console.log('controller', paymentId)
     return await ticketModel.findOneAndUpdate(
         { preferenceId: preference },
         { $set: { comprobanteMercadoPago: paymentId, status: newStatus } },

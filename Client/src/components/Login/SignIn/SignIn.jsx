@@ -111,11 +111,11 @@ function SignIn({ onClick }) {
                 icon: 'success',
                 title: 'Iniciaste sesión correctamente',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1000
             })
             setTimeout(function() {
                 navigate("/dashboardadmin")
-            }, 1500);
+            }, 1000);
         } else {
             Swal.fire({
                 position: 'center',

@@ -82,6 +82,15 @@
         border-radius: 6px;
         margin-bottom: 1em;
     }
+    .BoxAboutDesc1{
+        height: 100%;
+        width: 100%;
+    }
+    .BoxAbout1{
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
     .BoxAboutAll{
         padding-left: 1em;
         padding-right: 1em;
@@ -91,6 +100,10 @@
     .BoxAboutTop{
         display: flex;
         margin-top: 10em;
+    }
+    .BoxAboutDesc2{
+        height: 100%;
+        width: 100%;
     }
     .imageAbout{
         width: 100%;

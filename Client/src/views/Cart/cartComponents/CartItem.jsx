@@ -22,7 +22,7 @@ const CartItem = ({item}) => {
 
   return (
    
-      <Row key={item?._id} className="d-flex justify-content-center">
+      <Row key={item?._id} className="d-flex justify-content-center mt-2">
         <div  className={styles.tarjeta}> 
 
           <Col xs={0} md="auto" lg="auto" >

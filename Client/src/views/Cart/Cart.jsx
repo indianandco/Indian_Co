@@ -1,6 +1,6 @@
 import styles from "./Cart.module.css";
 import {useContext, useEffect, useState} from "react";
-import {Tab,Tabs,Row,Col,Container,Button} from "react-bootstrap";
+import {Tab,Tabs,Row,Col,Container} from "react-bootstrap";
 import {CartContext} from "../../services/CartContext";
 import { EmptyCart } from "./cartComponents/EmptyCart.jsx"; 
 import CartItem from "./cartComponents/CartItem";
@@ -18,16 +18,16 @@ const Cart = () => {
 
   useEffect(() => {
     loadCartData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Container fluid className="d-flex justify-content-center min-vh-100">
-      
+    <Container fluid className="d-flex justify-content-center min-vh-100 ">
 
         {!cart.length > 0 ? (
           <EmptyCart />
         ) : (
-          <div className="w-100 mt-xs-1 mt-md-5">
+          <div className="w-100 mt-5">
             <Tabs
               defaultActiveKey="general"
               activeKey={activeTab}

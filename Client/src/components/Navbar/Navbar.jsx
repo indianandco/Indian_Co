@@ -107,9 +107,9 @@ const NavBar = ({ onClick, setShowLogin }) => {
                             </>
                         }
                         {isNotFoundPage &&
-                            <Nav className="notFound p-1" >
+                            <Nav className="notFound" >
                                 <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/">Inicio</NavLink>
-                                {location.pathname === '/adminLogin' ? (
+                                {location.pathname === '/admin/login' ? (
                                     <NavLink onClick={handleShow} className="buttons">Ingresar</NavLink>
                                 ) : (null)
                                 }
