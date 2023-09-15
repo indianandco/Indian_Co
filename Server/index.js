@@ -28,10 +28,6 @@ server.use(cors({
   preflightContinue: false,
   optionsSuccessStatus: 204,
 }));
-server.use((req, res, next) => {
-  req.headers['TZ'] = 'America/Argentina/Buenos_Aires';
-  next();
-});
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(express.json());

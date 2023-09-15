@@ -1,7 +1,9 @@
 const { ticketModel } = require('../../models/ticket.model');
 const { ProductsDto } = require('../../DTOs/products.dto'); 
+const moment = require('moment');
+moment.locale('es');
 
-const argentinaTime = new Date().toLocaleString()
+const argentinaTime = moment("America/Argentina/Buenos_aires").format('M/D/YYYY, h:mm:ss A');  
 
 console.log(argentinaTime);
 
