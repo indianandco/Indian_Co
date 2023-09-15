@@ -3,6 +3,8 @@ const { ProductsDto } = require('../../DTOs/products.dto');
 
 const argentinaTime = new Date().toLocaleString()
 
+console.log(argentinaTime);
+
 const postTicketsController = async (info) => {
     const {
         preferenceId,

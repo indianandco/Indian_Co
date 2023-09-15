@@ -97,7 +97,7 @@ const DashboardAdmin = () => {
                             </Button>
                             <div className=" nav_container2">
                                 <Nav defaultActiveKey="/home" style={{ height: "100%" }} className="flex-column d-flex align-items-start justify-content-start">
-                                    <Nav.Link className="icon" href="/"><i className="bi bi-house-door-fill"></i></Nav.Link>
+                                    <Nav.Link className="icon" href="/"><i className="bi bi-house-door"></i></Nav.Link>
                                     <Nav.Link className='icon' onClick={() => handleTabs("general")} eventKey="link-4"><i className='bi bi-grid'></i></Nav.Link>
                                     <Nav.Link className="icon" onClick={() => handleTabs("shipping")} eventKey="link-1"><i className="bi bi-send-check"></i></Nav.Link>
                                     <Nav.Link className="icon" onClick={() => handleTabs("sales")} eventKey="link-2"><i className="bi bi-ticket"></i></Nav.Link>

@@ -72,7 +72,7 @@ export default function LinesChart() {
                 min: 0
             },
             x: {
-                ticks: { color: 'rgb(255, 255, 255)' }
+                ticks: { color: 'black' }
             }
         }
     };
