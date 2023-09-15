@@ -12,12 +12,13 @@
 }
 
    .buttons {
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-weight: 600;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     position: relative;
-    font-weight: 800;
-    letter-spacing: 0.1em;
     color: rgb(255, 255, 255);
     padding: 1em;
     text-decoration: none;

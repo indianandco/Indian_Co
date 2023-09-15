@@ -18,7 +18,7 @@ function SignIn({ onClick }) {
     const [validated, setValidated] = useState(true);
     const [showLogin, setShowLogin] = useState(true);
     const [showRecover, setShowRecover] = useState(false);
-    
+
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -113,7 +113,7 @@ function SignIn({ onClick }) {
                 showConfirmButton: false,
                 timer: 1000
             })
-            setTimeout(function() {
+            setTimeout(function () {
                 navigate("/dashboardadmin")
             }, 1000);
         } else {
@@ -127,13 +127,13 @@ function SignIn({ onClick }) {
         }
     }
 
-/*     const handleAuth = (event) => {
-        event.preventDefault();
-        const auth = fetcher(`/users/auth/google`)
-        sessionStorage.setItem('sessions', JSON.stringify(auth))
-        setUser(JSON.parse(sessionStorage.getItem('sessions')));
-        setShowLogin(false);
-    }; */
+    /*     const handleAuth = (event) => {
+            event.preventDefault();
+            const auth = fetcher(`/users/auth/google`)
+            sessionStorage.setItem('sessions', JSON.stringify(auth))
+            setUser(JSON.parse(sessionStorage.getItem('sessions')));
+            setShowLogin(false);
+        }; */
 
     useEffect(() => {
         validation({ ...loginForm })
@@ -148,7 +148,7 @@ function SignIn({ onClick }) {
             }
             <Modal show={showLogin} onHide={handleClose}>
                 <Modal.Header className="pb-0" closeButton>
-                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Ingresar como usuario</Modal.Title>
+                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Ingresar como administrador</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>

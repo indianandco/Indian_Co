@@ -15,6 +15,7 @@ import Products from './Products/Products';
 import { Tab, Tabs, Card, Row, Col, Container } from 'react-bootstrap'
 import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
+import SignUp from '../../components/Login/SignUp/SignUp';
 
 
 
@@ -95,6 +96,7 @@ const DashboardAdmin = () => {
                                     <Button variant='ligth' onClick={() => handleTabs("create")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-upload"></i> Subir producto</Button>
                                     <Button variant='ligth' onClick={() => handleTabs("products")} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-bag"></i> Productos</Button>
                                     <Button variant='ligth' onClick={() => handleLogout()} className="buttons_inside my-2 w-100 d-flex align-items-center justify-content-between p-2 rounded-0"><i className="icon bi bi-box-arrow-right"></i>Salir</Button>
+                                    <SignUp></SignUp>
                                 </ButtonGroup>
                             </Offcanvas.Body>
                         </Offcanvas>

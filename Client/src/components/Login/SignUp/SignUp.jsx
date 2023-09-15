@@ -6,7 +6,6 @@ import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
 import Swal from 'sweetalert2'
-import { fetcher } from '../../../utils/fetcherGet';
 
 // eslint-disable-next-line react/prop-types
 function SignUp({ onClick }) {
@@ -62,8 +61,8 @@ function SignUp({ onClick }) {
 
     const handleSubmit = () => {
         const response = fetcherUserPost("/users/register", form)
+        console.log(response);
         if (response) {
-            sessionStorage.setItem('sessions', JSON.stringify(response))
             setShow(false);
             Swal.fire({
                 position: 'top-end',
@@ -82,14 +81,6 @@ function SignUp({ onClick }) {
             })
         }
     }
-
-    const handleAuth = (event) => {
-        event.preventDefault();
-        const data = event.target.dataset.social
-        const auth = fetcher(`/users/auth/${data}`)
-        sessionStorage.setItem('sessions', JSON.stringify(auth))
-        setShow(false);
-    };
 
 
     useEffect(() => {
@@ -176,11 +167,6 @@ function SignUp({ onClick }) {
                         <Modal.Footer className='p-1'>
                             <Button style={{ width: "100%" }} disabled={validated} size='lg' variant="success" type="submit">
                                 Registrarse con correo
-                            </Button>
-                        </Modal.Footer>
-                        <Modal.Footer className='p-1'>
-                            <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
-                                Ingresar con <i className="bi bi-google"></i> Google
                             </Button>
                         </Modal.Footer>
                     </Form>
