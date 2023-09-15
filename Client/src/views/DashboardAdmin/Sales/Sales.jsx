@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { fetcher } from '../../../utils/fetcherGet';
 import { updateTicketFunction } from '../../../utils/fetcherPut'
-import {deleteTicket} from '../../../utils/fetcherDelete'
+import { deleteTicket } from '../../../utils/fetcherDelete'
 import Pagination from 'react-bootstrap/Pagination';
 import Swal from 'sweetalert2'
 import "./Sales.css"
@@ -70,7 +71,7 @@ const Sales = () => {
     const handleModalClose = () => {
         setModal(false);
     };
-    const handleDeleteTicket=()=>{
+    const handleDeleteTicket = () => {
         Swal.fire({
             title: 'Está seguro que quiere eliminar esta venta?',
             icon: 'warning',
@@ -86,7 +87,7 @@ const Sales = () => {
                     try {
                         const response = await deleteTicket(`/tickets/deleteTicket/${id}`)
                         await Swal.fire({
-                            icon:"success",
+                            icon: "success",
                             title: 'Venta eliminida correctamente!',
                         });
                         setModal(false)
@@ -152,7 +153,7 @@ const Sales = () => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
-                            <Col xs={3}>{user ? '✔' : '❌'}-{user ? `${user.first_name} ${user.last_name}` : sale.owner || 'Usuario no encontrado'}</Col>
+                            <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : sale.owner || 'Usuario no encontrado'}</Col>
                             <Col xs={2}>{sale.fecha}</Col>
                             <Col xs={2} >{sale.status ? 'Pagado' : 'Pendiente'}</Col>
                             <Col xs={2}>
@@ -219,7 +220,7 @@ const Sales = () => {
                         Cerrar
                     </Button>
                     <Button variant="danger" onClick={handleDeleteTicket}>
-                       Eliminar
+                        Eliminar
                     </Button>
                 </Modal.Footer>
             </Modal>

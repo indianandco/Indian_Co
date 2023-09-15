@@ -54,9 +54,10 @@ const Footer = () => {
                 <Modal.Body>
                     <ol>
                         <li>Ingresa a productos</li>
-                        <li>Una vez elejido al producto a comprar clickeamos en agregar al carrito</li>
-                        <li>Nos dirijimos la margen superior derecho y clickeamos en el icono con forma de bolsa de compras</li>
-                        <li>Seleccionamos comprar ahora, completamos los datos</li>
+                        <li>Una vez elejido el producto a comprar clickeamos en ver producto</li>
+                        <li>Elejimos un aroma de nuestro agrado, seleccionamos la cantidad de productos que vamos a querer y agregamos al carrito!</li>
+                        <li>Nos dirijimos al margen superior derecho y clickeamos en el icono de carrito</li>
+                        <li>Seleccionamos comprar ahora, completamos los datos, seleccionamos forma de envío y método de pago</li>
                         <li>¡Y listo el producto ya es tuyo!</li>
                     </ol>
                 </Modal.Body>

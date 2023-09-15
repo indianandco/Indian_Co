@@ -19,6 +19,7 @@ const adminDashboard = require('./Routes/adminDashboard');
 const server = express();
 
 
+
 server.use(cors({
   origin: "*",  
   methods: 'GET, POST, OPTIONS, PUT, DELETE',
