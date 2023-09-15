@@ -35,7 +35,6 @@ export const updateTicketFunction = async(endpoint, status)=>{
 export const fetcherShippingCostPUT = async(endpoint) =>{
     try {
       const response = await axios.put(`${BASE_URL}${endpoint}`);
-      console.log(response)
       return response.data;
       
     } catch (error) {

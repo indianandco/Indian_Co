@@ -11,7 +11,6 @@ const Shipping = () => {
 
     const getPrice = async () =>{
         const price = await fetcher("/admindashboard/shipping/getprice");
-        console.log(price)
         setPriceShip(price.payload)
     };
      
@@ -20,7 +19,6 @@ const Shipping = () => {
         fetcherShippingCostPUT(`/admindashboard/shipping/setnewprice?price=${newPrice}`).then(
            async (response) =>{
             try {
-                // console.log(response)
                 await Swal.fire({
                     title: 'Success!',
                     text: response.message,

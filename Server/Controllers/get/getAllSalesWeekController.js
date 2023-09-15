@@ -32,7 +32,7 @@ const getAllSalesWeekController = async () => {
             dailySales[day] += 1; 
         });
 
-        console.log(dailySales);
+        //console.log(dailySales);
 
         return dailySales;
     } catch (error) {

@@ -35,7 +35,6 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
 
     if (data.paymentMethod === 'TransferenciaBancaria') {
       const response = await axios.post(`${BASE_URL}${endpoint}`, data);
-      console.log(response)
       return response.data;
     }
 
@@ -48,7 +47,6 @@ export const fetcherPaymentMethod = async (endpoint, data) => {
 export const fetcherShippingCost = async(endpoint) =>{
   try {
     const response = await axios.post(`${BASE_URL}${endpoint}`);
-    console.log(response)
     return response.data;
     
   } catch (error) {
