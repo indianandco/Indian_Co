@@ -6,13 +6,13 @@ import { ProductContext } from "../../services/ProductContext";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("")
-    const { findProductStorage , resetPagination } = useContext(ProductContext);
-    
+    const { findProductStorage, resetPagination } = useContext(ProductContext);
+
     useEffect(() => {
         if (searchQuery === "") {
             findProductStorage("");
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery]);
 
     const handleChange = (event) => {
@@ -26,7 +26,7 @@ const SearchBar = () => {
     return (
         <div>
             <div>
-                <InputGroup className="search_container m-5">
+                <InputGroup className="search_container">
                     <Form.Control
                         maxLength={30}
                         onChange={handleChange}

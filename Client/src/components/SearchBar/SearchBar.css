@@ -4,7 +4,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 30em;
-
+  margin: 5rem;
+  height: 100px;
 }
 .resetBoton, .buscarBoton{
   font-size: 16px;

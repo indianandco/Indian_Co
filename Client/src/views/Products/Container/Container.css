@@ -8,8 +8,8 @@
     display: flex;
     justify-content:space-evenly; 
     align-items: center; 
-    margin-top: 3.5em;
     width: 100%;
+    height: 150px;
     flex-wrap: wrap;
 }
 
@@ -23,7 +23,6 @@
     align-items: center;
     justify-content: flex-start;
     gap: 25px;
-    
 }
 
 .botonFiltro, .botonCategoria {

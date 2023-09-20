@@ -24,7 +24,7 @@ const Contact = () => {
     if (ticket.name.length < 3) {
       errors.name = 'El nombre debe tener al menos 3 caracteres.';
     } else if (!/^[a-zA-Z\s]+$/.test(ticket.name)) {
-        errors.name = 'El nombre solo debe contener letras.';
+      errors.name = 'El nombre solo debe contener letras.';
     }
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailPattern.test(ticket.email)) {
@@ -60,12 +60,12 @@ const Contact = () => {
       } catch (error) {
         console.error('Error:', error);
         Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Error al enviar el correo electrónico.',
-            showConfirmButton: false,
-            timer: 1500
-          });
+          position: 'center',
+          icon: 'error',
+          title: 'Error al enviar el correo electrónico.',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     }
   };
@@ -87,7 +87,7 @@ const Contact = () => {
               name='name'
               placeholder="Ingrese su nombre..."
             />
-            {errors.name ?  <p className="error-message">{errors.name}</p> : <p className="error-message"> </p>}
+            {errors.name ? <p className="error-message">{errors.name}</p> : <p className="error-message"> </p>}
           </div>
           <div className='form-2'>
             <label>Email</label>
@@ -122,24 +122,24 @@ const Contact = () => {
           </div>
         </div>
       </form>
-            <div className='footer'>
-                <div className='desc'>
-                    <div className='smallBox'>
-                        <h6 className='h6Contact'>Visitanos</h6>
-                        <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
-                    </div>
-                    <div className='smallBox'>
-                        <h6 className='h6Contact'>Abierto</h6>
-                        <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
-                    </div>
-                    <div className='smallBox'>
-                        <h6 className='h6Contact'>Contacto</h6>
-                        <p className='pContact'>indianandco09@gmail.com</p>
-                    </div>
-                </div>
-            </div>
+      <div className='footer'>
+        <div className='desc'>
+          <div className='smallBox'>
+            <h6 className='h6Contact'>Visitanos</h6>
+            <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
+          </div>
+          <div className='smallBox'>
+            <h6 className='h6Contact'>Abierto</h6>
+            <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
+          </div>
+          <div className='smallBox'>
+            <h6 className='h6Contact'>Contacto</h6>
+            <p className='pContact'>indianandco09@gmail.com</p>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 
