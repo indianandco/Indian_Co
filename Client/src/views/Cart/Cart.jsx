@@ -45,8 +45,8 @@ const Cart = () => {
               </Row>
             </Tab>
             <Tab className='w-100' eventKey="test" title="formPayment">
-              <Row className="d-flex justify-content-center mt-5 mt-sm-4">
-                <NuevoFormulario />
+              <Row className="d-flex justify-content-center mt-5">
+                <NuevoFormulario className="mt-sm-2"/>
               </Row>
             </Tab>
           </Tabs>
