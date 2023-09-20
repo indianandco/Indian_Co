@@ -3,9 +3,6 @@
 
 body {
   font-family: 'Manrope', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
 }
 
 .containerDesc{
@@ -19,10 +16,15 @@ body {
 
 .firstButtons{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     width: 100%;
+}
+
+.firstButtons span{
+    margin: 0 1em;
+    padding: 0 10px;
 }
 
 .firstButton {
@@ -30,11 +32,11 @@ body {
     font-weight: bold;
     color: black;
     background-color:rgb(255, 255, 255);
-    padding: 10px;
+    padding: 10px 0px;
     text-decoration: none;
     border: none;
     font-size: 1.5em;
-    margin: 1em;
+    margin: 1em 0;
   }
 
   .firstButton:hover {
@@ -199,19 +201,26 @@ margin-bottom: 1em;
 @media screen and (max-width: 767px) {
 
  .imageDetail {
-        order: 0;
         width: 100%;
-        padding: 0;
+        padding: 1rem;
         border-right: none;
-        margin-bottom: 1em;
     }
 
     .firstButtons{
-        order: 0;
+        justify-content: center;
     }
-    .firstButton{
+
+    .firstButton {
+        position: relative;
+        font-weight: bold;
+        color: black;
+        background-color:rgb(255, 255, 255);
+        padding: 3px 0px;
+        text-decoration: none;
+        border: none;
         font-size: 1.3em;
-    }
+        margin: 0.4em 0;
+      }
     .productTitle {
         order: 1;
     }

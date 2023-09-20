@@ -41,14 +41,14 @@
 
 .BannerHome2{
     display: flex;
-    flex-direction:row;
-    justify-content: flex-end;
-
-    background-size:contain; 
-    object-position:center;
-    object-fit:cover;
-    background-repeat:no-repeat;
+    flex-flow: row;
+    justify-content: center;
+    align-items: flex-end;
     width: 100%;
+}
+
+.banner_home_hijo{
+    display: flex;
 }
 
 .iconStyle{
@@ -60,6 +60,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin-right: 1rem;
 }
 
 .text_container {
@@ -198,15 +199,18 @@
     .BannerHome2{
         display: flex;
         flex-direction:row;
-        align-items: center;
-        background-image:none;
+        justify-content: center;
+        align-items: flex-end;
     }
 
     .iconsContainer{
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        margin-left: 0.5rem;
+    }
+
+    .iconStyle{
+        font-size: 30px;
     }
   
     .PaddingTitleHome {
