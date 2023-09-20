@@ -32,7 +32,7 @@ const payment = async (req, res) => {
       const preference = {
         items: generateProductList(),
         back_urls: {
-          success: "https://mere-hands-production.up.railway.app/cart",
+          success: "https://www.indianandco.com.ar/cart",
           // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
@@ -40,7 +40,8 @@ const payment = async (req, res) => {
         auto_return: "approved",
         binary_mode: true
       };
-
+      
+      
       await mercadopago.preferences.create(preference)
         .then(async  (response) => {
           res.status(200).send({ response });
