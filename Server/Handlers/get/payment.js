@@ -66,7 +66,7 @@ const payment = async (req, res) => {
           await shopOrderMailTransferMeetPoint(ticket);
         }
           
-      res.status(200).send( { result: 'success', payload: ticket} );
+      res.status(200).send( { status: 'success', payload: ticket} );
 
     }
   } catch (error) {
