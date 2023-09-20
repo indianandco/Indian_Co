@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
@@ -67,9 +68,9 @@ export const CartProvider = ({ children }) => {
 
   //Calculo del subtotal de cada articulo:
   const calcTotalPerItem = (item) => {
-    if(item.offer === true ) {
+    if (item.offer === true) {
       return item.offer_price * item.quantity;
-    }else {
+    } else {
       return item.price * item.quantity;
     }
   };
@@ -79,8 +80,8 @@ export const CartProvider = ({ children }) => {
     const result = cart.reduce((total, item) => total + calcTotalPerItem(item), 0);
     return result
   };
- 
-  const calcTotalShipping = (shippingPrice) =>{
+
+  const calcTotalShipping = (shippingPrice) => {
     const result = cart.reduce((total, item) => total + shippingPrice + calcTotalPerItem(item), 0);
     return result
   };
