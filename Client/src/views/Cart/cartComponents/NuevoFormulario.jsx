@@ -86,7 +86,7 @@ const NuevoFormulario = () => {
                         const response = await fetcherPaymentMethod("/carts/purchase", data);
 
                         console.log("Respuesta de la compra:", response)
-                        if(response.status === 200){          
+                        if(response.status === "success"){          
                             await Swal.fire({
                                 title: 'Orden generada Correctamente!',
                                 text: "Revise su correo para mas informacion",
@@ -102,7 +102,7 @@ const NuevoFormulario = () => {
                                 text: 'Algo salio mal, volvé a intentarlo!'
                             });
                         }
-                        
+
                     } finally {
                         setSubmitting(false);
                         resetForm();
