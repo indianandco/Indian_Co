@@ -44,7 +44,7 @@ const shopOrderMailMPShipping = async (updatedTicket) => {
   } = updatedTicket;
 
   await transport.sendMail({
-    from: "VentasIndian&Co <testindian@gmail.com>",
+    from: "VentasIndian&Co",
     to: email,
     subject:  `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -116,18 +116,7 @@ const shopOrderMailMPShipping = async (updatedTicket) => {
 
     </div>
     </body>
-    </html>`,
-    subject: "Orden de compra",
-    html: `<div>
-              <h2>Hola ${name}!! Gracias por tu compra.</h2>\n
-              <p>Informacion de tu pedido:</p>\n
-              <ul>
-                  <li>Codigo de la orden: ${code}</li>
-                  <li>Total de la compra: <b>$${amount}</b></li>
-              </ul>
-              \n
-              <p>Saludos, El equipo de Indian and Co.</p>
-          </div>`,
+    </html>`
   });
 };
 
@@ -147,7 +136,7 @@ const shopOrderMailMPMeetPoint =async (updatedTicket) =>{
   } = updatedTicket;
  
   await transport.sendMail({
-    from: "VentasIndian&Co <testindian@gmail.com>",
+    from: "VentasIndian&Co",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -234,7 +223,7 @@ const shopOrderMailTransferWShipping = async (ticket) => {
   } = ticket;
 
   await transport.sendMail({
-    from: "VentasIndian&Co <testindian@gmail.com>",
+    from: "VentasIndian&Co",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -340,7 +329,7 @@ const shopOrderMailTransferMeetPoint = async (ticket) => {
 
  
   await transport.sendMail({
-    from: "VentasIndian&Co <testindian@gmail.com>",
+    from: "VentasIndian&Co",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -424,7 +413,7 @@ const shopOrderMailTransferMeetPoint = async (ticket) => {
 
 const sendEmailContact = async ({email, description}) =>{
   await transport.sendMail({
-    from: 'federicoepaglia@gmail.com',
+    from: email,
     to: 'ventas@indianandco.com.ar',
     subject: "Formulario de contacto",
     html: `<div>
@@ -435,7 +424,6 @@ const sendEmailContact = async ({email, description}) =>{
 };
 
 module.exports = {
-  //newUserMailing,
   sendEmailContact,
   shopOrderMailMPMeetPoint,
   shopOrderMailMPShipping,
