@@ -84,6 +84,7 @@ const NuevoFormulario = () => {
                         };
                         //console.log("info para el back(ENDPOINT: payment):",data)
                         const response = await fetcherPaymentMethod("/carts/purchase", data);
+                        console.log("Respuesta de la compra:", response)
                         if(response.status === 200){          
                             await Swal.fire({
                                 title: 'Orden generada Correctamente!',

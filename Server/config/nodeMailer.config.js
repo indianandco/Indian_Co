@@ -44,7 +44,7 @@ const shopOrderMailMPShipping = async (updatedTicket) => {
   } = updatedTicket;
 
   await transport.sendMail({
-    from: "VentasIndian&Co",
+    from: "VentasIndian&Co <VentasIndian&Co@gmail.com>" ,
     to: email,
     subject:  `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -136,7 +136,7 @@ const shopOrderMailMPMeetPoint =async (updatedTicket) =>{
   } = updatedTicket;
  
   await transport.sendMail({
-    from: "VentasIndian&Co",
+    from: "VentasIndian&Co <VentasIndian&Co@gmail.com>",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -223,7 +223,7 @@ const shopOrderMailTransferWShipping = async (ticket) => {
   } = ticket;
 
   await transport.sendMail({
-    from: "VentasIndian&Co",
+    from: "VentasIndian&Co <VentasIndian&Co@gmail.com>",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
@@ -329,7 +329,7 @@ const shopOrderMailTransferMeetPoint = async (ticket) => {
 
  
   await transport.sendMail({
-    from: "VentasIndian&Co",
+    from: "VentasIndian&Co <VentasIndian&Co@gmail.com>",
     to: email,
     subject: `Detalles Importantes para Completar tu Compra con ${paymentMethod} - Pedido`,
     html: `<!DOCTYPE html>
