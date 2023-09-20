@@ -114,7 +114,7 @@ const NuevoFormulario = () => {
     <Col xs={12} md={12} lg={6}>
         <Form className={styles.formStyles} onSubmit={handleSubmit}>
             <Row className="mb-3">
-             <h2 className="text-center">DETALLES DE FACTURACIÓN</h2>
+             <h2 className="text-center">Detalles de Facturación</h2>
                 <Form.Group as={Col} md="6" controlId="first_name">
                     <Form.Label className="form-label">Nombre/s</Form.Label>
                     <Form.Control className="form-control" type="text" name="first_name" value={values.first_name}
@@ -151,7 +151,7 @@ const NuevoFormulario = () => {
             (selectedShippingOption === "envio" ? (
                 <>
                 <Row className="mb-3">
-                    <h3 className="text-center">DATOS DE ENVÍO</h3>
+                    <h3 className="text-center">Datos de Envío</h3>
                     <Form.Group as={Col} md="6" controlId="city">
                     <Form.Label>Ciudad</Form.Label>
                     <Form.Control className="form-control" type="text" name="city" value={values.city}
@@ -221,7 +221,7 @@ const NuevoFormulario = () => {
                 })}
                     {values.shippingOption === "envio" ? (
                         <>
-                            <li className={styles1.product_item}><span>Costo de envio:</span>${priceShipping}</li>
+                            <li className={styles1.product_item}><span>Costo de envío:</span>${priceShipping}</li>
                             <li className={styles1.product_item}>
                                 <b className={styles1.product_name}>Total:</b>
                                 <span><b>${applyCustomFormat(calcTotalShipping(priceShipping), numberWithCommas)}</b></span>
@@ -235,7 +235,7 @@ const NuevoFormulario = () => {
                     </>}
             </ol>
             <div className={styles1.checkbox}>
-                <Form.Group className="mb-3" controlId="shippingOption">
+                <Form.Group className="mb-2" controlId="shippingOption">
                     <Form.Label as="legend">Opciones de Envío:</Form.Label>
                     <Form.Check
                         type="radio"
@@ -256,7 +256,7 @@ const NuevoFormulario = () => {
                         isInvalid={touched.shippingOption && !!errors.shippingOption}
                     />
                     {showPoints && values.shippingOption === "punto_encuentro" && (
-                        <p>Zonas de entrega disponibles: CAPITAL FEDERAL</p>
+                        <p className="m-2">IMPORTANTE: Zonas de entrega disponibles: CAPITAL FEDERAL</p>
                     )}
                     <Form.Control.Feedback type="invalid">
                         {errors.shippingOption}
@@ -265,7 +265,7 @@ const NuevoFormulario = () => {
             </div>
             <hr />
             <div className={styles1.checkbox}>
-                <Form.Group className="mb-3" controlId="paymentMethod">
+                <Form.Group className="mb-2" controlId="paymentMethod">
                     <Form.Label as="legend">Opciones de Pago:</Form.Label>
                     <Form.Check
                         type="radio"
@@ -302,7 +302,7 @@ const NuevoFormulario = () => {
                             {selectedPaymentMethodOpt === "MercadoPago" ? (
                             <BannerMp />
                             ) : (
-                            <i className={styles1.text}>Realiza tu pago directamente en nuestra cuentabancaria.<b>Por favor, usa el número del pedido como referenciade pago.</b><br />Tu pedido se procesará una vez que hayamos recibido los fondos.</i>
+                            <i className={styles1.text}>Realiza tu pago directamente en nuestra cuenta bancaria.<b>Por favor, usa el número del pedido como referencia de pago.</b><br />Tu pedido se procesará una vez que hayamos recibido los fondos.</i>
                             )}
                         </div>
                         )}
