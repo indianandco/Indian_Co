@@ -83,22 +83,26 @@ const NuevoFormulario = () => {
                             },
                         };
                         //console.log("info para el back(ENDPOINT: payment):",data)
-                        await fetcherPaymentMethod("/carts/purchase", data);
+                        const response = await fetcherPaymentMethod("/carts/purchase", data);
 
-                        await Swal.fire({
-                            title: 'Orden generada Correctamente!',
-                            text: "Revise su correo para mas informacion",
-                            icon: 'success'
+                        console.log("Respuesta de la compra:", response)
+                        if(response.status === "success"){          
+                            await Swal.fire({
+                                title: 'Orden generada Correctamente!',
+                                text: "Revise su correo para mas informacion",
+                                icon: 'success'
+                                    });
+                        
+                            setCart([])
+                            localStorage.clear();
+                        }else {
+                            await Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Algo salio mal, volvé a intentarlo!'
+                            });
+                        }
 
-                        });
-
-                        setCart([])
-                        localStorage.clear();
-                        await Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Algo salio mal, volvé a intentarlo!'
-                        });
                     } finally {
                         setSubmitting(false);
                         resetForm();
