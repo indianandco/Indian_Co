@@ -112,7 +112,7 @@ const Detail = () => {
                             <div className={styles.boxDesc}>
                                 <span>- {detailProducts?.description}</span>
                             </div>
-                            {detailProducts?.size === true ? (
+                            {detailProducts?.size ? (
                                 <div className={styles.boxSize}>
                                     <span className={styles.span}>- Tamaño: {detailProducts?.size}</span>
                                 </div>
