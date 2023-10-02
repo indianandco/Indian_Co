@@ -26,11 +26,11 @@ function App() {
     "/products",
     "/detail/:id",
     "/cart",
-    /* "/products/aromas-ambientales",
+    "/products/aromas-ambientales",
     "/products/cosmetica",
     "/products/deco",
-    "/products/deco",
-    "/products/velas" */
+    "/products/perfumeria",
+    "/products/velas"
   ];
   const showFooter = routesWithFooter.some(route => {
     return route === location.pathname ||
@@ -53,7 +53,7 @@ function App() {
           </ProtectedRoutes>
         }
         />
-        <Route path='/products' element={<Container />} />
+        <Route path='/products/*' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/admin/login' element={<SignIn />} />
