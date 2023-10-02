@@ -5,10 +5,14 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from '../../../services/ProductContext';
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import { Spinner, Dropdown, Pagination } from 'react-bootstrap';
+import { useParams } from "react-router-dom";
 
 
 const Container = () => {
 
+    let param = useParams();
+    param = Object.values(param)
+    console.log(param);
     const [isLoading, setIsLoading] = useState(false);
     const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage, pagActive, setPagActive, resetPagination } = useContext(ProductContext);
     const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -39,7 +43,9 @@ const Container = () => {
         setTimeout(() => {
             setIsLoading(true);
         }, 1500);
-
+        if (param) {
+            handlerCategory(param[0])
+        }
         getAllProducts();
         resetPagination()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,12 +96,12 @@ const Container = () => {
                                 Categoría
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => handlerCategory('All')}> - Todas</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Aromas ambientales')}>- Aromas ambientales</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Cosmética')}>- Cosmética</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Deco')}>- Deco</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Perfumería')}>- Perfumería</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Velas')}>- Velas</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('All')}> - Todos</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('aromas-ambientales')}>- Aromas ambientales</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('cosmetica')}>- Cosmética</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('deco')}>- Deco</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('perfumeria')}>- Perfumería</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('velas')}>- Velas</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         <Dropdown >
