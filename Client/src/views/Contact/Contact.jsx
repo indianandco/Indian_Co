@@ -135,6 +135,7 @@ const Contact = () => {
           <div className='smallBox'>
             <h6 className='h6Contact'>Contacto</h6>
             <p className='pContact'>indianandco09@gmail.com</p>
+            <p className='pContact'>ventas@indianandco.com.ar</p>
           </div>
         </div>
       </div>
