@@ -91,7 +91,10 @@ const Container = () => {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => handlerCategory('All')}> - Todas</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerCategory('Perfumes')}>- Perfumes</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('Aromas ambientales')}>- Aromas ambientales</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('Cosmética')}>- Cosmética</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('Deco')}>- Deco</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handlerCategory('Perfumería')}>- Perfumería</Dropdown.Item>
                                 <Dropdown.Item onClick={() => handlerCategory('Velas')}>- Velas</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

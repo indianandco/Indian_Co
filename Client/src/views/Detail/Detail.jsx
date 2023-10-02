@@ -133,7 +133,7 @@ const Detail = () => {
                                 })
                                 }
                             </Form.Select>
-                            <span>{show ? "Por favor elija una fragancia" : <span></span>}</span>
+                            <span style={{ color: 'red', fontSize: '1.2em' }}>{show ? "Por favor elija una fragancia" : <span></span>}</span>
                         </div>
                         <div className={styles.cartContainer}>
                             <div className={styles.counter}>

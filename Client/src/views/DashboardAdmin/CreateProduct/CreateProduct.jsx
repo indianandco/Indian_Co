@@ -152,14 +152,17 @@ const CreateProduct = () => {
                             <Form.Select name="category" value={values.category}
                                 isInvalid={touched.category && !!errors.category}
                                 onBlur={handleBlur} onChange={handleChange}>
+                                <option value="Aromas ambientales">Aromas ambientales</option>
+                                <option value="Cosmética">Cosmética</option>
+                                <option value="Deco">Deco</option>
+                                <option value="Perfumería">Perfumería</option>
                                 <option value="Velas">Velas</option>
-                                <option value="Perfumes">Perfumes</option>
                             </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.category}</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="size">
-                            <Form.Label className="form-label">Dimensiones del producto:</Form.Label>
+                            <Form.Label className="form-label">Dimensiones del producto: </Form.Label>
                             <Form.Control className="form-control" type="text" name="size" value={values.size}
                                 onChange={handleChange} />
                         </Form.Group>

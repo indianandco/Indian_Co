@@ -242,8 +242,8 @@ const Products = () => {
             {paginatedProducts.map((product, index) => (
                 <Row className="sales" key={index}>
                     <Col xs={2}>{product.title}</Col>
-                    {product.offer_price ? 
-                    <Col xs={2}><del style={{ fontSize: '12px', color: 'gray' }}>$ {product.price}</del> $ {product.offer_price}</Col> : <Col xs={2}>$ {product.price}</Col>
+                    {product.offer_price ?
+                        <Col xs={2}><del style={{ fontSize: '12px', color: 'gray' }}>$ {product.price}</del> $ {product.offer_price}</Col> : <Col xs={2}>$ {product.price}</Col>
                     }
                     <Col xs={2}>{product.stock} unid.</Col>
                     <Col xs={2}><Image src={product.image} alt={`Imagen de ${product.title}`} className='image' /></Col>
@@ -330,8 +330,11 @@ const Products = () => {
                             <Form.Select name="category" value={values.category}
                                 isInvalid={touched.category && !!errors.category}
                                 onBlur={handleBlur} onChange={handleChange}>
+                                <option value="Aromas ambientales">Aromas ambientales</option>
+                                <option value="Cosmética">Cosmética</option>
+                                <option value="Deco">Deco</option>
+                                <option value="Perfumería">Perfumería</option>
                                 <option value="Velas">Velas</option>
-                                <option value="Perfumes">Perfumes</option>
                             </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.category}</Form.Control.Feedback>
                         </Form.Group>
