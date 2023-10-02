@@ -26,6 +26,11 @@ function App() {
     "/products",
     "/detail/:id",
     "/cart",
+    /* "/products/aromas-ambientales",
+    "/products/cosmetica",
+    "/products/deco",
+    "/products/deco",
+    "/products/velas" */
   ];
   const showFooter = routesWithFooter.some(route => {
     return route === location.pathname ||
