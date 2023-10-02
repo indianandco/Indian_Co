@@ -27,6 +27,7 @@ const NavBar = ({ onClick, setShowLogin }) => {
         "/about",
         "/contact",
         "/products",
+        "/wholesaler",
         "/detail/:id",
         "/cart",
     ];
@@ -89,6 +90,7 @@ const NavBar = ({ onClick, setShowLogin }) => {
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/about">Sobre nosotros</NavLink>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/products">Productos</NavLink>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/wholesaler">Mayorista</NavLink>
                                     <div>
                                         <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="cart_button" to="/cart">
                                             <Badge badgeContent={cart?.length} color="secondary" className="buttons">
