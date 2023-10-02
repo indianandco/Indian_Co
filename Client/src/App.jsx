@@ -13,6 +13,7 @@ import Cart from './views/Cart/Cart'
 import Footer from "./components/Footer/Footer";
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import SignIn from './components/Login/SignIn/SignIn';
+import Wholesaler from './views/Wholesaler/Wholesaler';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     "/",
     "/about",
     "/contact",
+    "/wholesaler",
     "/products",
     "/detail/:id",
     "/cart",
@@ -39,6 +41,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/wholesaler' element={<Wholesaler />} />
         <Route path='/dashboardadmin' element={
           <ProtectedRoutes>
             <DashboardAdmin />

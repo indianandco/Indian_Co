@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Contact.css'
 import { fetcherUserPost } from '../../utils/fetcherPost'
 import Swal from 'sweetalert2';
+import { Divider } from '@mui/material';
 
 const Contact = () => {
   const [ticket, setTicket] = useState({
@@ -128,10 +129,12 @@ const Contact = () => {
             <h6 className='h6Contact'>Visitanos</h6>
             <p className='pContact'>Podes contactarnos por Instagram o Facebook, visitar nuestra tienda online y realizar tu pedido.</p>
           </div>
+          <Divider sx={{width: "100%", background: 'black', marginBottom: '1.2em'}} />
           <div className='smallBox'>
             <h6 className='h6Contact'>Abierto</h6>
             <p className='pContact'>Lun - Vie [14 a 19 hs] </p>
           </div>
+          <Divider sx={{width: "100%", background: 'black', marginBottom: '1.2em'}} />
           <div className='smallBox'>
             <h6 className='h6Contact'>Contacto</h6>
             <p className='pContact'>indianandco09@gmail.com</p>
