@@ -78,7 +78,8 @@ const NavBar = ({ onClick, setShowLogin }) => {
                     <Navbar.Toggle data-bs-theme="dark" aria-controls="responsive-navbar-nav" className="ButtonResponsive" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Navbar.Brand onClick={scrollToTop} className="logo_container" href="/">
-                            <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" />
+                            {/* <img className={location.pathname === "/" ? scrolled ? "logo_scrolled" : "logo" : "logo_scrolled"} src="/logo-principal.png" alt="Indian&Co" /> */}
+                            <NavLink className="logo_button buttons" onClick={() => { scrollToTop(), setExpanded(false) }} to="/" >Indian & Co</NavLink>
                         </Navbar.Brand>
 
                         {!isNotFoundPage &&

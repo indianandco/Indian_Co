@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState, useContext } from 'react';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
@@ -118,7 +120,6 @@ const Products = () => {
 
 
                         });
-                        getInfo()
                     } catch (error) {
                         await Swal.fire({
                             icon: 'error',
@@ -126,6 +127,7 @@ const Products = () => {
                             text: 'Algo salio mal, volvé a intentarlo!'
                         });
                     } finally {
+                        getInfo()
                         setSubmitting(false);
                         resetForm();
                         handleModalClose()
@@ -187,7 +189,7 @@ const Products = () => {
                     try {
                         const productResponse = await deleteProductFn(id);
                         await Swal.fire({
-                            icon:"success",
+                            icon: "success",
                             title: 'Producto eliminido correctamente!',
                         });
                         setModal(false)
@@ -361,8 +363,8 @@ const Products = () => {
                         </Form.Group>
                         <div className="boton">
                             {/* <Button variant="primary" type="submit" disabled={isSubmitting}>ACTUALIZAR PRODUCTO</Button> */}
-                            <Button style={{marginLeft: "5%", marginRight:"15%", width:"37,5%"}}variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
-                            <Button style={{marginRight:"5%", width:"37,5%"}} variant="danger" onClick={deleteProduct}>ELIMINAR PRODUCTO</Button>
+                            <Button style={{ marginLeft: "5%", marginRight: "15%", width: "37,5%" }} variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
+                            <Button style={{ marginRight: "5%", width: "37,5%" }} variant="danger" onClick={deleteProduct}>ELIMINAR PRODUCTO</Button>
                         </div>
                     </Form>
                 </Modal.Body>
