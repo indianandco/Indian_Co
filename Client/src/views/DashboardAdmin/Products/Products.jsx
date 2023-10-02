@@ -242,7 +242,9 @@ const Products = () => {
             {paginatedProducts.map((product, index) => (
                 <Row className="sales" key={index}>
                     <Col xs={2}>{product.title}</Col>
-                    <Col xs={2}>$ {product.price}</Col>
+                    {product.offer_price ? 
+                    <Col xs={2}><del style={{ fontSize: '12px', color: 'gray' }}>$ {product.price}</del> $ {product.offer_price}</Col> : <Col xs={2}>$ {product.price}</Col>
+                    }
                     <Col xs={2}>{product.stock} unid.</Col>
                     <Col xs={2}><Image src={product.image} alt={`Imagen de ${product.title}`} className='image' /></Col>
                     <Col xs={2}>
