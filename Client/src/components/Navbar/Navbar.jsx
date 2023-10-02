@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from '@mui/material/Badge';
@@ -87,7 +88,19 @@ const NavBar = ({ onClick, setShowLogin }) => {
                                 <Nav className="justify-content-end p-1">
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/">Inicio</NavLink>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/about">Sobre nosotros</NavLink>
-                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/products">Productos</NavLink>
+                                    {/* <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/products">Productos</NavLink> */}
+                                    <Dropdown variant="none">
+                                        <Dropdown.Toggle className="dropdown_button" variant="none" id="dropdown-basic">
+                                            Productos
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu style={{ backgroundColor: "black" }}>
+                                            <Dropdown.Item className="buttons_drop" href="/products/aromas-ambientales">Aromas Ambientales</Dropdown.Item>
+                                            <Dropdown.Item className="buttons_drop" href="/products/cosmetica">Cosmética</Dropdown.Item>
+                                            <Dropdown.Item className="buttons_drop" href="/products/deco">Deco</Dropdown.Item>
+                                            <Dropdown.Item className="buttons_drop" href="/products/perfumeria">Perfumería</Dropdown.Item>
+                                            <Dropdown.Item className="buttons_drop" href="/products/velas">Velas</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
                                     <div>
                                         <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="cart_button" to="/cart">

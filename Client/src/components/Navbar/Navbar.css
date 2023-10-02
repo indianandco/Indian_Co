@@ -26,6 +26,63 @@
     transition: font-size 0.7s ease;
   }
 
+  .dropdown_button {
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat;
+    padding: 1em;
+    font-size: 18px;
+    transition: font-size 0.7s ease;
+  }
+
+  .dropdown_button:hover {
+    color: rgb(108, 107, 107);
+
+  }
+
+  .dropdown_button:after{
+    transition: 0.3s;
+}
+
+  .buttons_drop {
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    color: rgb(101, 101, 101);
+    padding: 1em;
+    text-decoration: none;
+    font-size: 14px;
+    transition: font-size 0.7s ease;
+  }
+
+  .buttons_drop:hover {
+    color: rgb(108, 107, 107);
+
+  }
+
+  .buttons_drop:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(108, 107, 107);
+    left: 0;
+    bottom: 4px; 
+    min-height: 2.5px;
+    width: 0%;
+    transition: 0.3s;
+}
+
+.buttons_drop:hover:after{
+    width: 100%;
+    color: rgb(108, 107, 107);
+}
+
   .cart_button {
     position: relative;
     color: black;

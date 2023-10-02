@@ -105,7 +105,6 @@ const Container = () => {
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => handlerSort("priceAsc")}> De menor a mayor</Dropdown.Item>
                                 <Dropdown.Item onClick={() => handlerSort("priceDesc")}>De mayor a menor</Dropdown.Item>
-                                {/* <Dropdown.Item onClick={() => handlerSort("false")}>En Oferta - No</Dropdown.Item> */}
                                 <Dropdown.Item onClick={() => handlerSort("true")}>Con descuento</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
