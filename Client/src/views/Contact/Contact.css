@@ -199,7 +199,7 @@
   }
   .form{
     width: 15em;
-    height: 25em;
+    height: 100%;
   }
   .formBox {
     display: inline;
