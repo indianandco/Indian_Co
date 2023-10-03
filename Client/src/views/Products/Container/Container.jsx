@@ -12,7 +12,6 @@ const Container = () => {
 
     let param = useParams();
     param = Object.values(param)
-    console.log(param);
     const [isLoading, setIsLoading] = useState(false);
     const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage, pagActive, setPagActive, resetPagination } = useContext(ProductContext);
     const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -27,7 +26,6 @@ const Container = () => {
             </Pagination.Item>
         )
     }
-
     useEffect(() => {
         const catalog = productStorage?.filter(product =>
             product.catalog_listing === false
@@ -38,18 +36,6 @@ const Container = () => {
         setDisplayedProducts(productSubset);
     }, [pagActive, productStorage]);
 
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(true);
-        }, 1500);
-        if (param) {
-            handlerCategory(param[0])
-        }
-        getAllProducts();
-        resetPagination()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
     const handlerCategory = async (prop) => {
         if (prop === "---") {
             null
@@ -58,6 +44,19 @@ const Container = () => {
         }
         resetPagination()
     };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+        getAllProducts();
+        resetPagination()
+        console.log(param[0]);
+        if (param[0]) {
+            handlerCategory(param[0])
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     const handlerSort = async (prop) => {
@@ -76,6 +75,7 @@ const Container = () => {
         }
         resetPagination()
     }
+    console.log(displayedProducts);
 
     return (
         !isLoading ? (
