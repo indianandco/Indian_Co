@@ -33,7 +33,6 @@ const Products = () => {
         )
     }
     const paginatedProducts = filteredProducts.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage)
-
     const handleModalShow = (product) => {
         setSelectedProduct(product);
         setModal(true);
