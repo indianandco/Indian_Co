@@ -104,7 +104,7 @@ const NavBar = ({ onClick, setShowLogin }) => {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                     <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/contact">Contacto</NavLink>
-                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/wholesaler">Mayorista</NavLink>
+                                    <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="buttons" to="/wholesaler">Mayoristas</NavLink>
                                     <div>
                                         <NavLink onClick={() => { scrollToTop(), setExpanded(false) }} className="cart_button" to="/cart">
                                             <Badge badgeContent={cart?.length} color="secondary" className="buttons">
