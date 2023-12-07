@@ -1,11 +1,8 @@
 const { generateToken } = require('../../config/jwt.config');
 
 const loginHandler = async (req, res) => {
-    console.log("mostrar error");
     try {
-        const error = req.flash("message")
         if(!req.user) return res.status(400).send(error)
-    
         const accessToken = await generateToken(req.user);
         const user = req.user
 
@@ -13,7 +10,6 @@ const loginHandler = async (req, res) => {
             maxAge: 2 * 60 * 60 * 1000, // 2hs
             httpOnly: true
         });
-    
         res.status(200).json(user);
         
     } catch (error) {

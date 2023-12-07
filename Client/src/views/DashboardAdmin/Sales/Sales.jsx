@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { fetcher } from '../../../utils/fetcherGet';
+import { updateTicketFunction } from '../../../utils/fetcherPut'
+import { deleteTicket } from '../../../utils/fetcherDelete'
 import Pagination from 'react-bootstrap/Pagination';
+import Swal from 'sweetalert2'
+import "./Sales.css"
 
 
 const Sales = () => {
@@ -25,7 +30,9 @@ const Sales = () => {
             </Pagination.Item>
         )
     }
-    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage)
+    const paginatedSales = filteredSales.slice((pagActive - 1) * salesPerPage, pagActive * salesPerPage);
+
+
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -48,7 +55,7 @@ const Sales = () => {
 
     const getProductsInfo = async () => {
         const products = await fetcher(`/products`)
-        setProducts(products)
+        setProducts(products.payload)
     }
     useEffect(() => {
         getInfo();
@@ -64,8 +71,69 @@ const Sales = () => {
     const handleModalClose = () => {
         setModal(false);
     };
+    const handleDeleteTicket = () => {
+        Swal.fire({
+            title: 'Está seguro que quiere eliminar esta venta?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const id = selectedSale._id
+                    try {
+                        const response = await deleteTicket(`/tickets/deleteTicket/${id}`)
+                        await Swal.fire({
+                            icon: "success",
+                            title: 'Venta eliminida correctamente!',
+                        });
+                        setModal(false)
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
+                }
+            });
+    }
 
+    const handlerStatus = (event) => {
+        Swal.fire({
+            title: 'Está seguro que quiere actualizar este venta?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const status = event.target.value
+                    try {
+                        const response = await updateTicketFunction(`/tickets/updateStatus?tid=${selectedSale._id}`, status)
+                        await Swal.fire({
+                            icon: "success",
+                            title: 'Venta actualizada correctamente!',
+                        });
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
+                }
+            });
 
+    }
 
     return (
         <Container className='container'>
@@ -76,8 +144,8 @@ const Sales = () => {
 
             <Row className='sales'>
                 <Col className='columna' xs={3}>Nombre</Col>
-
-                <Col className='columna' xs={4}>Fecha</Col>
+                <Col className='columna' xs={2}>Fecha</Col>
+                <Col className='columna' xs={2}>Estado</Col>
                 <Col className='columna' xs={2}>Detalle</Col>
             </Row>
             {
@@ -85,9 +153,9 @@ const Sales = () => {
                     const user = users.find(u => u._id === sale.owner);
                     return (
                         <Row className='sales' key={index}>
-                            <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : 'Usuario no encontrado'}</Col>
-
-                            <Col xs={4}>{formatDate(sale.purchase_datetime)}</Col>
+                            <Col xs={3}>{user ? `${user.first_name} ${user.last_name}` : sale.owner || 'Usuario no encontrado'}</Col>
+                            <Col xs={2}>{sale.fecha}</Col>
+                            <Col xs={2} >{sale.status ? 'Pagado' : 'Pendiente'}</Col>
                             <Col xs={2}>
                                 <Button className="editButton" onClick={() => handleModalShow(sale)}>
                                     <i className="icon_detail bi bi-clipboard-check"></i>
@@ -113,17 +181,29 @@ const Sales = () => {
                         <div>
                             <p>Productos:</p>
                             {
-                                selectedSale?.products.map((productId, index) => {
-                                    const product = products.payload.find(p => p._id === productId);
+                                selectedSale?.products.map((product) => {
                                     return (
-                                        <span key={index}>
-                                            - {product ? product.title : 'Producto no encontrado'}
-                                            {index !== selectedSale.products.length - 1 && <br />}
-                                        </span>
+                                        <div key={product._id}>
+                                            <span>-{product ? product.title : 'Producto no encontrado'}</span>
+                                            <br />
+                                            <span>-Cantidad:<b>{product?.quantity}</b></span>
+                                            <br />
+                                            <span>-Fragancia:{product?.fragance}</span>
+                                            <br />
+                                            <br />
+
+                                        </div>
+
                                     );
                                 })
                             }
 
+                        </div>
+                        <div>
+                            <select className='status' name="estado" onChange={handlerStatus} defaultValue={selectedSale?.status ? "true" : "false"}>
+                                <option value={true} >Pagado</option>
+                                <option value={false} >Pendiente</option>
+                            </select>
                         </div>
                         <br />
                         <div>
@@ -132,11 +212,15 @@ const Sales = () => {
                         <div>
                             <p></p>
                         </div>
+
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>
                         Cerrar
+                    </Button>
+                    <Button variant="danger" onClick={handleDeleteTicket}>
+                        Eliminar
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -11,7 +11,7 @@ const postProductsHandler = async (req, res) => {
                 upload_preset: "ml_default"
             })
             if (uploadResponse) {
-                imageUrl = uploadResponse.url
+                imageUrl = uploadResponse.secure_url
             }
         }
         newProduct = await postProductsController({ title, price, description, stock, category, offer, size, fragance, image: imageUrl, offer_price });

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState, useContext } from 'react';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
@@ -15,10 +17,11 @@ const Products = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [modal, setModal] = useState(false)
-    const { updateProduct } = useContext(ProductContext)
+    const { updateProduct, deleteProductFn } = useContext(ProductContext)
     const [productThumbnail, setProductThumbnail] = useState("")
     const [pagActive, setPagActive] = useState(1)
     const productsPerPage = 4;
+
 
     const totalPages = Math.ceil(filteredProducts?.length / productsPerPage)
     let items = []
@@ -30,7 +33,6 @@ const Products = () => {
         )
     }
     const paginatedProducts = filteredProducts.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage)
-
     const handleModalShow = (product) => {
         setSelectedProduct(product);
         setModal(true);
@@ -55,6 +57,7 @@ const Products = () => {
         if (selectedProduct) {
             formik.setValues({
                 title: selectedProduct.title,
+                catalog_listing: selectedProduct.catalog_listing,
                 price: selectedProduct.price,
                 offer: selectedProduct.offer,
                 offer_price: selectedProduct.offer_price,
@@ -73,6 +76,7 @@ const Products = () => {
 
     const contacFormInitialValues = {
         title: "",
+        catalog_listing: false,
         price: "",
         offer: false,
         offer_price: "",
@@ -108,14 +112,13 @@ const Products = () => {
                     try {
 
                         const productResponse = await updateProduct(
-                            updateValues, selectedProduct.id);
+                            updateValues, selectedProduct._id);
 
                         await Swal.fire({
                             title: 'Producto actualizado correctamente!',
 
 
                         });
-                        getInfo()
                     } catch (error) {
                         await Swal.fire({
                             icon: 'error',
@@ -123,6 +126,7 @@ const Products = () => {
                             text: 'Algo salio mal, volvé a intentarlo!'
                         });
                     } finally {
+                        getInfo()
                         setSubmitting(false);
                         resetForm();
                         handleModalClose()
@@ -168,6 +172,41 @@ const Products = () => {
         setPagActive(1)
     }
 
+    const deleteProduct = async () => {
+        Swal.fire({
+            title: 'Está seguro que quiere eliminar este producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const id = selectedProduct._id
+                    try {
+                        const productResponse = await deleteProductFn(id);
+                        await Swal.fire({
+                            icon: "success",
+                            title: 'Producto eliminido correctamente!',
+                        });
+                        setModal(false)
+                        getInfo()
+                    } catch (error) {
+                        await Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo salio mal, volvé a intentarlo!'
+                        })
+                    }
+                }
+            });
+
+
+    }
+
+
 
     return (
         <Container className='container'>
@@ -202,7 +241,9 @@ const Products = () => {
             {paginatedProducts.map((product, index) => (
                 <Row className="sales" key={index}>
                     <Col xs={2}>{product.title}</Col>
-                    <Col xs={2}>$ {product.price}</Col>
+                    {product.offer_price ?
+                        <Col xs={2}><del style={{ fontSize: '12px', color: 'gray' }}>$ {product.price}</del> $ {product.offer_price}</Col> : <Col xs={2}>$ {product.price}</Col>
+                    }
                     <Col xs={2}>{product.stock} unid.</Col>
                     <Col xs={2}><Image src={product.image} alt={`Imagen de ${product.title}`} className='image' /></Col>
                     <Col xs={2}>
@@ -224,6 +265,17 @@ const Products = () => {
                             <Form.Control className="form-control" type="text" name="title" value={values.title}
                                 isInvalid={touched.title && !!errors.title}
                                 onBlur={handleBlur} onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group controlId="catalog_listing">
+                            <Form.Label className="form-label">Ocultar el Producto:</Form.Label>
+                            <Form.Select name="catalog_listing" value={values.catalog_listing}
+                                isInvalid={touched.catalog_listing && !!errors.catalog_listing}
+                                onBlur={handleBlur} onChange={handleChange}>
+                                <option value={false}>No</option>
+                                <option value={true}>Sí</option>
+                            </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
                         </Form.Group>
 
@@ -277,8 +329,11 @@ const Products = () => {
                             <Form.Select name="category" value={values.category}
                                 isInvalid={touched.category && !!errors.category}
                                 onBlur={handleBlur} onChange={handleChange}>
-                                <option value="Velas">Velas</option>
-                                <option value="Perfumes">Perfumes</option>
+                                <option value="aromas-ambientales">Aromas ambientales</option>
+                                <option value="cosmetica">Cosmética</option>
+                                <option value="deco">Deco</option>
+                                <option value="perfumeria">Perfumería</option>
+                                <option value="velas">Velas</option>
                             </Form.Select>
                             <Form.Control.Feedback type="invalid">{errors.category}</Form.Control.Feedback>
                         </Form.Group>
@@ -312,7 +367,8 @@ const Products = () => {
                         </Form.Group>
                         <div className="boton">
                             {/* <Button variant="primary" type="submit" disabled={isSubmitting}>ACTUALIZAR PRODUCTO</Button> */}
-                            <Button variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
+                            <Button style={{ marginLeft: "5%", marginRight: "15%", width: "37,5%" }} variant="primary" type="submit" >ACTUALIZAR PRODUCTO</Button>
+                            <Button style={{ marginRight: "5%", width: "37,5%" }} variant="danger" onClick={deleteProduct}>ELIMINAR PRODUCTO</Button>
                         </div>
                     </Form>
                 </Modal.Body>
@@ -320,6 +376,7 @@ const Products = () => {
                     <Button variant="secondary" onClick={handleModalClose}>
                         Cerrar
                     </Button>
+
                 </Modal.Footer>
             </Modal>
             <div className='pagination'>

@@ -1,6 +1,6 @@
 const passport  = require('passport');
 const LocalStrategy  = require('passport-local').Strategy;
-//const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
 
 const { createHash, isValidPassword } = require('./bcrypt.config');
 
@@ -22,7 +22,7 @@ const initializePassport = () =>{
             const user = await userModel.findOne({ email: username });
 
             if(user) {
-                console.log('El usuario ya existe');
+                //console.log('El usuario ya existe');
                 return done(null, false)
             };
 
@@ -40,13 +40,13 @@ const initializePassport = () =>{
                 password: createHash(password)
             };
 
-            console.log(newUser)
+            //console.log(newUser)
 
             const result = await userModel.create( newUser );
 
-            console.log("result ",result)
+            //console.log("result ",result)
 
-            console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
+            //console.log(`El usuario con el mail: ${result.email} se registro de manera tradicional`);
 
             return done(null, result);
 
@@ -62,20 +62,19 @@ const initializePassport = () =>{
         try {
             const user = await userModel.findOne({ email: username });
             
-
             if (!user) {
-                return done(null, false, {message: "Usuario no existe"});
+                return done(null, false);
             };
 
             if(!isValidPassword(user, password)) {
-               return done(null, false, {message: "login-failure"})
+               return done(null, false)
             };
 
             //Para calcular la ultima conexion, siempre que el usuario el se loguee, se actualiza el campo:
             user.lastConnection = new Date();
             await userModel.findByIdAndUpdate(user._id, { lastConnection: user.lastConnection });
 
-            console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
+            //console.log(`El usuario con el mail: ${user.email} inicio session de forma 'local`);
         
             return done(null, user);
             
@@ -83,54 +82,6 @@ const initializePassport = () =>{
             return done({message: `Error al loguear usuario`});
         }
     }));
-
-
-//Login con Google:
-    // passport.use('google', new GoogleStrategy({
-    // //Necesitamos el acceso al id y secreto de fb.
-    // //Acceder como variables de entorno
-
-    //     clientID: GOOGLE_CLIENT_ID,
-    //     clientSecret: GOOGLE_CLIENT_SECRET,
-    //     callbackURL: "http://www.example.com/auth/google/callback" //Cambiar la Url
-    // },
-    // async function(accessToken, refreshToken, profile, done) {
-    //     try {
-    //         //Revisar la informacionque trae el profile
-    //         console.log(profile);
-    //         const user = await userModel.findOne({ email: profile.email });
-    //         // userModel.findOne({ email: profile.email }, function (err, user) {
-    //         // return cb(err, user);
-    //         // });
-    //         if(!user) {
-    //             const newUser = {
-    //                 //rellenar con los datos, que envie el profile
-    //                 first_name, 
-    //                 last_name,
-    //                 email,
-    //                 gender,
-    //                 birthdate,
-    //                 address,
-    //                 zipcode,
-    //                 city,
-    //                 phone,
-    //                 age,
-    //                 password: ''
-    //             };
-    //             const result = await userModel.create( newUser );
-    
-    //             console.log(`El usuario con el mail: ${user.email} se registro con 'google`);
-    
-    //             return done(null, result);
-    //         } else {
-    //             console.log(`El usuario con el mail: ${user.email} inicio session con 'google`);
-    //             done(null, user);
-    //         };
-    //     } catch (error) {
-    //         console.log(`${error}`);
-    //         return done(error)
-    //     };
-    // }));
 
     passport.serializeUser((user, done) =>{
         done(null, user._id);

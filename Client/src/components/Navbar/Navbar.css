@@ -1,15 +1,87 @@
 
+.notFound{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.not-found-page .navbar-toggler {
+  display: none !important;
+}
+
    .buttons {
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     position: relative;
-    font-style:normal;
-    font-weight: 800;
-    letter-spacing: 0.1em;
     color: rgb(255, 255, 255);
-    padding: 10px;
+    padding: 1em;
     text-decoration: none;
     font-size: 18px;
     transition: font-size 0.7s ease;
   }
+
+  .dropdown_button {
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat;
+    padding: 1em;
+    font-size: 18px;
+    transition: font-size 0.7s ease;
+  }
+
+  .dropdown_button:hover {
+    color: rgb(108, 107, 107);
+
+  }
+
+  .dropdown_button:after{
+    transition: 0.3s;
+}
+
+  .buttons_drop {
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    color: rgb(101, 101, 101);
+    padding: 1em;
+    text-decoration: none;
+    font-size: 14px;
+    transition: font-size 0.7s ease;
+  }
+
+  .buttons_drop:hover {
+    color: rgb(108, 107, 107);
+
+  }
+
+  .buttons_drop:after{
+    position: absolute;
+    content: "" ;
+    background-color: rgb(108, 107, 107);
+    left: 0;
+    bottom: 4px; 
+    min-height: 2.5px;
+    width: 0%;
+    transition: 0.3s;
+}
+
+.buttons_drop:hover:after{
+    width: 100%;
+    color: rgb(108, 107, 107);
+}
 
   .cart_button {
     position: relative;
@@ -99,9 +171,12 @@
     background-color: black;
     transition: background-color 0.7s ease,height 1s ease;
   }
-
-  .ButtonResponsive{
-    background-color: rgb(240, 240, 240);
+  
+  .position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
@@ -109,21 +184,31 @@
       align-items: center;
       background-color: rgb(0, 0, 0);
       justify-content: center;
-      min-height: 8em;
+      min-height: 4em;
+      width: 100% 
     }
 
     .buttons {
       margin: 5px 0; 
     }
+    
 
     .nav_container {
       display: flex;
       justify-content:space-evenly;
-      margin-bottom: 8em;
+      /* margin-bottom: 8em; */
+  
     }
 
     .logo{
       display: none;
     }
-
+    .notFound{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      text-align: start;
+      width: 100%;
+    }
   }

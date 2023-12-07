@@ -4,15 +4,18 @@ const {ticketModel}= require('../../models/ticket.model'); // Asegúrate de actu
 
 const getAllSalesWeekController = async () => {
     try {
-        const startOfWeek = moment().startOf('week').toDate();
-        const endOfWeek = moment().endOf('week').toDate();
+        const startOfWeek = moment().startOf('week').format('M/D/YYYY, h:mm:ss A');
+        const endOfWeek = moment().endOf('week').format('M/D/YYYY, h:mm:ss A');
 
+        
         const salesThisWeek = await ticketModel.find({
             purchase_datetime: {
                 $gte: startOfWeek,
                 $lte: endOfWeek
             }
         }).exec();
+
+       
 
         const dailySales = {
             "lunes": 0,
@@ -28,6 +31,8 @@ const getAllSalesWeekController = async () => {
             const day = moment(sale.purchase_datetime).format('dddd');
             dailySales[day] += 1; 
         });
+
+        //console.log(dailySales);
 
         return dailySales;
     } catch (error) {

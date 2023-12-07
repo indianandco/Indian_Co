@@ -32,7 +32,7 @@ export default function LinesChart() {
 
 
     const getInfo = async () => {
-        const responseFn = await fetcher(`/adminDashboard/tickets/week`)
+        const responseFn = await fetcher(`/admindashboard/tickets/week`)
         setResponse(responseFn)
     }
 
@@ -72,7 +72,7 @@ export default function LinesChart() {
                 min: 0
             },
             x: {
-                ticks: { color: 'rgb(255, 255, 255)' }
+                ticks: { color: 'black' }
             }
         }
     };

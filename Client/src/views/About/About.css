@@ -4,7 +4,7 @@
 
 .imageAbout{
     width: 100%;
-    height: 42em;
+    height: 100vh;
     object-fit: cover;
     object-position: center;
 }
@@ -76,11 +76,20 @@
     }
     .imageAbout1{
         width: 20em;
-        height: 20em;
+        height: 100%;
         object-fit: cover;
         object-position: center;
         border-radius: 6px;
         margin-bottom: 1em;
+    }
+    .BoxAboutDesc1{
+        height: 100%;
+        width: 100%;
+    }
+    .BoxAbout1{
+        display: flex;
+        height: 100%;
+        width: 100%;
     }
     .BoxAboutAll{
         padding-left: 1em;
@@ -91,6 +100,10 @@
     .BoxAboutTop{
         display: flex;
         margin-top: 10em;
+    }
+    .BoxAboutDesc2{
+        height: 100%;
+        width: 100%;
     }
     .imageAbout{
         width: 100%;

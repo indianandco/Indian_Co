@@ -5,17 +5,20 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
-import { fetcher } from '../../../utils/fetcherGet';
+//import { fetcher } from '../../../utils/fetcherGet';
 import { AuthContext } from '../../../services/AuthContext';
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
-function SignIn() {
+function SignIn({ onClick }) {
 
     const { setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [validated, setValidated] = useState(true);
-    const [showLogin, setShowLogin] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
     const [showRecover, setShowRecover] = useState(false);
+
 
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -61,7 +64,11 @@ function SignIn() {
 
 
     //-----------------FUNCIONES DE LOGIN
-    const handleShow = () => setShowLogin(true)
+    const handleShow = () => {
+        if (onClick) onClick();
+        setShowLogin(true);
+    }
+
     const handleChange = (event) => {
 
         const value = event.target.value
@@ -94,27 +101,39 @@ function SignIn() {
         event.preventDefault();
 
         const response = await fetcherUserPost("/users/login", loginForm);
-        sessionStorage.setItem('sessions', JSON.stringify(response))
-        setUser(JSON.parse(sessionStorage.getItem('sessions')));
-        setShowLogin(false);
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Iniciaste sesión correctamente',
-            showConfirmButton: false,
-            timer: 1500
-        })
 
+        if (response) {
+            sessionStorage.setItem('sessions', JSON.stringify(response))
+            setUser(JSON.parse(sessionStorage.getItem('sessions')));
+            setShowLogin(false);
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Iniciaste sesión correctamente',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            setTimeout(function () {
+                navigate("/dashboardadmin")
+            }, 1000);
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Email o Contraseña inválidos!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
-    
-    const handleAuth = (event) => {
-        event.preventDefault();
-        const data = event.target.dataset.social
-        const auth = fetcher(`/users/auth/${data}`)
-        sessionStorage.setItem('sessions', JSON.stringify(auth))
-        setUser(JSON.parse(sessionStorage.getItem('sessions')));
-        setShowLogin(false);
-    }
+
+    /*     const handleAuth = (event) => {
+            event.preventDefault();
+            const auth = fetcher(`/users/auth/google`)
+            sessionStorage.setItem('sessions', JSON.stringify(auth))
+            setUser(JSON.parse(sessionStorage.getItem('sessions')));
+            setShowLogin(false);
+        }; */
 
     useEffect(() => {
         validation({ ...loginForm })
@@ -122,14 +141,14 @@ function SignIn() {
 
     return (
         <>
-            <Button variant="none" className="buttons d-flex justify-content-start" onClick={handleShow}>
+            <Button variant="none" className="buttons1 d-flex justify-content-start" onClick={handleShow}>
                 Ingresar
             </Button>
             {//-------------------------MODAL DE LOGIN
             }
             <Modal show={showLogin} onHide={handleClose}>
                 <Modal.Header className="pb-0" closeButton>
-                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Ingresar como usuario</Modal.Title>
+                    <Modal.Title className='pb-1 m-1' style={{ color: "black" }}>Ingresar como administrador</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
@@ -171,14 +190,14 @@ function SignIn() {
                                 Ingresar con tu cuenta
                             </Button>
                         </Modal.Footer>
-                        <Modal.Footer className='p-1'>
-                            <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
+                        {/* <Modal.Footer className='p-1'>
+                            <Button style={{ width: "100%" }} onClick={handleAuth} size='lg' variant="danger" type="submit">
                                 Ingresar con <i className="bi bi-google"></i> Google
                             </Button>
-                        </Modal.Footer>
+                        </Modal.Footer> */}
                     </Form>
                     <Modal.Footer className='p-1 text-decoration-underline'>
-                        <Button style={{ width: "100%" }} data-social="google" onClick={handleRecoverShow} size='lg' variant="none">
+                        <Button style={{ width: "100%" }} onClick={handleRecoverShow} size='lg' variant="none">
                             Recuperar <strong>contraseña</strong>
                         </Button>
                     </Modal.Footer>

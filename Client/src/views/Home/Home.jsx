@@ -21,27 +21,25 @@ const Home = () => {
                 <Carousel>
                     <Carousel.Item interval={5000}>
                         <NavLink to="/products" className="Link">
-                            <Image className="banners_image" src="carrousel1.png" />
+                            <Image className="banners_image" src="carousel1.webp" alt="primer_banner" />
                         </NavLink>
                         <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3>Hecho a mano</h3>
+                            <p>En nuestra empresa, nos enorgullece crear productos hechos a mano con amor y dedicación. Cada artículo es elaborado minuciosamente, desde la selección de los materiales hasta el acabado final, garantizando así productos únicos y de alta calidad.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image className="banners_image" src="carrousel2.png" />
+                        <Image className="banners_image" src="carrousel2.jpg" alt="segundo_banner" />
                         <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Calidad</h3>
+                            <p>La calidad es primordial en nuestros productos. Nos dedicamos a brindar artículos atractivos y resistentes, sometidos a rigurosas pruebas para asegurar que cumplan nuestros estándares. Nuestra confianza en la calidad nos permite satisfacer incluso a los clientes más exigentes.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={5000}>
-                        <Image className="banners_image" src="carrousel3.png" />
+                        <Image className="banners_image" src="carrousel3.jpg" alt="tercer_banner" />
                         <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                            </p>
+                            <h3>Sustentable</h3>
+                            <p>Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
@@ -51,23 +49,25 @@ const Home = () => {
                     <p className="TextHome">¡Asegurá tu bienestar con nuestros únicos aromas 100% naturales!</p>
                 </header>
                 <section className="BannerHome2">
-                    <div className="iconsContainer">
-                        <i className="bi bi-heart iconStyle"></i>
-                        <i className="bi bi-award iconStyle"></i>
-                        <i className="bi bi-tree iconStyle"></i>
-                    </div>
-                    <div className="text_container">
-                        <div className="ContainerBoxHome border-bottom">
-                            <h1 className="TitleHome2">Hecho a mano</h1>
-                            <p className="TextHome2">En nuestra empresa, nos enorgullece crear productos hechos a mano con amor y dedicación. Cada artículo es elaborado minuciosamente, desde la selección de los materiales hasta el acabado final, garantizando así productos únicos y de alta calidad.</p>
+                    <div className="banner_home_hijo">
+                        <div className="iconsContainer">
+                            <i className="bi bi-heart iconStyle"></i>
+                            <i className="bi bi-award iconStyle"></i>
+                            <i className="bi bi-tree iconStyle"></i>
                         </div>
-                        <div className="ContainerBoxHome border-bottom">
-                            <h1 className="TitleHome2">Calidad</h1>
-                            <p className="TextHome2">La calidad es primordial en nuestros productos. Nos dedicamos a brindar artículos atractivos y resistentes, sometidos a rigurosas pruebas para asegurar que cumplan nuestros estándares. Nuestra confianza en la calidad nos permite satisfacer incluso a los clientes más exigentes.</p>
-                        </div>
-                        <div className="ContainerBoxHome">
-                            <h1 className="TitleHome2">Sustentable</h1>
-                            <p className="TextHome2">Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
+                        <div className="text_container">
+                            <div className="ContainerBoxHome border-bottom">
+                                <h1 className="TitleHome2">Hecho a mano</h1>
+                                <p className="TextHome2">En nuestra empresa, nos enorgullece crear productos hechos a mano con amor y dedicación. Cada artículo es elaborado minuciosamente, desde la selección de los materiales hasta el acabado final, garantizando así productos únicos y de alta calidad.</p>
+                            </div>
+                            <div className="ContainerBoxHome border-bottom">
+                                <h1 className="TitleHome2">Calidad</h1>
+                                <p className="TextHome2">La calidad es primordial en nuestros productos. Nos dedicamos a brindar artículos atractivos y resistentes, sometidos a rigurosas pruebas para asegurar que cumplan nuestros estándares. Nuestra confianza en la calidad nos permite satisfacer incluso a los clientes más exigentes.</p>
+                            </div>
+                            <div className="ContainerBoxHome">
+                                <h1 className="TitleHome2">Sustentable</h1>
+                                <p className="TextHome2">Nuestro laboratorio de esencias se mantiene en constante movimiento intentando despertar todos los sentidos mediante los diferentes aromas logrados a través de la mezcla de aceites esenciales de pura calidad. De esta manera lanzamos aromas propios con la intensidad justa para armonizar tus espacios.</p>
+                            </div>
                         </div>
                     </div>
                 </section>

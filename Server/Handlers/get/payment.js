@@ -1,82 +1,80 @@
 const mercadopago = require("mercadopago");
 require("dotenv").config();
 const { shopOrderMailTransferWShipping, shopOrderMailTransferMeetPoint } = require('../../config/nodeMailer.config');
+const { postTicketsController } = require('../../Controllers/post/postTicketsController')
 
 const { MP_TOKEN } = process.env;
 
 const payment = async (req, res) => {
-  const info = req.body;
-
-  console.log(info);
   
   try {
+    let info = req.body;
+ 
     if (info.paymentMethod === "MercadoPago") {
       mercadopago.configure({access_token: MP_TOKEN});
       
       const generateProductList = () =>{
         const products = info.shop.cart.map( ( product ) =>  (
+          
           {
             id: product._id,
             title: product.title,
-            fragance: product.fragance,
+            description: (product.fragance ? product.fragance : "none"),
             quantity: product.quantity,
             currency_id: "ARS",
             unit_price: product.offer === true ? product.offer_price : product.price
           }
         ));
-    
-        console.log(products)
+  
         return products
       };
 
       const preference = {
         items: generateProductList(),
         back_urls: {
-          success: "http://localhost:3001/carts/purchase/success",
-          failure: "http://localhost:3001/carts/purchase/failure",
+          success: "https://www.indianandco.com.ar/cart",
+          // failure: "http://localhost:3001/carts/purchase/failure",
           //pending: "https://mere-hands-production.up.railway.app/carts/purchase/pending"
         },
-        notification_url: "https://bd05-2803-9800-9016-aefa-7525-8c71-33ed-1f69.ngrok.io/carts/purchase/notification",
+        notification_url: "https://mere-hands-production.up.railway.app/carts/purchase/notification",
         auto_return: "approved",
         binary_mode: true
       };
-
+      
+      
       await mercadopago.preferences.create(preference)
-        .then(function (response) {
+        .then(async  (response) => {
           res.status(200).send({ response });
+          // console.log("1er RESPUESTA DEL BACK de ML (Solo genera el link de pago):", response)
+          const identificador = response.response.id;
+          info.preferenceId = identificador
+
+        // response.id coincide con el response del cobro (response.preference_id )
+          await postTicketsController(info);
         })
 
-    } else {
-      if (info.shippingOption === "envio") {
-        await shopOrderMailTransferWShipping(
-          info.user.userInfo.email,
-          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-          "test",
-          info.shop.total,
-          info.shop.cart,
-          info.user.deliverInfo
-        );
-      }
-
-      if (info.shippingOption === "punto_encuentro") {
-        await shopOrderMailTransferMeetPoint(
-          info.user.userInfo.email,
-          `${info.user.userInfo.first_name} ${info.user.userInfo.last_name}`,
-          "test",
-          info.shop.total,
-          info.shop.cart
-        );
-      }
-
-      res.status(200).send("todo ok");
+    } 
+    
+    if(info.paymentMethod === "TransferenciaBancaria"){
+      const ticket = await postTicketsController(info);
+      // console.log("este es el Ticket:" ,ticket)
+        if (info.shippingOption === "envio") {
+          await shopOrderMailTransferWShipping(ticket);
+        }
+        
+        if (info.shippingOption === "punto_encuentro") {
+          await shopOrderMailTransferMeetPoint(ticket);
+        }
+          
+      res.status(200).send( { status: 'success', payload: ticket} );
 
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ status: "error", error });
+    console.error("Error en el controlador payment:", error);
+    res.status(500).send({ status: "error", error: error.message });
   }
 };
 
 module.exports = {
-  payment,
+  payment
 };

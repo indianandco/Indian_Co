@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001"; 
+
+const BASE_URL = "http://localhost:3001";  
+//const BASE_URL= "https://mere-hands-production.up.railway.app"
+
 
 export const fetcher = async (endpoint) => {
   try {
@@ -10,7 +13,7 @@ export const fetcher = async (endpoint) => {
       throw new Error('Error en la petición');
     }
     
-    console.log(response.data);
+    // console.log(response.data);
     return response.data
 
   } catch (error) {
@@ -18,3 +21,4 @@ export const fetcher = async (endpoint) => {
     return error.response?.data
   }
 };
+

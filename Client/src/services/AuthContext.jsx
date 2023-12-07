@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
 
     useEffect(() => {
-        setUser(sessionStorage.getItem("sessions"))
+        setUser(JSON.parse(sessionStorage.getItem("sessions")))
     }, [])
 
     return (

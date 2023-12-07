@@ -1,8 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 
-const { postTicketsHandler } = require('../Handlers/post/postTicketsHandler');
+const {putTicketHandler} = require ('../Handlers/put/putTicketHandler')
 
-router.post('/', postTicketsHandler);
+const {deleteTicketHandler } = require ('../Handlers/delete/deleteTicketHandler')
+
+router.put ('/updateStatus', putTicketHandler)
+router.delete('/deleteTicket/:id', deleteTicketHandler)
 
 module.exports = router;

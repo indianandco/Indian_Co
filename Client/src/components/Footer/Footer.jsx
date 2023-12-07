@@ -18,22 +18,21 @@ const Footer = () => {
                 <div className="left_container">
                     <h2 className="redes">Redes</h2>
                     <div className="icon_container">
-                        <NavLink to={"https://www.instagram.com/indianandco/"} className={"iconIg"}>
+                        <NavLink to={"https://www.instagram.com/indianandco/"} aria-label="link a instagram" className="social_icons">
                             <i className="bi bi-instagram" width="321" height="321"></i>
                         </NavLink>
-                        <NavLink to={'https://wa.me/5491134424505'} className={"iconWpp"}>
+                        <NavLink to={'https://wa.me/5491134424505'} aria-label="link a whatsapp" className="social_icons">
                             <i className="bi bi-whatsapp"></i>
                         </NavLink>
-                        <NavLink to={'https://www.facebook.com/indianandco09'} className={"iconFb"}>
+                        <NavLink to={'https://www.facebook.com/indianandco09'} aria-label="link a facebook" className="social_icons">
                             <i className="bi bi-facebook"></i>
                         </NavLink>
                     </div>
                 </div>
-
                 <div className="mid_container">
                     <h2 className="menu">Menu</h2>
                     <div className="links_container">
-                        <NavLink className="links" to={"/home"} >Inicio</NavLink>
+                        <NavLink className="links" to={"/"} >Inicio</NavLink>
                         <NavLink className="links" to={"/products"} >Productos</NavLink>
                         <NavLink className="links" to={"/contact"} >Contacto</NavLink>
                         <NavLink className="links" to={"/about"} >Sobre nosotros</NavLink>
@@ -55,9 +54,10 @@ const Footer = () => {
                 <Modal.Body>
                     <ol>
                         <li>Ingresa a productos</li>
-                        <li>Una vez elejido al producto a comprar clickeamos en agregar al carrito</li>
-                        <li>Nos dirijimos la margen superior derecho y clickeamos en el icono con forma de bolsa de compras</li>
-                        <li>Seleccionamos comprar ahora, completamos los datos</li>
+                        <li>Una vez elejido el producto a comprar clickeamos en ver producto</li>
+                        <li>Elejimos un aroma de nuestro agrado, seleccionamos la cantidad de productos que vamos a querer y agregamos al carrito!</li>
+                        <li>Nos dirijimos al margen superior derecho y clickeamos en el icono de carrito</li>
+                        <li>Seleccionamos comprar ahora, completamos los datos, seleccionamos forma de envío y método de pago</li>
                         <li>¡Y listo el producto ya es tuyo!</li>
                     </ol>
                 </Modal.Body>

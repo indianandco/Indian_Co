@@ -1,13 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
 
   const [cart, setCart] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+
   const loadCartData = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
     if (savedCart && savedCart.length > 0) {
@@ -18,7 +17,7 @@ export const CartProvider = ({ children }) => {
   const saveCartData = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }; //función que actualiza el LocalStorage al valor de cart
-  console.log(cart);
+  // console.log(cart);
 
   const addProduct = (product) => {
     const existingProduct = cart.find((p) => p._id === product._id);
@@ -69,9 +68,9 @@ export const CartProvider = ({ children }) => {
 
   //Calculo del subtotal de cada articulo:
   const calcTotalPerItem = (item) => {
-    if(item.offer === true ) {
+    if (item.offer === true) {
       return item.offer_price * item.quantity;
-    }else {
+    } else {
       return item.price * item.quantity;
     }
   };
@@ -82,8 +81,11 @@ export const CartProvider = ({ children }) => {
     return result
   };
 
+  const calcTotalShipping = (shippingPrice) => {
+    const result = cart.reduce((total, item) => total + shippingPrice + calcTotalPerItem(item), 0);
+    return result
+  };
 
-  
   const numberWithCommas = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
@@ -100,7 +102,7 @@ export const CartProvider = ({ children }) => {
   }, [cart])
 
   return (
-    <CartContext.Provider value={{ addProduct, cart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalPerItem, numberWithCommas, applyCustomFormat }}>
+    <CartContext.Provider value={{ addProduct, cart, setCart, loadCartData, removeProduct, removeStack, calcTotal, calcTotalShipping, calcTotalPerItem, numberWithCommas, applyCustomFormat }}>
       {children}
     </CartContext.Provider>
   )

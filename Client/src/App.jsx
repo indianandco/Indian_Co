@@ -12,33 +12,56 @@ import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin'
 import Cart from './views/Cart/Cart'
 import Footer from "./components/Footer/Footer";
 import ProtectedRoutes from './utils/ProtectedRoutes';
+import SignIn from './components/Login/SignIn/SignIn';
+import Wholesaler from './views/Wholesaler/Wholesaler';
 
 function App() {
 
   const location = useLocation();
+  const routesWithFooter = [
+    "/",
+    "/about",
+    "/contact",
+    "/wholesaler",
+    "/products",
+    "/detail/:id",
+    "/cart",
+    "/products/aromas-ambientales",
+    "/products/cosmetica",
+    "/products/deco",
+    "/products/perfumeria",
+    "/products/velas"
+  ];
+  const showFooter = routesWithFooter.some(route => {
+    return route === location.pathname ||
+      (route.includes(":") && location.pathname.startsWith(route.split(":")[0]));
+  });
 
   return (
     <>
 
-      {location.pathname !== ("/*" && "/dashboardadmin") && < Navbar />}
+      {location.pathname !== "/dashboardadmin" && < Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/wholesaler' element={<Wholesaler />} />
         <Route path='/dashboardadmin' element={
           <ProtectedRoutes>
             <DashboardAdmin />
           </ProtectedRoutes>
         }
         />
-        <Route path='/products' element={<Container />} />
+        <Route path='/products/*' element={<Container />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/admin/login' element={<SignIn />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
-      {location.pathname !== "/dashboardadmin" && <Footer />}
+      {showFooter && <Footer />}
+
 
     </>
   )

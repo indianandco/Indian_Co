@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { fetcherUserPost } from '../../../utils/fetcherPost';
 import validation from '../../../utils/registerValidation';
-import { fetcher } from '../../../utils/fetcherGet';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
-function SignUp() {
+function SignUp({ onClick }) {
 
     const [validated, setValidated] = useState(true);
     const [show, setShow] = useState(false)
@@ -25,7 +25,10 @@ function SignUp() {
         email: 'El campo Email es requerido',
     })
 
-    const handleShow = () => setShow(true)
+    const handleShow = () => {
+        if (onClick) onClick();
+        setShow(true)
+    }
 
     const handleClose = () => {
         setShow(false);
@@ -57,14 +60,28 @@ function SignUp() {
     }
 
     const handleSubmit = () => {
-        fetcherUserPost("/users/register", form)
-        setShow(false);
+        const response = fetcherUserPost("/users/register", form)
+        console.log(response);
+        if (response) {
+            setShow(false);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Registro exitoso',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        } else {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Registro fallido',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
     }
 
-    const handleAuth = (event) => {
-        const data = event.target.dataset.social
-        fetcher(`/users/auth/${data}`)
-    }
 
     useEffect(() => {
         validation({ ...form })
@@ -153,11 +170,6 @@ function SignUp() {
                             </Button>
                         </Modal.Footer>
                     </Form>
-                    <Modal.Footer className='p-1'>
-                        <Button style={{ width: "100%" }} data-social="google" onClick={handleAuth} size='lg' variant="danger" type="submit">
-                            <i className="bi bi-google"></i> Registrarse con Google
-                        </Button>
-                    </Modal.Footer>
                 </Modal.Body>
             </Modal>
         </>

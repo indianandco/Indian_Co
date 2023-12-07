@@ -6,6 +6,7 @@ import { CartContext } from '../../services/CartContext';
 import { NavLink, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Swal from 'sweetalert2'
 
 // eslint-disable-next-line react/prop-types
 const Detail = () => {
@@ -47,6 +48,15 @@ const Detail = () => {
                 fragance: frag
             };
             addProduct(productToAdd);
+            Swal.fire({
+                title: 'Agregaste un producto al carrito!',
+                icon: 'success',
+                position: 'top-end',
+                toast: true,
+                showConfirmButton: false,
+                timer: 4000,
+                html: '<a href="/cart" style="padding: 10px; background-color: green; color: white; text-decoration: none; border-radius: 6px;">Ver carrito</a>'
+            })
         }
     }
 
@@ -102,7 +112,7 @@ const Detail = () => {
                             <div className={styles.boxDesc}>
                                 <span>- {detailProducts?.description}</span>
                             </div>
-                            {detailProducts?.size === true ? (
+                            {detailProducts?.size ? (
                                 <div className={styles.boxSize}>
                                     <span className={styles.span}>- Tamaño: {detailProducts?.size}</span>
                                 </div>
@@ -123,7 +133,7 @@ const Detail = () => {
                                 })
                                 }
                             </Form.Select>
-                            <span>{show ? "Por favor elija una fragancia" : <span></span>}</span>
+                            <span style={{ color: 'red', fontSize: '1.2em' }}>{show ? "Por favor elija una fragancia" : <span></span>}</span>
                         </div>
                         <div className={styles.cartContainer}>
                             <div className={styles.counter}>

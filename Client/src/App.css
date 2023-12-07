@@ -1,9 +1,5 @@
-@font-face {
-    font-family: Libre Baskerville,Libre-Baskerville-Fallback,serif;
-    src: url("../fonts/TEMPSITC.TTF") format("truetype"); 
-  }
-
 body {
   font-weight: 300;
   width: 100%;
+  height: 100%;
 }
