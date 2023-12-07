@@ -17,10 +17,6 @@ export const ProductProvider = ({ children }) => {
     const [productStorage, setProductStorage] = useState([])
     const [pagActive, setPagActive] = useState(1);
 
-
-
-
-
     const postProduct = async (product) => {
         const responseBack = await postProductFunction('/adminDashboard/products/create', product)
         setResponse(responseBack)

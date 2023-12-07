@@ -15,6 +15,7 @@ const Container = () => {
     param = Object.values(param)
     const [isLoading, setIsLoading] = useState(false);
     const { filterByCategory, sortProducts, offerProducts, getAllProducts, productStorage, pagActive, setPagActive, resetPagination } = useContext(ProductContext);
+    // eslint-disable-next-line no-unused-vars
     const [products, setProducts] = useState(productStorage);
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [paginate, setPaginate] = useState([])
@@ -28,54 +29,46 @@ const Container = () => {
             </Pagination.Item>
         )
     }
-
+    
     const handlerCategory = async (prop) => {
         await filterByCategory(prop);
-        resetPagination()
+        await updateDisplayedProducts();
+    };
+    
+    const handlerSort = async (prop) => {
+        if (prop === "true") {
+            await offerProducts(prop);
+        } else {
+            await sortProducts(prop);
+        }
+        await updateDisplayedProducts();
+    };
+    
+    const updateDisplayedProducts = async () => {
+        const catalog = productStorage?.filter((product) => !product.catalog_listing);
+        setPaginate(catalog);
+        const productSubset = catalog.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage);
+        setDisplayedProducts(productSubset);
+        setIsLoading(true);
+        resetPagination();
     };
 
     useEffect(() => {
-        if (param[0]) {
-            handlerCategory(param[0])
-        } else {
-            getAllProducts();
-        }
-        resetPagination()
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    if (param[0]) {
+        handlerCategory(param[0]);
+    } else {
+        getAllProducts();
+    }
+    resetPagination();
+    }, []);
 
     useEffect(() => {
         setTimeout(() => {
-            setIsLoading(true)
-        }, 1500)
-        setProducts(productStorage)
-        const catalog = products?.filter(product =>
-            product.catalog_listing === false
-        )
-        setPaginate(catalog)
-        const productSubset = catalog.slice((pagActive - 1) * productsPerPage, pagActive * productsPerPage);
-        setDisplayedProducts(productSubset);
-        setIsLoading(true)
+            setIsLoading(true);
+        }, 1500);
+        setProducts(productStorage);
+        updateDisplayedProducts();
     }, [pagActive, productStorage]);
-
-    console.log(1);
-
-    const handlerSort = async (prop) => {
-        if (prop === "true") {
-            await offerProducts(prop)
-        }
-        if (prop === "false") {
-            await offerProducts(prop)
-        }
-        if (prop === "priceAsc") {
-            await sortProducts(prop)
-        }
-        if (prop === "priceDesc") {
-            await sortProducts(prop)
-        }
-        resetPagination()
-    }
 
     return (
         !isLoading ? (
@@ -111,7 +104,7 @@ const Container = () => {
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => handlerSort("priceAsc")}> De menor a mayor</Dropdown.Item>
                                 <Dropdown.Item onClick={() => handlerSort("priceDesc")}>De mayor a menor</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handlerSort("true")}>Con descuento</Dropdown.Item>
+                                {/* <Dropdown.Item onClick={() => handlerSort("true")}>Con descuento</Dropdown.Item> */}
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>

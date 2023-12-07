@@ -27,10 +27,15 @@ const NavBar = ({ onClick, setShowLogin }) => {
         "/",
         "/about",
         "/contact",
-        "/products",
         "/wholesaler",
         "/detail/:id",
         "/cart",
+        "/products",
+        "/products/aromas-ambientales",
+        "/products/cosmetica",
+        "/products/deco",
+        "/products/perfumeria",
+        "/products/velas",
     ];
 
     const handleShow = () => {
@@ -98,7 +103,7 @@ const NavBar = ({ onClick, setShowLogin }) => {
                                             <Dropdown.Item className="buttons_drop" href="/products/aromas-ambientales">Aromas Ambientales</Dropdown.Item>
                                             <Dropdown.Item className="buttons_drop" href="/products/cosmetica">Cosmética</Dropdown.Item>
                                             <Dropdown.Item className="buttons_drop" href="/products/deco">Deco</Dropdown.Item>
-                                            <Dropdown.Item className="buttons_drop" href="/products/deco">Perfumería</Dropdown.Item>
+                                            <Dropdown.Item className="buttons_drop" href="/products/perfumeria">Perfumería</Dropdown.Item>
                                             <Dropdown.Item className="buttons_drop" href="/products/velas">Velas</Dropdown.Item>
                                             <Dropdown.Item className="buttons_drop" href="/products">Todos</Dropdown.Item>
                                         </Dropdown.Menu>
